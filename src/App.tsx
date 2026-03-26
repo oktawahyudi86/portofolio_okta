@@ -805,7 +805,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
         </div>
         
         <div className="mb-10">
-          <p className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4">Technologies Stack</p>
+          <p className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4">Technology Stack</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag: string) => (
               <span key={tag} className="bg-gray-50 text-[#1a2e35] px-4 py-2 rounded-xl text-[10px] lg:text-[11px] font-black uppercase tracking-widest border border-gray-100">
@@ -832,21 +832,21 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
 const Portfolio = () => {
   const projects = [
     {
-      title: "Website Bussines MRT Jakarta",
+      title: "Website Business MRT Jakarta",
       type: "Enterprise Digital Platform",
       role: "Lead Project Manager",
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
       desc: "A comprehensive digital platform for MRT Jakarta's business operations, featuring real-time data integration and a modern user interface for enhanced stakeholder engagement. I managed the full lifecycle from requirements gathering to final deployment.",
-      tags: ["React", "Next.js", "Typescript", "Nest.js", "PostgreSQL", "Tailwindcss", "Figma"],
+      tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
     },
     {
-      title: "Aplikasi Yulo Laundry",
+      title: "Yulo Laundry Mobile App",
       type: "Management System & Mobile App",
       role: "Product Owner & Manager",
       impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
       desc: "An end-to-end laundry management system that streamlines order processing, customer tracking, and financial reporting for laundry businesses. This project involved complex state management and real-time notifications.",
-      tags: ["React", "Next.js", "Typescript", "Nest.js", "PostgreSQL", "Tailwindcss", "Figma"],
+      tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
       image: "https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?q=80&w=2070&auto=format&fit=crop"
     },
     {
@@ -855,7 +855,7 @@ const Portfolio = () => {
       role: "Technical Project Lead",
       impact: "Successfully integrated LLM capabilities, resulting in a 50% increase in user engagement within the first month.",
       desc: "A dual-purpose application suite combining a high-performance mobile app with an integrated AI chatbot to provide users with intelligent assistance. I led the cross-functional team to integrate LLM capabilities into the core product.",
-      tags: ["React", "Vue.js", "Typescript", "Laravel", "MongoDB", "Golang", "Figma"],
+      tags: ["React", "Vue.js", "TypeScript", "Laravel", "MongoDB", "Golang", "Figma"],
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop"
     }
   ];
@@ -878,7 +878,7 @@ const Portfolio = () => {
 
         <div className="mt-16 flex justify-center border-t border-gray-100 pt-10">
           <button className="bg-[#1a2e35] text-white px-12 py-5 rounded-full text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#4a7c8c] transition-all shadow-2xl">
-            Explore More on Github
+            Explore More on GitHub
           </button>
         </div>
       </div>
@@ -913,7 +913,7 @@ const Contact = () => {
               Let's <span className="text-gray-300">Connect</span>
             </h2>
             <p className="text-gray-500 text-[13px] lg:text-[14px] leading-relaxed max-w-sm mb-8 lg:mb-10">
-              Have a project in mind? I'm always open to discussing new opportunities and strategic partnerships.
+              Have a project in mind? I&apos;m always open to discussing new opportunities and strategic partnerships.
             </p>
             
             <div className="space-y-4 lg:space-y-6">
@@ -1021,22 +1021,22 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Dianne Russell",
-      company: "Starbucks",
-      image: "https://i.pravatar.cc/150?u=dianne",
-      text: "Okta's ability to manage complex software deliveries is unmatched. A true professional."
+      name: "Budi Santoso",
+      company: "PT. Supra Primatama",
+      image: "https://i.pravatar.cc/150?u=budi",
+      text: "Okta&apos;s ability to manage complex software deliveries is exceptional. A true professional who delivers results."
     },
     {
-      name: "Kristin Watson",
-      company: "Louis Vuitton",
-      image: "https://i.pravatar.cc/150?u=kristin",
-      text: "Exceptional project strategy and execution. Delivered our platform ahead of schedule."
+      name: "Siti Nurhaliza",
+      company: "PT. Juragan Inovator",
+      image: "https://i.pravatar.cc/150?u=siti",
+      text: "Outstanding project strategy and flawless execution. Delivered all milestones ahead of schedule with excellent quality."
     },
     {
-      name: "Kathryn Murphy",
-      company: "McDonald's",
-      image: "https://i.pravatar.cc/150?u=kathryn",
-      text: "A strategic thinker who knows how to lead technical teams to success. Highly recommended."
+      name: "Ahmad Prasetyo",
+      company: "PT. Dazo Kreatif",
+      image: "https://i.pravatar.cc/150?u=ahmad",
+      text: "A strategic thinker with excellent leadership skills. Delivers results with clear communication and team alignment. Highly recommended."
     }
   ];
 
