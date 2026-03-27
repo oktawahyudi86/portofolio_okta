@@ -36,7 +36,6 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GoogleGenAI } from "@google/genai";
 
 const OktaAI = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -99,29 +98,36 @@ const OktaAI = () => {
   }, []);
 
   const handleSend = async (textOverride?: string) => {
-    const textToSend = textOverride || input;
-    if (!textToSend.trim() || isLoading) return;
+    const userMsg = textOverride || input;
+    if (!userMsg.trim()) return;
 
-    const userMsg = textToSend.trim();
-    if (!textOverride) setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    setInput('');
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: [
-          { role: 'user', parts: [{ text: portfolioContext }] },
-          ...messages.map(m => ({ role: m.role === 'user' ? 'user' : 'model', parts: [{ text: m.text }] })),
-          { role: 'user', parts: [{ text: userMsg }] }
-        ]
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [
+            ...messages,
+            { role: 'user', text: userMsg }
+          ]
+        })
       });
 
-      const aiText = response.text || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti? ✨";
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const aiText = data.text || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti? ✨";
       setMessages(prev => [...prev, { role: 'ai', text: aiText }]);
     } catch (error) {
-      console.error("AI Error:", error);
+      console.error("[v0] AI Error:", error);
       setMessages(prev => [...prev, { role: 'ai', text: "Aduh, sinyalnya lagi main petak umpet. Coba lagi ya! 🔌" }]);
     } finally {
       setIsLoading(false);
