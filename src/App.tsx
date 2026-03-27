@@ -888,23 +888,54 @@ const SDLCFlow = () => {
             </p>
           </div>
 
-          {/* Tools Grid */}
+          {/* Tools Carousel */}
           <div className="mb-16 lg:mb-20">
+            <style>{`
+              @keyframes scroll-left {
+                0% {
+                  transform: translateX(0);
+                }
+                100% {
+                  transform: translateX(-100%);
+                }
+              }
+              
+              @keyframes scroll-left-reverse {
+                0% {
+                  transform: translateX(-100%);
+                }
+                100% {
+                  transform: translateX(0);
+                }
+              }
+              
+              .carousel-scroll {
+                animation: scroll-left 40s linear infinite;
+              }
+              
+              .carousel-scroll:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
+            
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">Primary Tools Stack</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-              {tools.map((tool, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -8, scale: 1.05 }}
-                  className="group relative overflow-hidden rounded-[24px] lg:rounded-[32px] p-6 lg:p-8 bg-white/40 backdrop-blur-sm border border-white/40 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                  <div className="relative z-10">
-                    <div className="text-[32px] lg:text-[40px] mb-3">{tool.icon}</div>
-                    <h3 className="text-[13px] lg:text-[14px] font-black text-[#1a2e35] group-hover:text-white transition-colors duration-300">{tool.name}</h3>
+            <div className="relative overflow-hidden rounded-2xl">
+              <div className="flex gap-6 lg:gap-8 w-max carousel-scroll py-8">
+                {[...tools, ...tools, ...tools].map((tool, idx) => (
+                  <div
+                    key={idx}
+                    className="group relative flex-shrink-0 w-20 h-20 lg:w-28 lg:h-28 flex items-center justify-center rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-sm border border-white/40 shadow-sm hover:shadow-xl transition-all duration-300 hover:bg-white/60 cursor-pointer"
+                  >
+                    <div className="text-4xl lg:text-6xl transition-transform duration-300 group-hover:scale-110">
+                      {tool.icon}
+                    </div>
                   </div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
+              
+              {/* Gradient overlays for smooth fade effect */}
+              <div className="absolute left-0 top-0 bottom-0 w-12 lg:w-20 bg-gradient-to-r from-white via-white/50 to-transparent pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-12 lg:w-20 bg-gradient-to-l from-white via-white/50 to-transparent pointer-events-none"></div>
             </div>
           </div>
 
