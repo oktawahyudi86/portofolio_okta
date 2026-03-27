@@ -718,8 +718,8 @@ const Journey = () => {
         </div>
 
         {/* Mobile Timeline (Vertical Cards) */}
-        <div className="lg:hidden space-y-6 relative">
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-dashed bg-[#4a7c8c]/20"></div>
+        <div className="lg:hidden space-y-7 relative">
+          <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0fa3b1] via-[#2eccc7] to-[#0fa3b1]/20"></div>
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -727,22 +727,26 @@ const Journey = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="flex items-start gap-6 relative z-10"
+              className="flex items-start gap-6 relative z-10 cursor-pointer"
+              onClick={() => setSelectedExperience(idx)}
             >
-              <div className="w-12 h-12 shrink-0 rounded-2xl bg-[#4a7c8c] text-white flex items-center justify-center shadow-lg border-4 border-white">
-                <Briefcase size={16} />
-              </div>
-              <div className="flex-1 bg-white p-6 rounded-[24px] border border-gray-100 shadow-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-black text-[#4a7c8c] uppercase tracking-widest bg-[#4a7c8c]/5 px-3 py-1 rounded-full border border-[#4a7c8c]/10">
+              <motion.div 
+                whileHover={{ scale: 1.15 }}
+                className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
+              >
+                <Briefcase size={20} />
+              </motion.div>
+              <div className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/90 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[12px] font-black text-white bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] px-4 py-1.5 rounded-full border border-[#0fa3b1]/20">
                     {exp.date}
                   </span>
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
+                  <span className="text-[12px] font-bold text-[#0fa3b1] uppercase tracking-tighter">
                     {exp.location}
                   </span>
                 </div>
-                <h3 className="text-[16px] font-black text-[#1a2e35] leading-tight mb-1">{exp.company}</h3>
-                <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest opacity-80">{exp.position}</p>
+                <h3 className="text-[18px] lg:text-[19px] font-black text-[#0d1f2b] leading-tight mb-2">{exp.company}</h3>
+                <p className="text-[13px] text-[#0fa3b1] font-bold uppercase tracking-widest">{exp.position}</p>
               </div>
             </motion.div>
           ))}
