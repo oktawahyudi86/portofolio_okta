@@ -36,7 +36,6 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GoogleGenAI } from "@google/genai";
 
 const OktaAI = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -46,6 +45,7 @@ const OktaAI = () => {
   ]);
   const [input, setInput] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [carouselIndex, setCarouselIndex] = React.useState(0);
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   const quickActions = [
@@ -98,29 +98,36 @@ const OktaAI = () => {
   }, []);
 
   const handleSend = async (textOverride?: string) => {
-    const textToSend = textOverride || input;
-    if (!textToSend.trim() || isLoading) return;
+    const userMsg = textOverride || input;
+    if (!userMsg.trim()) return;
 
-    const userMsg = textToSend.trim();
-    if (!textOverride) setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    setInput('');
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: [
-          { role: 'user', parts: [{ text: portfolioContext }] },
-          ...messages.map(m => ({ role: m.role === 'user' ? 'user' : 'model', parts: [{ text: m.text }] })),
-          { role: 'user', parts: [{ text: userMsg }] }
-        ]
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [
+            ...messages,
+            { role: 'user', text: userMsg }
+          ]
+        })
       });
 
-      const aiText = response.text || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti? ✨";
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const aiText = data.text || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti? ✨";
       setMessages(prev => [...prev, { role: 'ai', text: aiText }]);
     } catch (error) {
-      console.error("AI Error:", error);
+      console.error("[v0] AI Error:", error);
       setMessages(prev => [...prev, { role: 'ai', text: "Aduh, sinyalnya lagi main petak umpet. Coba lagi ya! 🔌" }]);
     } finally {
       setIsLoading(false);
@@ -151,7 +158,7 @@ const OktaAI = () => {
               y: position === 'bottom' ? 50 : -50, 
               scale: 0.9 
             }}
-            className={`fixed inset-0 lg:inset-auto lg:${position === 'bottom' ? 'bottom-28' : 'top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[40px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
+            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[40px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
           >
             {/* Background Sparkles */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
@@ -270,21 +277,76 @@ const OktaAI = () => {
               )}
             </div>
 
-            {/* Quick Actions */}
+            {/* Quick Actions Carousel */}
             {!isLoading && (
-              <div className="px-6 py-4 flex flex-wrap gap-2 bg-white border-t border-gray-50 relative z-10">
-                {quickActions.map((action, idx) => (
+              <div className="px-6 py-4 bg-white border-t border-gray-50 relative z-10">
+                <div className="flex items-center justify-between gap-3">
+                  {/* Previous Button */}
                   <motion.button
-                    key={idx}
-                    whileHover={{ scale: 1.05, y: -2, backgroundColor: '#1a2e35', color: '#fff' }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleSend(action.label)}
-                    className="px-5 py-2.5 bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black text-[#1a2e35] shadow-sm flex items-center gap-2 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setCarouselIndex((prev) => (prev - 1 + quickActions.length) % quickActions.length)}
+                    className="p-2 rounded-full bg-gray-50 border border-gray-100 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
                   >
-                    <span className="text-[14px]">{action.icon}</span>
-                    {action.label}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
                   </motion.button>
-                ))}
+
+                  {/* Carousel Items - Show 2 items at a time */}
+                  <div className="flex-1 overflow-hidden">
+                    <motion.div
+                      key={carouselIndex}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex gap-2"
+                    >
+                      {[
+                        quickActions[carouselIndex],
+                        quickActions[(carouselIndex + 1) % quickActions.length]
+                      ].map((action, idx) => (
+                        <motion.button
+                          key={idx}
+                          whileHover={{ scale: 1.05, y: -2, backgroundColor: '#1a2e35', color: '#fff' }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => handleSend(action.label)}
+                          className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-100 rounded-2xl text-[10px] font-black text-[#1a2e35] shadow-sm flex flex-col items-center gap-1.5 transition-all duration-300"
+                        >
+                          <span className="text-[16px]">{action.icon}</span>
+                          <span className="line-clamp-2">{action.label}</span>
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  </div>
+
+                  {/* Next Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setCarouselIndex((prev) => (prev + 1) % quickActions.length)}
+                    className="p-2 rounded-full bg-gray-50 border border-gray-100 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </motion.button>
+                </div>
+
+                {/* Carousel Indicators */}
+                <div className="flex justify-center gap-1.5 mt-3">
+                  {quickActions.map((_, idx) => (
+                    <motion.button
+                      key={idx}
+                      onClick={() => setCarouselIndex(idx)}
+                      whileHover={{ scale: 1.2 }}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        idx === carouselIndex ? 'bg-[#1a2e35] w-6' : 'bg-gray-200'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             )}
 
@@ -838,7 +900,7 @@ const Portfolio = () => {
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
       desc: "A comprehensive digital platform for MRT Jakarta's business operations, featuring real-time data integration and a modern user interface for enhanced stakeholder engagement. I managed the full lifecycle from requirements gathering to final deployment.",
       tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+      image: "/aset/project-mrt-jakarta.jpg"
     },
     {
       title: "Yulo Laundry Mobile App",
@@ -847,7 +909,7 @@ const Portfolio = () => {
       impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
       desc: "An end-to-end laundry management system that streamlines order processing, customer tracking, and financial reporting for laundry businesses. This project involved complex state management and real-time notifications.",
       tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
-      image: "https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?q=80&w=2070&auto=format&fit=crop"
+      image: "/aset/project-yulo-laundry.jpg"
     },
     {
       title: "Dazo Apps & Cha AI",
@@ -856,7 +918,7 @@ const Portfolio = () => {
       impact: "Successfully integrated LLM capabilities, resulting in a 50% increase in user engagement within the first month.",
       desc: "A dual-purpose application suite combining a high-performance mobile app with an integrated AI chatbot to provide users with intelligent assistance. I led the cross-functional team to integrate LLM capabilities into the core product.",
       tags: ["React", "Vue.js", "TypeScript", "Laravel", "MongoDB", "Golang", "Figma"],
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop"
+      image: "/aset/project-dazo-ai.jpg"
     }
   ];
 
@@ -1019,40 +1081,110 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 };
 
 const Testimonials = () => {
+  const [testimonialIndex, setTestimonialIndex] = React.useState(0);
+  
   const testimonials = [
     {
       name: "Budi Santoso",
       company: "PT. Supra Primatama",
-      image: "https://i.pravatar.cc/150?u=budi",
+      image: "/aset/testimonial-budi.jpg",
       text: "Okta&apos;s ability to manage complex software deliveries is exceptional. A true professional who delivers results."
     },
     {
       name: "Siti Nurhaliza",
       company: "PT. Juragan Inovator",
-      image: "https://i.pravatar.cc/150?u=siti",
+      image: "/aset/testimonial-siti.jpg",
       text: "Outstanding project strategy and flawless execution. Delivered all milestones ahead of schedule with excellent quality."
     },
     {
       name: "Ahmad Prasetyo",
       company: "PT. Dazo Kreatif",
-      image: "https://i.pravatar.cc/150?u=ahmad",
+      image: "/aset/testimonial-ahmad.jpg",
       text: "A strategic thinker with excellent leadership skills. Delivers results with clear communication and team alignment. Highly recommended."
+    },
+    {
+      name: "Ratna Wijaya",
+      company: "PT. Digital Solusi",
+      image: "/aset/testimonial-ratna.jpg",
+      text: "Excellent project management and technical expertise. Consistently delivers high-quality solutions that exceed expectations. Great to work with."
+    },
+    {
+      name: "Rido Pratama",
+      company: "PT. Innovation Hub",
+      image: "/aset/testimonial-rido.jpg",
+      text: "Remarkable problem-solving skills and dedication. Okta brings innovation and professionalism to every project. Absolutely recommended."
     }
   ];
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   return (
     <section id="feedback" className="py-12 lg:py-24 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16">
-          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Testimonials</p>
+          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Feedback</p>
           <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            Client <span className="text-gray-300">Feedback</span>
+            User <span className="text-gray-300">Feedback</span>
           </h2>
+          <p className="text-[12px] text-gray-500 mt-4">Feedback dari atasan dan user selama pengembangan project</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4">
-          {testimonials.map((t, idx) => (
-            <TestimonialItem key={idx} t={t} idx={idx} />
-          ))}
+
+        {/* Carousel Container */}
+        <div className="relative overflow-hidden">
+          <motion.div
+            key={testimonialIndex}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center"
+          >
+            <TestimonialItem t={testimonials[testimonialIndex]} idx={testimonialIndex} />
+          </motion.div>
+
+          {/* Carousel Navigation Buttons */}
+          <div className="flex justify-center items-center gap-8 mt-8">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+              className="p-3 rounded-full bg-gray-100 border border-gray-200 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </motion.button>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center gap-2">
+              {testimonials.map((_, idx) => (
+                <motion.button
+                  key={idx}
+                  onClick={() => setTestimonialIndex(idx)}
+                  whileHover={{ scale: 1.2 }}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    idx === testimonialIndex ? 'bg-[#1a2e35] w-8' : 'bg-gray-300 w-2'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
+              className="p-3 rounded-full bg-gray-100 border border-gray-200 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </motion.button>
+          </div>
         </div>
       </div>
     </section>
