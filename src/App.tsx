@@ -533,7 +533,7 @@ const Hero = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <section id="home" className="pt-16 lg:pt-56 pb-12 lg:pb-24 px-6 max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center relative overflow-hidden lg:overflow-visible">
+    <section id="home" className="pt-20 lg:pt-72 pb-16 lg:pb-32 px-6 max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-28 items-center relative overflow-hidden lg:overflow-visible">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -560,33 +560,33 @@ const Hero = () => {
         <div className="inline-block px-4 py-1.5 rounded-full bg-[#4a7c8c]/10 text-[#4a7c8c] font-black mb-6 tracking-[0.2em] uppercase text-[9px] lg:text-[11px] border border-[#4a7c8c]/20">
           Product & Project Manager
         </div>
-        <h1 className="text-5xl lg:text-7xl font-black text-[#1a2e35] leading-[0.9] mb-8 tracking-tighter">
+        <h1 className="text-5xl lg:text-8xl font-black text-[#1a2e35] leading-[0.9] mb-10 lg:mb-12 tracking-tighter">
           I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c8c] to-[#1a2e35]">projects</span> and delivery.
         </h1>
         
-        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 rounded-[32px] lg:rounded-[40px] mb-10 relative shadow-2xl overflow-hidden group border border-white/10">
+        <div className="bg-[#1a2e35] text-white p-8 lg:p-10 rounded-[32px] lg:rounded-[40px] mb-12 lg:mb-14 relative shadow-2xl overflow-hidden group border border-white/10">
           <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
           <p className="italic text-base lg:text-lg leading-relaxed font-medium relative z-10 opacity-90">
             "I manage software projects end-to-end, ensuring timely delivery, quality results, and strong team alignment."
           </p>
         </div>
 
-        <div className="flex gap-10 lg:gap-12 mb-10 px-2">
+        <div className="flex gap-12 lg:gap-16 mb-12 lg:mb-14 px-2">
           <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">3+</span>
-            <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
+            <span className="text-5xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter">3+</span>
+            <div className="text-[10px] lg:text-[12px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-2">
               Years<br/>experience
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">30</span>
-            <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
+            <span className="text-5xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter">30</span>
+            <div className="text-[10px] lg:text-[12px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-2">
               Projects<br/>delivered
             </div>
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-12 mb-0">
           <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
             I am an IT Project Manager focused on software development, delivering projects efficiently and on time.
           </p>
@@ -628,57 +628,57 @@ const Journey = () => {
       location: "Yogyakarta",
       company: "PT. Sarana Insan Muda Selaras",
       position: "Technical Gov & Corp",
-      y: 20
+      y: 30
     },
     {
       date: "2021 - 2023",
       location: "Surabaya",
       company: "PT. Supra Primatama (Biznet)",
       position: "Project Engineer",
-      y: -20
+      y: -30
     },
     {
       date: "Jun - Des 2023",
       location: "Yogyakarta",
       company: "PT. Divistant Teknologi",
       position: "PM DevOps & Software",
-      y: 20
+      y: 30
     },
     {
       date: "2023 - 2025",
       location: "Remote",
       company: "PT. Juragan Inovator",
       position: "Product & Project Manager",
-      y: -20
+      y: -30
     },
     {
       date: "Jan - May 2025",
       location: "Jakarta",
       company: "SALT (Ako Media)",
       position: "Project Manager",
-      y: 20
+      y: 30
     },
     {
       date: "2025 - 2026",
       location: "Yogyakarta",
       company: "PT Dazo Kreatif",
       position: "Head IT Project Manager",
-      y: -20
+      y: -30
     }
   ];
 
   return (
-    <section id="journey" className="py-12 lg:py-24 px-6 relative overflow-hidden">
+    <section id="journey" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-10 lg:mb-16">
-          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Milestones</p>
-          <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+        <div className="mb-12 lg:mb-20">
+          <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Milestones</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
             Journey & <span className="text-gray-300">Experience</span>
           </h2>
         </div>
 
         {/* Desktop Timeline (Horizontal) */}
-        <div className="hidden lg:block relative h-[350px] mt-10">
+        <div className="hidden lg:block relative h-[400px] mt-16">
           {/* Wavy Dotted Line */}
           <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none opacity-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path 
@@ -718,7 +718,7 @@ const Journey = () => {
         </div>
 
         {/* Mobile Timeline (Vertical Cards) */}
-        <div className="lg:hidden space-y-6 relative">
+        <div className="lg:hidden space-y-7 relative">
           <div className="absolute left-6 top-0 bottom-0 w-px bg-dashed bg-[#4a7c8c]/20"></div>
           {experiences.map((exp, idx) => (
             <motion.div
@@ -757,32 +757,32 @@ const Skills = () => {
     {
       title: "Project Strategy",
       desc: "End-to-end software project planning from initiation to delivery with clear milestones.",
-      icon: <Layout size={20} />
+      icon: <Layout size={24} />
     },
     {
       title: "Agile Leadership",
       desc: "Leading high-performance Agile teams to ensure rapid and high-quality releases.",
-      icon: <Settings size={20} />
+      icon: <Settings size={24} />
     },
     {
       title: "System Delivery",
       desc: "Coordinating complex system integrations aligned with core business objectives.",
-      icon: <Layers size={20} />
+      icon: <Layers size={24} />
     },
     {
       title: "Stakeholder Mgmt",
       desc: "Effective collaboration with stakeholders to ensure project alignment and success.",
-      icon: <Users size={20} />
+      icon: <Users size={24} />
     }
   ];
 
   return (
-    <section id="skills" className="py-12 lg:py-24 px-6 relative overflow-hidden">
+    <section id="skills" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-20 gap-8">
           <div className="max-w-xl">
-            <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Expertise</p>
-            <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+            <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Expertise</p>
+            <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
               Core <span className="text-gray-300">Capabilities</span>
             </h2>
           </div>
@@ -791,20 +791,20 @@ const Skills = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {skills.map((skill, idx) => (
             <motion.div 
               key={idx}
-              whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
+              whileHover={{ y: -8 }}
+              className="bg-white/40 backdrop-blur-sm p-10 lg:p-12 rounded-[24px] lg:rounded-[40px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white/60 flex items-center justify-center mb-6 lg:mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
+              <div className="w-14 h-14 rounded-3xl bg-white/60 flex items-center justify-center mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
                 <div className="text-[#4a7c8c] group-hover:text-white transition-colors">
                   {skill.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-black text-[#1a2e35] mb-4 tracking-tight group-hover:text-white transition-colors">{skill.title}</h3>
-              <p className="text-[14px] text-gray-500 leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{skill.desc}</p>
+              <h3 className="text-lg lg:text-xl font-black text-[#1a2e35] mb-5 tracking-tight group-hover:text-white transition-colors">{skill.title}</h3>
+              <p className="text-[14px] lg:text-[15px] text-gray-500 leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{skill.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -921,7 +921,7 @@ const SDLCFlow = () => {
   return (
     <>
       {/* Tools Management & Coordination */}
-      <section id="tools" className="py-12 lg:py-24 px-6 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
+      <section id="tools" className="py-16 lg:py-32 px-6 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
             <div className="max-w-xl">
@@ -1002,12 +1002,12 @@ const SDLCFlow = () => {
       </section>
 
       {/* SDLC Flow - Scrum Process */}
-      <section id="sdlc" className="py-12 lg:py-24 px-6 relative overflow-hidden">
+      <section id="sdlc" className="py-16 lg:py-32 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-20 gap-8">
             <div className="max-w-xl">
-              <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Development Cycle</p>
-              <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+              <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Development Cycle</p>
+              <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 SDLC <span className="text-gray-300">Scrum Flow</span>
               </h2>
             </div>
@@ -1017,7 +1017,7 @@ const SDLCFlow = () => {
           </div>
 
           {/* Scrum Process Flow */}
-          <div className="mb-16 lg:mb-20">
+          <div className="mb-20 lg:mb-28">
             {/* Mobile View - Vertical Stack */}
             <div className="lg:hidden">
               <div className="space-y-4">
@@ -1067,32 +1067,32 @@ const SDLCFlow = () => {
           </div>
 
           {/* Reporting & Stakeholder Communication */}
-          <div className="mb-16 lg:mb-0">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-full bg-[#4a7c8c] text-white flex items-center justify-center font-black text-sm">📋</div>
-              <h3 className="text-[16px] lg:text-[18px] font-black text-[#1a2e35]">Reporting & Stakeholder Communication</h3>
+          <div className="mb-0">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-full bg-[#4a7c8c] text-white flex items-center justify-center font-black text-lg">📋</div>
+              <h3 className="text-[18px] lg:text-[20px] font-black text-[#1a2e35]">Reporting & Stakeholder Communication</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
               {reportingStructure.map((report, idx) => (
                 <motion.div
                   key={idx}
-                  whileHover={{ y: -5 }}
-                  className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+                  whileHover={{ y: -8 }}
+                  className="bg-white/40 backdrop-blur-sm p-10 lg:p-12 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
                 >
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-[#4a7c8c]/10 flex items-center justify-center text-[20px]">👥</div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-14 h-14 rounded-2xl bg-[#4a7c8c]/10 flex items-center justify-center text-[24px]">👥</div>
                     <div>
-                      <h4 className="text-[14px] font-black text-[#1a2e35]">{report.level}</h4>
-                      <p className="text-[10px] text-[#4a7c8c] font-black uppercase tracking-widest">{report.frequency}</p>
+                      <h4 className="text-[15px] lg:text-[16px] font-black text-[#1a2e35]">{report.level}</h4>
+                      <p className="text-[11px] text-[#4a7c8c] font-black uppercase tracking-widest">{report.frequency}</p>
                     </div>
                   </div>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {report.items.map((item, itemIdx) => (
                       <div key={itemIdx} className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-[#4a7c8c]"></div>
-                        <span className="text-[12px] text-gray-500 font-medium">{item}</span>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#4a7c8c]"></div>
+                        <span className="text-[13px] lg:text-[14px] text-gray-500 font-medium">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1120,7 +1120,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center border-b border-white/10 pb-12 last:border-0"
+      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 lg:gap-28 items-center border-b border-white/10 pb-16 lg:pb-20 last:border-0 last:pb-0"
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
         <div className="relative group">
@@ -1146,24 +1146,24 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">{project.role}</span>
         </div>
         
-        <h3 className="text-3xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
+        <h3 className="text-3xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-8 lg:mb-10">{project.title}</h3>
         
-        <div className="space-y-6 mb-10">
-          <p className="text-[15px] lg:text-[17px] text-gray-500 leading-relaxed font-medium">
+        <div className="space-y-8 mb-12 lg:mb-14">
+          <p className="text-[15px] lg:text-[18px] text-gray-500 leading-relaxed font-medium">
             {project.desc}
           </p>
-          <div className="bg-[#1a2e35] p-6 rounded-[24px] lg:rounded-[32px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
+          <div className="bg-[#1a2e35] p-8 lg:p-10 rounded-[24px] lg:rounded-[32px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#4a7c8c]/20 rounded-full -mr-12 -mt-12 blur-2xl"></div>
-            <p className="text-[11px] font-black text-[#4a7c8c] mb-2 uppercase tracking-widest relative z-10">Key Impact</p>
-            <p className="text-[14px] lg:text-[15px] leading-relaxed italic font-medium relative z-10 opacity-90">"{project.impact}"</p>
+            <p className="text-[12px] font-black text-[#4a7c8c] mb-3 uppercase tracking-widest relative z-10">Key Impact</p>
+            <p className="text-[15px] lg:text-[16px] leading-relaxed italic font-medium relative z-10 opacity-90">"{project.impact}"</p>
           </div>
         </div>
         
-        <div className="mb-10">
-          <p className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4">Technology Stack</p>
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-12 lg:mb-14">
+          <p className="text-[11px] lg:text-[12px] font-black text-gray-400 uppercase tracking-widest mb-5">Technology Stack</p>
+          <div className="flex flex-wrap gap-3">
             {project.tags.map((tag: string) => (
-              <span key={tag} className="bg-gray-50 text-[#1a2e35] px-4 py-2 rounded-xl text-[10px] lg:text-[11px] font-black uppercase tracking-widest border border-gray-100">
+              <span key={tag} className="bg-gray-50 text-[#1a2e35] px-5 py-3 rounded-2xl text-[11px] lg:text-[12px] font-black uppercase tracking-widest border border-gray-100">
                 {tag}
               </span>
             ))}
@@ -1192,7 +1192,7 @@ const Portfolio = () => {
       role: "Lead Project Manager",
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
       desc: "A comprehensive digital platform for MRT Jakarta's business operations, featuring real-time data integration and a modern user interface for enhanced stakeholder engagement. I managed the full lifecycle from requirements gathering to final deployment.",
-      tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
+      tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma", "AWS"],
       image: "/aset/project-mrt-jakarta.jpg"
     },
     {
@@ -1216,23 +1216,23 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-8 lg:py-12 px-6 relative overflow-hidden">
+    <section id="portfolio" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="mb-6 lg:mb-10">
-          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 lg:mb-4 uppercase tracking-[0.4em]">Professional Portfolio</p>
-          <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+        <div className="mb-10 lg:mb-16">
+          <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Professional Portfolio</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
             Detailed <span className="text-gray-300 italic font-serif">Case Studies</span>
           </h2>
         </div>
 
-        <div className="space-y-10 lg:space-y-12">
+        <div className="space-y-14 lg:space-y-20">
           {projects.map((project, idx) => (
             <PortfolioItem key={idx} project={project} idx={idx} />
           ))}
         </div>
 
-        <div className="mt-16 flex justify-center border-t border-gray-100 pt-10">
-          <button className="bg-[#1a2e35] text-white px-12 py-5 rounded-full text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#4a7c8c] transition-all shadow-2xl">
+        <div className="mt-20 lg:mt-28 flex justify-center border-t border-gray-100 pt-12 lg:pt-16">
+          <button className="bg-[#1a2e35] text-white px-14 py-6 rounded-full text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#4a7c8c] transition-all shadow-2xl">
             Explore More on GitHub
           </button>
         </div>
@@ -1259,69 +1259,69 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-12 lg:py-24 px-6 relative overflow-hidden">
+    <section id="contact" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div>
-            <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Get in touch</p>
-            <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-6 lg:mb-8">
+            <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Get in touch</p>
+            <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-8 lg:mb-10">
               Let's <span className="text-gray-300">Connect</span>
             </h2>
-            <p className="text-gray-500 text-[13px] lg:text-[14px] leading-relaxed max-w-sm mb-8 lg:mb-10">
+            <p className="text-gray-500 text-[14px] lg:text-[16px] leading-relaxed max-w-sm mb-10 lg:mb-12">
               Have a project in mind? I&apos;m always open to discussing new opportunities and strategic partnerships.
             </p>
             
-            <div className="space-y-4 lg:space-y-6">
+            <div className="space-y-6 lg:space-y-8">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
-                  <Globe size={18} />
+                <div className="w-12 h-12 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
+                  <Globe size={20} />
                 </div>
-                <span className="text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-[#1a2e35]">Jakarta, Indonesia</span>
+                <span className="text-[12px] lg:text-[13px] font-black uppercase tracking-widest text-[#1a2e35]">Jakarta, Indonesia</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
-                  <Linkedin size={18} />
+                <div className="w-12 h-12 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
+                  <Linkedin size={20} />
                 </div>
-                <span className="text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-[#1a2e35]">linkedin.com/in/okta</span>
+                <span className="text-[12px] lg:text-[13px] font-black uppercase tracking-widest text-[#1a2e35]">linkedin.com/in/okta</span>
               </div>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-white/40 backdrop-blur-md p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 space-y-4 shadow-sm">
-            <div className="space-y-1">
-              <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Full Name</label>
+          <form onSubmit={handleSubmit} className="bg-white/40 backdrop-blur-md p-10 lg:p-12 rounded-[24px] lg:rounded-[40px] border border-white/40 space-y-6 shadow-sm">
+            <div className="space-y-2">
+              <label className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest ml-2">Full Name</label>
               <input 
                 type="text" 
                 required
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium focus:bg-white transition-all"
+                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium focus:bg-white transition-all"
               />
             </div>
-            <div className="space-y-1">
-              <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Email Address</label>
+            <div className="space-y-2">
+              <label className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest ml-2">Email Address</label>
               <input 
                 type="email" 
                 required
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium focus:bg-white transition-all"
+                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium focus:bg-white transition-all"
               />
             </div>
-            <div className="space-y-1">
-              <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Message</label>
+            <div className="space-y-2">
+              <label className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest ml-2">Message</label>
               <textarea 
                 required
                 placeholder="Tell me about your project..."
-                rows={4} 
+                rows={5} 
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium resize-none focus:bg-white transition-all"
+                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium resize-none focus:bg-white transition-all"
               ></textarea>
             </div>
-            <button type="submit" className="w-full bg-[#1a2e35] text-white py-3 lg:py-4 rounded-xl lg:rounded-2xl font-black text-[11px] lg:text-[12px] uppercase tracking-[0.2em] hover:bg-[#4a7c8c] transition-all shadow-xl mt-4">
+            <button type="submit" className="w-full bg-[#1a2e35] text-white py-4 lg:py-5 rounded-xl lg:rounded-2xl font-black text-[11px] lg:text-[12px] uppercase tracking-[0.2em] hover:bg-[#4a7c8c] transition-all shadow-xl mt-2">
               Send Message
             </button>
           </form>
@@ -1374,6 +1374,28 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 };
 
 const Testimonials = () => {
+  const [testimonialIndex, setTestimonialIndex] = React.useState(0);
+
+  return (
+    <section id="testimonials" className="py-16 lg:py-32 px-6 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12 lg:mb-20">
+          <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Testimonials</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+            What <span className="text-gray-300">Others Say</span>
+          </h2>
+        </div>
+
+        {/* Placeholder for testimonials grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {/* Testimonials will be mapped here */}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const TestimonialsOld = () => {
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   
   const testimonials = [
@@ -1486,32 +1508,32 @@ const Testimonials = () => {
 
 const Footer = () => {
   return (
-    <footer className="px-6 pb-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto bg-[#1a2e35] text-white rounded-[32px] lg:rounded-[40px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+    <footer className="px-6 pb-8 pt-12 lg:pt-16 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto bg-[#1a2e35] text-white rounded-[32px] lg:rounded-[40px] p-10 md:p-14 lg:p-16 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#4a7c8c]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-8 relative z-10">
-          <div className="text-2xl font-black tracking-tighter">OKTA.</div>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-12 md:gap-10 relative z-10">
+          <div className="text-3xl font-black tracking-tighter">OKTA.</div>
           
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[10px] lg:text-[11px] font-black uppercase tracking-widest text-gray-400">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-10 text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-gray-400">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
             <a href="#about" className="hover:text-white transition-colors">About</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-5">
             {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-              <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#4a7c8c] transition-all border border-white/5">
-                <Icon size={16} />
+              <a key={i} href="#" className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#4a7c8c] transition-all border border-white/5">
+                <Icon size={18} />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="mt-10 lg:mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] lg:text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] relative z-10">
+        <div className="mt-12 lg:mt-14 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] lg:text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] relative z-10">
           <p className="text-center md:text-left">© 2026 Okta. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex gap-8">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>
           </div>
@@ -1523,7 +1545,7 @@ const Footer = () => {
 
 export default function App() {
   return (
-    <div className="min-h-screen pb-24 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] font-sans selection:bg-[#4a7c8c] selection:text-white antialiased relative overflow-hidden">
+    <div className="min-h-screen pb-32 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] font-sans selection:bg-[#4a7c8c] selection:text-white antialiased relative overflow-hidden">
       {/* Noise Texture Overlay */}
       <div className="fixed inset-0 opacity-[0.03] pointer-events-none -z-50 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
       
