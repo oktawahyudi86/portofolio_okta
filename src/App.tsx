@@ -4,13 +4,13 @@
  */
 
 import React from 'react';
-import { 
-  Instagram, 
-  Twitter, 
-  Linkedin, 
+import {
+  Instagram,
+  Twitter,
+  Linkedin,
   Facebook,
-  Download, 
-  ExternalLink, 
+  Download,
+  ExternalLink,
   Star,
   Sparkles,
   Layout,
@@ -146,17 +146,17 @@ const OktaAI = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ 
-              opacity: 0, 
-              y: position === 'bottom' ? 50 : -50, 
-              scale: 0.9, 
-              transformOrigin: position === 'bottom' ? 'bottom right' : 'top right' 
+            initial={{
+              opacity: 0,
+              y: position === 'bottom' ? 50 : -50,
+              scale: 0.9,
+              transformOrigin: position === 'bottom' ? 'bottom right' : 'top right'
             }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ 
-              opacity: 0, 
-              y: position === 'bottom' ? 50 : -50, 
-              scale: 0.9 
+            exit={{
+              opacity: 0,
+              y: position === 'bottom' ? 50 : -50,
+              scale: 0.9
             }}
             className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[40px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
           >
@@ -165,13 +165,13 @@ const OktaAI = () => {
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.5, 1],
                     opacity: [0.3, 0.7, 0.3],
                     rotate: [0, 180, 360]
                   }}
-                  transition={{ 
-                    repeat: Infinity, 
+                  transition={{
+                    repeat: Infinity,
                     duration: 4 + i,
                     delay: i * 0.5
                   }}
@@ -192,7 +192,7 @@ const OktaAI = () => {
               <div className="flex items-center gap-4 relative z-10">
                 <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner group overflow-hidden relative">
                   <motion.div
-                    animate={{ 
+                    animate={{
                       y: [0, -4, 0],
                       rotate: [0, 5, -5, 0]
                     }}
@@ -201,7 +201,7 @@ const OktaAI = () => {
                   >
                     <Cpu size={28} className="text-white" />
                   </motion.div>
-                  <motion.div 
+                  <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
                     transition={{ repeat: Infinity, duration: 2 }}
                     className="absolute inset-0 bg-gradient-to-tr from-[#4a7c8c] to-transparent"
@@ -214,8 +214,8 @@ const OktaAI = () => {
                   <p className="text-[10px] text-white/60 font-black uppercase tracking-[0.2em]">Asisten Pintar & Lucu ✨</p>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)} 
+              <button
+                onClick={() => setIsOpen(false)}
                 className="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-all relative z-10"
               >
                 <X size={20} />
@@ -226,14 +226,14 @@ const OktaAI = () => {
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-5 no-scrollbar bg-[#f8fafc]/50 relative z-10">
               {messages.length === 1 && (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     className="w-32 h-32 bg-white rounded-[40px] flex items-center justify-center mb-6 shadow-xl border border-gray-100 relative overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#4a7c8c]/5 to-transparent"></div>
                     <Cpu size={56} className="text-[#1a2e35] relative z-10 group-hover:scale-110 transition-transform duration-500" />
-                    <motion.div 
+                    <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
                       className="absolute inset-0 border-2 border-dashed border-[#4a7c8c]/20 rounded-[40px] m-2"
@@ -245,17 +245,16 @@ const OktaAI = () => {
               )}
 
               {messages.map((m, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] p-5 rounded-[30px] text-[13px] leading-relaxed font-medium shadow-sm relative group ${
-                    m.role === 'user' 
-                      ? 'bg-[#1a2e35] text-white rounded-tr-none' 
-                      : 'bg-white text-[#1a2e35] border border-gray-100 rounded-tl-none'
-                  }`}>
+                  <div className={`max-w-[85%] p-5 rounded-[30px] text-[13px] leading-relaxed font-medium shadow-sm relative group ${m.role === 'user'
+                    ? 'bg-[#1a2e35] text-white rounded-tr-none'
+                    : 'bg-white text-[#1a2e35] border border-gray-100 rounded-tl-none'
+                    }`}>
                     {m.text}
                     {m.role === 'model' && (
                       <div className="absolute -left-2 -top-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -265,7 +264,7 @@ const OktaAI = () => {
                   </div>
                 </motion.div>
               ))}
-              
+
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-white p-5 rounded-[28px] rounded-tl-none border border-gray-100 shadow-sm flex gap-1.5 items-center">
@@ -341,9 +340,8 @@ const OktaAI = () => {
                       key={idx}
                       onClick={() => setCarouselIndex(idx)}
                       whileHover={{ scale: 1.2 }}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        idx === carouselIndex ? 'bg-[#1a2e35] w-6' : 'bg-gray-200'
-                      }`}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === carouselIndex ? 'bg-[#1a2e35] w-6' : 'bg-gray-200'
+                        }`}
                     />
                   ))}
                 </div>
@@ -361,7 +359,7 @@ const OktaAI = () => {
                   placeholder="Tanya apa saja..."
                   className="flex-1 bg-gray-50 border border-gray-100 outline-none px-7 py-4 rounded-[24px] text-[13px] font-medium placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a7c8c]/10 focus:bg-white transition-all shadow-inner"
                 />
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.1, backgroundColor: '#4a7c8c' }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => handleSend()}
@@ -425,7 +423,7 @@ const Navbar = () => {
           <div className="px-8 py-4 flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-10">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 className="text-xl lg:text-2xl font-black tracking-tighter text-[#1a2e35] cursor-default"
               >
@@ -450,7 +448,7 @@ const Navbar = () => {
 
             <div className="flex items-center gap-3">
               {/* AI Button */}
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={openChat}
@@ -459,7 +457,7 @@ const Navbar = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#4a7c8c] via-[#ff6b6b] to-[#4a7c8c] rounded-full blur-md opacity-40 group-hover:opacity-100 transition-all duration-500 animate-gradient-x"></div>
                 <div className="relative bg-[#1a2e35] text-white px-4 lg:px-7 py-2 lg:py-3 rounded-full text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2 lg:gap-3 shadow-xl border border-white/10 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#4a7c8c]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+
                   <div className="relative flex items-center gap-2">
                     <div className="relative">
                       <MessageCircle size={14} className="lg:w-4 lg:h-4 group-hover:rotate-12 transition-transform duration-500" />
@@ -502,12 +500,12 @@ const Navbar = () => {
                 className="flex flex-col items-center gap-1 px-4 py-1 group relative"
               >
                 {activeSection === item.href.replace('#', '') && item.name !== 'Chat AI' && (
-                  <motion.div 
+                  <motion.div
                     layoutId="activeNav"
                     className="absolute -top-3 w-8 h-1 bg-[#4a7c8c] rounded-full"
                   />
                 )}
-                <motion.div 
+                <motion.div
                   whileTap={{ scale: 0.8 }}
                   className={`${activeSection === item.href.replace('#', '') ? 'text-[#4a7c8c]' : 'text-gray-300'} transition-colors`}
                 >
@@ -534,19 +532,19 @@ const Hero = () => {
 
   return (
     <section id="home" className="pt-16 lg:pt-56 pb-12 lg:pb-24 px-6 max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center relative overflow-hidden lg:overflow-visible">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         {/* Mobile AI Search Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="lg:hidden mb-10"
         >
-          <div 
+          <div
             onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
             className="bg-white rounded-[24px] border border-gray-100 shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
           >
@@ -563,7 +561,7 @@ const Hero = () => {
         <h1 className="text-5xl lg:text-7xl font-black text-[#1a2e35] leading-[0.9] mb-8 tracking-tighter">
           I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c8c] to-[#1a2e35]">projects</span> and delivery.
         </h1>
-        
+
         <div className="bg-[#1a2e35] text-white p-7 lg:p-8 rounded-[32px] lg:rounded-[40px] mb-10 relative shadow-2xl overflow-hidden group border border-white/10">
           <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
           <p className="italic text-base lg:text-lg leading-relaxed font-medium relative z-10 opacity-90">
@@ -575,17 +573,17 @@ const Hero = () => {
           <div className="flex flex-col">
             <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">3+</span>
             <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
-              Years<br/>experience
+              Years<br />experience
             </div>
           </div>
           <div className="flex flex-col">
             <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">30</span>
             <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
-              Projects<br/>delivered
+              Projects<br />delivered
             </div>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-10 mb-10">
           <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
             I am an IT Project Manager focused on software development, delivering projects efficiently and on time.
@@ -597,7 +595,7 @@ const Hero = () => {
 
       </motion.div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -605,9 +603,9 @@ const Hero = () => {
       >
         <div className="rounded-[40px] lg:rounded-[60px] overflow-hidden relative aspect-[4/5] lg:aspect-auto">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-          <img 
-            src="/aset/profil.png" 
-            alt="Okta" 
+          <img
+            src="/aset/profil.png"
+            alt="Okta"
             onLoad={() => setIsLoaded(true)}
             loading="eager"
             // @ts-ignore
@@ -681,11 +679,11 @@ const Journey = () => {
         <div className="hidden lg:block relative h-[350px] mt-10">
           {/* Wavy Dotted Line */}
           <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none opacity-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path 
-              d="M0,60 C100,0 200,120 300,60 C400,0 500,120 600,60 C700,0 800,120 900,60 C1000,0 1100,120 1200,60" 
-              fill="none" 
-              stroke="#4a7c8c" 
-              strokeWidth="2" 
+            <path
+              d="M0,60 C100,0 200,120 300,60 C400,0 500,120 600,60 C700,0 800,120 900,60 C1000,0 1100,120 1200,60"
+              fill="none"
+              stroke="#4a7c8c"
+              strokeWidth="2"
               strokeDasharray="8 8"
             />
           </svg>
@@ -730,7 +728,7 @@ const Journey = () => {
               className="flex items-start gap-6 relative z-10 cursor-pointer"
               onClick={() => setSelectedExperience(idx)}
             >
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.15 }}
                 className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
               >
@@ -794,10 +792,10 @@ const Skills = () => {
             Bridging technical complexity with business value through strategic project management.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {skills.map((skill, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               whileHover={{ y: -5 }}
               className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
@@ -826,7 +824,7 @@ const ToolsCarousel = ({ tools }) => {
 
     const animate = () => {
       carousel.scrollLeft += 1;
-      
+
       // Reset to start when reaching end
       if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
         carousel.scrollLeft = 0;
@@ -869,32 +867,26 @@ const SDLCFlow = () => {
     {
       title: "Grooming",
       desc: "Story refinement & requirements clarity",
-      icon: "📋"
     },
     {
       title: "Story Sizing",
       desc: "Estimate effort & complexity",
-      icon: "📊"
     },
     {
       title: "Sprint Planning",
       desc: "Define sprint goals & tasks",
-      icon: "🎯"
     },
     {
       title: "Sprint Dev",
       desc: "Execute & develop features (24H)",
-      icon: "⚙️"
     },
     {
       title: "Review",
       desc: "Showcase completed work",
-      icon: "✅"
     },
     {
       title: "Retrospective",
       desc: "Continuous improvement",
-      icon: "🔄"
     }
   ];
 
@@ -967,15 +959,15 @@ const SDLCFlow = () => {
                 scroll-behavior: auto;
               }
             `}</style>
-            
+
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">Primary Tools Stack</p>
-            
+
             <ToolsCarousel tools={tools} />
           </div>
 
           {/* Features Info */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5 }}
               className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
             >
@@ -984,7 +976,7 @@ const SDLCFlow = () => {
               <p className="text-[12px] text-gray-500 leading-relaxed">Collecting team requirements and resource planning for project success.</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5 }}
               className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
             >
@@ -993,7 +985,7 @@ const SDLCFlow = () => {
               <p className="text-[12px] text-gray-500 leading-relaxed">In-depth analysis of scope, timeline, and resource allocation for optimal delivery.</p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5 }}
               className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
             >
@@ -1091,7 +1083,7 @@ const SDLCFlow = () => {
                       <p className="text-[10px] text-[#4a7c8c] font-black uppercase tracking-widest">{report.frequency}</p>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     {report.items.map((item, itemIdx) => (
                       <div key={itemIdx} className="flex items-center gap-3">
@@ -1120,7 +1112,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -1131,9 +1123,9 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <div className="absolute -inset-6 bg-gradient-to-br from-[#0fa3b1]/8 to-[#2eccc7]/4 rounded-[48px] blur-2xl group-hover:from-[#0fa3b1]/15 group-hover:to-[#2eccc7]/10 transition-all duration-700"></div>
           <div className="rounded-[28px] lg:rounded-[40px] overflow-hidden shadow-xl aspect-[16/10] relative bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-md border border-[#0fa3b1]/30 group-hover:border-[#0fa3b1]/50 transition-all duration-500">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <img
+              src={project.image}
+              alt={project.title}
               onLoad={() => setIsLoaded(true)}
               loading="lazy"
               className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -1153,9 +1145,9 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="w-6 h-px bg-gradient-to-r from-[#0fa3b1]/40 to-transparent"></span>
           <span className="text-[11px] font-bold text-[#0fa3b1]/60 uppercase tracking-widest">{project.role}</span>
         </div>
-        
+
         <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
-        
+
         <div className="space-y-6 mb-10">
           <p className="text-[15px] lg:text-[17px] text-gray-500 leading-relaxed font-medium">
             {project.desc}
@@ -1166,7 +1158,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
             <p className="text-[14px] lg:text-[15px] leading-relaxed italic font-medium relative z-10 opacity-90">"{project.impact}"</p>
           </div>
         </div>
-        
+
         <div className="mb-10">
           <p className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4">Technology Stack</p>
           <div className="flex flex-wrap gap-2">
@@ -1178,7 +1170,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           </div>
         </div>
 
-        <motion.button 
+        <motion.button
           whileHover={{ x: 10 }}
           className="flex items-center gap-4 text-[#1a2e35] group/btn"
         >
@@ -1305,7 +1297,7 @@ const Contact = () => {
             <p className="text-gray-500 text-[13px] lg:text-[14px] leading-relaxed max-w-sm mb-8 lg:mb-10">
               Have a project in mind? I&apos;m always open to discussing new opportunities and strategic partnerships.
             </p>
-            
+
             <div className="space-y-4 lg:space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
@@ -1325,8 +1317,8 @@ const Contact = () => {
           <form onSubmit={handleSubmit} className="bg-white/40 backdrop-blur-md p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 space-y-4 shadow-sm">
             <div className="space-y-1">
               <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Full Name</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 required
                 placeholder="John Doe"
                 value={formData.name}
@@ -1336,8 +1328,8 @@ const Contact = () => {
             </div>
             <div className="space-y-1">
               <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Email Address</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 required
                 placeholder="john@example.com"
                 value={formData.email}
@@ -1347,10 +1339,10 @@ const Contact = () => {
             </div>
             <div className="space-y-1">
               <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Message</label>
-              <textarea 
+              <textarea
                 required
                 placeholder="Tell me about your project..."
-                rows={4} 
+                rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium resize-none focus:bg-white transition-all"
@@ -1376,8 +1368,8 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <motion.div 
-      key={idx} 
+    <motion.div
+      key={idx}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -1386,7 +1378,7 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
       className="h-80 bg-white/50 backdrop-blur-md p-8 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-xl hover:border-[#0fa3b1]/40 transition-all duration-500 flex flex-col justify-between group relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-[#0fa3b1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      
+
       <div className="relative z-10">
         <div className="flex gap-1 mb-4">
           {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#0fa3b1" className="text-[#0fa3b1]" />)}
@@ -1395,17 +1387,17 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
           "{t.text}"
         </p>
       </div>
-      
+
       <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-[#0fa3b1]/10">
         <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-          <img 
-            src={t.image} 
-            alt={t.name} 
+          <img
+            src={t.image}
+            alt={t.name}
             onLoad={() => setIsLoaded(true)}
             loading="lazy"
-            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
-            referrerPolicy="no-referrer" 
+            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            referrerPolicy="no-referrer"
           />
         </div>
         <div className="min-w-0">
@@ -1478,10 +1470,10 @@ const Footer = () => {
     <footer className="px-6 pb-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto bg-[#1a2e35] text-white rounded-[32px] lg:rounded-[40px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#4a7c8c]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-8 relative z-10">
           <div className="text-2xl font-black tracking-tighter">OKTA.</div>
-          
+
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[10px] lg:text-[11px] font-black uppercase tracking-widest text-gray-400">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
@@ -1515,12 +1507,12 @@ export default function App() {
     <div className="min-h-screen pb-24 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] font-sans selection:bg-[#4a7c8c] selection:text-white antialiased relative overflow-hidden">
       {/* Noise Texture Overlay */}
       <div className="fixed inset-0 opacity-[0.03] pointer-events-none -z-50 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
-      
+
       {/* Global Atmospheric Blurs */}
       <div className="fixed top-[20%] -left-[10%] w-[40%] h-[40%] bg-[#4a7c8c]/5 rounded-full blur-[120px] pointer-events-none -z-40"></div>
       <div className="fixed bottom-[20%] -right-[10%] w-[40%] h-[40%] bg-[#1a2e35]/5 rounded-full blur-[120px] pointer-events-none -z-40"></div>
       <div className="fixed top-[60%] left-[30%] w-[30%] h-[30%] bg-[#4a7c8c]/3 rounded-full blur-[100px] pointer-events-none -z-40"></div>
-      
+
       <Navbar />
       <Hero />
       <Journey />
