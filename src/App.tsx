@@ -1075,6 +1075,8 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 };
 
 const Testimonials = () => {
+  const [testimonialIndex, setTestimonialIndex] = React.useState(0);
+  
   const testimonials = [
     {
       name: "Budi Santoso",
@@ -1093,22 +1095,90 @@ const Testimonials = () => {
       company: "PT. Dazo Kreatif",
       image: "/aset/testimonial-ahmad.jpg",
       text: "A strategic thinker with excellent leadership skills. Delivers results with clear communication and team alignment. Highly recommended."
+    },
+    {
+      name: "Ratna Wijaya",
+      company: "PT. Digital Solusi",
+      image: "/aset/testimonial-ratna.jpg",
+      text: "Excellent project management and technical expertise. Consistently delivers high-quality solutions that exceed expectations. Great to work with."
+    },
+    {
+      name: "Rido Pratama",
+      company: "PT. Innovation Hub",
+      image: "/aset/testimonial-rido.jpg",
+      text: "Remarkable problem-solving skills and dedication. Okta brings innovation and professionalism to every project. Absolutely recommended."
     }
   ];
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   return (
     <section id="feedback" className="py-12 lg:py-24 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16">
-          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Testimonials</p>
+          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Feedback</p>
           <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            Client <span className="text-gray-300">Feedback</span>
+            User <span className="text-gray-300">Feedback</span>
           </h2>
+          <p className="text-[12px] text-gray-500 mt-4">Feedback dari atasan dan user selama pengembangan project</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4">
-          {testimonials.map((t, idx) => (
-            <TestimonialItem key={idx} t={t} idx={idx} />
-          ))}
+
+        {/* Carousel Container */}
+        <div className="relative overflow-hidden">
+          <motion.div
+            key={testimonialIndex}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center"
+          >
+            <TestimonialItem t={testimonials[testimonialIndex]} idx={testimonialIndex} />
+          </motion.div>
+
+          {/* Carousel Navigation Buttons */}
+          <div className="flex justify-center items-center gap-8 mt-8">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+              className="p-3 rounded-full bg-gray-100 border border-gray-200 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </motion.button>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center gap-2">
+              {testimonials.map((_, idx) => (
+                <motion.button
+                  key={idx}
+                  onClick={() => setTestimonialIndex(idx)}
+                  whileHover={{ scale: 1.2 }}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    idx === testimonialIndex ? 'bg-[#1a2e35] w-8' : 'bg-gray-300 w-2'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
+              className="p-3 rounded-full bg-gray-100 border border-gray-200 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </motion.button>
+          </div>
         </div>
       </div>
     </section>
