@@ -894,7 +894,7 @@ const Portfolio = () => {
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
       desc: "A comprehensive digital platform for MRT Jakarta's business operations, featuring real-time data integration and a modern user interface for enhanced stakeholder engagement. I managed the full lifecycle from requirements gathering to final deployment.",
       tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+      image: "/aset/project-mrt-jakarta.jpg"
     },
     {
       title: "Yulo Laundry Mobile App",
@@ -903,7 +903,7 @@ const Portfolio = () => {
       impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
       desc: "An end-to-end laundry management system that streamlines order processing, customer tracking, and financial reporting for laundry businesses. This project involved complex state management and real-time notifications.",
       tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
-      image: "https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?q=80&w=2070&auto=format&fit=crop"
+      image: "/aset/project-yulo-laundry.jpg"
     },
     {
       title: "Dazo Apps & Cha AI",
@@ -912,7 +912,7 @@ const Portfolio = () => {
       impact: "Successfully integrated LLM capabilities, resulting in a 50% increase in user engagement within the first month.",
       desc: "A dual-purpose application suite combining a high-performance mobile app with an integrated AI chatbot to provide users with intelligent assistance. I led the cross-functional team to integrate LLM capabilities into the core product.",
       tags: ["React", "Vue.js", "TypeScript", "Laravel", "MongoDB", "Golang", "Figma"],
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop"
+      image: "/aset/project-dazo-ai.jpg"
     }
   ];
 
@@ -1079,19 +1079,19 @@ const Testimonials = () => {
     {
       name: "Budi Santoso",
       company: "PT. Supra Primatama",
-      image: "https://i.pravatar.cc/150?u=budi",
+      image: "/aset/testimonial-budi.jpg",
       text: "Okta&apos;s ability to manage complex software deliveries is exceptional. A true professional who delivers results."
     },
     {
       name: "Siti Nurhaliza",
       company: "PT. Juragan Inovator",
-      image: "https://i.pravatar.cc/150?u=siti",
+      image: "/aset/testimonial-siti.jpg",
       text: "Outstanding project strategy and flawless execution. Delivered all milestones ahead of schedule with excellent quality."
     },
     {
       name: "Ahmad Prasetyo",
       company: "PT. Dazo Kreatif",
-      image: "https://i.pravatar.cc/150?u=ahmad",
+      image: "/aset/testimonial-ahmad.jpg",
       text: "A strategic thinker with excellent leadership skills. Delivers results with clear communication and team alignment. Highly recommended."
     }
   ];
