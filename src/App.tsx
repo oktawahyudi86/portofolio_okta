@@ -533,7 +533,7 @@ const Hero = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <section id="home" className="pt-16 lg:pt-56 pb-12 lg:pb-24 px-6 max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center relative overflow-hidden lg:overflow-visible">
+    <section id="home" className="pt-16 lg:pt-56 pb-12 lg:pb-24 px-6 xl:px-8 2xl:px-12 max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 2xl:gap-32 items-center relative overflow-hidden lg:overflow-visible">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -560,26 +560,26 @@ const Hero = () => {
         <div className="inline-block px-4 py-1.5 rounded-full bg-[#4a7c8c]/10 text-[#4a7c8c] font-black mb-6 tracking-[0.2em] uppercase text-[9px] lg:text-[11px] border border-[#4a7c8c]/20">
           Product & Project Manager
         </div>
-        <h1 className="text-5xl lg:text-7xl font-black text-[#1a2e35] leading-[0.9] mb-8 tracking-tighter">
+        <h1 className="text-5xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] leading-[0.9] mb-8 2xl:mb-12 tracking-tighter">
           I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c8c] to-[#1a2e35]">projects</span> and delivery.
         </h1>
         
-        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 rounded-[32px] lg:rounded-[40px] mb-10 relative shadow-2xl overflow-hidden group border border-white/10">
+        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 2xl:p-10 rounded-[32px] lg:rounded-[40px] 2xl:rounded-[48px] mb-10 2xl:mb-12 relative shadow-2xl overflow-hidden group border border-white/10">
           <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
-          <p className="italic text-base lg:text-lg leading-relaxed font-medium relative z-10 opacity-90">
+          <p className="italic text-base lg:text-lg 2xl:text-xl leading-relaxed font-medium relative z-10 opacity-90">
             "I manage software projects end-to-end, ensuring timely delivery, quality results, and strong team alignment."
           </p>
         </div>
 
-        <div className="flex gap-10 lg:gap-12 mb-10 px-2">
+        <div className="flex gap-10 lg:gap-12 2xl:gap-16 mb-10 2xl:mb-14 px-2">
           <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">3+</span>
+            <span className="text-4xl lg:text-5xl 2xl:text-6xl font-black text-[#1a2e35] tracking-tighter">3+</span>
             <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
               Years<br/>experience
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">30</span>
+            <span className="text-4xl lg:text-5xl 2xl:text-6xl font-black text-[#1a2e35] tracking-tighter">30</span>
             <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
               Projects<br/>delivered
             </div>
@@ -668,11 +668,11 @@ const Journey = () => {
   ];
 
   return (
-    <section id="journey" className="py-12 lg:py-24 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-10 lg:mb-16">
+    <section id="journey" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <div className="mb-10 lg:mb-16 2xl:mb-20">
           <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Milestones</p>
-          <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+          <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
             Journey & <span className="text-gray-300">Experience</span>
           </h2>
         </div>
@@ -781,12 +781,11 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-12 lg:py-24 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
-          <div className="max-w-xl">
-            <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Expertise</p>
-            <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+    <section id="skills" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
+          <div className="max-w-xl 2xl:max-w-2xl">
+            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
               Core <span className="text-gray-300">Capabilities</span>
             </h2>
           </div>
@@ -795,20 +794,20 @@ const Skills = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 2xl:gap-8">
           {skills.map((skill, idx) => (
             <motion.div 
               key={idx}
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
+              className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 2xl:p-12 rounded-[24px] lg:rounded-[40px] 2xl:rounded-[48px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
             >
               <div className="w-12 h-12 rounded-2xl bg-white/60 flex items-center justify-center mb-6 lg:mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
                 <div className="text-[#4a7c8c] group-hover:text-white transition-colors">
                   {skill.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-black text-[#1a2e35] mb-4 tracking-tight group-hover:text-white transition-colors">{skill.title}</h3>
-              <p className="text-[14px] text-gray-500 leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{skill.desc}</p>
+              <h3 className="text-xl 2xl:text-2xl font-black text-[#1a2e35] mb-4 2xl:mb-6 tracking-tight group-hover:text-white transition-colors">{skill.title}</h3>
+              <p className="text-[14px] 2xl:text-[15px] text-gray-500 leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{skill.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -854,9 +853,17 @@ const ToolsCarousel = ({ tools }) => {
             className="flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-105"
             style={{ minWidth: '100px', height: '80px' }}
           >
-            <div className="text-5xl lg:text-6xl">
-              {tool.icon}
-            </div>
+            {typeof tool.icon === 'string' && tool.icon.startsWith('/') ? (
+              <img 
+                src={tool.icon} 
+                alt={tool.name}
+                className="h-16 w-16 lg:h-20 lg:w-20 object-contain"
+              />
+            ) : (
+              <div className="text-5xl lg:text-6xl">
+                {tool.icon}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -869,32 +876,32 @@ const SDLCFlow = () => {
     {
       title: "Grooming",
       desc: "Story refinement & requirements clarity",
-      icon: "📋"
+      icon: "/aset/scrum-grooming.png"
     },
     {
       title: "Story Sizing",
       desc: "Estimate effort & complexity",
-      icon: "📊"
+      icon: "/aset/scrum-sizing.png"
     },
     {
       title: "Sprint Planning",
       desc: "Define sprint goals & tasks",
-      icon: "🎯"
+      icon: "/aset/scrum-planning.png"
     },
     {
       title: "Sprint Dev",
       desc: "Execute & develop features (24H)",
-      icon: "⚙️"
+      icon: "/aset/scrum-dev.png"
     },
     {
       title: "Review",
       desc: "Showcase completed work",
-      icon: "✅"
+      icon: "/aset/scrum-review.png"
     },
     {
       title: "Retrospective",
       desc: "Continuous improvement",
-      icon: "🔄"
+      icon: "/aset/scrum-retrospective.png"
     }
   ];
 
@@ -912,25 +919,24 @@ const SDLCFlow = () => {
   ];
 
   const tools = [
-    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "📌" },
-    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "🔧" },
-    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "📚" },
-    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "📝" },
-    { name: "Slack", color: "from-rose-300 to-red-500", icon: "💬" },
-    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "🐙" },
-    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "📊" },
+    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "/aset/trello.png" },
+    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "/aset/jira.png" },
+    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "/aset/confluence.png" },
+    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "/aset/notion.png" },
+    { name: "Slack", color: "from-rose-300 to-red-500", icon: "/aset/slack.png" },
+    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "/aset/gitlab.png" },
+    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "/aset/office.png" },
     { name: "Google Sheets", color: "from-green-400 to-emerald-600", icon: "📑" }
   ];
 
   return (
     <>
       {/* Tools Management & Coordination */}
-      <section id="tools" className="py-12 lg:py-24 px-6 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
-            <div className="max-w-xl">
-              <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Coordination</p>
-              <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+    <section id="tools" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
+      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
+          <div className="max-w-xl 2xl:max-w-2xl">
+            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 Tools & <span className="text-gray-300">Project Management</span>
               </h2>
             </div>
@@ -940,7 +946,7 @@ const SDLCFlow = () => {
           </div>
 
           {/* Tools Carousel - Draggable */}
-          <div className="mb-16 lg:mb-20">
+          <div className="mb-16 lg:mb-20 2xl:mb-24">
             <style>{`
               @keyframes scroll-left {
                 0% {
@@ -974,10 +980,10 @@ const SDLCFlow = () => {
           </div>
 
           {/* Features Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 2xl:gap-10">
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
             >
               <div className="text-[24px] mb-4">📊</div>
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-2">Recruitment Gathering</h3>
@@ -986,7 +992,7 @@ const SDLCFlow = () => {
 
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
             >
               <div className="text-[24px] mb-4">📈</div>
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-2">Analysis & Planning</h3>
@@ -995,7 +1001,7 @@ const SDLCFlow = () => {
 
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
             >
               <div className="text-[24px] mb-4">🔨</div>
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-2">BRD Creation (2 Week)</h3>
@@ -1006,12 +1012,11 @@ const SDLCFlow = () => {
       </section>
 
       {/* SDLC Flow - Scrum Process */}
-      <section id="sdlc" className="py-12 lg:py-24 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
-            <div className="max-w-xl">
-              <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Development Cycle</p>
-              <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+    <section id="sdlc" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
+          <div className="max-w-xl 2xl:max-w-2xl">
+            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 SDLC <span className="text-gray-300">Scrum Flow</span>
               </h2>
             </div>
@@ -1021,7 +1026,7 @@ const SDLCFlow = () => {
           </div>
 
           {/* Scrum Process Flow */}
-          <div className="mb-16 lg:mb-20">
+          <div className="mb-16 lg:mb-20 2xl:mb-24">
             {/* Mobile View - Vertical Stack */}
             <div className="lg:hidden">
               <div className="space-y-4">
@@ -1035,7 +1040,17 @@ const SDLCFlow = () => {
                   >
                     <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white transition-all duration-500 shadow-sm">
                       <div className="flex items-start gap-4">
-                        <div className="text-[28px] flex-shrink-0">{stage.icon}</div>
+                        <div className="flex-shrink-0">
+                          {typeof stage.icon === 'string' && stage.icon.startsWith('/') ? (
+                            <img 
+                              src={stage.icon} 
+                              alt={stage.title}
+                              className="w-8 h-8 object-contain"
+                            />
+                          ) : (
+                            <div className="text-[28px]">{stage.icon}</div>
+                          )}
+                        </div>
                         <div>
                           <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
                           <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors">{stage.desc}</p>
@@ -1049,7 +1064,7 @@ const SDLCFlow = () => {
 
             {/* Desktop View - Horizontal Grid */}
             <div className="hidden lg:block">
-              <div className="grid grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-3 lg:grid-cols-6 gap-4 2xl:gap-6">
                 {scrimStages.map((stage, idx) => (
                   <motion.div
                     key={idx}
@@ -1060,7 +1075,17 @@ const SDLCFlow = () => {
                   >
                     <div className="absolute -inset-3 bg-[#4a7c8c]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                     <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white hover:shadow-2xl transition-all duration-500 shadow-sm flex flex-col items-center justify-center text-center h-40">
-                      <div className="text-[36px] mb-2">{stage.icon}</div>
+                      <div className="mb-2">
+                        {typeof stage.icon === 'string' && stage.icon.startsWith('/') ? (
+                          <img 
+                            src={stage.icon} 
+                            alt={stage.title}
+                            className="w-12 h-12 object-contain"
+                          />
+                        ) : (
+                          <div className="text-[36px]">{stage.icon}</div>
+                        )}
+                      </div>
                       <h4 className="text-[12px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
                       <p className="text-[9px] text-gray-500 group-hover:text-gray-300 transition-colors leading-tight">{stage.desc}</p>
                     </div>
@@ -1077,12 +1102,12 @@ const SDLCFlow = () => {
               <h3 className="text-[16px] lg:text-[18px] font-black text-[#1a2e35]">Reporting & Stakeholder Communication</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 2xl:gap-10">
               {reportingStructure.map((report, idx) => (
                 <motion.div
                   key={idx}
                   whileHover={{ y: -5 }}
-                  className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+                  className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 2xl:p-12 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 rounded-2xl bg-[#4a7c8c]/10 flex items-center justify-center text-[20px]">👥</div>
@@ -1124,7 +1149,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center border-b border-white/10 pb-12 last:border-0"
+      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 2xl:gap-32 items-center border-b border-white/10 pb-12 2xl:pb-16 last:border-0"
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
         <div className="relative group">
@@ -1154,10 +1179,10 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="text-[11px] font-bold text-[#0fa3b1]/60 uppercase tracking-widest">{project.role}</span>
         </div>
         
-        <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
+        <h3 className="text-3xl lg:text-5xl 2xl:text-6xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6 2xl:mb-8">{project.title}</h3>
         
         <div className="space-y-6 mb-10">
-          <p className="text-[15px] lg:text-[17px] text-gray-500 leading-relaxed font-medium">
+          <p className="text-[15px] lg:text-[17px] 2xl:text-[18px] text-gray-500 leading-relaxed font-medium">
             {project.desc}
           </p>
           <div className="bg-[#1a2e35] p-6 rounded-[24px] lg:rounded-[32px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
@@ -1252,15 +1277,15 @@ const Portfolio = () => {
 
   return (
     <section id="portfolio" className="py-8 lg:py-12 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="mb-6 lg:mb-10">
+      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 px-6 xl:px-8 2xl:px-12">
+        <div className="mb-6 lg:mb-10 2xl:mb-14">
           <p className="text-[11px] font-black text-[#4a7c8c] mb-3 lg:mb-4 uppercase tracking-[0.4em]">Professional Portfolio</p>
-          <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+          <h2 className="text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
             Detailed <span className="text-gray-300 italic font-serif">Case Studies</span>
           </h2>
         </div>
 
-        <div className="space-y-10 lg:space-y-12">
+        <div className="space-y-10 lg:space-y-12 2xl:space-y-16">
           {projects.map((project, idx) => (
             <PortfolioItem key={idx} project={project} idx={idx} />
           ))}
@@ -1294,12 +1319,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-12 lg:py-24 px-6 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="contact" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+      <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 2xl:gap-20 items-center">
           <div>
             <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Get in touch</p>
-            <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-6 lg:mb-8">
+            <h2 className="text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-6 lg:mb-8 2xl:mb-10">
               Let's <span className="text-gray-300">Connect</span>
             </h2>
             <p className="text-gray-500 text-[13px] lg:text-[14px] leading-relaxed max-w-sm mb-8 lg:mb-10">
