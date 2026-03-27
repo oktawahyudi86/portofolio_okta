@@ -652,6 +652,8 @@ const Hero = () => {
 };
 
 const Journey = () => {
+  const [selectedExperience, setSelectedExperience] = React.useState<number | null>(null);
+  
   const experiences = [
     {
       date: "2020 - 2021",
@@ -708,13 +710,13 @@ const Journey = () => {
         </div>
 
         {/* Desktop Timeline (Horizontal) */}
-        <div className="hidden lg:block relative h-[400px] mt-16">
+        <div className="hidden lg:block relative h-[480px] mt-16">
           {/* Wavy Dotted Line */}
-          <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none opacity-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none opacity-30" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path 
               d="M0,60 C100,0 200,120 300,60 C400,0 500,120 600,60 C700,0 800,120 900,60 C1000,0 1100,120 1200,60" 
               fill="none" 
-              stroke="#4a7c8c" 
+              stroke="#0fa3b1" 
               strokeWidth="2" 
               strokeDasharray="8 8"
             />
@@ -728,20 +730,28 @@ const Journey = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative flex flex-col items-center"
+                className="relative flex flex-col items-center cursor-pointer group"
                 style={{ transform: `translateY(${exp.y}px)` }}
+                onClick={() => setSelectedExperience(idx)}
               >
                 {/* Circle */}
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex flex-col items-center justify-center p-3 text-center shadow-lg shadow-[#0fa3b1]/40 border-4 border-white/40 z-10 hover:scale-110 hover:shadow-2xl transition-all duration-500 group cursor-default">
-                  <span className="text-[8px] font-bold opacity-80 uppercase tracking-tighter mb-0.5">{exp.date}</span>
-                  <span className="text-[10px] font-black leading-tight">{exp.location}</span>
-                </div>
+                <motion.div 
+                  whileHover={{ scale: 1.2 }}
+                  className="w-28 h-28 rounded-full bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex flex-col items-center justify-center p-4 text-center shadow-lg shadow-[#0fa3b1]/40 border-4 border-white/50 z-10 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-[#0fa3b1]/60"
+                >
+                  <span className="text-[9px] font-bold opacity-90 uppercase tracking-tighter mb-1">{exp.date}</span>
+                  <span className="text-[12px] font-black leading-tight">{exp.location}</span>
+                </motion.div>
 
-                {/* Info Label */}
-                <div className={`absolute left-1/2 -translate-x-1/2 w-48 text-center ${exp.y > 0 ? '-top-24' : 'top-28'}`}>
-                  <p className="text-[12px] font-black text-[#0d1f2b] leading-tight mb-0.5">{exp.company}</p>
-                  <p className="text-[9px] text-[#0fa3b1]/60 font-bold uppercase tracking-widest">{exp.position}</p>
-                </div>
+                {/* Info Label - Enhanced */}
+                <motion.div 
+                  className={`absolute left-1/2 -translate-x-1/2 w-56 text-center ${exp.y > 0 ? '-top-32' : 'top-32'} transition-all duration-300 group-hover:scale-105`}
+                  whileHover={{ y: exp.y > 0 ? -5 : 5 }}
+                >
+                  <p className="text-[14px] lg:text-[16px] font-black text-[#0d1f2b] leading-tight mb-2 group-hover:text-[#0fa3b1] transition-colors">{exp.company}</p>
+                  <p className="text-[11px] lg:text-[12px] text-[#0fa3b1]/70 font-bold uppercase tracking-widest group-hover:text-[#0fa3b1] transition-colors">{exp.position}</p>
+                  <p className="text-[10px] text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Klik untuk detail</p>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -749,7 +759,7 @@ const Journey = () => {
 
         {/* Mobile Timeline (Vertical Cards) */}
         <div className="lg:hidden space-y-7 relative">
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#0fa3b1]/50 via-[#2eccc7]/30 to-[#0fa3b1]/10"></div>
+          <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0fa3b1] via-[#2eccc7] to-[#0fa3b1]/20"></div>
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -757,26 +767,123 @@ const Journey = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="flex items-start gap-6 relative z-10"
+              className="flex items-start gap-6 relative z-10 cursor-pointer"
+              onClick={() => setSelectedExperience(idx)}
             >
-              <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white">
-                <Briefcase size={16} />
-              </div>
-              <div className="flex-1 bg-white/60 backdrop-blur-sm p-6 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/80 transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-black text-[#0fa3b1] uppercase tracking-widest bg-[#0fa3b1]/10 px-3 py-1 rounded-full border border-[#0fa3b1]/20">
+              <motion.div 
+                whileHover={{ scale: 1.15 }}
+                className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
+              >
+                <Briefcase size={20} />
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.02, y: -4 }}
+                className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[24px] border border-[#0fa3b1]/30 shadow-sm hover:shadow-xl hover:shadow-[#0fa3b1]/20 hover:bg-white/90 transition-all"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[11px] font-black text-white bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] px-4 py-1.5 rounded-full border border-[#0fa3b1]/20">
                     {exp.date}
                   </span>
-                  <span className="text-[10px] font-bold text-[#0fa3b1]/60 uppercase tracking-tighter">
+                  <span className="text-[11px] font-bold text-[#0fa3b1] uppercase tracking-tighter">
                     {exp.location}
                   </span>
                 </div>
-                <h3 className="text-[16px] font-black text-[#0d1f2b] leading-tight mb-1">{exp.company}</h3>
-                <p className="text-[11px] text-[#0fa3b1]/70 font-bold uppercase tracking-widest">{exp.position}</p>
-              </div>
+                <h3 className="text-[18px] lg:text-[19px] font-black text-[#0d1f2b] leading-tight mb-2">{exp.company}</h3>
+                <p className="text-[13px] text-[#0fa3b1] font-bold uppercase tracking-widest">{exp.position}</p>
+              </motion.div>
             </motion.div>
           ))}
         </div>
+
+        {/* Detail Modal */}
+        <AnimatePresence>
+          {selectedExperience !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedExperience(null)}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white rounded-[32px] p-10 lg:p-14 max-w-2xl w-full shadow-2xl border border-[#0fa3b1]/20"
+              >
+                <div className="flex items-start justify-between mb-8">
+                  <div>
+                    <p className="text-[14px] font-black text-[#0fa3b1] uppercase tracking-[0.3em] mb-3">Experience</p>
+                    <h2 className="text-4xl lg:text-5xl font-black text-[#0d1f2b] mb-4">
+                      {experiences[selectedExperience].company}
+                    </h2>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setSelectedExperience(null)}
+                    className="text-[#0fa3b1] hover:text-[#0d1f2b] text-[28px] transition-colors"
+                  >
+                    ✕
+                  </motion.button>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="flex flex-col sm:flex-row gap-8">
+                    <div className="flex-1">
+                      <p className="text-[12px] font-black text-gray-400 uppercase tracking-widest mb-2">Position</p>
+                      <p className="text-[20px] font-black text-[#0fa3b1]">
+                        {experiences[selectedExperience].position}
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-[12px] font-black text-gray-400 uppercase tracking-widest mb-2">Duration</p>
+                      <p className="text-[20px] font-black text-[#0d1f2b]">
+                        {experiences[selectedExperience].date}
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-[12px] font-black text-gray-400 uppercase tracking-widest mb-2">Location</p>
+                      <p className="text-[20px] font-black text-[#2eccc7]">
+                        {experiences[selectedExperience].location}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#0fa3b1]/10 to-[#2eccc7]/10 p-6 rounded-[20px] border border-[#0fa3b1]/20">
+                    <p className="text-[14px] lg:text-[16px] text-[#0d1f2b] leading-relaxed font-medium">
+                      Periode yang produktif dengan fokus pada pengembangan teknologi dan manajemen proyek yang efisien. Berkontribusi pada kesuksesan deliverable dengan standar kualitas tinggi.
+                    </p>
+                  </div>
+
+                  <div className="flex gap-4 pt-4">
+                    {selectedExperience > 0 && (
+                      <motion.button
+                        whileHover={{ x: -4 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedExperience(selectedExperience - 1)}
+                        className="px-6 py-3 bg-white border-2 border-[#0fa3b1]/30 text-[#0fa3b1] font-black rounded-xl hover:bg-[#0fa3b1]/10 transition-all"
+                      >
+                        ← Sebelumnya
+                      </motion.button>
+                    )}
+                    {selectedExperience < experiences.length - 1 && (
+                      <motion.button
+                        whileHover={{ x: 4 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedExperience(selectedExperience + 1)}
+                        className="ml-auto px-6 py-3 bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] text-white font-black rounded-xl hover:shadow-lg hover:shadow-[#0fa3b1]/30 transition-all"
+                      >
+                        Berikutnya →
+                      </motion.button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
