@@ -563,15 +563,17 @@ const Hero = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <section id="home" className="pt-20 lg:pt-32 pb-16 lg:pb-24 px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative overflow-hidden lg:overflow-visible">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="inline-block px-5 py-2 rounded-full bg-[#0fa3b1]/10 text-[#0fa3b1] font-black mb-8 tracking-[0.2em] uppercase text-[11px] lg:text-[12px] border border-[#0fa3b1]/20">
-          Product & Project Manager
-        </div>
+    <section id="home" className="pt-20 lg:pt-28 pb-16 lg:pb-24 px-6 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-block px-5 py-2 rounded-full bg-[#0fa3b1]/10 text-[#0fa3b1] font-black mb-8 tracking-[0.2em] uppercase text-[11px] lg:text-[12px] border border-[#0fa3b1]/20">
+              Product & Project Manager
+            </div>
         <h1 className="text-5xl lg:text-8xl font-black text-[#0d1f2b] leading-[0.9] mb-10 lg:mb-12 tracking-tighter">
           I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0fa3b1] via-[#2eccc7] to-[#00d9ff]">projects</span> and delivery.
         </h1>
@@ -598,37 +600,38 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-12 mb-0">
-          <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
-            I am an IT Project Manager focused on software development, delivering projects efficiently and on time.
-          </p>
-          <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
-            I have managed and delivered 30+ software projects, ensuring quality results and business alignment.
-          </p>
-        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-12 mb-0">
+              <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
+                I am an IT Project Manager focused on software development, delivering projects efficiently and on time.
+              </p>
+              <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
+                I have managed and delivered 30+ software projects, ensuring quality results and business alignment.
+              </p>
+            </div>
+          </motion.div>
 
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative w-full h-full flex items-center justify-center group"
-      >
-        <div className="rounded-[40px] lg:rounded-[50px] overflow-hidden relative w-full aspect-square lg:aspect-auto lg:h-full shadow-2xl shadow-[#0fa3b1]/20">
-          {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-          <img 
-            src="/aset/profil.png" 
-            alt="Okta" 
-            onLoad={() => setIsLoaded(true)}
-            loading="eager"
-            // @ts-ignore
-            fetchPriority="high"
-            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            referrerPolicy="no-referrer"
-          />
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative w-full h-full"
+          >
+            <div className="rounded-[40px] overflow-hidden relative w-full h-96 lg:h-full shadow-2xl shadow-[#0fa3b1]/20">
+              {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
+              <img 
+                src="/aset/profil.png" 
+                alt="Okta" 
+                onLoad={() => setIsLoaded(true)}
+                loading="eager"
+                // @ts-ignore
+                fetchPriority="high"
+                className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
@@ -1493,21 +1496,19 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 };
 
 const Testimonials = () => {
-  const [testimonialIndex, setTestimonialIndex] = React.useState(0);
-
   return (
     <section id="testimonials" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 lg:mb-20">
-          <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Testimonials</p>
-          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            What <span className="text-gray-300">Others Say</span>
+          <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Testimonials</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
+            What <span className="bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent">Others Say</span>
           </h2>
         </div>
 
-        {/* Placeholder for testimonials grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {/* Testimonials will be mapped here */}
+        {/* Coming Soon Placeholder */}
+        <div className="py-20 text-center">
+          <p className="text-[16px] text-[#0fa3b1]/60 font-medium">Testimonials coming soon...</p>
         </div>
       </div>
     </section>
