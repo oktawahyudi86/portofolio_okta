@@ -563,31 +563,13 @@ const Hero = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <section id="home" className="pt-20 lg:pt-72 pb-16 lg:pb-32 px-6 max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-28 items-center relative overflow-hidden lg:overflow-visible">
+    <section id="home" className="pt-20 lg:pt-32 pb-16 lg:pb-24 px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative overflow-hidden lg:overflow-visible">
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Mobile AI Search Bar */}
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="lg:hidden mb-10"
-        >
-          <div 
-            onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
-            className="bg-white rounded-[24px] border border-gray-100 shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
-          >
-            <div className="w-10 h-10 rounded-xl bg-[#4a7c8c]/10 flex items-center justify-center text-[#4a7c8c]">
-              <Sparkles size={18} />
-            </div>
-            <p className="text-[13px] font-bold text-gray-400">What services does Okta offer?</p>
-          </div>
-        </motion.div>
-
-        <div className="inline-block px-4 py-1.5 rounded-full bg-[#4a7c8c]/10 text-[#4a7c8c] font-black mb-6 tracking-[0.2em] uppercase text-[9px] lg:text-[11px] border border-[#4a7c8c]/20">
+        <div className="inline-block px-5 py-2 rounded-full bg-[#0fa3b1]/10 text-[#0fa3b1] font-black mb-8 tracking-[0.2em] uppercase text-[11px] lg:text-[12px] border border-[#0fa3b1]/20">
           Product & Project Manager
         </div>
         <h1 className="text-5xl lg:text-8xl font-black text-[#0d1f2b] leading-[0.9] mb-10 lg:mb-12 tracking-tighter">
@@ -628,12 +610,12 @@ const Hero = () => {
       </motion.div>
 
       <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative w-full lg:-mt-16 group"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="relative w-full h-full flex items-center justify-center group"
       >
-        <div className="rounded-[40px] lg:rounded-[60px] overflow-hidden relative aspect-[4/5] lg:aspect-auto">
+        <div className="rounded-[40px] lg:rounded-[50px] overflow-hidden relative w-full aspect-square lg:aspect-auto lg:h-full shadow-2xl shadow-[#0fa3b1]/20">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
           <img 
             src="/aset/profil.png" 
