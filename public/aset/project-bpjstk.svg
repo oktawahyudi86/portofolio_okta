@@ -1,0 +1,32 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="100" x2="1440" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C2332"/>
+      <stop offset="1" stop-color="#16506A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="52" fill="url(#bg)"/>
+  <circle cx="1300" cy="170" r="180" fill="#8DD7E6" fill-opacity="0.16"/>
+  <text x="150" y="220" fill="#F7FCFF" font-family="Poppins, Arial, sans-serif" font-size="68" font-weight="700">Government system coordination</text>
+  <text x="150" y="282" fill="#B3CBDA" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="500">Lead project management for secure, high-scale public service infrastructure</text>
+  <rect x="150" y="346" width="290" height="82" rx="24" fill="#F4FBFF" fill-opacity="0.14"/>
+  <text x="194" y="399" fill="#FFFFFF" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Lead Project Manager</text>
+  <rect x="150" y="478" width="1300" height="346" rx="40" fill="#F7FBFD"/>
+  <rect x="206" y="534" width="266" height="236" rx="30" fill="#103247"/>
+  <rect x="508" y="534" width="318" height="236" rx="30" fill="#E8F4F8"/>
+  <rect x="862" y="534" width="252" height="236" rx="30" fill="#103247"/>
+  <rect x="1150" y="534" width="244" height="236" rx="30" fill="#E8F4F8"/>
+  <text x="246" y="596" fill="#F4FBFF" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="600">Claims flow</text>
+  <rect x="246" y="638" width="176" height="18" rx="9" fill="#7CC9D8"/>
+  <rect x="246" y="674" width="140" height="18" rx="9" fill="#426279"/>
+  <text x="548" y="596" fill="#1C4358" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="600">Service records</text>
+  <rect x="548" y="638" width="222" height="18" rx="9" fill="#C5DCE6"/>
+  <rect x="548" y="674" width="186" height="18" rx="9" fill="#D9EAF0"/>
+  <text x="902" y="596" fill="#F4FBFF" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="600">Security layer</text>
+  <path d="M988 636L1032 654L1020 714H956L944 654L988 636Z" fill="#7CC9D8"/>
+  <path d="M988 616C1009 616 1026 633 1026 654H950C950 633 967 616 988 616Z" fill="#C5F3FF"/>
+  <text x="1190" y="596" fill="#1C4358" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="600">National dashboard</text>
+  <rect x="1190" y="638" width="152" height="18" rx="9" fill="#C5DCE6"/>
+  <rect x="220" y="854" width="1160" height="26" rx="13" fill="#8AAABA"/>
+  <text x="150" y="916" fill="#E5F2F7" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Portfolio dummy visual for public service system delivery and enterprise governance</text>
+</svg>

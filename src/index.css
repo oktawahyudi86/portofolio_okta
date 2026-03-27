@@ -1,12 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora", ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply font-sans text-[#1a2e35] antialiased;
+  font-family: var(--font-serif);
+  color: #1a2e35;
+  font-size: 16px;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+nav,
+a,
+[class*="font-black"],
+[class*="font-bold"],
+[class*="font-semibold"] {
+  font-family: var(--font-sans);
+}
+
+p {
+  line-height: 1.72;
+}
+
+::selection {
+  background: #4a7c8c;
+  color: #ffffff;
 }
 
 @layer utilities {
@@ -22,9 +56,35 @@ body {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+
+  @keyframes traveloka-shimmer {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
   
   .animate-gradient-x {
     background-size: 200% 200%;
     animation: gradient-x 3s ease infinite;
+  }
+
+  .traveloka-skeleton {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      90deg,
+      #edf2f7 0%,
+      #f8fbfd 24%,
+      #ffffff 42%,
+      #eef4f8 62%,
+      #edf2f7 100%
+    );
+    background-size: 220% 100%;
+    border: 1px solid rgba(192, 208, 218, 0.45);
+    box-shadow: 0 10px 28px rgba(148, 163, 184, 0.08);
+    animation: traveloka-shimmer 1.6s linear infinite;
   }
 }

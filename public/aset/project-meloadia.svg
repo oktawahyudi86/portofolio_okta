@@ -1,0 +1,36 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="100" x2="1440" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101A30"/>
+      <stop offset="1" stop-color="#3A2A63"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="900" y1="280" x2="1340" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="52" fill="url(#bg)"/>
+  <circle cx="1310" cy="182" r="180" fill="#EC4899" fill-opacity="0.12"/>
+  <circle cx="1210" cy="770" r="220" fill="#8B5CF6" fill-opacity="0.12"/>
+  <text x="154" y="224" fill="#FBFCFF" font-family="Poppins, Arial, sans-serif" font-size="68" font-weight="700">Music app release cadence</text>
+  <text x="154" y="286" fill="#C1BEDB" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="500">Project leadership for listener experience, release velocity, and mobile delivery</text>
+  <rect x="154" y="348" width="376" height="82" rx="24" fill="#FFFFFF" fill-opacity="0.12"/>
+  <text x="194" y="401" fill="#FFFFFF" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Project Manager &amp; Tech Lead</text>
+  <rect x="154" y="506" width="486" height="296" rx="40" fill="#F7F8FF"/>
+  <rect x="204" y="560" width="388" height="198" rx="32" fill="url(#accent)"/>
+  <circle cx="398" cy="658" r="76" fill="#FFF4FB" fill-opacity="0.22"/>
+  <circle cx="398" cy="658" r="28" fill="#FFFFFF"/>
+  <path d="M382 636V680L422 658L382 636Z" fill="#8B5CF6"/>
+  <rect x="738" y="178" width="708" height="624" rx="46" fill="#F7F8FF"/>
+  <rect x="790" y="236" width="240" height="240" rx="36" fill="#241C3E"/>
+  <circle cx="910" cy="356" r="74" fill="#FA7AB4"/>
+  <circle cx="910" cy="356" r="26" fill="#FFFFFF"/>
+  <rect x="1064" y="236" width="330" height="80" rx="24" fill="#EEEFFC"/>
+  <rect x="1064" y="338" width="278" height="22" rx="11" fill="#D6DAF7"/>
+  <rect x="1064" y="378" width="214" height="22" rx="11" fill="#D6DAF7"/>
+  <path d="M810 626C848 572 886 572 922 626C956 680 998 680 1038 626C1080 570 1116 570 1156 626C1198 680 1240 680 1288 620C1310 594 1332 582 1360 576" stroke="#8B5CF6" stroke-width="16" stroke-linecap="round"/>
+  <rect x="790" y="540" width="604" height="182" rx="30" fill="#F1F3FF"/>
+  <circle cx="822" cy="624" r="12" fill="#EC4899"/>
+  <circle cx="1362" cy="576" r="12" fill="#8B5CF6"/>
+  <text x="154" y="916" fill="#EEE9FB" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Portfolio dummy visual for music streaming app delivery and release management</text>
+</svg>

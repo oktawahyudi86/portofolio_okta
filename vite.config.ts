@@ -5,8 +5,18 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  const siteUrl = (env.VITE_SITE_URL || 'https://oktawahyu.web.id').replace(/\/$/, '');
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'inject-site-url-meta',
+        transformIndexHtml(html) {
+          return html.replace(/%SITE_URL%/g, siteUrl);
+        },
+      },
+    ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },

@@ -1,0 +1,53 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="80" x2="1420" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D2330"/>
+      <stop offset="1" stop-color="#102F45"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="280" y1="170" x2="1330" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FCFF"/>
+      <stop offset="1" stop-color="#E8F2F8"/>
+    </linearGradient>
+    <linearGradient id="lineA" x1="820" y1="250" x2="1160" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1CC6D9"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="52" fill="url(#bg)"/>
+  <circle cx="1340" cy="160" r="180" fill="#1CC6D9" fill-opacity="0.12"/>
+  <circle cx="220" cy="860" r="220" fill="#56B6E8" fill-opacity="0.08"/>
+  <rect x="138" y="118" width="1324" height="764" rx="42" fill="url(#panel)"/>
+  <rect x="138" y="118" width="1324" height="96" rx="42" fill="#F3F8FC"/>
+  <circle cx="196" cy="166" r="12" fill="#FF7C70"/>
+  <circle cx="230" cy="166" r="12" fill="#FFCA5C"/>
+  <circle cx="264" cy="166" r="12" fill="#37C86A"/>
+  <text x="310" y="174" fill="#5E7B8D" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="600">MRT Jakarta Business Portal</text>
+  <text x="224" y="286" fill="#153041" font-family="Poppins, Arial, sans-serif" font-size="64" font-weight="700">Enterprise digital control center</text>
+  <text x="224" y="344" fill="#678191" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="500">Lead Project Manager</text>
+  <rect x="224" y="406" width="286" height="140" rx="28" fill="#0E2735"/>
+  <text x="258" y="456" fill="#AFC8D9" font-family="Poppins, Arial, sans-serif" font-size="24" font-weight="500">Stakeholder alignment</text>
+  <text x="258" y="514" fill="#FFFFFF" font-family="Poppins, Arial, sans-serif" font-size="54" font-weight="700">40%</text>
+  <rect x="540" y="406" width="252" height="140" rx="28" fill="#DFF6FB"/>
+  <text x="574" y="456" fill="#3D738B" font-family="Poppins, Arial, sans-serif" font-size="24" font-weight="500">Platform readiness</text>
+  <text x="574" y="514" fill="#143041" font-family="Poppins, Arial, sans-serif" font-size="54" font-weight="700">24/7</text>
+  <rect x="850" y="252" width="486" height="514" rx="34" fill="#0E2735"/>
+  <rect x="894" y="302" width="398" height="112" rx="24" fill="#17394E"/>
+  <circle cx="944" cy="358" r="20" fill="#37C86A"/>
+  <circle cx="1038" cy="358" r="18" fill="#FFCA5C"/>
+  <circle cx="1124" cy="358" r="18" fill="#1CC6D9"/>
+  <circle cx="1220" cy="358" r="18" fill="#FF7C70"/>
+  <path d="M924 510C970 446 1016 446 1060 510C1104 574 1148 574 1196 510C1238 454 1270 444 1298 470" stroke="url(#lineA)" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="924" cy="510" r="18" fill="#F5FBFF"/>
+  <circle cx="1060" cy="510" r="18" fill="#F5FBFF"/>
+  <circle cx="1196" cy="510" r="18" fill="#F5FBFF"/>
+  <circle cx="1298" cy="470" r="18" fill="#F5FBFF"/>
+  <rect x="894" y="620" width="176" height="92" rx="22" fill="#F5FBFF"/>
+  <rect x="1086" y="620" width="206" height="92" rx="22" fill="#F5FBFF"/>
+  <text x="934" y="672" fill="#17394E" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="700">Route sync</text>
+  <text x="1128" y="672" fill="#17394E" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="700">Realtime reports</text>
+  <rect x="224" y="610" width="540" height="186" rx="32" fill="#F5FBFF"/>
+  <rect x="262" y="654" width="176" height="22" rx="11" fill="#D6E5EF"/>
+  <rect x="262" y="700" width="458" height="22" rx="11" fill="#E2EDF4"/>
+  <rect x="262" y="742" width="390" height="22" rx="11" fill="#E2EDF4"/>
+  <text x="224" y="924" fill="#E8F2F8" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Portfolio dummy visual for enterprise transportation management</text>
+</svg>
