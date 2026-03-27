@@ -3,13 +3,20 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { oktaData } from './okta-data.js';
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const envFiles = ['.env.production', '.env'];
+
+envFiles.forEach((file, index) => {
+  const fullPath = path.join(__dirname, file);
+  if (fs.existsSync(fullPath)) {
+    dotenv.config({ path: fullPath, override: index > 0 });
+  }
+});
 
 const app = express();
 app.use(cors());
@@ -151,9 +158,16 @@ app.post('/api/chat', async (req, res) => {
     res.json({ text: aiText });
   } catch (error) {
     console.error('AI API Error:', error);
-    res.status(500).json({ 
-      error: 'Failed to generate response',
-      details: error.message 
+    const status = error?.status === 429 ? 429 : 500;
+    const message =
+      status === 429
+        ? 'Kuota Gemini API untuk sementara habis. Coba lagi beberapa saat lagi atau periksa billing dan limit API key Anda.'
+        : 'AI sedang mengalami kendala saat memproses permintaan. Coba lagi sebentar lagi.';
+
+    res.status(status).json({
+      error: status === 429 ? 'quota_exceeded' : 'ai_request_failed',
+      message,
+      details: error?.message ?? 'Unknown server error',
     });
   }
 });
@@ -176,7 +190,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`API endpoint: http://localhost:${PORT}/api/chat`);

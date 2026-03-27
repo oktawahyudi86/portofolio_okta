@@ -178,15 +178,7 @@ const OktaAI = () => {
   ]);
   const [input, setInput] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
-  const [carouselIndex, setCarouselIndex] = React.useState(0);
   const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  const quickActions = [
-    { label: "Siapa Okta?", icon: "👋" },
-    { label: "Project Unggulan", icon: "🚀" },
-    { label: "Keahlian Utama", icon: "💡" },
-    { label: "Hubungi Okta", icon: "📱" }
-  ];
 
   const portfolioContext = `
     You are OktaAI, a friendly, cute, and professional AI assistant for Okta, an IT Project Manager.
@@ -252,16 +244,21 @@ const OktaAI = () => {
         })
       });
 
+      const data = await response.json().catch(() => null);
+
       if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+        throw new Error(data?.message || `API error: ${response.status}`);
       }
 
-      const data = await response.json();
       const aiText = data.text || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti? ✨";
       setMessages(prev => [...prev, { role: 'ai', text: aiText }]);
     } catch (error) {
       console.error("[v0] AI Error:", error);
-      setMessages(prev => [...prev, { role: 'ai', text: "Aduh, sinyalnya lagi main petak umpet. Coba lagi ya! 🔌" }]);
+      const fallbackText =
+        error instanceof Error
+          ? error.message
+          : "Aduh, sinyalnya lagi main petak umpet. Coba lagi ya! 🔌";
+      setMessages(prev => [...prev, { role: 'ai', text: fallbackText }]);
     } finally {
       setIsLoading(false);
     }
@@ -409,79 +406,6 @@ const OktaAI = () => {
                 </div>
               )}
             </div>
-
-            {/* Quick Actions Carousel */}
-            {!isLoading && (
-              <div className="px-6 py-4 bg-white border-t border-gray-50 relative z-10">
-                <div className="flex items-center justify-between gap-3">
-                  {/* Previous Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setCarouselIndex((prev) => (prev - 1 + quickActions.length) % quickActions.length)}
-                    className="p-2 rounded-full bg-gray-50 border border-gray-100 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                  </motion.button>
-
-                  {/* Carousel Items - Show 2 items at a time */}
-                  <div className="flex-1 overflow-hidden">
-                    <motion.div
-                      key={carouselIndex}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex gap-2"
-                    >
-                      {[
-                        quickActions[carouselIndex],
-                        quickActions[(carouselIndex + 1) % quickActions.length]
-                      ].map((action, idx) => (
-                        <motion.button
-                          key={idx}
-                          whileHover={{ scale: 1.05, y: -2, backgroundColor: '#1a2e35', color: '#fff' }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => handleSend(action.label)}
-                            className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-100 rounded-2xl text-[12px] font-semibold text-[#1a2e35] shadow-sm flex flex-col items-center gap-1.5 transition-all duration-300"
-                        >
-                          <span className="text-[16px]">{action.icon}</span>
-                          <span className="line-clamp-2">{action.label}</span>
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  </div>
-
-                  {/* Next Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setCarouselIndex((prev) => (prev + 1) % quickActions.length)}
-                    className="p-2 rounded-full bg-gray-50 border border-gray-100 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                  </motion.button>
-                </div>
-
-                {/* Carousel Indicators */}
-                <div className="flex justify-center gap-1.5 mt-3">
-                  {quickActions.map((_, idx) => (
-                    <motion.button
-                      key={idx}
-                      onClick={() => setCarouselIndex(idx)}
-                      whileHover={{ scale: 1.2 }}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        idx === carouselIndex ? 'bg-[#1a2e35] w-6' : 'bg-gray-200'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Input Area */}
             <div className="p-6 lg:p-7 pb-10 lg:pb-7 bg-white border-t border-gray-100 relative z-10">

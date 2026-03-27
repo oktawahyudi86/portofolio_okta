@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
+    "dev": "vite --port=5173 --host=0.0.0.0",
     "dev:server": "node server.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server.js",
+    "prod": "npm run build && npm run start",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
   },
