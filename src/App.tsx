@@ -814,84 +814,83 @@ const Skills = () => {
 };
 
 const ToolsCarousel = ({ tools }) => {
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [startX, setStartX] = React.useState(0);
-  const [scrollLeft, setScrollLeft] = React.useState(0);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const carouselRef = React.useRef(null);
 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  };
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const scrollWidth = carouselRef.current.scrollWidth / 2;
+        const clientWidth = carouselRef.current.clientWidth;
+        const currentScroll = carouselRef.current.scrollLeft;
+        
+        if (currentScroll + clientWidth >= scrollWidth - 10) {
+          carouselRef.current.scrollLeft = 0;
+          setCurrentIndex(0);
+        } else {
+          const nextScroll = currentScroll + clientWidth * 0.33;
+          carouselRef.current.scrollLeft = nextScroll;
+          setCurrentIndex(prev => (prev + 1) % tools.length);
+        }
+      }
+    }, 4000);
 
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
+    return () => clearInterval(interval);
+  }, [tools.length]);
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchStart = (e) => {
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
+  const scrollToIndex = (index) => {
+    if (carouselRef.current) {
+      const clientWidth = carouselRef.current.clientWidth;
+      carouselRef.current.scrollLeft = (clientWidth * 0.33) * index;
+      setCurrentIndex(index);
+    }
   };
 
   return (
-    <div
-      ref={carouselRef}
-      className="relative overflow-hidden rounded-2xl cursor-grab active:cursor-grabbing select-none"
-      onMouseDown={handleMouseDown}
-      onMouseLeave={handleMouseLeave}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      style={{
-        overflowX: 'auto',
-        overflowY: 'hidden',
-        scrollBehavior: isDragging ? 'auto' : 'smooth',
-      }}
-    >
-      <div className="flex gap-8 lg:gap-12 w-max py-6 lg:py-8">
-        {[...tools, ...tools, ...tools, ...tools].map((tool, idx) => (
-          <div
-            key={idx}
-            className="group relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 pointer-events-none"
-            style={{ width: '120px', height: '120px' }}
-          >
-            <div className="text-5xl lg:text-7xl">
-              {tool.icon}
+    <div className="w-full">
+      <div
+        ref={carouselRef}
+        className="relative overflow-hidden rounded-2xl select-none"
+        style={{
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          scrollBehavior: 'smooth',
+        }}
+      >
+        <div className="flex gap-8 lg:gap-12 w-max py-6 lg:py-8">
+          {[...tools, ...tools, ...tools, ...tools].map((tool, idx) => (
+            <div
+              key={idx}
+              className="group relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 pointer-events-none"
+              style={{ width: '120px', height: '120px' }}
+            >
+              <div className="text-5xl lg:text-7xl">
+                {tool.icon}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Gradient overlays for smooth fade effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Gradient overlays for smooth fade effect */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none"></div>
-      <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none"></div>
+      {/* Dot Indicators */}
+      <div className="flex items-center justify-center gap-2 mt-6">
+        {tools.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => scrollToIndex(idx)}
+            className={`transition-all duration-300 rounded-full ${
+              currentIndex === idx
+                ? 'bg-[#4a7c8c] w-2.5 h-2.5'
+                : 'bg-gray-300 hover:bg-gray-400 w-2 h-2'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
