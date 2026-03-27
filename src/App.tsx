@@ -854,9 +854,17 @@ const ToolsCarousel = ({ tools }) => {
             className="flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-105"
             style={{ minWidth: '100px', height: '80px' }}
           >
-            <div className="text-5xl lg:text-6xl">
-              {tool.icon}
-            </div>
+            {typeof tool.icon === 'string' && tool.icon.startsWith('/') ? (
+              <img 
+                src={tool.icon} 
+                alt={tool.name}
+                className="h-16 w-16 lg:h-20 lg:w-20 object-contain"
+              />
+            ) : (
+              <div className="text-5xl lg:text-6xl">
+                {tool.icon}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -912,13 +920,13 @@ const SDLCFlow = () => {
   ];
 
   const tools = [
-    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "📌" },
-    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "🔧" },
-    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "📚" },
-    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "📝" },
-    { name: "Slack", color: "from-rose-300 to-red-500", icon: "💬" },
-    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "🐙" },
-    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "📊" },
+    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "/aset/trello.png" },
+    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "/aset/jira.png" },
+    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "/aset/confluence.png" },
+    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "/aset/notion.png" },
+    { name: "Slack", color: "from-rose-300 to-red-500", icon: "/aset/slack.png" },
+    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "/aset/gitlab.png" },
+    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "/aset/office.png" },
     { name: "Google Sheets", color: "from-green-400 to-emerald-600", icon: "📑" }
   ];
 
