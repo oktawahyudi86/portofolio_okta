@@ -813,6 +813,89 @@ const Skills = () => {
   );
 };
 
+const ToolsCarousel = ({ tools }) => {
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [scrollLeft, setScrollLeft] = React.useState(0);
+  const carouselRef = React.useRef(null);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  return (
+    <div
+      ref={carouselRef}
+      className="relative overflow-hidden rounded-2xl cursor-grab active:cursor-grabbing select-none"
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseLeave}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      style={{
+        overflowX: 'auto',
+        overflowY: 'hidden',
+        scrollBehavior: isDragging ? 'auto' : 'smooth',
+      }}
+    >
+      <div className="flex gap-8 lg:gap-12 w-max py-6 lg:py-8">
+        {[...tools, ...tools, ...tools, ...tools].map((tool, idx) => (
+          <div
+            key={idx}
+            className="group relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 pointer-events-none"
+            style={{ width: '120px', height: '120px' }}
+          >
+            <div className="text-5xl lg:text-7xl">
+              {tool.icon}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Gradient overlays for smooth fade effect */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none"></div>
+      <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none"></div>
+    </div>
+  );
+};
+
 const SDLCFlow = () => {
   const scrimStages = [
     {
@@ -888,7 +971,7 @@ const SDLCFlow = () => {
             </p>
           </div>
 
-          {/* Tools Carousel */}
+          {/* Tools Carousel - Draggable */}
           <div className="mb-16 lg:mb-20">
             <style>{`
               @keyframes scroll-left {
@@ -900,43 +983,26 @@ const SDLCFlow = () => {
                 }
               }
               
-              @keyframes scroll-left-reverse {
-                0% {
-                  transform: translateX(-100%);
-                }
-                100% {
-                  transform: translateX(0);
-                }
-              }
-              
               .carousel-scroll {
-                animation: scroll-left 40s linear infinite;
+                animation: scroll-left 80s linear infinite;
               }
               
               .carousel-scroll:hover {
                 animation-play-state: paused;
               }
+              
+              .carousel-container {
+                scroll-behavior: smooth;
+              }
+              
+              .carousel-container.dragging {
+                scroll-behavior: auto;
+              }
             `}</style>
             
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">Primary Tools Stack</p>
-            <div className="relative overflow-hidden rounded-2xl">
-              <div className="flex gap-6 lg:gap-8 w-max carousel-scroll py-8">
-                {[...tools, ...tools, ...tools].map((tool, idx) => (
-                  <div
-                    key={idx}
-                    className="group relative flex-shrink-0 w-20 h-20 lg:w-28 lg:h-28 flex items-center justify-center rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-sm border border-white/40 shadow-sm hover:shadow-xl transition-all duration-300 hover:bg-white/60 cursor-pointer"
-                  >
-                    <div className="text-4xl lg:text-6xl transition-transform duration-300 group-hover:scale-110">
-                      {tool.icon}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Gradient overlays for smooth fade effect */}
-              <div className="absolute left-0 top-0 bottom-0 w-12 lg:w-20 bg-gradient-to-r from-white via-white/50 to-transparent pointer-events-none"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-12 lg:w-20 bg-gradient-to-l from-white via-white/50 to-transparent pointer-events-none"></div>
-            </div>
+            
+            <ToolsCarousel tools={tools} />
           </div>
 
           {/* Features Info */}
