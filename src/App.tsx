@@ -151,7 +151,7 @@ const OktaAI = () => {
               y: position === 'bottom' ? 50 : -50, 
               scale: 0.9 
             }}
-            className={`fixed inset-0 lg:inset-auto lg:${position === 'bottom' ? 'bottom-28' : 'top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[40px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
+            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[40px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
           >
             {/* Background Sparkles */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
