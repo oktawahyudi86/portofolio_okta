@@ -814,81 +814,46 @@ const Skills = () => {
 };
 
 const ToolsCarousel = ({ tools }) => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
   const carouselRef = React.useRef(null);
 
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (carouselRef.current) {
-        const scrollWidth = carouselRef.current.scrollWidth / 2;
-        const clientWidth = carouselRef.current.clientWidth;
-        const currentScroll = carouselRef.current.scrollLeft;
-        
-        if (currentScroll + clientWidth >= scrollWidth - 10) {
-          carouselRef.current.scrollLeft = 0;
-          setCurrentIndex(0);
-        } else {
-          const nextScroll = currentScroll + clientWidth * 0.33;
-          carouselRef.current.scrollLeft = nextScroll;
-          setCurrentIndex(prev => (prev + 1) % tools.length);
-        }
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const animate = () => {
+      carousel.scrollLeft += 1;
+      
+      // Reset to start when reaching end
+      if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
+        carousel.scrollLeft = 0;
       }
-    }, 4000);
+    };
 
-    return () => clearInterval(interval);
-  }, [tools.length]);
-
-  const scrollToIndex = (index) => {
-    if (carouselRef.current) {
-      const clientWidth = carouselRef.current.clientWidth;
-      carouselRef.current.scrollLeft = (clientWidth * 0.33) * index;
-      setCurrentIndex(index);
-    }
-  };
+    const intervalId = setInterval(animate, 50);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
-    <div className="w-full">
-      <div
-        ref={carouselRef}
-        className="relative overflow-hidden rounded-2xl select-none"
-        style={{
-          overflowX: 'auto',
-          overflowY: 'hidden',
-          scrollBehavior: 'smooth',
-        }}
-      >
-        <div className="flex gap-8 lg:gap-12 w-max py-6 lg:py-8">
-          {[...tools, ...tools, ...tools, ...tools].map((tool, idx) => (
-            <div
-              key={idx}
-              className="group relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 pointer-events-none"
-              style={{ width: '120px', height: '120px' }}
-            >
-              <div className="text-5xl lg:text-7xl">
-                {tool.icon}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Gradient overlays for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-r from-white via-white/40 to-transparent pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none"></div>
-      </div>
-
-      {/* Dot Indicators */}
-      <div className="flex items-center justify-center gap-2 mt-6">
-        {tools.map((_, idx) => (
-          <button
+    <div
+      ref={carouselRef}
+      className="w-full overflow-x-hidden select-none"
+      style={{
+        scrollBehavior: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <div className="flex gap-12 lg:gap-16 w-max py-4 lg:py-6 px-4">
+        {[...tools, ...tools, ...tools, ...tools, ...tools].map((tool, idx) => (
+          <div
             key={idx}
-            onClick={() => scrollToIndex(idx)}
-            className={`transition-all duration-300 rounded-full ${
-              currentIndex === idx
-                ? 'bg-[#4a7c8c] w-2.5 h-2.5'
-                : 'bg-gray-300 hover:bg-gray-400 w-2 h-2'
-            }`}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
+            className="flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-105"
+            style={{ minWidth: '100px', height: '80px' }}
+          >
+            <div className="text-5xl lg:text-6xl">
+              {tool.icon}
+            </div>
+          </div>
         ))}
       </div>
     </div>
