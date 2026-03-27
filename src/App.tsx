@@ -38,13 +38,13 @@ import { motion, AnimatePresence } from 'motion/react';
 
 type FeatureType = 'recruitment' | 'analysis' | 'brd';
 const featureGradientMap: Record<FeatureType, string> = {
-  recruitment: 'from-[#06b6d4] to-[#14b8a6]',
-  analysis: 'from-[#0ea5e9] to-[#6366f1]',
-  brd: 'from-[#fb7185] to-[#f97316]'
+  recruitment: 'from-[#5f9eab] to-[#4a7c8c]',
+  analysis: 'from-[#6b8f9d] to-[#4a6573]',
+  brd: 'from-[#728a97] to-[#516773]'
 };
 
 const FeatureIcon = ({ type }: { type: FeatureType }) => (
-  <div className={`w-14 h-14 lg:w-16 lg:h-16 rounded-[22px] bg-gradient-to-br ${featureGradientMap[type]} shadow-[0_25px_50px_rgba(15,23,42,0.35)] flex items-center justify-center`}>
+  <div className={`w-14 h-14 lg:w-16 lg:h-16 rounded-[18px] bg-gradient-to-br ${featureGradientMap[type]} border border-white/40 flex items-center justify-center`}>
     <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {type === 'recruitment' && (
         <>
@@ -78,16 +78,16 @@ const FeatureIcon = ({ type }: { type: FeatureType }) => (
 
 type StageVariant = 'grooming' | 'sizing' | 'planning' | 'dev' | 'review' | 'retrospective';
 const stageGradientMap: Record<StageVariant, string> = {
-  grooming: 'from-[#22d3ee] to-[#0ea5e9]',
-  sizing: 'from-[#0f766e] to-[#10b981]',
-  planning: 'from-[#f97316] to-[#fb923c]',
-  dev: 'from-[#2563eb] to-[#7c3aed]',
-  review: 'from-[#9333ea] to-[#c084fc]',
-  retrospective: 'from-[#0f172a] to-[#1e3a8a]'
+  grooming: 'from-[#6ca8b4] to-[#4a7c8c]',
+  sizing: 'from-[#5d9391] to-[#3f6c72]',
+  planning: 'from-[#7aa9b3] to-[#567f8b]',
+  dev: 'from-[#5b8392] to-[#365766]',
+  review: 'from-[#8da8b0] to-[#607681]',
+  retrospective: 'from-[#3b5561] to-[#22343d]'
 };
 
 const StageIcon = ({ variant, className = '' }: { variant: StageVariant; className?: string }) => (
-  <div className={`w-14 h-14 rounded-[20px] bg-gradient-to-br ${stageGradientMap[variant]} shadow-[0_20px_40px_rgba(15,23,42,0.35)] flex items-center justify-center ${className}`}>
+  <div className={`w-14 h-14 rounded-[18px] bg-gradient-to-br ${stageGradientMap[variant]} border border-white/40 flex items-center justify-center ${className}`}>
     <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {variant === 'grooming' && (
         <>
@@ -144,26 +144,30 @@ const StageIcon = ({ variant, className = '' }: { variant: StageVariant; classNa
 
 type ReportingVariant = 'user' | 'cLevel';
 const reportingGradientMap: Record<ReportingVariant, string> = {
-  user: 'from-[#0ea5e9] to-[#06b6d4]',
-  cLevel: 'from-[#f97316] to-[#ef4444]'
+  user: 'from-[#5d8897] to-[#406272]',
+  cLevel: 'from-[#748d99] to-[#324953]'
 };
 
 const ReportingIcon = ({ variant }: { variant: ReportingVariant }) => (
-  <div className={`w-12 h-12 rounded-[20px] bg-gradient-to-br ${reportingGradientMap[variant]} shadow-[0_20px_60px_rgba(15,23,42,0.4)] flex items-center justify-center`}>
+  <div className={`w-12 h-12 rounded-[14px] bg-gradient-to-br ${reportingGradientMap[variant]} border border-white/40 flex items-center justify-center`}>
     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {variant === 'user' ? (
         <>
-          <circle cx="18" cy="10" r="5" stroke="white" strokeWidth="2" />
-          <path d="M10 30C10 23.3726 14.3726 18 21 18C27.6274 18 32 23.3726 32 30V32H10V30Z" stroke="white" strokeWidth="2" />
-          <path d="M6 16L14 12" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <path d="M30 16L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" />
+          <path d="M8 10H28" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M8 18H22" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M8 26H18" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <circle cx="26" cy="18" r="3" stroke="white" strokeWidth="2.2" />
+          <path d="M26 12V9" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M31 18H34" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
         </>
       ) : (
         <>
-          <path d="M18 5C23.5228 5 28 9.47715 28 15V18H36V31H0V18H8V15C8 9.47715 12.4772 5 18 5Z" stroke="white" strokeWidth="2" />
-          <path d="M10 24H26" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <path d="M10 28H26" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <path d="M14 20H22" stroke="white" strokeWidth="2" strokeLinecap="round" />
+          <path d="M8 28V12" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M18 28V8" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M28 28V15" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M8 28H30" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M8 18L18 12L28 15" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="18" cy="12" r="2.5" fill="white" />
         </>
       )}
     </svg>
@@ -288,7 +292,7 @@ const OktaAI = () => {
               y: position === 'bottom' ? 50 : -50, 
               scale: 0.9 
             }}
-            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[40px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
+            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[28px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
           >
             {/* Background Sparkles */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
@@ -320,7 +324,7 @@ const OktaAI = () => {
             <div className="p-6 lg:p-7 pt-12 lg:pt-7 bg-gradient-to-br from-[#1a2e35] via-[#243b44] to-[#1a2e35] text-white flex items-center justify-between relative">
               <div className="absolute top-0 right-0 w-40 h-40 bg-[#4a7c8c]/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
               <div className="flex items-center gap-4 relative z-10">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner group overflow-hidden relative">
+                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-[16px] bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner group overflow-hidden relative">
                   <motion.div
                     animate={{ 
                       y: [0, -4, 0],
@@ -359,14 +363,14 @@ const OktaAI = () => {
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="w-32 h-32 bg-white rounded-[40px] flex items-center justify-center mb-6 shadow-xl border border-gray-100 relative overflow-hidden group"
+                    className="w-32 h-32 bg-white rounded-[24px] flex items-center justify-center mb-6 shadow-xl border border-gray-100 relative overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#4a7c8c]/5 to-transparent"></div>
                     <Cpu size={56} className="text-[#1a2e35] relative z-10 group-hover:scale-110 transition-transform duration-500" />
                     <motion.div 
                       animate={{ rotate: 360 }}
                       transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-                      className="absolute inset-0 border-2 border-dashed border-[#4a7c8c]/20 rounded-[40px] m-2"
+                      className="absolute inset-0 border-2 border-dashed border-[#4a7c8c]/20 rounded-[20px] m-2"
                     />
                   </motion.div>
                       <h5 className="text-[16px] font-black text-[#1a2e35] mb-2 tracking-[0.04em]">Halo! Aku OktaAI 👋</h5>
@@ -381,7 +385,7 @@ const OktaAI = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] p-5 rounded-[30px] text-[13px] leading-relaxed font-medium shadow-sm relative group ${
+                  <div className={`max-w-[85%] p-5 rounded-[22px] text-[13px] leading-relaxed font-medium shadow-sm relative group ${
                     m.role === 'user' 
                       ? 'bg-[#1a2e35] text-white rounded-tr-none' 
                       : 'bg-white text-[#1a2e35] border border-gray-100 rounded-tl-none'
@@ -398,7 +402,7 @@ const OktaAI = () => {
               
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white p-5 rounded-[28px] rounded-tl-none border border-gray-100 shadow-sm flex gap-1.5 items-center">
+                  <div className="bg-white p-5 rounded-[20px] rounded-tl-none border border-gray-100 shadow-sm flex gap-1.5 items-center">
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="w-2 h-2 bg-[#4a7c8c] rounded-full"></motion.div>
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-2 h-2 bg-[#4a7c8c] rounded-full"></motion.div>
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-2 h-2 bg-[#4a7c8c] rounded-full"></motion.div>
@@ -416,14 +420,14 @@ const OktaAI = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Tanya apa saja..."
-                  className="flex-1 bg-gray-50 border border-gray-100 outline-none px-7 py-4 rounded-[24px] text-[13px] font-medium placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a7c8c]/10 focus:bg-white transition-all shadow-inner"
+                  className="flex-1 bg-gray-50 border border-gray-100 outline-none px-7 py-4 rounded-[18px] text-[13px] font-medium placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a7c8c]/10 focus:bg-white transition-all shadow-inner"
                 />
                 <motion.button 
                   whileHover={{ scale: 1.1, backgroundColor: '#4a7c8c' }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => handleSend()}
                   disabled={isLoading || !input.trim()}
-                  className="w-14 h-14 bg-[#1a2e35] text-white rounded-[22px] flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl"
+                  className="w-14 h-14 bg-[#1a2e35] text-white rounded-[16px] flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl"
                 >
                   <Send size={20} />
                 </motion.button>
@@ -630,7 +634,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
 };
 
 const Skeleton = ({ className }: { className?: string }) => (
-  <div className={`animate-pulse bg-gray-200 rounded-2xl ${className}`} />
+  <div className={`animate-pulse bg-gray-200 rounded-[18px] ${className}`} />
 );
 
 const Hero = () => {
@@ -650,9 +654,9 @@ const Hero = () => {
         >
           <div 
             onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
-            className="bg-white rounded-[24px] border border-gray-100 shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
+            className="bg-white rounded-[18px] border border-gray-100 shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#4a7c8c]/10 flex items-center justify-center text-[#4a7c8c]">
+            <div className="w-10 h-10 rounded-[14px] bg-[#4a7c8c]/10 flex items-center justify-center text-[#4a7c8c]">
               <Sparkles size={18} />
             </div>
             <p className="text-[13px] font-bold text-gray-400">What services does Okta offer?</p>
@@ -666,7 +670,7 @@ const Hero = () => {
           I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c8c] to-[#1a2e35]">projects</span> and delivery.
         </h1>
         
-        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 2xl:p-10 rounded-[32px] lg:rounded-[40px] 2xl:rounded-[48px] mb-10 2xl:mb-12 relative shadow-2xl overflow-hidden group border border-white/10">
+        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[28px] 2xl:rounded-[32px] mb-10 2xl:mb-12 relative shadow-2xl overflow-hidden group border border-white/10">
           <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
           <p className="italic text-base lg:text-lg 2xl:text-xl leading-relaxed font-medium relative z-10 opacity-90">
             "I manage software projects end-to-end, ensuring timely delivery, quality results, and strong team alignment."
@@ -830,11 +834,11 @@ const Journey = () => {
             >
               <motion.div 
                 whileHover={{ scale: 1.15 }}
-                className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
+                className="w-14 h-14 shrink-0 rounded-[16px] bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
               >
                 <Briefcase size={20} />
               </motion.div>
-              <div className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/90 transition-all">
+              <div className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[18px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/90 transition-all">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[12px] font-black text-white bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] px-4 py-1.5 rounded-full border border-[#0fa3b1]/20">
                     {exp.date}
@@ -897,9 +901,9 @@ const Skills = () => {
             <motion.div 
               key={idx}
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 2xl:p-12 rounded-[24px] lg:rounded-[40px] 2xl:rounded-[48px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
+              className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 2xl:p-12 rounded-[20px] lg:rounded-[24px] 2xl:rounded-[28px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white/60 flex items-center justify-center mb-6 lg:mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
+                <div className="w-12 h-12 rounded-[16px] bg-white/60 flex items-center justify-center mb-6 lg:mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
                 <div className="text-[#4a7c8c] group-hover:text-white transition-colors">
                   {skill.icon}
                 </div>
@@ -1083,7 +1087,7 @@ const SDLCFlow = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 2xl:gap-10">
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all flex flex-col gap-3 items-start"
+              className="bg-white p-6 lg:p-8 2xl:p-10 rounded-[18px] lg:rounded-[20px] 2xl:rounded-[22px] border border-[#d9e4ea] transition-all flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="recruitment" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Recruitment Gathering</h3>
@@ -1092,7 +1096,7 @@ const SDLCFlow = () => {
 
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all flex flex-col gap-3 items-start"
+              className="bg-white p-6 lg:p-8 2xl:p-10 rounded-[18px] lg:rounded-[20px] 2xl:rounded-[22px] border border-[#d9e4ea] transition-all flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="analysis" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Analysis & Planning</h3>
@@ -1101,7 +1105,7 @@ const SDLCFlow = () => {
 
             <motion.div 
               whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[32px] 2xl:rounded-[40px] border border-white/40 shadow-sm hover:shadow-xl transition-all flex flex-col gap-3 items-start"
+              className="bg-white p-6 lg:p-8 2xl:p-10 rounded-[18px] lg:rounded-[20px] 2xl:rounded-[22px] border border-[#d9e4ea] transition-all flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="brd" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">BRD Creation (2 Week)</h3>
@@ -1138,7 +1142,7 @@ const SDLCFlow = () => {
                     transition={{ delay: idx * 0.1 }}
                     className="group relative"
                   >
-                    <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white transition-all duration-500 shadow-sm">
+                    <div className="relative bg-white p-5 rounded-[16px] border border-[#d9e4ea] hover:bg-[#1a2e35] hover:text-white transition-all duration-500">
                       <div className="flex items-start gap-4">
                         <div className="flex-shrink-0">
                           <StageIcon variant={stage.variant} />
@@ -1165,8 +1169,7 @@ const SDLCFlow = () => {
                     transition={{ delay: idx * 0.1 }}
                     className="group relative"
                   >
-                    <div className="absolute -inset-3 bg-[#4a7c8c]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                    <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white hover:shadow-2xl transition-all duration-500 shadow-sm flex flex-col items-center justify-center text-center h-40">
+                    <div className="relative bg-white p-5 rounded-[16px] border border-[#d9e4ea] hover:bg-[#1a2e35] hover:text-white transition-all duration-500 flex flex-col items-center justify-center text-center h-40">
                       <div className="mb-2">
                         <StageIcon variant={stage.variant} className="w-16 h-16" />
                       </div>
@@ -1182,7 +1185,16 @@ const SDLCFlow = () => {
           {/* Reporting & Stakeholder Communication */}
           <div className="mb-16 lg:mb-0">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-full bg-[#4a7c8c] text-white flex items-center justify-center font-black text-sm">📋</div>
+              <div className="w-11 h-11 rounded-[14px] bg-[#4a7c8c] text-white flex items-center justify-center border border-white/40">
+                <svg width="22" height="22" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 10H28" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+                  <path d="M8 18H22" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+                  <path d="M8 26H18" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+                  <circle cx="26" cy="18" r="3" stroke="white" strokeWidth="2.2" />
+                  <path d="M26 12V9" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+                  <path d="M31 18H34" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              </div>
               <h3 className="text-[16px] lg:text-[18px] font-black text-[#1a2e35]">Reporting & Stakeholder Communication</h3>
             </div>
 
@@ -1191,7 +1203,7 @@ const SDLCFlow = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ y: -5 }}
-                  className="bg-white/50 backdrop-blur-sm p-7 lg:p-9 2xl:p-10 rounded-[18px] lg:rounded-[20px] border border-white/40 shadow-sm hover:shadow-xl transition-all min-h-[225px]"
+                  className="bg-white p-7 lg:p-9 2xl:p-10 rounded-[18px] border border-[#d9e4ea] transition-all min-h-[225px]"
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <ReportingIcon variant={report.variant} />
@@ -1202,8 +1214,8 @@ const SDLCFlow = () => {
                   </div>
                   <div className="space-y-3">
                     {report.items.map((item, itemIdx) => (
-                      <div key={itemIdx} className="flex items-center gap-3">
-                        <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-[#0fa3b1] to-[#06b6d4]"></div>
+                        <div key={itemIdx} className="flex items-center gap-3">
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#4a7c8c]"></div>
                         <span className="text-[12px] text-[#1f2937] font-medium">{item}</span>
                       </div>
                     ))}
@@ -1235,8 +1247,8 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
         <div className="relative group">
-          <div className="absolute -inset-6 bg-gradient-to-br from-[#0fa3b1]/8 to-[#2eccc7]/4 rounded-[48px] blur-2xl group-hover:from-[#0fa3b1]/15 group-hover:to-[#2eccc7]/10 transition-all duration-700"></div>
-          <div className="rounded-[28px] lg:rounded-[40px] overflow-hidden shadow-xl aspect-[16/10] relative bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-md border border-[#0fa3b1]/30 group-hover:border-[#0fa3b1]/50 transition-all duration-500">
+          <div className="absolute -inset-6 bg-gradient-to-br from-[#0fa3b1]/8 to-[#2eccc7]/4 rounded-[28px] blur-2xl group-hover:from-[#0fa3b1]/15 group-hover:to-[#2eccc7]/10 transition-all duration-700"></div>
+          <div className="rounded-[20px] lg:rounded-[24px] overflow-hidden shadow-xl aspect-[16/10] relative bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-md border border-[#0fa3b1]/30 group-hover:border-[#0fa3b1]/50 transition-all duration-500">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
             <img 
               src={project.image} 
@@ -1267,7 +1279,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <p className="text-[15px] text-[#1a2e35]/80 leading-relaxed">
             {project.desc}
           </p>
-          <div className="bg-[#1a2e35] p-6 rounded-[24px] lg:rounded-[32px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
+          <div className="bg-[#1a2e35] p-6 rounded-[18px] lg:rounded-[20px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#4a7c8c]/20 rounded-full -mr-12 -mt-12 blur-2xl"></div>
             <p className="text-[12px] font-semibold text-[#4a7c8c] mb-2 tracking-[0.08em] relative z-10">Key impact</p>
             <p className="text-[14px] leading-relaxed italic font-medium relative z-10 opacity-90">"{project.impact}"</p>
@@ -1472,7 +1484,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-md border border-white/50 rounded-[32px] p-8 shadow-2xl">
+        <div className="bg-white/60 backdrop-blur-md border border-white/50 rounded-[24px] p-8 shadow-2xl">
           <p className="text-[12px] font-semibold tracking-[0.12em] text-[#0fa3b1] mb-4">WhatsApp</p>
           <h3 className="text-3xl font-black text-[#0a1620] mb-6">Chat with me directly</h3>
           <p className="text-[#1f2937]/80 leading-relaxed mb-8">
@@ -1759,7 +1771,7 @@ const LegalPage = ({
           Back to Home
         </button>
 
-        <div className="mt-8 rounded-[32px] border border-white/60 bg-white/75 p-8 lg:p-12 shadow-[0_28px_70px_rgba(15,23,42,0.10)] backdrop-blur-md">
+        <div className="mt-8 rounded-[24px] border border-white/60 bg-white/75 p-8 lg:p-12 shadow-[0_28px_70px_rgba(15,23,42,0.10)] backdrop-blur-md">
           <p className="text-[12px] font-semibold tracking-[0.14em] text-[#4a7c8c]">
             Legal Information
           </p>
@@ -1772,7 +1784,7 @@ const LegalPage = ({
 
           <div className="mt-10 space-y-8">
             {content.sections.map((section) => (
-              <section key={section.heading} className="rounded-[24px] border border-[#e3edf3] bg-[#fbfdff] p-6 lg:p-8">
+              <section key={section.heading} className="rounded-[18px] border border-[#e3edf3] bg-[#fbfdff] p-6 lg:p-8">
                 <h2 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#142b39]">
                   {section.heading}
                 </h2>
@@ -1810,7 +1822,7 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
   return (
     <footer className="px-6 pb-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="relative overflow-hidden rounded-[36px] bg-gradient-to-br from-[#070b10] via-[#0f172a] to-[#10233a] text-white shadow-[0_40px_90px_rgba(2,17,33,0.8)]">
+        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#070b10] via-[#0f172a] to-[#10233a] text-white shadow-[0_40px_90px_rgba(2,17,33,0.8)]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#3ab5c7_10%,_transparent_60%)] opacity-40 blur-3xl" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#102333_0%,_transparent_60%)] opacity-70" />
           <div className="relative z-10 px-8 py-10 lg:px-12 lg:py-14 space-y-10">
