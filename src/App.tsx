@@ -877,32 +877,32 @@ const SDLCFlow = () => {
     {
       title: "Grooming",
       desc: "Story refinement & requirements clarity",
-      icon: "📋"
+      icon: "/aset/scrum-grooming.png"
     },
     {
       title: "Story Sizing",
       desc: "Estimate effort & complexity",
-      icon: "📊"
+      icon: "/aset/scrum-sizing.png"
     },
     {
       title: "Sprint Planning",
       desc: "Define sprint goals & tasks",
-      icon: "🎯"
+      icon: "/aset/scrum-planning.png"
     },
     {
       title: "Sprint Dev",
       desc: "Execute & develop features (24H)",
-      icon: "⚙️"
+      icon: "/aset/scrum-dev.png"
     },
     {
       title: "Review",
       desc: "Showcase completed work",
-      icon: "✅"
+      icon: "/aset/scrum-review.png"
     },
     {
       title: "Retrospective",
       desc: "Continuous improvement",
-      icon: "🔄"
+      icon: "/aset/scrum-retrospective.png"
     }
   ];
 
@@ -1043,7 +1043,17 @@ const SDLCFlow = () => {
                   >
                     <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white transition-all duration-500 shadow-sm">
                       <div className="flex items-start gap-4">
-                        <div className="text-[28px] flex-shrink-0">{stage.icon}</div>
+                        <div className="flex-shrink-0">
+                          {typeof stage.icon === 'string' && stage.icon.startsWith('/') ? (
+                            <img 
+                              src={stage.icon} 
+                              alt={stage.title}
+                              className="w-8 h-8 object-contain"
+                            />
+                          ) : (
+                            <div className="text-[28px]">{stage.icon}</div>
+                          )}
+                        </div>
                         <div>
                           <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
                           <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors">{stage.desc}</p>
@@ -1068,7 +1078,17 @@ const SDLCFlow = () => {
                   >
                     <div className="absolute -inset-3 bg-[#4a7c8c]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                     <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white hover:shadow-2xl transition-all duration-500 shadow-sm flex flex-col items-center justify-center text-center h-40">
-                      <div className="text-[36px] mb-2">{stage.icon}</div>
+                      <div className="mb-2">
+                        {typeof stage.icon === 'string' && stage.icon.startsWith('/') ? (
+                          <img 
+                            src={stage.icon} 
+                            alt={stage.title}
+                            className="w-12 h-12 object-contain"
+                          />
+                        ) : (
+                          <div className="text-[36px]">{stage.icon}</div>
+                        )}
+                      </div>
                       <h4 className="text-[12px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
                       <p className="text-[9px] text-gray-500 group-hover:text-gray-300 transition-colors leading-tight">{stage.desc}</p>
                     </div>
