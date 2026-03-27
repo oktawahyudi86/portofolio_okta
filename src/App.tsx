@@ -718,8 +718,8 @@ const Journey = () => {
         </div>
 
         {/* Mobile Timeline (Vertical Cards) */}
-        <div className="lg:hidden space-y-6 relative">
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-dashed bg-[#4a7c8c]/20"></div>
+        <div className="lg:hidden space-y-7 relative">
+          <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0fa3b1] via-[#2eccc7] to-[#0fa3b1]/20"></div>
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -727,22 +727,26 @@ const Journey = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="flex items-start gap-6 relative z-10"
+              className="flex items-start gap-6 relative z-10 cursor-pointer"
+              onClick={() => setSelectedExperience(idx)}
             >
-              <div className="w-12 h-12 shrink-0 rounded-2xl bg-[#4a7c8c] text-white flex items-center justify-center shadow-lg border-4 border-white">
-                <Briefcase size={16} />
-              </div>
-              <div className="flex-1 bg-white p-6 rounded-[24px] border border-gray-100 shadow-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-black text-[#4a7c8c] uppercase tracking-widest bg-[#4a7c8c]/5 px-3 py-1 rounded-full border border-[#4a7c8c]/10">
+              <motion.div 
+                whileHover={{ scale: 1.15 }}
+                className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
+              >
+                <Briefcase size={20} />
+              </motion.div>
+              <div className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/90 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[12px] font-black text-white bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] px-4 py-1.5 rounded-full border border-[#0fa3b1]/20">
                     {exp.date}
                   </span>
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
+                  <span className="text-[12px] font-bold text-[#0fa3b1] uppercase tracking-tighter">
                     {exp.location}
                   </span>
                 </div>
-                <h3 className="text-[16px] font-black text-[#1a2e35] leading-tight mb-1">{exp.company}</h3>
-                <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest opacity-80">{exp.position}</p>
+                <h3 className="text-[18px] lg:text-[19px] font-black text-[#0d1f2b] leading-tight mb-2">{exp.company}</h3>
+                <p className="text-[13px] text-[#0fa3b1] font-bold uppercase tracking-widest">{exp.position}</p>
               </div>
             </motion.div>
           ))}
@@ -1124,29 +1128,33 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
         <div className="relative group">
-          <div className="absolute -inset-8 bg-[#4a7c8c]/5 rounded-[80px] blur-3xl group-hover:bg-[#4a7c8c]/10 transition-all duration-700"></div>
-          <div className="rounded-[32px] lg:rounded-[48px] overflow-hidden shadow-2xl aspect-[16/10] relative bg-white/10 backdrop-blur-sm border border-white/20">
+          <div className="absolute -inset-6 bg-gradient-to-br from-[#0fa3b1]/8 to-[#2eccc7]/4 rounded-[48px] blur-2xl group-hover:from-[#0fa3b1]/15 group-hover:to-[#2eccc7]/10 transition-all duration-700"></div>
+          <div className="rounded-[28px] lg:rounded-[40px] overflow-hidden shadow-xl aspect-[16/10] relative bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-md border border-[#0fa3b1]/30 group-hover:border-[#0fa3b1]/50 transition-all duration-500">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
             <img 
               src={project.image} 
               alt={project.title} 
               onLoad={() => setIsLoaded(true)}
               loading="lazy"
-              className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
               referrerPolicy="no-referrer"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
         </div>
       </div>
 
       <div className={`order-2 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-        <div className="flex items-center gap-4 mb-4">
-          <span className="text-[12px] font-black text-[#4a7c8c] uppercase tracking-[0.3em]">{project.type}</span>
-          <span className="w-8 h-px bg-gray-200"></span>
-          <span className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">{project.role}</span>
+        <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7]"></div>
+            <span className="text-[11px] font-black text-[#0fa3b1] uppercase tracking-[0.3em]">{project.type}</span>
+          </div>
+          <span className="w-6 h-px bg-gradient-to-r from-[#0fa3b1]/40 to-transparent"></span>
+          <span className="text-[11px] font-bold text-[#0fa3b1]/60 uppercase tracking-widest">{project.role}</span>
         </div>
         
-        <h3 className="text-3xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
+        <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
         
         <div className="space-y-6 mb-10">
           <p className="text-[15px] lg:text-[17px] text-gray-500 leading-relaxed font-medium">
@@ -1212,6 +1220,33 @@ const Portfolio = () => {
       desc: "A dual-purpose application suite combining a high-performance mobile app with an integrated AI chatbot to provide users with intelligent assistance. I led the cross-functional team to integrate LLM capabilities into the core product.",
       tags: ["React", "Vue.js", "TypeScript", "Laravel", "MongoDB", "Golang", "Figma"],
       image: "/aset/project-dazo-ai.jpg"
+    },
+    {
+      title: "Maxtream Platform",
+      type: "Video Streaming & Content Delivery",
+      role: "Product & Project Manager",
+      impact: "Delivered robust streaming infrastructure supporting 50K+ concurrent users with 99.8% uptime.",
+      desc: "A comprehensive video streaming platform built to deliver high-quality content with adaptive bitrate streaming. Managed end-to-end development from architecture design to production deployment with focus on scalability and user experience.",
+      tags: ["React", "Next.js", "TypeScript", "Go", "PostgreSQL", "AWS", "Docker"],
+      image: "/aset/project-maxtream.jpg"
+    },
+    {
+      title: "Meloadia Music App",
+      type: "Music Streaming Application",
+      role: "Project Manager & Technical Lead",
+      impact: "Achieved 100K+ downloads in first quarter with 4.8-star app store rating.",
+      desc: "A feature-rich music streaming application with personalized recommendations, offline listening, and social sharing. Led cross-functional teams to deliver weekly feature releases while maintaining app stability and performance.",
+      tags: ["React Native", "TypeScript", "Node.js", "MongoDB", "Redis", "Firebase", "Figma"],
+      image: "/aset/project-meloadia.jpg"
+    },
+    {
+      title: "BPJSTK Integrated System",
+      type: "Government Enterprise Solution",
+      role: "Lead Project Manager",
+      impact: "Streamlined benefit processing for 40M+ participants, reducing processing time by 60%.",
+      desc: "Large-scale government integration system for social security benefit management. Coordinated with multiple stakeholders, ensured regulatory compliance, and delivered complex enterprise features with zero critical incidents during rollout.",
+      tags: ["React", "Next.js", "TypeScript", "Java Spring", "Oracle DB", "Kubernetes", "Figma"],
+      image: "/aset/project-bpjstk.jpg"
     }
   ];
 
@@ -1343,30 +1378,39 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
   return (
     <motion.div 
       key={idx} 
-      whileHover={{ y: -5 }}
-      className="bg-white/40 backdrop-blur-md p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 shadow-sm transition-all duration-500"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: idx * 0.1 }}
+      whileHover={{ y: -8, shadow: "0 20px 40px rgba(15, 163, 177, 0.2)" }}
+      className="h-80 bg-white/50 backdrop-blur-md p-8 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-xl hover:border-[#0fa3b1]/40 transition-all duration-500 flex flex-col justify-between group relative overflow-hidden"
     >
-      <div className="flex gap-1 mb-6 lg:mb-8">
-        {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="#4a7c8c" className="text-[#4a7c8c]" />)}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0fa3b1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      <div className="relative z-10">
+        <div className="flex gap-1 mb-4">
+          {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#0fa3b1" className="text-[#0fa3b1]" />)}
+        </div>
+        <p className="text-[13px] text-[#0d1f2b]/70 italic leading-relaxed font-medium line-clamp-5">
+          "{t.text}"
+        </p>
       </div>
-      <p className="text-[13px] lg:text-[14px] text-gray-500 italic mb-8 lg:mb-10 leading-relaxed font-medium">
-        "{t.text}"
-      </p>
-      <div className="flex items-center gap-4">
-        <div className="relative w-10 h-10 rounded-2xl overflow-hidden shrink-0">
+      
+      <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-[#0fa3b1]/10">
+        <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
           <img 
             src={t.image} 
             alt={t.name} 
             onLoad={() => setIsLoaded(true)}
             loading="lazy"
-            className={`w-full h-full object-cover grayscale transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
+            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
             referrerPolicy="no-referrer" 
           />
         </div>
-        <div>
-          <h4 className="font-black text-[13px] lg:text-[14px] text-[#1a2e35] tracking-tight">{t.name}</h4>
-          <p className="text-[9px] lg:text-[10px] text-[#4a7c8c] font-black uppercase tracking-widest">{t.company}</p>
+        <div className="min-w-0">
+          <h4 className="font-black text-[13px] text-[#0d1f2b] tracking-tight truncate">{t.name}</h4>
+          <p className="text-[10px] text-[#0fa3b1]/60 font-black uppercase tracking-widest truncate">{t.company}</p>
         </div>
       </div>
     </motion.div>
@@ -1374,14 +1418,12 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 };
 
 const Testimonials = () => {
-  const [testimonialIndex, setTestimonialIndex] = React.useState(0);
-  
   const testimonials = [
     {
       name: "Budi Santoso",
       company: "PT. Supra Primatama",
       image: "/aset/testimonial-budi.jpg",
-      text: "Okta&apos;s ability to manage complex software deliveries is exceptional. A true professional who delivers results."
+      text: "Okta's ability to manage complex software deliveries is exceptional. A true professional who delivers results."
     },
     {
       name: "Siti Nurhaliza",
@@ -1409,75 +1451,22 @@ const Testimonials = () => {
     }
   ];
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
   return (
-    <section id="feedback" className="py-12 lg:py-24 px-6 relative overflow-hidden">
+    <section id="feedback" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-10 lg:mb-16">
-          <p className="text-[11px] font-black text-[#4a7c8c] mb-3 uppercase tracking-[0.4em]">Feedback</p>
-          <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            User <span className="text-gray-300">Feedback</span>
+        <div className="mb-12 lg:mb-20">
+          <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Feedback</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
+            User <span className="bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent">Feedback</span>
           </h2>
-          <p className="text-[12px] text-gray-500 mt-4">Feedback dari atasan dan user selama pengembangan project</p>
+          <p className="text-[13px] text-[#0fa3b1]/60 mt-5 font-medium">Testimoni dari atasan dan klien selama pengembangan project</p>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative overflow-hidden">
-          <motion.div
-            key={testimonialIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center"
-          >
-            <TestimonialItem t={testimonials[testimonialIndex]} idx={testimonialIndex} />
-          </motion.div>
-
-          {/* Carousel Navigation Buttons */}
-          <div className="flex justify-center items-center gap-8 mt-8">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-              className="p-3 rounded-full bg-gray-100 border border-gray-200 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </motion.button>
-
-            {/* Carousel Indicators */}
-            <div className="flex justify-center gap-2">
-              {testimonials.map((_, idx) => (
-                <motion.button
-                  key={idx}
-                  onClick={() => setTestimonialIndex(idx)}
-                  whileHover={{ scale: 1.2 }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === testimonialIndex ? 'bg-[#1a2e35] w-8' : 'bg-gray-300 w-2'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
-              className="p-3 rounded-full bg-gray-100 border border-gray-200 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </motion.button>
-          </div>
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {testimonials.map((t, idx) => (
+            <TestimonialItem key={idx} t={t} idx={idx} />
+          ))}
         </div>
       </div>
     </section>
