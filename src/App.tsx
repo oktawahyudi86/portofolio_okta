@@ -813,6 +813,213 @@ const Skills = () => {
   );
 };
 
+const SDLCFlow = () => {
+  const scrimStages = [
+    {
+      title: "Grooming",
+      desc: "Story refinement & requirements clarity",
+      icon: "📋"
+    },
+    {
+      title: "Story Sizing",
+      desc: "Estimate effort & complexity",
+      icon: "📊"
+    },
+    {
+      title: "Sprint Planning",
+      desc: "Define sprint goals & tasks",
+      icon: "🎯"
+    },
+    {
+      title: "Sprint Dev",
+      desc: "Execute & develop features (24H)",
+      icon: "⚙️"
+    },
+    {
+      title: "Review",
+      desc: "Showcase completed work",
+      icon: "✅"
+    },
+    {
+      title: "Retrospective",
+      desc: "Continuous improvement",
+      icon: "🔄"
+    }
+  ];
+
+  const reportingStructure = [
+    {
+      level: "User Level",
+      frequency: "Weekly/BI-Weekly",
+      items: ["Report Progress", "Issue/Risk/Dependency", "Monitoring"]
+    },
+    {
+      level: "C-Level",
+      frequency: "BI-Weekly",
+      items: ["BI-Weekly Updates", "Planning & Blocker", "Resource Planning"]
+    }
+  ];
+
+  const tools = [
+    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "📌" },
+    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "🔧" },
+    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "📚" },
+    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "📝" },
+    { name: "Slack", color: "from-rose-300 to-red-500", icon: "💬" },
+    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "🐙" },
+    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "📊" },
+    { name: "Google Sheets", color: "from-green-400 to-emerald-600", icon: "📑" }
+  ];
+
+  return (
+    <>
+      {/* Tools Management & Coordination */}
+      <section id="tools" className="py-12 lg:py-24 px-6 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
+            <div className="max-w-xl">
+              <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Coordination</p>
+              <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+                Tools & <span className="text-gray-300">Project Management</span>
+              </h2>
+            </div>
+            <p className="text-gray-500 max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+              Leveraging industry-leading tools to streamline team collaboration and project delivery.
+            </p>
+          </div>
+
+          {/* Tools Grid */}
+          <div className="mb-16 lg:mb-20">
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">Primary Tools Stack</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+              {tools.map((tool, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                  className="group relative overflow-hidden rounded-[24px] lg:rounded-[32px] p-6 lg:p-8 bg-white/40 backdrop-blur-sm border border-white/40 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  <div className="relative z-10">
+                    <div className="text-[32px] lg:text-[40px] mb-3">{tool.icon}</div>
+                    <h3 className="text-[13px] lg:text-[14px] font-black text-[#1a2e35] group-hover:text-white transition-colors duration-300">{tool.name}</h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Features Info */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="text-[24px] mb-4">📊</div>
+              <h3 className="text-[14px] font-black text-[#1a2e35] mb-2">Recruitment Gathering</h3>
+              <p className="text-[12px] text-gray-500 leading-relaxed">Collecting team requirements and resource planning for project success.</p>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="text-[24px] mb-4">📈</div>
+              <h3 className="text-[14px] font-black text-[#1a2e35] mb-2">Analysis & Planning</h3>
+              <p className="text-[12px] text-gray-500 leading-relaxed">In-depth analysis of scope, timeline, and resource allocation for optimal delivery.</p>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="text-[24px] mb-4">🔨</div>
+              <h3 className="text-[14px] font-black text-[#1a2e35] mb-2">BRD Creation (2 Week)</h3>
+              <p className="text-[12px] text-gray-500 leading-relaxed">Comprehensive Business Requirements Document crafted within a two-week sprint cycle.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SDLC Flow - Scrum Process */}
+      <section id="sdlc" className="py-12 lg:py-24 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
+            <div className="max-w-xl">
+              <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Development Cycle</p>
+              <h2 className="text-4xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+                SDLC <span className="text-gray-300">Scrum Flow</span>
+              </h2>
+            </div>
+            <p className="text-gray-500 max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+              Agile-driven development process ensuring rapid delivery with continuous quality assurance.
+            </p>
+          </div>
+
+          {/* Scrum Process Flow */}
+          <div className="mb-16 lg:mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
+              {scrimStages.map((stage, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="group relative"
+                >
+                  <div className="absolute -inset-2 bg-[#4a7c8c]/20 rounded-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                  <div className="relative bg-white/50 backdrop-blur-sm p-5 lg:p-6 rounded-[16px] lg:rounded-[24px] border border-white/60 hover:bg-[#1a2e35] hover:text-white transition-all duration-500 shadow-sm">
+                    <div className="text-[28px] mb-3">{stage.icon}</div>
+                    <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-2">{stage.title}</h4>
+                    <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors line-clamp-2">{stage.desc}</p>
+                  </div>
+                  {idx < scrimStages.length - 1 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-2 w-4 h-0.5 bg-gradient-to-r from-[#4a7c8c] to-transparent transform -translate-y-1/2"></div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Reporting & Stakeholder Communication */}
+          <div className="mb-16 lg:mb-0">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-full bg-[#4a7c8c] text-white flex items-center justify-center font-black text-sm">📋</div>
+              <h3 className="text-[16px] lg:text-[18px] font-black text-[#1a2e35]">Reporting & Stakeholder Communication</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {reportingStructure.map((report, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -5 }}
+                  className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-[#4a7c8c]/10 flex items-center justify-center text-[20px]">👥</div>
+                    <div>
+                      <h4 className="text-[14px] font-black text-[#1a2e35]">{report.level}</h4>
+                      <p className="text-[10px] text-[#4a7c8c] font-black uppercase tracking-widest">{report.frequency}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {report.items.map((item, itemIdx) => (
+                      <div key={itemIdx} className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-[#4a7c8c]"></div>
+                        <span className="text-[12px] text-gray-500 font-medium">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
 interface PortfolioItemProps {
   project: any;
   idx: number;
@@ -1243,6 +1450,7 @@ export default function App() {
       <Hero />
       <Journey />
       <Skills />
+      <SDLCFlow />
       <Portfolio />
       <Contact />
       <Testimonials />
