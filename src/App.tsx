@@ -986,28 +986,95 @@ const SDLCFlow = () => {
             </p>
           </div>
 
-          {/* Scrum Process Flow */}
+          {/* Scrum Process Flow with Diagram */}
           <div className="mb-16 lg:mb-20">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
-              {scrimStages.map((stage, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="group relative"
-                >
-                  <div className="absolute -inset-2 bg-[#4a7c8c]/20 rounded-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                  <div className="relative bg-white/50 backdrop-blur-sm p-5 lg:p-6 rounded-[16px] lg:rounded-[24px] border border-white/60 hover:bg-[#1a2e35] hover:text-white transition-all duration-500 shadow-sm">
-                    <div className="text-[28px] mb-3">{stage.icon}</div>
-                    <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-2">{stage.title}</h4>
-                    <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors line-clamp-2">{stage.desc}</p>
+            {/* Mobile/Tablet View - Vertical Flow */}
+            <div className="lg:hidden">
+              <div className="space-y-4">
+                {scrimStages.map((stage, idx) => (
+                  <div key={idx}>
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="group relative"
+                    >
+                      <div className="relative bg-white/50 backdrop-blur-sm p-5 rounded-[16px] border border-white/60 hover:bg-[#1a2e35] hover:text-white transition-all duration-500 shadow-sm">
+                        <div className="flex items-start gap-4">
+                          <div className="text-[28px] flex-shrink-0">{stage.icon}</div>
+                          <div>
+                            <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
+                            <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors">{stage.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                    {idx < scrimStages.length - 1 && (
+                      <div className="flex justify-center py-2">
+                        <svg className="w-6 h-6 text-[#4a7c8c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
-                  {idx < scrimStages.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-2 w-4 h-0.5 bg-gradient-to-r from-[#4a7c8c] to-transparent transform -translate-y-1/2"></div>
-                  )}
-                </motion.div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop View - Horizontal Flow with SVG Arrows */}
+            <div className="hidden lg:block overflow-x-auto pb-6">
+              <div className="relative min-w-max px-4">
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+                  <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                      <polygon points="0 0, 10 3, 0 6" fill="#4a7c8c" />
+                    </marker>
+                    <marker id="arrowhead-light" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                      <polygon points="0 0, 10 3, 0 6" fill="#cbd5e1" />
+                    </marker>
+                  </defs>
+                </svg>
+
+                <div className="flex items-center gap-2 min-w-max">
+                  {scrimStages.map((stage, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="group relative flex-shrink-0"
+                      >
+                        <div className="absolute -inset-3 bg-[#4a7c8c]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                        <div className="relative bg-white/50 backdrop-blur-sm p-6 rounded-[20px] border border-white/60 hover:bg-[#1a2e35] hover:text-white hover:shadow-2xl transition-all duration-500 shadow-sm w-40 h-40 flex flex-col items-center justify-center text-center">
+                          <div className="text-[40px] mb-2">{stage.icon}</div>
+                          <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-2">{stage.title}</h4>
+                          <p className="text-[10px] text-gray-500 group-hover:text-gray-300 transition-colors leading-tight">{stage.desc}</p>
+                        </div>
+                      </motion.div>
+
+                      {idx < scrimStages.length - 1 && (
+                        <div className="relative flex-shrink-0 w-12 h-1 group">
+                          <svg className="w-full h-full" viewBox="0 0 48 4" preserveAspectRatio="none">
+                            <defs>
+                              <linearGradient id={`arrow-gradient-${idx}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#4a7c8c" />
+                                <stop offset="100%" stopColor="#cbd5e1" />
+                              </linearGradient>
+                            </defs>
+                            <path 
+                              d="M 0 2 L 42 2" 
+                              stroke={`url(#arrow-gradient-${idx})`}
+                              strokeWidth="2"
+                              fill="none"
+                              markerEnd="url(#arrowhead)"
+                            />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
