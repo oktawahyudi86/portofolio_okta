@@ -3,6 +3,23 @@
 
 @theme {
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Primary Colors - Vibrant & Premium */
+  --color-primary-dark: #0d1f2b;
+  --color-primary-main: #0fa3b1;
+  --color-primary-light: #2eccc7;
+  
+  /* Accent Colors - Energetic */
+  --color-accent-blue: #0066ff;
+  --color-accent-purple: #a855f7;
+  --color-accent-orange: #ff6b35;
+  --color-accent-cyan: #00d9ff;
+  
+  /* Neutrals */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-400: #94a3b8;
 }
 
 * {

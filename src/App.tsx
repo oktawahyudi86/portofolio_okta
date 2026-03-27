@@ -421,61 +421,82 @@ const Navbar = () => {
     <>
       {/* Top Navbar - Desktop Only */}
       <div className="hidden lg:block fixed top-8 left-0 w-full z-50 px-6">
-        <nav className="max-w-6xl mx-auto bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.08)] rounded-[32px] overflow-hidden">
-          <div className="px-8 py-4 flex items-center justify-between">
+        <nav className="max-w-6xl mx-auto bg-gradient-to-r from-white/90 via-white/85 to-white/90 backdrop-blur-3xl border border-white/60 shadow-[0_20px_60px_rgba(15,163,177,0.15)] rounded-[32px] overflow-hidden group">
+          <div className="px-8 py-5 flex items-center justify-between relative">
+            {/* Animated gradient background on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0fa3b1]/5 via-transparent to-[#2eccc7]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[32px]"></div>
+            
             {/* Logo */}
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-12 relative z-10">
               <motion.div 
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="text-xl lg:text-2xl font-black tracking-tighter text-[#1a2e35] cursor-default"
+                whileHover={{ scale: 1.12, rotate: -5 }}
+                className="text-2xl font-black tracking-tighter cursor-default"
               >
-                OKTA<span className="text-[#4a7c8c]">.</span>
+                <span className="bg-gradient-to-r from-[#0d1f2b] via-[#0fa3b1] to-[#0fa3b1] bg-clip-text text-transparent">OKTA</span>
+                <span className="bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent">.</span>
               </motion.div>
 
               {/* Desktop Menu */}
-              <div className="hidden lg:flex items-center gap-2">
+              <div className="hidden lg:flex items-center gap-1">
                 {menuItems.slice(0, 4).map((item, idx) => (
                   <motion.a
                     key={idx}
                     href={item.href}
-                    whileHover={{ y: -2 }}
-                    className={`px-5 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-2 group ${activeSection === item.href.replace('#', '') ? 'text-[#1a2e35] bg-gray-50' : 'text-gray-400 hover:text-[#1a2e35] hover:bg-gray-50'}`}
+                    whileHover={{ y: -3, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`px-5 py-3 rounded-[18px] text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2.5 group relative overflow-hidden ${
+                      activeSection === item.href.replace('#', '')
+                        ? 'bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] text-white shadow-lg shadow-[#0fa3b1]/30'
+                        : 'text-[#0d1f2b] hover:bg-[#0fa3b1]/10'
+                    }`}
                   >
-                    <span className={`transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#4a7c8c]' : 'text-gray-300 group-hover:text-[#4a7c8c]'}`}>{item.icon}</span>
-                    {item.name}
+                    {/* Background shine effect */}
+                    {activeSection === item.href.replace('#', '') && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent"
+                        animate={{ x: [-100, 100] }}
+                        transition={{ repeat: Infinity, duration: 3 }}
+                      />
+                    )}
+                    <span className={`transition-all ${activeSection === item.href.replace('#', '') ? 'text-white scale-110' : 'text-[#0fa3b1]'}`}>{item.icon}</span>
+                    <span className="relative">{item.name}</span>
                   </motion.a>
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 relative z-10">
               {/* AI Button */}
               <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.08, y: -3 }}
+                whileTap={{ scale: 0.92 }}
                 onClick={openChat}
                 className="relative group"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#4a7c8c] via-[#ff6b6b] to-[#4a7c8c] rounded-full blur-md opacity-40 group-hover:opacity-100 transition-all duration-500 animate-gradient-x"></div>
-                <div className="relative bg-[#1a2e35] text-white px-4 lg:px-7 py-2 lg:py-3 rounded-full text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2 lg:gap-3 shadow-xl border border-white/10 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#4a7c8c]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Premium glow background */}
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-[#0fa3b1] via-[#a855f7] to-[#ff6b35] rounded-full blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500 animate-gradient-x"></div>
+                
+                <div className="relative bg-gradient-to-br from-[#0d1f2b] to-[#0fa3b1] text-white px-6 py-3.5 rounded-full text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2 lg:gap-3 shadow-xl border border-white/20 overflow-hidden backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-[#2eccc7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   <div className="relative flex items-center gap-2">
                     <div className="relative">
-                      <MessageCircle size={14} className="lg:w-4 lg:h-4 group-hover:rotate-12 transition-transform duration-500" />
+                      <motion.div animate={{ rotate: [0, 20, -20, 0] }} transition={{ repeat: Infinity, duration: 3, delay: 0.2 }}>
+                        <MessageCircle size={16} className="lg:w-4 lg:h-4 group-hover:text-[#00d9ff] transition-colors duration-300" />
+                      </motion.div>
                       <motion.div
                         animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }}
                         transition={{ repeat: Infinity, duration: 2 }}
-                        className="absolute -top-1 -right-1 text-yellow-300"
+                        className="absolute -top-1 -right-1 text-[#00d9ff]"
                       >
-                        <Sparkles size={6} className="lg:w-2 lg:h-2" fill="currentColor" />
+                        <Sparkles size={7} className="lg:w-3 lg:h-3" fill="currentColor" />
                       </motion.div>
                     </div>
                     <span className="hidden sm:inline">Talk With Okta AI</span>
                     <span className="sm:hidden">OktaAI</span>
                   </div>
 
-                  <div className="hidden lg:block bg-white/10 px-2 py-0.5 rounded-md text-[8px] font-black tracking-tighter">
+                  <div className="hidden lg:block bg-gradient-to-r from-[#00d9ff] to-[#2eccc7] bg-clip-text text-transparent px-2 py-0.5 rounded-md text-[8px] font-black tracking-tighter">
                     NEW ✨
                   </div>
                 </div>
@@ -487,36 +508,45 @@ const Navbar = () => {
 
       {/* Bottom Navigation - Mobile Only */}
       <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-0 pb-0">
-        <nav className="bg-white border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
-          <div className="flex items-center justify-around py-3">
+        <nav className="bg-gradient-to-r from-white/95 via-white/90 to-white/95 border-t border-[#0fa3b1]/20 shadow-[0_-15px_50px_rgba(15,163,177,0.1)] overflow-hidden backdrop-blur-md">
+          <div className="flex items-center justify-around py-4">
             {menuItems.map((item, idx) => (
-              <a
+              <motion.a
                 key={idx}
                 href={item.href}
+                whileTap={{ scale: 0.85 }}
                 onClick={(e) => {
                   if (item.action) {
                     e.preventDefault();
                     item.action();
                   }
                 }}
-                className="flex flex-col items-center gap-1 px-4 py-1 group relative"
+                className="flex flex-col items-center gap-1.5 px-4 py-1 group relative"
               >
                 {activeSection === item.href.replace('#', '') && item.name !== 'Chat AI' && (
                   <motion.div 
                     layoutId="activeNav"
-                    className="absolute -top-3 w-8 h-1 bg-[#4a7c8c] rounded-full"
+                    className="absolute -top-4 w-10 h-1 bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] rounded-full shadow-lg shadow-[#0fa3b1]/40"
                   />
                 )}
                 <motion.div 
-                  whileTap={{ scale: 0.8 }}
-                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#4a7c8c]' : 'text-gray-300'} transition-colors`}
+                  animate={activeSection === item.href.replace('#', '') ? { scale: 1.15, color: '#0fa3b1' } : {}}
+                  className={`transition-all p-2 rounded-xl ${
+                    activeSection === item.href.replace('#', '')
+                      ? 'bg-[#0fa3b1]/10 text-[#0fa3b1]'
+                      : 'text-[#0d1f2b]/40 group-active:bg-[#0fa3b1]/5'
+                  }`}
                 >
                   {item.icon}
                 </motion.div>
-                <span className={`text-[8px] font-black uppercase tracking-tighter ${activeSection === item.href.replace('#', '') ? 'text-[#1a2e35]' : 'text-gray-300'} transition-colors`}>
+                <span className={`text-[7.5px] font-black uppercase tracking-tighter transition-all ${
+                  activeSection === item.href.replace('#', '')
+                    ? 'text-[#0fa3b1] font-black'
+                    : 'text-[#0d1f2b]/50'
+                }`}>
                   {item.name}
                 </span>
-              </a>
+              </motion.a>
             ))}
           </div>
         </nav>
@@ -560,11 +590,11 @@ const Hero = () => {
         <div className="inline-block px-4 py-1.5 rounded-full bg-[#4a7c8c]/10 text-[#4a7c8c] font-black mb-6 tracking-[0.2em] uppercase text-[9px] lg:text-[11px] border border-[#4a7c8c]/20">
           Product & Project Manager
         </div>
-        <h1 className="text-5xl lg:text-8xl font-black text-[#1a2e35] leading-[0.9] mb-10 lg:mb-12 tracking-tighter">
-          I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c8c] to-[#1a2e35]">projects</span> and delivery.
+        <h1 className="text-5xl lg:text-8xl font-black text-[#0d1f2b] leading-[0.9] mb-10 lg:mb-12 tracking-tighter">
+          I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0fa3b1] via-[#2eccc7] to-[#00d9ff]">projects</span> and delivery.
         </h1>
         
-        <div className="bg-[#1a2e35] text-white p-8 lg:p-10 rounded-[32px] lg:rounded-[40px] mb-12 lg:mb-14 relative shadow-2xl overflow-hidden group border border-white/10">
+        <div className="bg-gradient-to-br from-[#0d1f2b] via-[#0fa3b1]/10 to-[#0d1f2b] text-white p-8 lg:p-10 rounded-[32px] lg:rounded-[40px] mb-12 lg:mb-14 relative shadow-2xl shadow-[#0fa3b1]/20 overflow-hidden group border border-[#0fa3b1]/30 backdrop-blur-sm">
           <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
           <p className="italic text-base lg:text-lg leading-relaxed font-medium relative z-10 opacity-90">
             "I manage software projects end-to-end, ensuring timely delivery, quality results, and strong team alignment."
@@ -573,14 +603,14 @@ const Hero = () => {
 
         <div className="flex gap-12 lg:gap-16 mb-12 lg:mb-14 px-2">
           <div className="flex flex-col">
-            <span className="text-5xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter">3+</span>
-            <div className="text-[10px] lg:text-[12px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-2">
+            <span className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-[#0d1f2b] to-[#0fa3b1] bg-clip-text text-transparent tracking-tighter">3+</span>
+            <div className="text-[10px] lg:text-[12px] text-[#0fa3b1]/70 font-black leading-tight uppercase tracking-widest mt-2">
               Years<br/>experience
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-5xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter">30</span>
-            <div className="text-[10px] lg:text-[12px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-2">
+            <span className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-[#0d1f2b] to-[#0fa3b1] bg-clip-text text-transparent tracking-tighter">30</span>
+            <div className="text-[10px] lg:text-[12px] text-[#0fa3b1]/70 font-black leading-tight uppercase tracking-widest mt-2">
               Projects<br/>delivered
             </div>
           </div>
@@ -671,8 +701,8 @@ const Journey = () => {
     <section id="journey" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 lg:mb-20">
-          <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Milestones</p>
-          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+          <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Milestones</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
             Journey & <span className="text-gray-300">Experience</span>
           </h2>
         </div>
@@ -702,15 +732,15 @@ const Journey = () => {
                 style={{ transform: `translateY(${exp.y}px)` }}
               >
                 {/* Circle */}
-                <div className="w-24 h-24 rounded-full bg-[#4a7c8c] text-white flex flex-col items-center justify-center p-3 text-center shadow-lg border-4 border-white/20 z-10 hover:scale-110 transition-all duration-500 group cursor-default">
-                  <span className="text-[8px] font-bold opacity-70 uppercase tracking-tighter mb-0.5">{exp.date}</span>
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex flex-col items-center justify-center p-3 text-center shadow-lg shadow-[#0fa3b1]/40 border-4 border-white/40 z-10 hover:scale-110 hover:shadow-2xl transition-all duration-500 group cursor-default">
+                  <span className="text-[8px] font-bold opacity-80 uppercase tracking-tighter mb-0.5">{exp.date}</span>
                   <span className="text-[10px] font-black leading-tight">{exp.location}</span>
                 </div>
 
                 {/* Info Label */}
                 <div className={`absolute left-1/2 -translate-x-1/2 w-48 text-center ${exp.y > 0 ? '-top-24' : 'top-28'}`}>
-                  <p className="text-[12px] font-black text-[#1a2e35] leading-tight mb-0.5">{exp.company}</p>
-                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest opacity-70">{exp.position}</p>
+                  <p className="text-[12px] font-black text-[#0d1f2b] leading-tight mb-0.5">{exp.company}</p>
+                  <p className="text-[9px] text-[#0fa3b1]/60 font-bold uppercase tracking-widest">{exp.position}</p>
                 </div>
               </motion.div>
             ))}
@@ -719,7 +749,7 @@ const Journey = () => {
 
         {/* Mobile Timeline (Vertical Cards) */}
         <div className="lg:hidden space-y-7 relative">
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-dashed bg-[#4a7c8c]/20"></div>
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#0fa3b1]/50 via-[#2eccc7]/30 to-[#0fa3b1]/10"></div>
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -729,20 +759,20 @@ const Journey = () => {
               viewport={{ once: true }}
               className="flex items-start gap-6 relative z-10"
             >
-              <div className="w-12 h-12 shrink-0 rounded-2xl bg-[#4a7c8c] text-white flex items-center justify-center shadow-lg border-4 border-white">
+              <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white">
                 <Briefcase size={16} />
               </div>
-              <div className="flex-1 bg-white p-6 rounded-[24px] border border-gray-100 shadow-sm">
+              <div className="flex-1 bg-white/60 backdrop-blur-sm p-6 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/80 transition-all">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-black text-[#4a7c8c] uppercase tracking-widest bg-[#4a7c8c]/5 px-3 py-1 rounded-full border border-[#4a7c8c]/10">
+                  <span className="text-[10px] font-black text-[#0fa3b1] uppercase tracking-widest bg-[#0fa3b1]/10 px-3 py-1 rounded-full border border-[#0fa3b1]/20">
                     {exp.date}
                   </span>
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
+                  <span className="text-[10px] font-bold text-[#0fa3b1]/60 uppercase tracking-tighter">
                     {exp.location}
                   </span>
                 </div>
-                <h3 className="text-[16px] font-black text-[#1a2e35] leading-tight mb-1">{exp.company}</h3>
-                <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest opacity-80">{exp.position}</p>
+                <h3 className="text-[16px] font-black text-[#0d1f2b] leading-tight mb-1">{exp.company}</h3>
+                <p className="text-[11px] text-[#0fa3b1]/70 font-bold uppercase tracking-widest">{exp.position}</p>
               </div>
             </motion.div>
           ))}
@@ -781,8 +811,8 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-20 gap-8">
           <div className="max-w-xl">
-            <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Expertise</p>
-            <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+            <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Expertise</p>
+            <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
               Core <span className="text-gray-300">Capabilities</span>
             </h2>
           </div>
@@ -796,14 +826,14 @@ const Skills = () => {
             <motion.div 
               key={idx}
               whileHover={{ y: -8 }}
-              className="bg-white/40 backdrop-blur-sm p-10 lg:p-12 rounded-[24px] lg:rounded-[40px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
+              className="bg-white/50 backdrop-blur-md p-10 lg:p-12 rounded-[24px] lg:rounded-[40px] border border-white/60 transition-all duration-500 group hover:bg-gradient-to-br hover:from-[#0fa3b1]/20 hover:to-[#0d1f2b]/30 hover:border-[#0fa3b1]/40 shadow-sm hover:shadow-2xl hover:shadow-[#0fa3b1]/20"
             >
-              <div className="w-14 h-14 rounded-3xl bg-white/60 flex items-center justify-center mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
-                <div className="text-[#4a7c8c] group-hover:text-white transition-colors">
+              <div className="w-14 h-14 rounded-3xl bg-gradient-to-br from-[#0fa3b1]/30 to-[#2eccc7]/20 flex items-center justify-center mb-8 shadow-sm group-hover:from-[#0fa3b1]/60 group-hover:to-[#2eccc7]/40 transition-all duration-500 border border-[#0fa3b1]/30">
+                <div className="text-[#0fa3b1] group-hover:text-white transition-colors duration-300">
                   {skill.icon}
                 </div>
               </div>
-              <h3 className="text-lg lg:text-xl font-black text-[#1a2e35] mb-5 tracking-tight group-hover:text-white transition-colors">{skill.title}</h3>
+              <h3 className="text-lg lg:text-xl font-black text-[#0d1f2b] mb-5 tracking-tight group-hover:text-[#0fa3b1] transition-colors duration-300">{skill.title}</h3>
               <p className="text-[14px] lg:text-[15px] text-gray-500 leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{skill.desc}</p>
             </motion.div>
           ))}
@@ -921,7 +951,7 @@ const SDLCFlow = () => {
   return (
     <>
       {/* Tools Management & Coordination */}
-      <section id="tools" className="py-16 lg:py-32 px-6 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
+      <section id="tools" className="py-16 lg:py-32 px-6 relative overflow-hidden bg-gradient-to-br from-[#0fa3b1]/5 to-[#2eccc7]/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-8">
             <div className="max-w-xl">
@@ -1006,8 +1036,8 @@ const SDLCFlow = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-20 gap-8">
             <div className="max-w-xl">
-              <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Development Cycle</p>
-              <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+              <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Development Cycle</p>
+              <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
                 SDLC <span className="text-gray-300">Scrum Flow</span>
               </h2>
             </div>
@@ -1069,8 +1099,8 @@ const SDLCFlow = () => {
           {/* Reporting & Stakeholder Communication */}
           <div className="mb-0">
             <div className="flex items-center gap-4 mb-10">
-              <div className="w-12 h-12 rounded-full bg-[#4a7c8c] text-white flex items-center justify-center font-black text-lg">📋</div>
-              <h3 className="text-[18px] lg:text-[20px] font-black text-[#1a2e35]">Reporting & Stakeholder Communication</h3>
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center font-black text-lg shadow-lg shadow-[#0fa3b1]/40">📋</div>
+              <h3 className="text-[18px] lg:text-[20px] font-black text-[#0d1f2b]">Reporting & Stakeholder Communication</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
@@ -1078,21 +1108,21 @@ const SDLCFlow = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ y: -8 }}
-                  className="bg-white/40 backdrop-blur-sm p-10 lg:p-12 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+                  className="bg-white/50 backdrop-blur-md p-10 lg:p-12 rounded-[24px] lg:rounded-[32px] border border-white/60 shadow-sm hover:shadow-xl hover:shadow-[#0fa3b1]/20 transition-all hover:border-[#0fa3b1]/40"
                 >
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="w-14 h-14 rounded-2xl bg-[#4a7c8c]/10 flex items-center justify-center text-[24px]">👥</div>
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0fa3b1]/20 to-[#2eccc7]/10 flex items-center justify-center text-[24px] border border-[#0fa3b1]/20">👥</div>
                     <div>
-                      <h4 className="text-[15px] lg:text-[16px] font-black text-[#1a2e35]">{report.level}</h4>
-                      <p className="text-[11px] text-[#4a7c8c] font-black uppercase tracking-widest">{report.frequency}</p>
+                      <h4 className="text-[15px] lg:text-[16px] font-black text-[#0d1f2b]">{report.level}</h4>
+                      <p className="text-[11px] text-[#0fa3b1]/70 font-black uppercase tracking-widest">{report.frequency}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
                     {report.items.map((item, itemIdx) => (
                       <div key={itemIdx} className="flex items-center gap-3">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#4a7c8c]"></div>
-                        <span className="text-[13px] lg:text-[14px] text-gray-500 font-medium">{item}</span>
+                        <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7]"></div>
+                        <span className="text-[13px] lg:text-[14px] text-[#0d1f2b]/70 font-medium">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1146,24 +1176,24 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">{project.role}</span>
         </div>
         
-        <h3 className="text-3xl lg:text-6xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-8 lg:mb-10">{project.title}</h3>
+        <h3 className="text-3xl lg:text-6xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-8 lg:mb-10">{project.title}</h3>
         
         <div className="space-y-8 mb-12 lg:mb-14">
           <p className="text-[15px] lg:text-[18px] text-gray-500 leading-relaxed font-medium">
             {project.desc}
           </p>
-          <div className="bg-[#1a2e35] p-8 lg:p-10 rounded-[24px] lg:rounded-[32px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#4a7c8c]/20 rounded-full -mr-12 -mt-12 blur-2xl"></div>
-            <p className="text-[12px] font-black text-[#4a7c8c] mb-3 uppercase tracking-widest relative z-10">Key Impact</p>
+          <div className="bg-gradient-to-br from-[#0d1f2b] to-[#0d1f2b]/80 p-8 lg:p-10 rounded-[24px] lg:rounded-[32px] border-l-4 border-[#0fa3b1] shadow-xl shadow-[#0fa3b1]/20 text-white relative overflow-hidden group border border-[#0fa3b1]/20">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#0fa3b1]/20 rounded-full -mr-12 -mt-12 blur-2xl"></div>
+            <p className="text-[12px] font-black text-[#2eccc7] mb-3 uppercase tracking-widest relative z-10">Key Impact</p>
             <p className="text-[15px] lg:text-[16px] leading-relaxed italic font-medium relative z-10 opacity-90">"{project.impact}"</p>
           </div>
         </div>
         
         <div className="mb-12 lg:mb-14">
-          <p className="text-[11px] lg:text-[12px] font-black text-gray-400 uppercase tracking-widest mb-5">Technology Stack</p>
+          <p className="text-[11px] lg:text-[12px] font-black text-[#0fa3b1]/70 uppercase tracking-widest mb-5">Technology Stack</p>
           <div className="flex flex-wrap gap-3">
             {project.tags.map((tag: string) => (
-              <span key={tag} className="bg-gray-50 text-[#1a2e35] px-5 py-3 rounded-2xl text-[11px] lg:text-[12px] font-black uppercase tracking-widest border border-gray-100">
+              <span key={tag} className="bg-gradient-to-r from-[#0fa3b1]/10 to-[#2eccc7]/10 text-[#0d1f2b] px-5 py-3 rounded-2xl text-[11px] lg:text-[12px] font-black uppercase tracking-widest border border-[#0fa3b1]/20 hover:border-[#0fa3b1]/40 transition-all">
                 {tag}
               </span>
             ))}
@@ -1219,8 +1249,8 @@ const Portfolio = () => {
     <section id="portfolio" className="py-16 lg:py-32 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-10 lg:mb-16">
-          <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Professional Portfolio</p>
-          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+          <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Professional Portfolio</p>
+          <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
             Detailed <span className="text-gray-300 italic font-serif">Case Studies</span>
           </h2>
         </div>
@@ -1263,9 +1293,9 @@ const Contact = () => {
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div>
-            <p className="text-[12px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Get in touch</p>
-            <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-8 lg:mb-10">
-              Let's <span className="text-gray-300">Connect</span>
+            <p className="text-[12px] font-black bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent mb-4 uppercase tracking-[0.4em]">Get in touch</p>
+            <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-8 lg:mb-10">
+              Let's <span className="bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] bg-clip-text text-transparent">Connect</span>
             </h2>
             <p className="text-gray-500 text-[14px] lg:text-[16px] leading-relaxed max-w-sm mb-10 lg:mb-12">
               Have a project in mind? I&apos;m always open to discussing new opportunities and strategic partnerships.
@@ -1273,55 +1303,55 @@ const Contact = () => {
             
             <div className="space-y-6 lg:space-y-8">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0fa3b1]/20 to-[#2eccc7]/10 flex items-center justify-center text-[#0fa3b1] border border-[#0fa3b1]/20">
                   <Globe size={20} />
                 </div>
-                <span className="text-[12px] lg:text-[13px] font-black uppercase tracking-widest text-[#1a2e35]">Jakarta, Indonesia</span>
+                <span className="text-[12px] lg:text-[13px] font-black uppercase tracking-widest text-[#0d1f2b]">Jakarta, Indonesia</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0fa3b1]/20 to-[#2eccc7]/10 flex items-center justify-center text-[#0fa3b1] border border-[#0fa3b1]/20">
                   <Linkedin size={20} />
                 </div>
-                <span className="text-[12px] lg:text-[13px] font-black uppercase tracking-widest text-[#1a2e35]">linkedin.com/in/okta</span>
+                <span className="text-[12px] lg:text-[13px] font-black uppercase tracking-widest text-[#0d1f2b]">linkedin.com/in/okta</span>
               </div>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-white/40 backdrop-blur-md p-10 lg:p-12 rounded-[24px] lg:rounded-[40px] border border-white/40 space-y-6 shadow-sm">
+          <form onSubmit={handleSubmit} className="bg-white/50 backdrop-blur-md p-10 lg:p-12 rounded-[24px] lg:rounded-[40px] border border-white/60 space-y-6 shadow-sm hover:border-[#0fa3b1]/30 transition-all">
             <div className="space-y-2">
-              <label className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest ml-2">Full Name</label>
+              <label className="text-[10px] lg:text-[11px] font-black text-[#0fa3b1]/70 uppercase tracking-widest ml-2">Full Name</label>
               <input 
                 type="text" 
                 required
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium focus:bg-white transition-all"
+                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border border-[#0fa3b1]/20 outline-none bg-white/70 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium focus:bg-white focus:border-[#0fa3b1]/50 transition-all"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest ml-2">Email Address</label>
+              <label className="text-[10px] lg:text-[11px] font-black text-[#0fa3b1]/70 uppercase tracking-widest ml-2">Email Address</label>
               <input 
                 type="email" 
                 required
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium focus:bg-white transition-all"
+                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border border-[#0fa3b1]/20 outline-none bg-white/70 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium focus:bg-white focus:border-[#0fa3b1]/50 transition-all"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest ml-2">Message</label>
+              <label className="text-[10px] lg:text-[11px] font-black text-[#0fa3b1]/70 uppercase tracking-widest ml-2">Message</label>
               <textarea 
                 required
                 placeholder="Tell me about your project..."
                 rows={5} 
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium resize-none focus:bg-white transition-all"
+                className="w-full px-6 lg:px-7 py-4 lg:py-5 rounded-xl lg:rounded-2xl border border-[#0fa3b1]/20 outline-none bg-white/70 backdrop-blur-sm shadow-sm text-[13px] lg:text-[15px] font-medium resize-none focus:bg-white focus:border-[#0fa3b1]/50 transition-all"
               ></textarea>
             </div>
-            <button type="submit" className="w-full bg-[#1a2e35] text-white py-4 lg:py-5 rounded-xl lg:rounded-2xl font-black text-[11px] lg:text-[12px] uppercase tracking-[0.2em] hover:bg-[#4a7c8c] transition-all shadow-xl mt-2">
+            <button type="submit" className="w-full bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] text-white py-4 lg:py-5 rounded-xl lg:rounded-2xl font-black text-[11px] lg:text-[12px] uppercase tracking-[0.2em] hover:shadow-lg hover:shadow-[#0fa3b1]/40 transition-all shadow-lg mt-2">
               Send Message
             </button>
           </form>
@@ -1509,13 +1539,16 @@ const TestimonialsOld = () => {
 const Footer = () => {
   return (
     <footer className="px-6 pb-8 pt-12 lg:pt-16 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto bg-[#1a2e35] text-white rounded-[32px] lg:rounded-[40px] p-10 md:p-14 lg:p-16 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#4a7c8c]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+      <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#0d1f2b] via-[#0d1f2b] to-[#0fa3b1]/10 text-white rounded-[32px] lg:rounded-[40px] p-10 md:p-14 lg:p-16 shadow-2xl shadow-[#0fa3b1]/20 relative overflow-hidden border border-[#0fa3b1]/20">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#0fa3b1]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 md:gap-10 relative z-10">
-          <div className="text-3xl font-black tracking-tighter">OKTA.</div>
+          <div className="text-3xl font-black tracking-tighter">
+            <span className="bg-gradient-to-r from-white to-[#2eccc7] bg-clip-text text-transparent">OKTA</span>
+            <span className="text-[#2eccc7]">.</span>
+          </div>
           
-          <div className="flex flex-wrap justify-center gap-8 md:gap-10 text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-gray-400">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-10 text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-[#2eccc7]/70 hover:text-[#2eccc7] transition-colors">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
             <a href="#about" className="hover:text-white transition-colors">About</a>
@@ -1524,18 +1557,18 @@ const Footer = () => {
 
           <div className="flex gap-5">
             {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-              <a key={i} href="#" className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#4a7c8c] transition-all border border-white/5">
+              <a key={i} href="#" className="w-11 h-11 rounded-full bg-[#0fa3b1]/10 flex items-center justify-center hover:bg-[#0fa3b1]/30 hover:text-[#2eccc7] transition-all border border-[#0fa3b1]/30 text-[#2eccc7]">
                 <Icon size={18} />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="mt-12 lg:mt-14 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] lg:text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] relative z-10">
+        <div className="mt-12 lg:mt-14 pt-10 border-t border-[#0fa3b1]/20 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] lg:text-[11px] font-black text-[#2eccc7]/50 uppercase tracking-[0.2em] relative z-10">
           <p className="text-center md:text-left">© 2026 Okta. All rights reserved.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
+            <a href="#" className="hover:text-[#2eccc7] transition-colors">Privacy</a>
+            <a href="#" className="hover:text-[#2eccc7] transition-colors">Terms</a>
           </div>
         </div>
       </div>
@@ -1545,14 +1578,14 @@ const Footer = () => {
 
 export default function App() {
   return (
-    <div className="min-h-screen pb-32 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] font-sans selection:bg-[#4a7c8c] selection:text-white antialiased relative overflow-hidden">
+    <div className="min-h-screen pb-32 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f0fffe_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f0fffe_0%,_transparent_40%)] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
       {/* Noise Texture Overlay */}
-      <div className="fixed inset-0 opacity-[0.03] pointer-events-none -z-50 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
+      <div className="fixed inset-0 opacity-[0.02] pointer-events-none -z-50 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
       
       {/* Global Atmospheric Blurs */}
-      <div className="fixed top-[20%] -left-[10%] w-[40%] h-[40%] bg-[#4a7c8c]/5 rounded-full blur-[120px] pointer-events-none -z-40"></div>
-      <div className="fixed bottom-[20%] -right-[10%] w-[40%] h-[40%] bg-[#1a2e35]/5 rounded-full blur-[120px] pointer-events-none -z-40"></div>
-      <div className="fixed top-[60%] left-[30%] w-[30%] h-[30%] bg-[#4a7c8c]/3 rounded-full blur-[100px] pointer-events-none -z-40"></div>
+      <div className="fixed top-[20%] -left-[10%] w-[40%] h-[40%] bg-[#0fa3b1]/8 rounded-full blur-[120px] pointer-events-none -z-40"></div>
+      <div className="fixed bottom-[20%] -right-[10%] w-[40%] h-[40%] bg-[#2eccc7]/6 rounded-full blur-[120px] pointer-events-none -z-40"></div>
+      <div className="fixed top-[60%] left-[30%] w-[30%] h-[30%] bg-[#0fa3b1]/4 rounded-full blur-[100px] pointer-events-none -z-40"></div>
       
       <Navbar />
       <Hero />
