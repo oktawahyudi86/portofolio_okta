@@ -163,6 +163,14 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
 
+app.get('/share', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'share', 'index.html'));
+});
+
+app.get('/share/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'share', 'index.html'));
+});
+
 // Fallback to index.html for SPA routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
