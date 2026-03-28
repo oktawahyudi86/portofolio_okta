@@ -36,9 +36,9 @@ import { motion, AnimatePresence } from 'motion/react';
 
 type FeatureType = 'recruitment' | 'analysis' | 'brd';
 const featureBackgroundMap: Record<FeatureType, string> = {
-  recruitment: 'bg-[#0fa3b1]',
-  analysis: 'bg-[#0fa3b1]',
-  brd: 'bg-[#0fa3b1]'
+  recruitment: 'accent-gradient-bg',
+  analysis: 'accent-gradient-bg',
+  brd: 'accent-gradient-bg'
 };
 
 const FeatureIcon = ({ type }: { type: FeatureType }) => (
@@ -76,12 +76,12 @@ const FeatureIcon = ({ type }: { type: FeatureType }) => (
 
 type StageVariant = 'grooming' | 'sizing' | 'planning' | 'dev' | 'review' | 'retrospective';
 const stageBackgroundMap: Record<StageVariant, string> = {
-  grooming: 'bg-[#0fa3b1]',
-  sizing: 'bg-[#0fa3b1]',
-  planning: 'bg-[#0fa3b1]',
-  dev: 'bg-[#0fa3b1]',
-  review: 'bg-[#0fa3b1]',
-  retrospective: 'bg-[#0fa3b1]'
+  grooming: 'accent-gradient-bg',
+  sizing: 'accent-gradient-bg',
+  planning: 'accent-gradient-bg',
+  dev: 'accent-gradient-bg',
+  review: 'accent-gradient-bg',
+  retrospective: 'accent-gradient-bg'
 };
 
 const StageIcon = ({ variant, className = '' }: { variant: StageVariant; className?: string }) => (
@@ -142,8 +142,8 @@ const StageIcon = ({ variant, className = '' }: { variant: StageVariant; classNa
 
 type ReportingVariant = 'user' | 'cLevel';
 const reportingBackgroundMap: Record<ReportingVariant, string> = {
-  user: 'bg-[#0fa3b1]',
-  cLevel: 'bg-[#0fa3b1]'
+  user: 'accent-gradient-bg',
+  cLevel: 'accent-gradient-bg'
 };
 
 const ReportingIcon = ({ variant }: { variant: ReportingVariant }) => (
@@ -290,10 +290,10 @@ const OktaAI = () => {
               y: position === 'bottom' ? 50 : -50, 
               scale: 0.9 
             }}
-            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white lg:bg-white/95 backdrop-blur-3xl lg:rounded-[28px] border-none lg:border lg:border-white/60 shadow-none lg:shadow-[0_40px_80px_rgba(0,0,0,0.15)] z-[100] flex flex-col overflow-hidden`}
+            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white/95 backdrop-blur-3xl lg:rounded-[28px] border border-white/30 shadow-[0_10px_32px_rgba(15,23,42,0.18)] z-[100] flex flex-col overflow-hidden`}
           >
             {/* Background Sparkles */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -319,10 +319,10 @@ const OktaAI = () => {
             </div>
 
             {/* Header */}
-            <div className="p-6 lg:p-7 pt-12 lg:pt-7 bg-gradient-to-br from-[#1a2e35] via-[#243b44] to-[#1a2e35] text-white flex items-center justify-between relative">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-[#4a7c8c]/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-              <div className="flex items-center gap-4 relative z-10">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-[16px] bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner group overflow-hidden relative">
+              <div className="p-5 lg:p-6 pt-12 lg:pt-7 bg-gradient-to-b from-[#edf4f6] to-white text-[#0f1724] flex items-center justify-between relative border-b border-slate-200">
+                <div className="absolute inset-x-0 top-0 h-24 bg-white/60 blur-3xl opacity-60 pointer-events-none"></div>
+                <div className="flex items-center gap-4 relative z-10">
+                  <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-[16px] bg-white/80 backdrop-blur-sm flex items-center justify-center border border-slate-200 shadow-sm group overflow-hidden relative">
                   <motion.div
                     animate={{ 
                       y: [0, -4, 0],
@@ -333,46 +333,46 @@ const OktaAI = () => {
                   >
                     <Cpu size={28} className="text-white" />
                   </motion.div>
-                  <motion.div 
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    className="absolute inset-0 bg-gradient-to-tr from-[#4a7c8c] to-transparent"
-                  />
+                    <motion.div 
+                      animate={{ scale: [1, 1.05, 1], opacity: [0.25, 0.55, 0.25] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                      className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent"
+                    />
                 </div>
                 <div>
                     <h4 className="text-[17px] font-black tracking-tight flex items-center gap-2">
-                    OktaAI <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.8)]"></span>
+                    OktaAI <span className="accent-gradient-bg w-2.5 h-2.5 rounded-full animate-pulse shadow-[0_0_14px_rgba(114,179,154,0.42)]"></span>
                   </h4>
-                    <p className="text-[12px] text-white/60 font-semibold tracking-[0.08em]">Asisten pintar & lucu ✨</p>
+                    <p className="text-[12px] text-slate-500 font-semibold tracking-[0.08em]">Asisten pintar & sigap ✨</p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)} 
-                className="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-all relative z-10"
+                className="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center transition-all relative z-10 border border-white/60"
               >
                 <X size={20} />
               </button>
             </div>
 
             {/* Messages Area */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-5 no-scrollbar bg-[#f8fafc]/50 relative z-10">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 no-scrollbar bg-white relative z-10">
               {messages.length === 1 && (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="w-32 h-32 bg-white rounded-[24px] flex items-center justify-center mb-6 shadow-xl border border-gray-100 relative overflow-hidden group"
+                    className="w-32 h-32 bg-white rounded-[24px] flex items-center justify-center mb-6 border border-slate-200 relative overflow-hidden group"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#4a7c8c]/5 to-transparent"></div>
-                    <Cpu size={56} className="text-[#1a2e35] relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent"></div>
+                    <Cpu size={56} className="text-[#0f1724] relative z-10 group-hover:scale-110 transition-transform duration-500" />
                     <motion.div 
                       animate={{ rotate: 360 }}
                       transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-                      className="absolute inset-0 border-2 border-dashed border-[#4a7c8c]/20 rounded-[20px] m-2"
+                      className="absolute inset-0 border-2 border-dashed border-slate-200 rounded-[20px] m-2"
                     />
                   </motion.div>
-                      <h5 className="text-[16px] font-black text-[#1a2e35] mb-2 tracking-[0.04em]">Halo! Aku OktaAI 👋</h5>
-                  <p className="text-[12px] font-medium text-gray-400 max-w-[200px] leading-relaxed">Ada yang bisa aku bantu seputar portfolio Okta? ✨</p>
+                      <h5 className="text-[16px] font-black text-[#0f1724] mb-2 tracking-[0.04em]">Halo! Aku OktaAI 👋</h5>
+                  <p className="text-[12px] font-medium text-slate-500 max-w-[220px] leading-relaxed">Ada yang bisa aku bantu seputar portfolio Okta? ✨</p>
                 </div>
               )}
 
@@ -383,10 +383,10 @@ const OktaAI = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] p-5 rounded-[22px] text-[13px] leading-relaxed font-medium shadow-sm relative group ${
+                  <div className={`max-w-[85%] p-4 rounded-[22px] text-base leading-relaxed font-medium relative group ${
                     m.role === 'user' 
-                      ? 'bg-[#1a2e35] text-white rounded-tr-none' 
-                      : 'bg-white text-[#1a2e35] border border-gray-100 rounded-tl-none'
+                      ? 'bg-[#0f1724] text-white rounded-tr-none shadow-[0_8px_24px_rgba(15,23,42,0.18)]' 
+                      : 'bg-[#f6f7fb] text-[#0f1724] border border-slate-200 rounded-tl-none shadow-sm'
                   }`}>
                     {m.text}
                     {m.role === 'model' && (
@@ -400,17 +400,17 @@ const OktaAI = () => {
               
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white p-5 rounded-[20px] rounded-tl-none border border-gray-100 shadow-sm flex gap-1.5 items-center">
-                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="w-2 h-2 bg-[#4a7c8c] rounded-full"></motion.div>
-                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-2 h-2 bg-[#4a7c8c] rounded-full"></motion.div>
-                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-2 h-2 bg-[#4a7c8c] rounded-full"></motion.div>
+                  <div className="bg-white p-4 rounded-[20px] rounded-tl-none border border-slate-200 shadow-sm flex gap-1.5 items-center">
+                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="accent-gradient-bg w-2 h-2 rounded-full"></motion.div>
+                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="accent-gradient-bg w-2 h-2 rounded-full"></motion.div>
+                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="accent-gradient-bg w-2 h-2 rounded-full"></motion.div>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Input Area */}
-            <div className="p-6 lg:p-7 pb-10 lg:pb-7 bg-white border-t border-gray-100 relative z-10">
+            <div className="p-5 lg:p-6 pb-8 bg-white border-t border-slate-200 relative z-10">
               <div className="relative flex items-center gap-3">
                 <input
                   type="text"
@@ -418,14 +418,14 @@ const OktaAI = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Tanya apa saja..."
-                  className="flex-1 bg-gray-50 border border-gray-100 outline-none px-7 py-4 rounded-[18px] text-[13px] font-medium placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a7c8c]/10 focus:bg-white transition-all shadow-inner"
+                  className="flex-1 bg-white border border-slate-200 outline-none px-5 md:px-6 py-3.5 md:py-4 rounded-[18px] text-base font-medium placeholder:text-slate-400 focus:ring-2 focus:ring-[#6fc7d7]/30 transition-all"
                 />
                 <motion.button 
-                  whileHover={{ scale: 1.1, backgroundColor: '#4a7c8c' }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend()}
                   disabled={isLoading || !input.trim()}
-                  className="w-14 h-14 bg-[#1a2e35] text-white rounded-[16px] flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-xl"
+                  className="accent-gradient-bg w-12 h-12 md:w-14 md:h-14 rounded-[16px] flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_10px_20px_rgba(114,179,154,0.18)]"
                 >
                   <Send size={20} />
                 </motion.button>
@@ -481,6 +481,7 @@ const SectionTransitionSkeleton = () => (
 
 const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
   const [activeSection, setActiveSection] = React.useState('home');
+  const cvUrl = '/aset/Okta-Wahyudi_IT-Project-Manager_CV_2026.pdf';
 
   const openChat = () => {
     window.dispatchEvent(new CustomEvent('openOktaAI', { detail: { from: 'navbar' } }));
@@ -512,21 +513,35 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
     { name: 'Chat AI', href: '#', icon: <MessageCircle size={20} />, action: openChat },
   ];
 
+  const mobileMenuItems = [
+    { name: 'Home', href: '#home', icon: <Home size={20} /> },
+    { name: 'Journey', href: '#journey', icon: <Briefcase size={20} /> },
+    { name: 'Skills', href: '#skills', icon: <Wand2 size={20} /> },
+    { name: 'Portfolio', href: '#portfolio', icon: <FolderKanban size={20} /> },
+    {
+      name: 'View CV',
+      mobileLabel: 'CV',
+      href: cvUrl,
+      icon: <Download size={20} />,
+      action: () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
+    },
+  ];
+
   return (
     <>
       <div className="hidden lg:block fixed top-5 left-0 w-full z-50 px-6 xl:px-8 2xl:px-12">
         <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-          <nav className="rounded-[18px] border border-[#e3e8ef] bg-white/96 px-4 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-sm">
+          <nav className="navbar-glass rounded-[18px] px-4 py-2">
             <div className="flex items-center justify-between gap-6">
               <div className="flex items-center gap-7">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   className="text-[1.45rem] font-black tracking-tight text-[#0c1a24] leading-none cursor-default"
                 >
-                  OKTA<span className="text-[#0fa3b1]">.</span>
+                  OKTA<span className="accent-gradient-text">.</span>
                 </motion.div>
 
-                <div className="hidden lg:flex items-center gap-1 rounded-[14px] bg-[#f7f9fc] p-1">
+                <div className="navbar-pill hidden lg:flex items-center gap-1 rounded-[14px] p-1">
                   {menuItems.slice(0, 4).map((item, idx) => (
                     <motion.a
                       key={idx}
@@ -538,7 +553,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                       whileHover={{ y: -1 }}
                       className={`flex items-center gap-2 rounded-[10px] px-3 py-2 text-[12px] font-semibold transition-all ${
                         activeSection === item.href.replace('#', '')
-                          ? 'bg-white text-[#0c1a24] shadow-[0_2px_8px_rgba(15,23,42,0.06)]'
+                          ? 'bg-white/95 text-[#0c1a24] shadow-[0_6px_14px_rgba(15,32,39,0.08)]'
                           : 'text-[#6b7280] hover:text-[#0c1a24]'
                       }`}
                     >
@@ -551,15 +566,31 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                 </div>
               </div>
 
-              <motion.button
-                whileHover={{ y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={openChat}
-                className="inline-flex items-center gap-2 rounded-[12px] border border-[#cfe5e8] bg-[#f5fbfc] px-4 py-2 text-[12px] font-semibold text-[#0f5160] transition-colors hover:bg-[#edf7f8]"
-              >
-                <MessageCircle size={15} className="text-[#0fa3b1]" />
-                Talk With Okta AI
-              </motion.button>
+              <div className="flex items-center gap-3">
+                <motion.a
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(15,32,39,0.08),rgba(114,179,154,0.26))]">
+                    <Download size={14} className="text-[#21424d]" />
+                  </span>
+                  <span className="text-[#1a3640]">View CV</span>
+                </motion.a>
+
+                <motion.button
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={openChat}
+                  className="accent-gradient-bg inline-flex items-center gap-2 rounded-[12px] border border-[rgba(255,255,255,0.34)] px-4 py-2 text-[12px] font-semibold text-white shadow-[0_12px_28px_rgba(15,32,39,0.14)] transition-all hover:brightness-[1.03]"
+                >
+                  <MessageCircle size={15} className="text-white/90" />
+                  <span className="text-white">Talk With Okta AI</span>
+                </motion.button>
+              </div>
             </div>
           </nav>
         </div>
@@ -567,9 +598,9 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
 
       {/* Bottom Navigation - Mobile Only */}
       <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-4 pb-4">
-        <nav className="mx-auto max-w-md rounded-[18px] border border-[#e3e8ef] bg-white/96 px-2 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+        <nav className="navbar-glass mx-auto max-w-md rounded-[22px] px-3 py-3">
           <div className="flex items-center justify-between gap-1">
-            {menuItems.map((item, idx) => (
+            {mobileMenuItems.map((item, idx) => (
               <a
                 key={idx}
                 href={item.href}
@@ -582,24 +613,26 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   e.preventDefault();
                   onNavigate(item.href);
                 }}
-                className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[12px] px-2 py-2 transition-colors ${
-                  activeSection === item.href.replace('#', '') ? 'bg-[#f4fafb]' : ''
+                className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[14px] px-2 py-3 transition-colors ${
+                  activeSection === item.href.replace('#', '')
+                    ? 'bg-white/90 text-[#0f1724]'
+                    : 'text-[#0f1724]/70 hover:text-[#0f1724]'
                 }`}
               >
                 {activeSection === item.href.replace('#', '') && item.name !== 'Chat AI' && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute inset-x-3 bottom-0 h-[3px] rounded-full bg-[#0fa3b1]"
+                    className="accent-gradient-line absolute inset-x-3 bottom-0 h-[3px] rounded-full"
                   />
                 )}
                 <motion.div
                   whileTap={{ scale: 0.9 }}
-                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#0fa3b1]' : 'text-[#bcc6d1]'} transition-colors`}
+                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#6fc7d7]' : 'text-[#94a3b8]'} transition-colors`}
                 >
                   {React.cloneElement(item.icon, { size: 18 })}
                 </motion.div>
-                <span className={`text-[10px] font-semibold ${activeSection === item.href.replace('#', '') ? 'text-[#1a2e35]' : 'text-[#8b97a6]'} transition-colors`}>
-                  {item.name}
+                <span className={`text-[10px] font-semibold leading-none transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
+                  {'mobileLabel' in item ? item.mobileLabel : item.name}
                 </span>
               </a>
             ))}
@@ -621,8 +654,8 @@ const heroStats = [
 
 const Hero = () => {
   return (
-    <section id="home" className="mt-16 lg:mt-20 pt-14 lg:pt-40 pb-12 lg:pb-20 px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
-      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
+    <section id="home" className="section-shell section-tone-hero mt-16 lg:mt-20 pt-14 lg:pt-40 pb-12 lg:pb-20 px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -638,22 +671,28 @@ const Hero = () => {
             onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
             className="bg-white rounded-[18px] border border-[#e3e8ef] shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
           >
-            <div className="w-10 h-10 rounded-[14px] bg-[#0fa3b1]/10 flex items-center justify-center text-[#0fa3b1]">
+            <div className="accent-gradient-soft w-10 h-10 rounded-[14px] flex items-center justify-center text-[#0fa3b1]">
               <MessageCircle size={18} />
             </div>
             <p className="text-[13px] font-bold text-[#5f6670]">Ajukan pertanyaan ke OktaAI</p>
           </div>
         </motion.div>
 
-        <div className="inline-block px-4 py-1.5 rounded-full bg-[#0fa3b1]/10 text-[#0fa3b1] font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
-          IT Project Manager
+        <div className="accent-gradient-soft inline-block px-4 py-1.5 rounded-full font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
+          <span className="accent-gradient-text">IT Project Manager</span>
         </div>
-        <h1 className="text-[clamp(3rem,8vw,5rem)] font-black text-[#0c1a24] leading-[0.98] mb-6 tracking-[-0.02em]">
-          Orchestrating Agile and Scrum delivery with clarity.
+        <h1 className="text-[clamp(3rem,8vw,5rem)] font-black text-[#0c1a24] leading-[0.98] mb-6 tracking-[-0.03em]">
+          <span className="block">Orchestrating</span>
+          <span className="accent-gradient-text block pb-1">Agile and Scrum</span>
+          <span className="block">
+            delivery with <span className="accent-gradient-text">clarity.</span>
+          </span>
         </h1>
 
         <div className="mb-6 max-w-[540px] border-l-2 border-[#0fa3b1]/35 pl-5">
-          <p className="text-[11px] font-semibold tracking-[0.12em] text-[#0fa3b1] uppercase mb-3">Program focus</p>
+          <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3">
+            <span className="accent-gradient-text">Program focus</span>
+          </p>
           <p className="text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
             Delivering software with clear plans and steady cadences.
           </p>
@@ -679,35 +718,63 @@ const Hero = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative w-full lg:-mt-4 flex flex-col items-center"
       >
-        <div className="relative w-full max-w-[520px] sm:max-w-[620px] lg:max-w-[720px] xl:max-w-[760px]">
-          <div className="absolute left-4 bottom-12 z-10 rounded-[12px] border border-[#dfe6ee] bg-white px-3 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.05)] sm:left-5 sm:bottom-12 md:left-6 md:bottom-14 md:px-4 md:py-3 lg:left-7 lg:bottom-16">
-            <p className="text-[12px] font-semibold tracking-[0.04em] text-[#41505d]">S1 - Informatika</p>
+        <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[470px] xl:max-w-[500px] aspect-[0.92/1]">
+          <div className="absolute inset-x-[4%] top-[14%] bottom-[7%] rounded-[22px] bg-[radial-gradient(circle_at_72%_85%,rgba(114,179,154,0.95),transparent_34%),linear-gradient(180deg,#112a31_0%,#1e3b40_58%,#78bea1_100%)] shadow-[0_26px_56px_rgba(15,32,39,0.18)]" />
+          <div className="absolute inset-x-[9%] top-[-4%] bottom-[7%] z-10 flex items-end justify-center">
+            <img 
+              src="/aset/profil-hero-new.png" 
+              alt="Okta" 
+              loading="eager"
+              decoding="async"
+              // @ts-ignore
+              fetchPriority="high"
+              className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_18px_32px_rgba(15,32,39,0.16)]"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-x-[4%] bottom-[7%] h-[14%] rounded-b-[22px] bg-[linear-gradient(180deg,rgba(17,42,49,0)_0%,rgba(30,59,64,0.08)_46%,rgba(120,190,161,0.34)_100%)] z-20" />
+
+          <div className="absolute left-[1%] bottom-[14%] z-30 rounded-[14px] border border-[rgba(114,179,154,0.26)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.12))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.09)] backdrop-blur-md sm:left-[-9%] sm:bottom-[17%] sm:px-4 sm:py-3">
+            <p className="text-[11px] font-semibold tracking-[0.04em] sm:text-[12px]">
+              <span className="accent-gradient-text">B.Sc. in Informatics</span>
+            </p>
           </div>
 
-          <div className="absolute right-[-4%] top-[50%] z-10 hidden sm:flex items-center gap-3 rounded-[14px] border border-[#dfe6ee] bg-white px-3 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.05)] md:right-[-3%] md:top-[52%] md:px-4 md:py-3 lg:right-[-2%] lg:top-[54%]">
-            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#faf7ff] md:h-11 md:w-11">
+          <div className="absolute right-[2%] top-[52%] z-30 flex items-center gap-2 rounded-[14px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.10)] backdrop-blur-md sm:hidden">
+            <div className="flex h-9 w-9 items-center justify-center rounded-[11px] bg-[linear-gradient(135deg,rgba(15,32,39,0.05),rgba(114,179,154,0.16))]">
+              <img
+                src="/aset/amikom-logo.png"
+                alt="AMIKOM University logo"
+                className="h-7 w-7 object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-[11px] font-black leading-tight text-[#102a31]">AMIKOM University</p>
+              <p className="mt-1 inline-flex rounded-full bg-[rgba(114,179,154,0.18)] px-2 py-0.5 text-[9px] font-semibold tracking-[0.04em]">
+                <span className="accent-gradient-text">2016 - 2020</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="absolute right-[-4%] top-[48%] z-30 hidden sm:flex items-center gap-3 rounded-[16px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-4 py-3 shadow-[0_16px_28px_rgba(15,32,39,0.10)] backdrop-blur-md">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[linear-gradient(135deg,rgba(15,32,39,0.05),rgba(114,179,154,0.16))]">
               <img
                 src="/aset/amikom-logo.png"
                 alt="AMIKOM University logo"
                 className="h-8 w-8 object-contain"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="text-left">
-              <p className="text-[13px] font-black text-[#12212d] leading-tight">AMIKOM University</p>
-              <p className="text-[11px] font-semibold tracking-[0.04em] text-[#72808d]">2016 - 2020</p>
+              <p className="text-[13px] font-black text-[#102a31] leading-tight">AMIKOM University</p>
+              <p className="mt-1 inline-flex rounded-full bg-[rgba(114,179,154,0.18)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.06em]">
+                <span className="accent-gradient-text">Bachelor's Degree, 2016 - 2020</span>
+              </p>
             </div>
           </div>
-
-          <img 
-            src="/aset/profil.png" 
-            alt="Okta" 
-            loading="eager"
-            // @ts-ignore
-            fetchPriority="high"
-            className="w-full h-auto object-contain"
-            referrerPolicy="no-referrer"
-          />
         </div>
       </motion.div>
       </div>
@@ -777,10 +844,12 @@ const Journey = () => {
   const renderRoadmapContent = (exp: (typeof experiences)[number]) => (
     <div className="mx-auto flex w-[188px] flex-col items-center text-center">
       <div className="mb-2 flex min-h-[20px] items-center justify-center gap-2">
-        <p className="text-[11px] font-semibold tracking-[0.08em] text-[#0fa3b1]">{exp.date}</p>
+        <p className="text-[11px] font-semibold tracking-[0.08em]">
+          <span className="accent-gradient-text">{exp.date}</span>
+        </p>
         {exp.current && (
-          <span className="rounded-full border border-[#cfe6ea] bg-[#f4fafb] px-2 py-0.5 text-[9px] font-semibold tracking-[0.08em] text-[#0fa3b1]">
-            Current
+          <span className="rounded-full border border-[#cfe6ea] bg-[#f4fafb] px-2 py-0.5 text-[9px] font-semibold tracking-[0.08em]">
+            <span className="accent-gradient-text">Current</span>
           </span>
         )}
       </div>
@@ -794,11 +863,11 @@ const Journey = () => {
   );
 
   return (
-    <section id="journey" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
-      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+    <section id="journey" className="lazy-render-section section-shell section-tone-journey py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16 2xl:mb-20">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-[#0fa3b1] mb-3">
-            Milestones
+          <p className="section-kicker text-[12px] font-semibold tracking-[0.14em] mb-3">
+            <span className="accent-gradient-text">Milestones</span>
           </p>
           <h2 className="text-4xl lg:text-6xl font-black text-[#0c1a24] tracking-tight leading-[1]">
             Career Journey
@@ -819,12 +888,12 @@ const Journey = () => {
               <div className="absolute left-[-5px] top-3 w-[10px] h-[10px] rounded-full bg-[#0fa3b1]/75 ring-4 ring-[#f4f6fb]" aria-hidden="true" />
 
               <div className="mb-3 flex flex-wrap items-center gap-2">
-                <p className="text-[11px] font-semibold tracking-[0.08em] text-[#0fa3b1]">
-                  {exp.date}
+                <p className="text-[11px] font-semibold tracking-[0.08em]">
+                  <span className="accent-gradient-text">{exp.date}</span>
                 </p>
                 {exp.current && (
-                  <span className="rounded-full bg-[#0fa3b1]/10 px-2.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-[#0fa3b1]">
-                    Current
+                  <span className="rounded-full bg-[#0fa3b1]/10 px-2.5 py-1 text-[10px] font-semibold tracking-[0.08em]">
+                    <span className="accent-gradient-text">Current</span>
                   </span>
                 )}
               </div>
@@ -865,7 +934,7 @@ const Journey = () => {
                 >
                   <path
                     d="M8 60C54 60 54 88 101 88C148 88 148 16 195 16C242 16 242 88 289 88C336 88 336 16 383 16C430 16 430 88 477 88C524 88 524 16 571 16C618 16 618 88 665 88C712 88 712 16 759 16C806 16 806 88 853 88C900 88 900 16 947 16C994 16 994 88 1041 88C1088 88 1088 60 1112 60"
-                    stroke="#173e58"
+                    stroke="#203a43"
                     strokeWidth="34"
                     strokeLinecap="round"
                   />
@@ -887,7 +956,7 @@ const Journey = () => {
                         <div className="relative flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-[0_12px_24px_rgba(15,23,42,0.08)] ring-8 ring-[#f4f6fb]">
                           <div
                             className={`flex h-[54px] w-[54px] items-center justify-center rounded-full text-[15px] font-black text-white ${
-                              exp.current ? 'bg-[#173e58]' : 'bg-[#0fa3b1]'
+                              exp.current ? 'bg-[#203a43]' : 'bg-[#0fa3b1]'
                             }`}
                           >
                             0{idx + 1}
@@ -947,12 +1016,12 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
-      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+    <section id="skills" className="lazy-render-section section-shell section-tone-skills py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
             <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-              Core <span className="text-[#0fa3b1]">Capabilities</span>
+              Core <span className="accent-gradient-text">Capabilities</span>
             </h2>
           </div>
           <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
@@ -1093,6 +1162,8 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
             <img
               src={tool.icon}
               alt={tool.name}
+              loading="lazy"
+              decoding="async"
               className="h-12 w-auto object-contain sm:h-14 lg:h-16"
             />
           ) : (
@@ -1151,8 +1222,8 @@ const SDLCFlow = () => {
 
   const FlowArrow = ({ width = 56 }: { width?: number }) => (
     <svg width={width} height="18" viewBox={`0 0 ${width} 18`} fill="none" aria-hidden="true" className="shrink-0">
-      <path d={`M2 9H${width - 14}`} stroke="#0fa3b1" strokeWidth="5" strokeLinecap="round" />
-      <path d={`M${width - 20} 4L${width - 10} 9L${width - 20} 14`} stroke="#0fa3b1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={`M2 9H${width - 14}`} stroke="#72b39a" strokeWidth="5" strokeLinecap="round" />
+      <path d={`M${width - 20} 4L${width - 10} 9L${width - 20} 14`} stroke="#72b39a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 
@@ -1166,7 +1237,7 @@ const SDLCFlow = () => {
     icon: React.ReactNode;
   }) => (
     <div className="flex min-w-0 flex-col items-center text-center">
-      <div className="mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] bg-[#57c3cf] text-white shadow-[0_4px_10px_rgba(15,163,177,0.10)]">
+      <div className="accent-gradient-bg mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] text-white shadow-[0_6px_14px_rgba(114,179,154,0.16)]">
         {icon}
       </div>
       <h4 className="text-[12px] font-black leading-tight text-[#1a2e35]">{title}</h4>
@@ -1176,12 +1247,12 @@ const SDLCFlow = () => {
 
   return (
     <>
-      <section id="tools" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 bg-[#f4f6fb]">
-      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+      <section id="tools" className="lazy-render-section section-shell section-tone-tools py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
             <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-                Tools & <span className="text-[#0fa3b1]">Project Management</span>
+                Tools & <span className="accent-gradient-text">Project Management</span>
               </h2>
             </div>
             <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
@@ -1225,12 +1296,12 @@ const SDLCFlow = () => {
         </div>
       </section>
 
-      <section id="sdlc" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
-      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+      <section id="sdlc" className="lazy-render-section section-shell section-tone-tools py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
             <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-                SDLC <span className="text-[#0fa3b1]">Scrum Flow</span>
+                SDLC <span className="accent-gradient-text">Scrum Flow</span>
               </h2>
             </div>
             <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
@@ -1264,8 +1335,8 @@ const SDLCFlow = () => {
                       {idx < scrumFlowSteps.length - 1 && (
                         <div className="flex justify-center">
                           <svg width="18" height="30" viewBox="0 0 18 30" fill="none" aria-hidden="true">
-                            <path d="M9 2V22" stroke="#0fa3b1" strokeWidth="4" strokeLinecap="round" />
-                            <path d="M3 18L9 26L15 18" stroke="#0fa3b1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M9 2V22" stroke="#72b39a" strokeWidth="4" strokeLinecap="round" />
+                            <path d="M3 18L9 26L15 18" stroke="#72b39a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                       )}
@@ -1282,7 +1353,9 @@ const SDLCFlow = () => {
                     </div>
                   </div>
                   <div className="absolute right-3 top-3 rounded-full border border-[#dcecf0] bg-[#f7fcfd] px-3 py-2 text-center">
-                    <p className="text-[11px] font-black text-[#0fa3b1]">24 H</p>
+                    <p className="text-[11px] font-black">
+                      <span className="accent-gradient-text">24 H</span>
+                    </p>
                     <p className="text-[9px] font-semibold tracking-[0.04em] text-[#72808d]">Daily Scrum</p>
                   </div>
                 </div>
@@ -1352,7 +1425,7 @@ const SDLCFlow = () => {
                     <div className="pt-[34px]"><FlowArrow width={52} /></div>
 
                     <div className="relative h-[250px] w-[320px]">
-                      <div className="absolute left-1/2 top-1/2 flex h-[190px] w-[190px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[14px] border-[#0fa3b1] bg-white text-center shadow-[0_8px_18px_rgba(15,163,177,0.06)]">
+                      <div className="absolute left-1/2 top-1/2 flex h-[190px] w-[190px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[14px] border-[#0fa3b1] bg-white text-center shadow-[0_10px_22px_rgba(114,179,154,0.14)]">
                         <div>
                           <p className="text-[13px] font-semibold tracking-[0.08em] text-[#5f6670]">SPRINT</p>
                           <p className="mt-1 text-[34px] font-black leading-none text-[#1a2e35]">1-4</p>
@@ -1378,7 +1451,7 @@ const SDLCFlow = () => {
                     <div className="pt-[34px]"><FlowArrow width={70} /></div>
 
                     <div className="flex min-w-0 flex-col items-center text-center">
-                      <div className="mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] bg-[#0fa3b1] text-white shadow-[0_4px_10px_rgba(15,163,177,0.10)]">
+                      <div className="accent-gradient-bg mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] text-white shadow-[0_6px_14px_rgba(114,179,154,0.16)]">
                         <Send size={18} />
                       </div>
                       <h4 className="text-[12px] font-black leading-tight text-[#1a2e35]">Finished Work</h4>
@@ -1462,6 +1535,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
               alt={project.title} 
               onLoad={() => setIsLoaded(true)}
               loading="lazy"
+              decoding="async"
               className={`w-full h-full object-cover transition duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
               referrerPolicy="no-referrer"
             />
@@ -1471,7 +1545,9 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
 
       <div className={`order-2 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
         <div className="flex flex-wrap items-center gap-2 mb-5 text-[12px] text-[#5f6670]">
-          <span className="text-[#0fa3b1] font-semibold tracking-[0.08em]">{project.type}</span>
+          <span className="font-semibold tracking-[0.08em]">
+            <span className="accent-gradient-text">{project.type}</span>
+          </span>
           <span className="text-[#c0c7cf]">·</span>
           <span className="text-[#0c1a24]">{project.role}</span>
         </div>
@@ -1483,7 +1559,9 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
             {project.desc}
           </p>
           <div className="border-l-2 border-[#0fa3b1]/35 pl-5">
-            <p className="text-[12px] font-semibold text-[#0fa3b1] mb-2 tracking-[0.08em] uppercase">Key impact</p>
+            <p className="text-[12px] font-semibold mb-2 tracking-[0.08em] uppercase">
+              <span className="accent-gradient-text">Key impact</span>
+            </p>
             <p className="text-[14px] leading-relaxed italic text-[#0c1a24]">"{project.impact}"</p>
           </div>
         </div>
@@ -1582,12 +1660,15 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-8 lg:py-12 px-6">
-      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 px-6 xl:px-8 2xl:px-12">
+    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio py-8 lg:py-12 px-6">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 px-6 xl:px-8 2xl:px-12">
         <div className="mb-6 lg:mb-10 2xl:mb-14">
-          <p className="text-[12px] font-semibold text-[#0fa3b1] mb-3 lg:mb-4 tracking-[0.14em]">Professional portfolio</p>
+          <p className="section-kicker text-[12px] font-semibold mb-3 lg:mb-4 tracking-[0.14em]">
+            <span className="accent-gradient-text">Professional portfolio</span>
+          </p>
           <h2 className="text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            Detailed <span className="text-[#c3cbd4] italic font-serif">Case Studies</span>
+            <span className="accent-gradient-text">Detailed</span>{" "}
+            <span className="accent-gradient-text italic font-serif">Case Studies</span>
           </h2>
         </div>
 
@@ -1602,7 +1683,7 @@ const Portfolio = () => {
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 bg-[#0c1a24] text-white px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] hover:bg-[#0fa3b1] transition-all shadow-soft"
+            className="accent-gradient-bg inline-flex items-center gap-3 px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] transition-all shadow-soft hover:opacity-95"
           >
             Explore More on GitHub
             <Github size={16} />
@@ -1623,10 +1704,12 @@ const Contact = () => {
   const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${whatsAppMessage}`;
 
   return (
-    <section id="contact" className="py-16 lg:py-28 px-6 xl:px-8 2xl:px-12">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="contact" className="lazy-render-section section-shell section-tone-contact py-16 lg:py-28 px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
-          <p className="text-[12px] font-semibold text-[#0fa3b1] mb-3 tracking-[0.14em]">Get in touch</p>
+          <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
+            <span className="accent-gradient-text">Get in touch</span>
+          </p>
           <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-6">
             Let&apos;s talk about your next project.
           </h2>
@@ -1636,7 +1719,7 @@ const Contact = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Globe size={18} />
               </div>
               <a
@@ -1649,7 +1732,7 @@ const Contact = () => {
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Linkedin size={18} />
               </div>
               <a
@@ -1662,7 +1745,7 @@ const Contact = () => {
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Mail size={18} />
               </div>
               <a
@@ -1673,7 +1756,7 @@ const Contact = () => {
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Phone size={18} />
               </div>
               <a
@@ -1687,7 +1770,9 @@ const Contact = () => {
         </div>
 
         <div className="surface-card surface-card-tight p-8">
-          <p className="text-[12px] font-semibold tracking-[0.12em] text-[#0fa3b1] mb-4">WhatsApp</p>
+          <p className="section-kicker text-[12px] font-semibold tracking-[0.12em] mb-4">
+            <span className="accent-gradient-text">WhatsApp</span>
+          </p>
           <h3 className="text-3xl font-black text-[#0a1620] mb-6">Chat with me directly</h3>
           <p className="text-[#1f2937]/80 leading-relaxed mb-8">
             Tap the button below, share a short brief, and I&apos;ll reply within a few hours to coordinate a quick call.
@@ -1696,7 +1781,7 @@ const Contact = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0fa3b1] text-white px-8 py-4 text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:bg-[#0c918f]"
+            className="accent-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:opacity-95"
           >
             Message on WhatsApp
             <ArrowUpRight size={16} />
@@ -1728,7 +1813,7 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
     >
       <div>
         <div className="flex gap-1 mb-4">
-          {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#0fa3b1" className="text-[#0fa3b1]" />)}
+          {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#72b39a" className="text-[#0fa3b1]" />)}
         </div>
         <p className="text-[13px] text-[#0d1f2b]/70 italic leading-relaxed font-medium">
           "{t.text}"
@@ -1743,6 +1828,7 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
             alt={t.name} 
             onLoad={() => setIsLoaded(true)}
             loading="lazy"
+            decoding="async"
             className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
             referrerPolicy="no-referrer" 
           />
@@ -1854,14 +1940,18 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="feedback" className="py-16 lg:py-32 px-6 bg-[#f4f6fb]">
-      <div className="max-w-7xl mx-auto">
+    <section id="feedback" className="lazy-render-section section-shell section-tone-feedback py-16 lg:py-32 px-6">
+      <div className="section-inner max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16">
-          <p className="text-[12px] font-semibold text-[#0fa3b1] mb-3 tracking-[0.14em]">Feedback</p>
+          <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
+            <span className="accent-gradient-text">Feedback</span>
+          </p>
           <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
-            User <span className="text-[#0fa3b1]">Feedback</span>
+            User <span className="accent-gradient-text">Feedback</span>
           </h2>
-          <p className="text-[13px] text-[#0fa3b1]/70 mt-4 font-medium">Testimoni dari atasan dan klien selama pengembangan project.</p>
+          <p className="text-[13px] mt-4 font-medium">
+            <span className="accent-gradient-text">Testimonials from supervisors and clients across key delivery engagements.</span>
+          </p>
         </div>
 
         <div
@@ -1972,8 +2062,8 @@ const LegalPage = ({
         </button>
 
         <div className="mt-8 rounded-[24px] border border-[#e3edf3] bg-white p-8 lg:p-12 shadow-soft">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-[#0fa3b1]">
-            Legal Information
+          <p className="section-kicker text-[12px] font-semibold tracking-[0.14em]">
+            <span className="accent-gradient-text">Legal Information</span>
           </p>
           <h1 className="mt-4 text-4xl lg:text-6xl font-black tracking-tight text-[#102635]">
             {content.title}
@@ -2020,21 +2110,23 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
   ];
 
   return (
-    <footer className="px-6 pb-12 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="rounded-[24px] bg-[#0f1724] text-white shadow-soft">
-          <div className="relative z-10 px-8 py-10 lg:px-12 lg:py-14 space-y-10">
-            <div>
-              <div className="text-3xl lg:text-4xl font-black tracking-tight">OKTA.</div>
-              <p className="text-sm text-white/70 max-w-xl mt-2 leading-relaxed">
+    <footer className="lazy-render-footer section-shell px-6 pb-12 relative overflow-hidden">
+      <div className="section-inner max-w-7xl mx-auto">
+        <div className="footer-surface rounded-[24px] text-white shadow-soft">
+          <div className="relative z-10 px-6 py-8 md:px-8 md:py-10 space-y-8">
+            <div className="space-y-2">
+              <div className="text-3xl font-black tracking-tight">OKTA.</div>
+              <p className="text-[14px] text-white/70 max-w-lg leading-relaxed">
                 Delivering modern software programs with discipline, clarity, and a human touch.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
-              <div className="space-y-3">
-                <p className="text-[11px] font-semibold tracking-[0.12em] text-[#6fc7d7]">Navigation</p>
-                <div className="space-y-2 text-white/70">
+            <div className="grid grid-cols-2 gap-6 text-sm md:grid-cols-4 md:gap-8">
+              <div className="space-y-1">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
+                  <span className="accent-gradient-text">Navigation</span>
+                </p>
+                <div className="space-y-1 text-white/80">
                   {navPrimary.map(label => (
                     <a key={label} href={`#${label.toLowerCase()}`} className="block hover:text-white transition-colors">
                       {label}
@@ -2042,22 +2134,21 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
                   ))}
                 </div>
               </div>
-              <div className="space-y-3">
-                <p className="text-[11px] font-semibold tracking-[0.12em] text-[#6fc7d7]">Contact</p>
-                <a
-                  href="https://maps.app.goo.gl/NzfNktnYNYvynCtx5"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block text-white/80 hover:text-white transition-colors"
-                >
-                  Sleman, Yogyakarta
-                </a>
-                <a href="mailto:okta.wahyudi86@gmail.com" className="block text-white/80 hover:text-white transition-colors">okta.wahyudi86@gmail.com</a>
-                <a href="tel:089675080104" className="block text-white/80 hover:text-white transition-colors">089675080104</a>
+              <div className="space-y-1">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
+                  <span className="accent-gradient-text">Contact</span>
+                </p>
+                <div className="space-y-1 text-white/70 leading-relaxed">
+                  <span className="block">Sleman, Yogyakarta</span>
+                  <a href="mailto:okta.wahyudi86@gmail.com" className="block">okta.wahyudi86@gmail.com</a>
+                  <a href="tel:089675080104" className="block">089675080104</a>
+                </div>
               </div>
-              <div className="space-y-3">
-                <p className="text-[11px] font-semibold tracking-[0.12em] text-[#6fc7d7]">Quick links</p>
-                <div className="space-y-2 text-white/70">
+              <div className="space-y-1">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
+                  <span className="accent-gradient-text">Quick links</span>
+                </p>
+                <div className="space-y-1 text-white/70">
                   {quickLinks.map(link => (
                     <button
                       key={link.path}
@@ -2070,9 +2161,11 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
                   ))}
                 </div>
               </div>
-              <div className="space-y-3">
-                <p className="text-[11px] font-semibold tracking-[0.12em] text-[#6fc7d7]">Follow</p>
-                <div className="flex gap-4">
+              <div className="space-y-1">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
+                  <span className="accent-gradient-text">Follow</span>
+                </p>
+                <div className="flex items-center gap-2">
                   {[
                     { Icon: Mail, href: "mailto:okta.wahyudi86@gmail.com", label: "Email" },
                     { Icon: MessageCircle, href: "https://wa.me/6289675080104", label: "WhatsApp" },
@@ -2085,21 +2178,25 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noreferrer" : undefined}
                       aria-label={label}
-                      className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#0c202d] transition"
+                      className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition"
                     >
-                      <Icon size={18} />
+                      <Icon size={16} />
                     </a>
                   ))}
                 </div>
-                <p className="text-[11px] text-white/60 mt-3">Thank you for exploring Okta.</p>
+                <p className="text-[11px] text-white/60 mt-2">Thank you for exploring Okta.</p>
               </div>
             </div>
 
-            <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row md:items-center justify-between gap-4 text-[11px] tracking-[0.06em] text-white/50">
+            <div className="border-t border-white/10 pt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] tracking-[0.08em] text-white/50">
               <p>© 2026 Okta. All rights reserved.</p>
-              <div className="flex gap-6">
-                <button type="button" onClick={() => onRouteChange('/privacy')} className="hover:text-white transition">Privacy</button>
-                <button type="button" onClick={() => onRouteChange('/terms')} className="hover:text-white transition">Terms</button>
+              <div className="flex gap-4 text-[11px]">
+                <button type="button" onClick={() => onRouteChange('/privacy')} className="hover:text-white transition">
+                  Privacy
+                </button>
+                <button type="button" onClick={() => onRouteChange('/terms')} className="hover:text-white transition">
+                  Terms
+                </button>
               </div>
             </div>
           </div>
