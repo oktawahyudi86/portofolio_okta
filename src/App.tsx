@@ -654,7 +654,7 @@ const heroStats = [
 
 const Hero = () => {
   return (
-    <section id="home" className="section-shell section-tone-hero mt-16 lg:mt-20 pt-14 lg:pt-40 pb-12 lg:pb-20 px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
+    <section id="home" className="section-shell section-tone-hero pt-[8.5rem] lg:pt-[16rem] pb-12 lg:pb-20 px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -678,7 +678,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <div className="accent-gradient-soft inline-block px-4 py-1.5 rounded-full font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
+        <div className="accent-gradient-soft inline-block mt-16 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
           <span className="accent-gradient-text">IT Project Manager</span>
         </div>
         <h1 className="text-[clamp(3rem,8vw,5rem)] font-black text-[#0c1a24] leading-[0.98] mb-6 tracking-[-0.03em]">
