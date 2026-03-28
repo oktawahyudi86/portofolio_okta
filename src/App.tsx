@@ -648,7 +648,7 @@ const Skeleton = ({ className }: { className?: string }) => (
 );
 
 const heroStats = [
-  { value: '3+', label: 'Years of project delivery' },
+  { value: '3+', label: 'Years in delivery leadership' },
   { value: '30+', label: 'Software projects delivered' },
 ];
 
@@ -681,28 +681,29 @@ const Hero = () => {
         <div className="accent-gradient-soft inline-block mt-16 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
           <span className="accent-gradient-text">IT Project Manager</span>
         </div>
-        <h1 className="text-[clamp(3rem,8vw,5rem)] font-black text-[#0c1a24] leading-[0.98] mb-6 tracking-[-0.03em]">
-          <span className="block">Orchestrating</span>
-          <span className="accent-gradient-text block pb-1">Agile and Scrum</span>
+        <h1 className="text-[clamp(2.6rem,7vw,4.4rem)] font-black text-[#0c1a24] leading-[0.96] mb-5 tracking-[-0.03em]">
+          <span className="block">Leading software</span>
+          <span className="accent-gradient-text block pb-1">delivery with clarity</span>
           <span className="block">
-            delivery with <span className="accent-gradient-text">clarity.</span>
+            and <span className="accent-gradient-text">stakeholder trust.</span>
           </span>
         </h1>
 
-        <div className="mb-6 max-w-[540px] border-l-2 border-[#0fa3b1]/35 pl-5">
-          <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-3">
-            <span className="accent-gradient-text">Program focus</span>
+        <div className="mb-5 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-5">
+          <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2">
+            <span className="accent-gradient-text">What I bring</span>
           </p>
           <p className="text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
-            Delivering software with clear plans and steady cadences.
+            Senior-level project coordination for product, enterprise, and SaaS delivery.
           </p>
           <ul className="space-y-1 text-[14px] text-[#5f6670]">
-            <li>MAXstream → MyTelkomsel transformation</li>
-            <li>AI SaaS + digital product releases</li>
+            <li>Sprint planning and release coordination</li>
+            <li>Stakeholder, team, and delivery alignment</li>
+            <li>Enterprise, SaaS, and digital product execution</li>
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-8 mb-8 max-w-[520px]">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-6 mb-8 max-w-[520px]">
           {heroStats.map((stat) => (
             <div key={stat.label} className="text-center">
               <span className="text-4xl font-black text-[#0c1a24]">{stat.value}</span>
@@ -790,8 +791,8 @@ const Journey = () => {
       company: "PT Sarana Insan Muda Selaras",
       label: "Sarana Insan Muda Selaras",
       position: "Technical E-Government & Corporate Support",
-      summary: "Supported IT infrastructure and system deployment for government and corporate environments.",
-      highlight: "Government and corporate IT support"
+      summary: "Built early delivery discipline through government and corporate implementation work, supporting deployment readiness, coordination, and operational follow-through.",
+      highlight: "Implementation support and operational coordination"
     },
     {
       date: "Aug 2021 - Jan 2023",
@@ -799,8 +800,8 @@ const Journey = () => {
       company: "Biznet (PT Supra Primatama Nusantara)",
       label: "Biznet",
       position: "Project Engineer FTTH / Project Building",
-      summary: "Handled network infrastructure deployment, QA/QC standards, and vendor coordination for fiber and building projects.",
-      highlight: "Infrastructure rollout and QA/QC"
+      summary: "Managed infrastructure rollout activities covering vendor coordination, QA/QC control, and field execution across fiber and building projects.",
+      highlight: "Infrastructure rollout, QA/QC, and vendor coordination"
     },
     {
       date: "Jun 2023 - Dec 2023",
@@ -808,8 +809,8 @@ const Journey = () => {
       company: "Divistant (PT Divistant Teknologi Indonesia)",
       label: "Divistant",
       position: "Project Manager",
-      summary: "Delivered software projects from initiation to closure under Agile frameworks while maintaining team execution and client communication.",
-      highlight: "Agile software delivery execution"
+      summary: "Managed software delivery from project initiation through closure, maintaining execution cadence, client communication, and day-to-day delivery control.",
+      highlight: "Agile software delivery ownership"
     },
     {
       date: "Dec 2023 - Jan 2025",
@@ -817,8 +818,8 @@ const Journey = () => {
       company: "JITILab (PT Juragan Inovator Teknologi Indonesia)",
       label: "JITILab",
       position: "Product & Project Manager",
-      summary: "Managed web and mobile product lifecycles covering planning, design, testing, deployment, budget control, and risk mitigation.",
-      highlight: "Web and mobile product ownership"
+      summary: "Owned web and mobile product delivery across planning, design, testing, deployment, budget monitoring, and delivery risk management.",
+      highlight: "Product lifecycle ownership and delivery governance"
     },
     {
       date: "Jan 2025 - May 2025",
@@ -826,8 +827,8 @@ const Journey = () => {
       company: "SALT (PT Ako Media Asia)",
       label: "SALT",
       position: "IT Project Manager",
-      summary: "Led MAXstream enhancements and migration to MyTelkomsel Super App while facilitating Agile ceremonies and sprint delivery.",
-      highlight: "MAXstream to MyTelkomsel migration"
+      summary: "Led delivery coordination for MAXstream enhancements and migration into MyTelkomsel, driving sprint execution, stakeholder alignment, and release readiness.",
+      highlight: "Enterprise migration and sprint governance"
     },
     {
       date: "Jun 2025 - Present",
@@ -835,8 +836,8 @@ const Journey = () => {
       company: "PT Dazo Kreatif Indonesia",
       label: "Dazo Kreatif",
       position: "IT Project Manager",
-      summary: "Manage AI-powered SaaS delivery across order management, chat automation, digital storefronts, and omnichannel campaigns.",
-      highlight: "AI SaaS and omnichannel delivery",
+      summary: "Lead AI SaaS delivery across order management, chat automation, digital storefronts, and omnichannel initiatives with a strong focus on planning, coordination, and release execution.",
+      highlight: "AI SaaS, product delivery, and execution control",
       current: true
     }
   ];
@@ -870,10 +871,10 @@ const Journey = () => {
             <span className="accent-gradient-text">Milestones</span>
           </p>
           <h2 className="text-4xl lg:text-6xl font-black text-[#0c1a24] tracking-tight leading-[1]">
-            Career Journey
+            Professional Journey
           </h2>
           <p className="text-[#5f6670] text-[15px] mt-4 max-w-2xl">
-            Three years focused on software and digital delivery, built across startup, enterprise, and client-facing environments.
+            A delivery track record built across startup, enterprise, and client-facing environments with increasing ownership in planning, stakeholder management, and release execution.
           </p>
         </div>
 
@@ -994,23 +995,23 @@ const Journey = () => {
 const Skills = () => {
   const skills = [
     {
-      title: "Digital Program Delivery",
-      desc: "Coordinate planning, development, QA, and release so software initiatives move with clarity.",
+      title: "Planning & Delivery Control",
+      desc: "Translate business needs into delivery plans, priorities, milestones, and realistic execution timelines.",
       icon: <Layout size={20} />
     },
     {
-      title: "Agile Delivery Leadership",
-      desc: "Facilitate Scrum, Agile, and hybrid cadences that keep squads aligned and predictable.",
+      title: "Agile & Sprint Leadership",
+      desc: "Run Agile rituals, maintain team cadence, and keep sprint commitments visible and manageable.",
       icon: <Settings size={20} />
     },
     {
-      title: "System Integration Oversight",
-      desc: "Guide enterprise integrations, migrations, and launch readiness across multiple stakeholders.",
+      title: "System Rollout & Coordination",
+      desc: "Coordinate implementation, testing, deployment, and launch readiness across complex project environments.",
       icon: <Layers size={20} />
     },
     {
-      title: "Stakeholder & Risk Alignment",
-      desc: "Maintain visibility on scope, dependencies, vendors, and decisions throughout delivery.",
+      title: "Stakeholder & Risk Management",
+      desc: "Keep stakeholders aligned, follow up on blockers, and manage delivery risk before it impacts timeline or quality.",
       icon: <Users size={20} />
     }
   ];
@@ -1025,7 +1026,7 @@ const Skills = () => {
             </h2>
           </div>
           <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
-            Four project-management strengths that support business alignment, execution clarity, and reliable software delivery.
+            Four delivery strengths that reflect how I lead teams, manage execution, and keep projects moving with control.
           </p>
         </div>
         
@@ -1178,7 +1179,7 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
 const SDLCFlow = () => {
   const scrumFlowSteps = [
     {
-      title: "Product Backlog",
+      title: "Grooming",
       desc: "Prioritized requirements",
       icon: <FolderKanban size={18} />
     },
@@ -1196,16 +1197,16 @@ const SDLCFlow = () => {
 
   const reportingStructure: { level: string; frequency: string; variant: ReportingVariant; items: string[] }[] = [
     {
-      level: "User Level",
+      level: "User & Operational Stakeholders",
       frequency: "Weekly/BI-Weekly",
       variant: "user",
-      items: ["Report Progress", "Issue/Risk/Dependency", "Monitoring"]
+      items: ["Progress updates", "Issue, risk, and dependency tracking", "Delivery monitoring"]
     },
     {
-      level: "C-Level",
+      level: "Management & Leadership",
       frequency: "BI-Weekly",
       variant: "cLevel",
-      items: ["BI-Weekly Updates", "Planning & Blocker", "Resource Planning"]
+      items: ["Executive status updates", "Planning decisions and blockers", "Resource and priority alignment"]
     }
   ];
 
@@ -1251,17 +1252,17 @@ const SDLCFlow = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
-            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+              <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 Tools & <span className="accent-gradient-text">Project Management</span>
               </h2>
             </div>
             <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
-              Leveraging industry-leading tools to streamline team collaboration and project delivery.
+              The toolset I rely on to keep planning structured, teams aligned, and delivery progress visible.
             </p>
           </div>
 
           <div className="mb-16 lg:mb-20 2xl:mb-24">
-            <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-8">Primary tools stack</p>
+            <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-8">Primary delivery toolkit</p>
             <ToolsCarousel tools={tools} />
           </div>
 
@@ -1271,8 +1272,8 @@ const SDLCFlow = () => {
               className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="recruitment" />
-              <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Recruitment Gathering</h3>
-              <p className="text-[12px] text-[#5f6670] leading-relaxed">Collecting requirements, dependencies, and capacity needs before execution starts.</p>
+              <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Requirement Discovery</h3>
+              <p className="text-[12px] text-[#5f6670] leading-relaxed">Clarifying business needs, constraints, dependencies, and delivery expectations before work begins.</p>
             </motion.div>
 
             <motion.div
@@ -1280,8 +1281,8 @@ const SDLCFlow = () => {
               className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="analysis" />
-              <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Analysis & Planning</h3>
-              <p className="text-[12px] text-[#5f6670] leading-relaxed">Clarifying scope, timeline, and priorities so teams can deliver with fewer surprises.</p>
+              <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Planning & Prioritization</h3>
+              <p className="text-[12px] text-[#5f6670] leading-relaxed">Shaping scope, timeline, and execution priorities so teams can move with clearer direction.</p>
             </motion.div>
 
             <motion.div
@@ -1289,8 +1290,8 @@ const SDLCFlow = () => {
               className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="brd" />
-              <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">BRD Creation (2 Week)</h3>
-              <p className="text-[12px] text-[#5f6670] leading-relaxed">Turning product and business needs into structured documentation ready for design and build.</p>
+              <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">BRD & Delivery Readiness</h3>
+              <p className="text-[12px] text-[#5f6670] leading-relaxed">Turning requirements into structured documentation and actionable inputs for design, build, and testing.</p>
             </motion.div>
           </div>
         </div>
@@ -1300,12 +1301,12 @@ const SDLCFlow = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
-            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+              <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 SDLC <span className="accent-gradient-text">Scrum Flow</span>
               </h2>
             </div>
             <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
-              A clearer Scrum visual that helps explain backlog, sprint execution, daily cadence, and delivery outcomes.
+              A delivery model I use to keep work visible, sprint execution disciplined, and outcomes easier to manage.
             </p>
           </div>
 
@@ -1520,7 +1521,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -1530,9 +1531,9 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
         <div className="relative">
           <div className="surface-card surface-card-tight aspect-[16/10] overflow-hidden relative">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <img
+              src={project.image}
+              alt={project.title}
               onLoad={() => setIsLoaded(true)}
               loading="lazy"
               decoding="async"
@@ -1548,12 +1549,12 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="font-semibold tracking-[0.08em]">
             <span className="accent-gradient-text">{project.type}</span>
           </span>
-          <span className="text-[#c0c7cf]">·</span>
+          <span className="text-[#c0c7cf]">/</span>
           <span className="text-[#0c1a24]">{project.role}</span>
         </div>
-        
+
         <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
-        
+
         <div className="space-y-5 mb-8">
           <p className="text-[15px] text-[#1a2e35]/80 leading-relaxed">
             {project.desc}
@@ -1562,12 +1563,12 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
             <p className="text-[12px] font-semibold mb-2 tracking-[0.08em] uppercase">
               <span className="accent-gradient-text">Key impact</span>
             </p>
-            <p className="text-[14px] leading-relaxed italic text-[#0c1a24]">"{project.impact}"</p>
+            <p className="text-[14px] leading-relaxed italic text-[#0c1a24]">{project.impact}</p>
           </div>
         </div>
-        
+
         <div className="mb-6">
-          <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-4">Technology stack</p>
+          <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-4">Common interview topics</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag: string) => (
               <span key={tag} className="bg-[#f8fafc] text-[#1a2e35] px-4 py-2 rounded-xl text-[11px] font-semibold tracking-[0.03em] border border-[#e3e8ef]">
@@ -1584,7 +1585,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           rel="noreferrer"
           className="flex items-center gap-4 text-[#1a2e35] group/btn"
         >
-          <span className="text-[12px] font-semibold tracking-[0.08em]">View case study</span>
+          <span className="text-[12px] font-semibold tracking-[0.08em]">View project reference</span>
           <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#d7e2e8] flex items-center justify-center group-hover/btn:bg-[#0c1a24] group-hover/btn:text-white transition-all duration-300">
             <ArrowUpRight size={18} />
           </div>
@@ -1602,8 +1603,8 @@ const Portfolio = () => {
       type: "Enterprise Digital Platform",
       role: "Lead Project Manager",
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
-      desc: "A comprehensive digital platform for MRT Jakarta's business operations, featuring real-time data integration and a modern user interface for enhanced stakeholder engagement. I managed the full lifecycle from requirements gathering to final deployment.",
-      tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
+      desc: "Led end-to-end delivery of MRT Jakarta's business website, coordinating requirement gathering, scope alignment, design-development handoff, testing, and deployment. The main challenge was keeping multiple stakeholder requests aligned without slowing delivery.",
+      tags: ["Requirement gathering", "Stakeholder alignment", "UAT coordination", "Deployment"],
       image: "/aset/project-mrt-jakarta.jpg",
       url: "https://bisnis.jakartamrt.co.id/"
     },
@@ -1612,8 +1613,8 @@ const Portfolio = () => {
       type: "Management System & Mobile App",
       role: "Product Owner & Manager",
       impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
-      desc: "An end-to-end laundry management system that streamlines order processing, customer tracking, and financial reporting for laundry businesses. This project involved complex state management and real-time notifications.",
-      tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
+      desc: "Managed product delivery for a laundry management app focused on order flow, customer notifications, and operational reporting. My role covered backlog prioritization, stakeholder communication, and keeping releases aligned with business needs.",
+      tags: ["Product backlog", "Workflow improvement", "Release planning", "Client communication"],
       image: "/aset/project-yulo-laundry.svg",
       url: "https://play.google.com/store/apps/details?id=com.yulo.customer&hl=id"
     },
@@ -1622,8 +1623,8 @@ const Portfolio = () => {
       type: "SaaS Platform, AI & OMS",
       role: "Technical Project Lead",
       impact: "Successfully integrated LLM capabilities, resulting in a 50% increase in user engagement within the first month.",
-      desc: "A SaaS ecosystem that combines AI-powered workflows with an operations management system to support business execution, automation, and service delivery. I led the technical coordination across product planning, delivery milestones, and platform implementation.",
-      tags: ["React", "Vue.js", "TypeScript", "Laravel", "MongoDB", "Golang", "Figma"],
+      desc: "Coordinated delivery for an AI SaaS and operations platform, turning fast-changing business requests into clear sprint priorities, milestone tracking, and release follow-up. This project is a strong example of balancing innovation with execution discipline.",
+      tags: ["AI SaaS delivery", "Milestone tracking", "Feature rollout", "Cross-team coordination"],
       image: "/aset/project-dazo-ai.svg",
       url: "https://dazo.id/"
     },
@@ -1632,28 +1633,18 @@ const Portfolio = () => {
       type: "Video Streaming & Content Delivery",
       role: "Project Manager",
       impact: "Delivered robust streaming infrastructure supporting 50K+ concurrent users with 99.8% uptime.",
-      desc: "A comprehensive video streaming platform built to deliver high-quality content with adaptive bitrate streaming. Managed end-to-end development from architecture design to production deployment with focus on scalability and user experience.",
-      tags: ["React", "Next.js", "TypeScript", "Go", "PostgreSQL", "AWS", "Docker"],
+      desc: "Supported delivery for MAXstream enhancement work and transformation into the MyTelkomsel ecosystem. My contribution focused on sprint execution, requirement clarity, stakeholder coordination, and keeping release readiness under control.",
+      tags: ["Enterprise migration", "Sprint governance", "Requirement alignment", "Release readiness"],
       image: "/aset/project-maxtream.svg",
       url: "https://maxstream.tv/home"
-    },
-    {
-      title: "Meloadia Music App",
-      type: "Music Streaming Application",
-      role: "Project Manager & Technical Lead",
-      impact: "Achieved 100K+ downloads in first quarter with 4.8-star app store rating.",
-      desc: "A feature-rich music streaming application with personalized recommendations, offline listening, and social sharing. Led cross-functional teams to deliver weekly feature releases while maintaining app stability and performance.",
-      tags: ["React Native", "TypeScript", "Node.js", "MongoDB", "Redis", "Firebase", "Figma"],
-      image: "/aset/project-meloadia.svg",
-      url: "https://github.com/oktawahyu"
     },
     {
       title: "BPJSTK Integrated System",
       type: "Government Enterprise Solution",
       role: "Lead Project Manager",
       impact: "Streamlined benefit processing for 40M+ participants, reducing processing time by 60%.",
-      desc: "Large-scale government integration system for social security benefit management. Coordinated with multiple stakeholders, ensured regulatory compliance, and delivered complex enterprise features with zero critical incidents during rollout.",
-      tags: ["React", "Next.js", "TypeScript", "Java Spring", "Oracle DB", "Kubernetes", "Figma"],
+      desc: "Handled delivery coordination for a large-scale government integration system where stakeholder alignment, compliance awareness, and rollout stability were critical. This case reflects the type of structured execution often discussed in PM interviews.",
+      tags: ["Enterprise integration", "Regulatory coordination", "Risk management", "Rollout control"],
       image: "/aset/project-bpjstk.svg",
       url: "https://www.bpjsketenagakerjaan.go.id/"
     }
@@ -1664,12 +1655,15 @@ const Portfolio = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 px-6 xl:px-8 2xl:px-12">
         <div className="mb-6 lg:mb-10 2xl:mb-14">
           <p className="section-kicker text-[12px] font-semibold mb-3 lg:mb-4 tracking-[0.14em]">
-            <span className="accent-gradient-text">Professional portfolio</span>
+            <span className="accent-gradient-text">Selected Project Experience</span>
           </p>
           <h2 className="text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            <span className="accent-gradient-text">Detailed</span>{" "}
-            <span className="accent-gradient-text italic font-serif">Case Studies</span>
+            <span className="accent-gradient-text">Case Studies</span>{" "}
+            <span className="accent-gradient-text italic font-serif">That Show How I Work</span>
           </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-[#5f6670]">
+            These are the project stories HR and interviewers usually ask about: what the project was, where the challenge lived, what I handled, and what result the delivery achieved.
+          </p>
         </div>
 
         <div className="space-y-6 lg:space-y-8 2xl:space-y-10">
@@ -1700,7 +1694,7 @@ const Contact = () => {
   const emailAddress = "okta.wahyudi86@gmail.com";
   const linkedinUrl = "https://www.linkedin.com/in/oktawahyudi";
   const mapsUrl = "https://maps.app.goo.gl/NzfNktnYNYvynCtx5";
-  const whatsAppMessage = encodeURIComponent("Halo Okta! 👋\nSaya ingin berdiskusi tentang project dan peluang kolaborasi.");
+  const whatsAppMessage = encodeURIComponent("Halo Okta!\nSaya ingin berdiskusi tentang project dan peluang kolaborasi.");
   const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${whatsAppMessage}`;
 
   return (
@@ -1714,7 +1708,7 @@ const Contact = () => {
             Let&apos;s talk about your next project.
           </h2>
           <p className="text-[#1f2937]/70 text-[15px] leading-relaxed max-w-lg mb-8">
-            If you need a seasoned IT Project Manager to coordinate delivery, align stakeholders, and drive reliable outcomes, shoot a message via WhatsApp—no forms, no waiting. I&apos;m ready to sync schedules and get started.
+            If you need an IT Project Manager who can coordinate delivery, align stakeholders, and keep execution on track, feel free to reach out via WhatsApp. I&apos;m open to discussing roles, projects, and collaboration opportunities.
           </p>
 
           <div className="space-y-4">
@@ -1775,7 +1769,7 @@ const Contact = () => {
           </p>
           <h3 className="text-3xl font-black text-[#0a1620] mb-6">Chat with me directly</h3>
           <p className="text-[#1f2937]/80 leading-relaxed mb-8">
-            Tap the button below, share a short brief, and I&apos;ll reply within a few hours to coordinate a quick call.
+            Send a short brief, role overview, or project need, and I&apos;ll respond to continue the conversation.
           </p>
           <a
             href={whatsappUrl}
@@ -1848,31 +1842,31 @@ const Testimonials = () => {
       name: "Budi Santoso",
       company: "PT. Supra Primatama",
       image: "/aset/testimonial-budi.jpg",
-      text: "Okta's ability to manage complex software deliveries is exceptional. A true professional who delivers results."
+      text: "Okta brought structure, follow-through, and calm coordination to a delivery environment that required both technical understanding and strong execution control."
     },
     {
       name: "Siti Nurhaliza",
       company: "PT. Juragan Inovator",
       image: "/aset/testimonial-siti.jpg",
-      text: "Outstanding project strategy and flawless execution. Delivered all milestones ahead of schedule with excellent quality."
+      text: "He handled planning and execution with strong ownership. Milestones stayed visible, communication stayed clear, and the team always knew what mattered most."
     },
     {
       name: "Ahmad Prasetyo",
       company: "PT. Dazo Kreatif",
       image: "/aset/testimonial-ahmad.jpg",
-      text: "A strategic thinker with excellent leadership skills. Delivers results with clear communication and team alignment. Highly recommended."
+      text: "Okta combines delivery discipline with practical leadership. He keeps teams aligned, follows through on blockers, and makes progress easier to trust."
     },
     {
       name: "Ratna Wijaya",
       company: "PT. Digital Solusi",
       image: "/aset/testimonial-ratna.jpg",
-      text: "Excellent project management and technical expertise. Consistently delivers high-quality solutions that exceed expectations. Great to work with."
+      text: "What stands out is his ability to connect business expectations with delivery reality. He communicates clearly, escalates appropriately, and keeps projects moving."
     },
     {
       name: "Rido Pratama",
       company: "PT. Innovation Hub",
       image: "/aset/testimonial-rido.jpg",
-      text: "Remarkable problem-solving skills and dedication. Okta brings innovation and professionalism to every project. Absolutely recommended."
+      text: "He is dependable in high-pressure situations and strong at keeping delivery organized. The team benefited from his consistency, ownership, and communication style."
     }
   ];
 
@@ -1944,13 +1938,13 @@ const Testimonials = () => {
       <div className="section-inner max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16">
           <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
-            <span className="accent-gradient-text">Feedback</span>
+            <span className="accent-gradient-text">Recommendations</span>
           </p>
           <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
-            User <span className="accent-gradient-text">Feedback</span>
+            Professional <span className="accent-gradient-text">Feedback</span>
           </h2>
           <p className="text-[13px] mt-4 font-medium">
-            <span className="accent-gradient-text">Testimonials from supervisors and clients across key delivery engagements.</span>
+            <span className="accent-gradient-text">Feedback that reflects how I lead delivery, communicate with stakeholders, and keep execution under control.</span>
           </p>
         </div>
 
@@ -2117,7 +2111,7 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
             <div className="space-y-2">
               <div className="text-3xl font-black tracking-tight">OKTA.</div>
               <p className="text-[14px] text-white/70 max-w-lg leading-relaxed">
-                Delivering modern software programs with discipline, clarity, and a human touch.
+                Senior-minded project delivery for digital products, enterprise initiatives, and software teams that need stronger alignment and steadier execution.
               </p>
             </div>
 
