@@ -185,6 +185,14 @@ app.get('/share/', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'share', 'index.html'));
 });
 
+app.get('/cv_oktawahyudi', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'CV_Oktawahyudi.pdf'));
+});
+
+app.get('/cv_oktawahyudi/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'CV_Oktawahyudi.pdf'));
+});
+
 // Fallback to index.html for SPA routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));

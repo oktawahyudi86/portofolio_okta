@@ -481,7 +481,7 @@ const SectionTransitionSkeleton = () => (
 
 const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
   const [activeSection, setActiveSection] = React.useState('home');
-  const cvUrl = '/aset/Okta-Wahyudi_IT-Project-Manager_CV_2026.pdf';
+  const cvUrl = '/cv_oktawahyudi/';
 
   const openChat = () => {
     window.dispatchEvent(new CustomEvent('openOktaAI', { detail: { from: 'navbar' } }));
@@ -2211,6 +2211,7 @@ export default function App() {
   const [isInitialLoading, setIsInitialLoading] = React.useState(true);
   const [isSectionLoading, setIsSectionLoading] = React.useState(false);
   const loadingTimeoutRef = React.useRef<number | null>(null);
+  const isCvRoute = pathname === '/cv_oktawahyudi' || pathname === '/cv_oktawahyudi/';
 
   const handleRouteChange = React.useCallback((path: string) => {
     if (window.location.pathname !== path) {
@@ -2253,6 +2254,13 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
+    if (isCvRoute) {
+      window.location.replace('/CV_Oktawahyudi.pdf');
+      return;
+    }
+
+    document.title = 'Okta Wahyudi | Project Manager';
+
     if (pathname === '/privacy') {
       document.title = 'Privacy Policy | Okta Wahyudi';
       return;
@@ -2262,9 +2270,7 @@ export default function App() {
       document.title = 'Terms & Conditions | Okta Wahyudi';
       return;
     }
-
-    document.title = 'Okta Wahyudi | Project Manager';
-  }, [pathname]);
+  }, [isCvRoute, pathname]);
 
   React.useEffect(() => {
     const startedAt = Date.now();
@@ -2322,8 +2328,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
-
-      {pathname === '/privacy' ? (
+      {isCvRoute ? null : pathname === '/privacy' ? (
         <LegalPage type="privacy" onRouteChange={handleRouteChange} />
       ) : pathname === '/terms' ? (
         <LegalPage type="terms" onRouteChange={handleRouteChange} />
