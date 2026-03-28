@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=5173 --host=0.0.0.0",
+    "dev": "node -e \"import(require('node:url').pathToFileURL(require('node:path').resolve(require('node:path').dirname(process.env.npm_package_json), 'scripts/dev-vite.mjs')).href)\"",
     "dev:server": "node server.js",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
+    "dev:all": "node -e \"import(require('node:url').pathToFileURL(require('node:path').resolve(require('node:path').dirname(process.env.npm_package_json), 'scripts/dev-all.mjs')).href)\"",
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server.js",

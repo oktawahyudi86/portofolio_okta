@@ -6,17 +6,27 @@
   --font-serif: "Lora", ui-serif, Georgia, serif;
 }
 
+:root {
+  --color-primary: #0fa3b1;
+  --color-bg: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-border: #e3e8ef;
+  --color-text: #0c1a24;
+  --color-muted: #5f6770;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-serif);
-  color: #1a2e35;
+  color: var(--color-text);
   font-size: 16px;
   line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg);
 }
 
 h1,
@@ -39,7 +49,7 @@ p {
 }
 
 ::selection {
-  background: #4a7c8c;
+  background: var(--color-primary);
   color: #ffffff;
 }
 
@@ -52,9 +62,21 @@ p {
     scrollbar-width: none;
   }
   
-  @keyframes gradient-x {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+  .surface-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 12px 28px rgba(10, 25, 42, 0.05);
+    border-radius: 18px;
+  }
+
+  .surface-card-tight {
+    border-radius: 14px;
+    border-width: 1px;
+    box-shadow: 0 6px 18px rgba(10, 25, 42, 0.04);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
   }
 
   @keyframes traveloka-shimmer {
@@ -66,11 +88,6 @@ p {
     }
   }
   
-  .animate-gradient-x {
-    background-size: 200% 200%;
-    animation: gradient-x 3s ease infinite;
-  }
-
   .traveloka-skeleton {
     position: relative;
     overflow: hidden;

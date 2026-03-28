@@ -14,7 +14,7 @@ const envFiles = ['.env.production', '.env'];
 envFiles.forEach((file, index) => {
   const fullPath = path.join(__dirname, file);
   if (fs.existsSync(fullPath)) {
-    dotenv.config({ path: fullPath, override: index > 0 });
+    dotenv.config({ path: fullPath, override: false });
   }
 });
 

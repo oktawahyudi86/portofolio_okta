@@ -9,7 +9,6 @@ import {
   Download, 
   ExternalLink, 
   Star,
-  Sparkles,
   Layout,
   Home,
   Briefcase,
@@ -28,7 +27,6 @@ import {
   MessageCircle,
   Mail,
   X,
-  Menu,
   Phone,
   Send,
   Loader2,
@@ -37,14 +35,14 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 type FeatureType = 'recruitment' | 'analysis' | 'brd';
-const featureGradientMap: Record<FeatureType, string> = {
-  recruitment: 'from-[#5f9eab] to-[#4a7c8c]',
-  analysis: 'from-[#6b8f9d] to-[#4a6573]',
-  brd: 'from-[#728a97] to-[#516773]'
+const featureBackgroundMap: Record<FeatureType, string> = {
+  recruitment: 'bg-[#0fa3b1]',
+  analysis: 'bg-[#0fa3b1]',
+  brd: 'bg-[#0fa3b1]'
 };
 
 const FeatureIcon = ({ type }: { type: FeatureType }) => (
-  <div className={`w-14 h-14 lg:w-16 lg:h-16 rounded-[18px] bg-gradient-to-br ${featureGradientMap[type]} border border-white/40 flex items-center justify-center`}>
+  <div className={`w-14 h-14 lg:w-16 lg:h-16 rounded-[18px] ${featureBackgroundMap[type]} border border-white/40 flex items-center justify-center`}>
     <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {type === 'recruitment' && (
         <>
@@ -77,17 +75,17 @@ const FeatureIcon = ({ type }: { type: FeatureType }) => (
 );
 
 type StageVariant = 'grooming' | 'sizing' | 'planning' | 'dev' | 'review' | 'retrospective';
-const stageGradientMap: Record<StageVariant, string> = {
-  grooming: 'from-[#6ca8b4] to-[#4a7c8c]',
-  sizing: 'from-[#5d9391] to-[#3f6c72]',
-  planning: 'from-[#7aa9b3] to-[#567f8b]',
-  dev: 'from-[#5b8392] to-[#365766]',
-  review: 'from-[#8da8b0] to-[#607681]',
-  retrospective: 'from-[#3b5561] to-[#22343d]'
+const stageBackgroundMap: Record<StageVariant, string> = {
+  grooming: 'bg-[#0fa3b1]',
+  sizing: 'bg-[#0fa3b1]',
+  planning: 'bg-[#0fa3b1]',
+  dev: 'bg-[#0fa3b1]',
+  review: 'bg-[#0fa3b1]',
+  retrospective: 'bg-[#0fa3b1]'
 };
 
 const StageIcon = ({ variant, className = '' }: { variant: StageVariant; className?: string }) => (
-  <div className={`w-14 h-14 rounded-[18px] bg-gradient-to-br ${stageGradientMap[variant]} border border-white/40 flex items-center justify-center ${className}`}>
+  <div className={`w-14 h-14 rounded-[18px] ${stageBackgroundMap[variant]} border border-white/40 flex items-center justify-center ${className}`}>
     <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {variant === 'grooming' && (
         <>
@@ -143,13 +141,13 @@ const StageIcon = ({ variant, className = '' }: { variant: StageVariant; classNa
 );
 
 type ReportingVariant = 'user' | 'cLevel';
-const reportingGradientMap: Record<ReportingVariant, string> = {
-  user: 'from-[#5d8897] to-[#406272]',
-  cLevel: 'from-[#748d99] to-[#324953]'
+const reportingBackgroundMap: Record<ReportingVariant, string> = {
+  user: 'bg-[#0fa3b1]',
+  cLevel: 'bg-[#0fa3b1]'
 };
 
 const ReportingIcon = ({ variant }: { variant: ReportingVariant }) => (
-  <div className={`w-12 h-12 rounded-[14px] bg-gradient-to-br ${reportingGradientMap[variant]} border border-white/40 flex items-center justify-center`}>
+  <div className={`w-12 h-12 rounded-[14px] ${reportingBackgroundMap[variant]} border border-white/40 flex items-center justify-center`}>
     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {variant === 'user' ? (
         <>
@@ -450,7 +448,7 @@ const TravelokaSkeletonBlock = ({ className = '' }: { className?: string }) => (
 );
 
 const SectionTransitionSkeleton = () => (
-  <div className="fixed inset-0 z-[90] bg-[#f8fafc]/92 backdrop-blur-[10px]">
+  <div className="fixed inset-0 z-[90] bg-[#f4f6fb]">
     <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 lg:pt-36 pb-10">
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] items-start">
         <div className="space-y-6">
@@ -516,84 +514,61 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
 
   return (
     <>
-      {/* Top Navbar - Desktop Only */}
-        <div className="hidden lg:block fixed top-8 left-0 w-full z-50 px-6">
-          <div className="relative px-2">
-            <div className="relative max-w-6xl mx-auto rounded-[40px] p-[1px] bg-white/10 shadow-[0_15px_60px_rgba(15,23,42,0.15)]">
-              <nav className="relative overflow-hidden rounded-[36px] bg-white/85 backdrop-blur-[20px] border border-white/50 shadow-[0_15px_40px_rgba(15,23,42,0.2)]">
-                <div className="px-8 py-4 flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center gap-10">
-              <motion.div 
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="text-xl lg:text-2xl font-black tracking-tighter text-[#1a2e35] cursor-default"
-              >
-                OKTA<span className="text-[#4a7c8c]">.</span>
-              </motion.div>
+      <div className="hidden lg:block fixed top-5 left-0 w-full z-50 px-6 xl:px-8 2xl:px-12">
+        <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+          <nav className="rounded-[18px] border border-[#e3e8ef] bg-white/96 px-4 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-sm">
+            <div className="flex items-center justify-between gap-6">
+              <div className="flex items-center gap-7">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="text-[1.45rem] font-black tracking-tight text-[#0c1a24] leading-none cursor-default"
+                >
+                  OKTA<span className="text-[#0fa3b1]">.</span>
+                </motion.div>
 
-              {/* Desktop Menu */}
-              <div className="hidden lg:flex items-center gap-2">
-                {menuItems.slice(0, 4).map((item, idx) => (
-                  <motion.a
-                    key={idx}
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate(item.href);
-                    }}
-                    whileHover={{ y: -2 }}
-                    className={`px-5 py-2.5 rounded-2xl text-[14px] font-semibold tracking-[0.04em] transition-all flex items-center gap-2 group ${activeSection === item.href.replace('#', '') ? 'text-[#1a2e35] bg-gray-50' : 'text-gray-500 hover:text-[#1a2e35] hover:bg-gray-50'}`}
-                  >
-                    <span className={`transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#4a7c8c]' : 'text-gray-300 group-hover:text-[#4a7c8c]'}`}>{item.icon}</span>
-                    {item.name}
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* AI Button */}
-              <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={openChat}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#4a7c8c] via-[#ff6b6b] to-[#4a7c8c] rounded-full blur-md opacity-40 group-hover:opacity-100 transition-all duration-500 animate-gradient-x"></div>
-                <div className="relative bg-[#1a2e35] text-white px-4 lg:px-7 py-2 lg:py-3 rounded-full text-[11px] lg:text-[13px] font-semibold tracking-[0.08em] flex items-center gap-2 lg:gap-3 shadow-xl border border-white/10 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#4a7c8c]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  <div className="relative flex items-center gap-2">
-                    <div className="relative">
-                      <MessageCircle size={14} className="lg:w-4 lg:h-4 group-hover:rotate-12 transition-transform duration-500" />
-                      <motion.div
-                        animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }}
-                        transition={{ repeat: Infinity, duration: 2 }}
-                        className="absolute -top-1 -right-1 text-yellow-300"
-                      >
-                        <Sparkles size={6} className="lg:w-2 lg:h-2" fill="currentColor" />
-                      </motion.div>
-                    </div>
-                    <span className="hidden sm:inline">Talk With Okta AI</span>
-                    <span className="sm:hidden">OktaAI</span>
-                  </div>
-
-                  <div className="hidden lg:block bg-white/10 px-2 py-0.5 rounded-md text-[8px] font-black tracking-tighter">
-                    NEW ✨
-                  </div>
+                <div className="hidden lg:flex items-center gap-1 rounded-[14px] bg-[#f7f9fc] p-1">
+                  {menuItems.slice(0, 4).map((item, idx) => (
+                    <motion.a
+                      key={idx}
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(item.href);
+                      }}
+                      whileHover={{ y: -1 }}
+                      className={`flex items-center gap-2 rounded-[10px] px-3 py-2 text-[12px] font-semibold transition-all ${
+                        activeSection === item.href.replace('#', '')
+                          ? 'bg-white text-[#0c1a24] shadow-[0_2px_8px_rgba(15,23,42,0.06)]'
+                          : 'text-[#6b7280] hover:text-[#0c1a24]'
+                      }`}
+                    >
+                      <span className={activeSection === item.href.replace('#', '') ? 'text-[#0fa3b1]' : 'text-[#b8c1cb]'}>
+                        {React.cloneElement(item.icon, { size: 16 })}
+                      </span>
+                      {item.name}
+                    </motion.a>
+                  ))}
                 </div>
+              </div>
+
+              <motion.button
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={openChat}
+                className="inline-flex items-center gap-2 rounded-[12px] border border-[#cfe5e8] bg-[#f5fbfc] px-4 py-2 text-[12px] font-semibold text-[#0f5160] transition-colors hover:bg-[#edf7f8]"
+              >
+                <MessageCircle size={15} className="text-[#0fa3b1]" />
+                Talk With Okta AI
               </motion.button>
             </div>
-          </div>
           </nav>
         </div>
       </div>
-    </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-0 pb-0">
-        <nav className="bg-white border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
-          <div className="flex items-center justify-around py-3">
+      <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-4 pb-4">
+        <nav className="mx-auto max-w-md rounded-[18px] border border-[#e3e8ef] bg-white/96 px-2 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+          <div className="flex items-center justify-between gap-1">
             {menuItems.map((item, idx) => (
               <a
                 key={idx}
@@ -607,21 +582,23 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   e.preventDefault();
                   onNavigate(item.href);
                 }}
-                className="flex flex-col items-center gap-1 px-4 py-1 group relative"
+                className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[12px] px-2 py-2 transition-colors ${
+                  activeSection === item.href.replace('#', '') ? 'bg-[#f4fafb]' : ''
+                }`}
               >
                 {activeSection === item.href.replace('#', '') && item.name !== 'Chat AI' && (
-                  <motion.div 
+                  <motion.div
                     layoutId="activeNav"
-                    className="absolute -top-3 w-8 h-1 bg-[#4a7c8c] rounded-full"
+                    className="absolute inset-x-3 bottom-0 h-[3px] rounded-full bg-[#0fa3b1]"
                   />
                 )}
-                <motion.div 
-                  whileTap={{ scale: 0.8 }}
-                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#4a7c8c]' : 'text-gray-300'} transition-colors`}
+                <motion.div
+                  whileTap={{ scale: 0.9 }}
+                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#0fa3b1]' : 'text-[#bcc6d1]'} transition-colors`}
                 >
-                  {item.icon}
+                  {React.cloneElement(item.icon, { size: 18 })}
                 </motion.div>
-                <span className={`text-[11px] font-semibold tracking-[0.04em] ${activeSection === item.href.replace('#', '') ? 'text-[#1a2e35]' : 'text-gray-400'} transition-colors`}>
+                <span className={`text-[10px] font-semibold ${activeSection === item.href.replace('#', '') ? 'text-[#1a2e35]' : 'text-[#8b97a6]'} transition-colors`}>
                   {item.name}
                 </span>
               </a>
@@ -637,88 +614,103 @@ const Skeleton = ({ className }: { className?: string }) => (
   <div className={`animate-pulse bg-gray-200 rounded-[18px] ${className}`} />
 );
 
+const heroStats = [
+  { value: '3+', label: 'Years of project delivery' },
+  { value: '30+', label: 'Software projects delivered' },
+];
+
 const Hero = () => {
   return (
-    <section id="home" className="mt-16 lg:mt-20 pt-16 lg:pt-56 pb-12 lg:pb-24 px-6 xl:px-8 2xl:px-12 max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 2xl:gap-32 items-center relative overflow-hidden lg:overflow-visible">
-      <motion.div 
+    <section id="home" className="mt-16 lg:mt-20 pt-14 lg:pt-40 pb-12 lg:pb-20 px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
+      <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Mobile AI Search Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="lg:hidden mb-10"
         >
-          <div 
+          <div
             onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
-            className="bg-white rounded-[18px] border border-gray-100 shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
+            className="bg-white rounded-[18px] border border-[#e3e8ef] shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
           >
-            <div className="w-10 h-10 rounded-[14px] bg-[#4a7c8c]/10 flex items-center justify-center text-[#4a7c8c]">
-              <Sparkles size={18} />
+            <div className="w-10 h-10 rounded-[14px] bg-[#0fa3b1]/10 flex items-center justify-center text-[#0fa3b1]">
+              <MessageCircle size={18} />
             </div>
-            <p className="text-[13px] font-bold text-gray-400">What services does Okta offer?</p>
+            <p className="text-[13px] font-bold text-[#5f6670]">Ajukan pertanyaan ke OktaAI</p>
           </div>
         </motion.div>
 
-        <div className="inline-block px-4 py-1.5 rounded-full bg-[#4a7c8c]/10 text-[#4a7c8c] font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#4a7c8c]/20">
-          Project Manager
+        <div className="inline-block px-4 py-1.5 rounded-full bg-[#0fa3b1]/10 text-[#0fa3b1] font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
+          IT Project Manager
         </div>
-        <h1 className="text-[clamp(3.2rem,8vw,5.6rem)] font-black text-[#1a2e35] leading-[0.94] mb-8 2xl:mb-12 tracking-[-0.03em]">
-          I manage software <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c8c] to-[#1a2e35]">projects</span> and delivery.
+        <h1 className="text-[clamp(3rem,8vw,5rem)] font-black text-[#0c1a24] leading-[0.98] mb-6 tracking-[-0.02em]">
+          Orchestrating Agile and Scrum delivery with clarity.
         </h1>
-        
-        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 2xl:p-10 rounded-[24px] lg:rounded-[28px] 2xl:rounded-[32px] mb-10 2xl:mb-12 relative shadow-2xl overflow-hidden group border border-white/10">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
-          <p className="italic text-base lg:text-lg 2xl:text-xl leading-relaxed font-medium relative z-10 opacity-90">
-            "I manage software projects end-to-end, ensuring timely delivery, quality results, and strong team alignment."
+
+        <div className="mb-6 max-w-[540px] border-l-2 border-[#0fa3b1]/35 pl-5">
+          <p className="text-[11px] font-semibold tracking-[0.12em] text-[#0fa3b1] uppercase mb-3">Program focus</p>
+          <p className="text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
+            Delivering software with clear plans and steady cadences.
           </p>
+          <ul className="space-y-1 text-[14px] text-[#5f6670]">
+            <li>MAXstream → MyTelkomsel transformation</li>
+            <li>AI SaaS + digital product releases</li>
+          </ul>
         </div>
 
-        <div className="flex gap-10 lg:gap-12 2xl:gap-16 mb-10 2xl:mb-14 px-2">
-          <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl 2xl:text-6xl font-black text-[#1a2e35] tracking-tighter">3+</span>
-            <div className="text-[12px] lg:text-[13px] text-gray-500 font-semibold leading-snug tracking-[0.02em] mt-1">
-              Years of<br/>experience
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-8 mb-8 max-w-[520px]">
+          {heroStats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <span className="text-4xl font-black text-[#0c1a24]">{stat.value}</span>
+              <p className="text-[12px] text-[#5f6670] tracking-[0.08em] uppercase">{stat.label}</p>
             </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl 2xl:text-6xl font-black text-[#1a2e35] tracking-tighter">30</span>
-            <div className="text-[12px] lg:text-[13px] text-gray-500 font-semibold leading-snug tracking-[0.02em] mt-1">
-              Projects<br/>delivered
-            </div>
-          </div>
+          ))}
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-10 mb-10">
-          <p className="text-[16px] lg:text-[17px] text-gray-600 leading-relaxed font-medium">
-            I am an IT Project Manager focused on software development, delivering projects efficiently and on time.
-          </p>
-          <p className="text-[16px] lg:text-[17px] text-gray-600 leading-relaxed font-medium">
-            I have managed and delivered 30+ software projects, ensuring quality results and business alignment.
-          </p>
-        </div>
-
       </motion.div>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative w-full lg:-mt-8 flex justify-center"
+        className="relative w-full lg:-mt-4 flex flex-col items-center"
       >
-        <img 
-          src="/aset/profil.png" 
-          alt="Okta" 
-          loading="eager"
-          // @ts-ignore
-          fetchPriority="high"
-          className="w-full max-w-[430px] sm:max-w-[500px] lg:max-w-[560px] h-auto object-contain grayscale"
-          referrerPolicy="no-referrer"
-        />
+        <div className="relative w-full max-w-[520px] sm:max-w-[620px] lg:max-w-[720px] xl:max-w-[760px]">
+          <div className="absolute left-4 bottom-12 z-10 rounded-[12px] border border-[#dfe6ee] bg-white px-3 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.05)] sm:left-5 sm:bottom-12 md:left-6 md:bottom-14 md:px-4 md:py-3 lg:left-7 lg:bottom-16">
+            <p className="text-[12px] font-semibold tracking-[0.04em] text-[#41505d]">S1 - Informatika</p>
+          </div>
+
+          <div className="absolute right-[-4%] top-[50%] z-10 hidden sm:flex items-center gap-3 rounded-[14px] border border-[#dfe6ee] bg-white px-3 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.05)] md:right-[-3%] md:top-[52%] md:px-4 md:py-3 lg:right-[-2%] lg:top-[54%]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#faf7ff] md:h-11 md:w-11">
+              <img
+                src="/aset/amikom-logo.png"
+                alt="AMIKOM University logo"
+                className="h-8 w-8 object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-[13px] font-black text-[#12212d] leading-tight">AMIKOM University</p>
+              <p className="text-[11px] font-semibold tracking-[0.04em] text-[#72808d]">2016 - 2020</p>
+            </div>
+          </div>
+
+          <img 
+            src="/aset/profil.png" 
+            alt="Okta" 
+            loading="eager"
+            // @ts-ignore
+            fetchPriority="high"
+            className="w-full h-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
+        </div>
       </motion.div>
+      </div>
     </section>
   );
 };
@@ -726,132 +718,204 @@ const Hero = () => {
 const Journey = () => {
   const experiences = [
     {
-      date: "2020 - 2021",
+      date: "Mar 2020 - Apr 2021",
       location: "Yogyakarta",
-      company: "PT. Sarana Insan Muda Selaras",
-      position: "Technical Gov & Corp",
-      y: 20
+      company: "PT Sarana Insan Muda Selaras",
+      label: "Sarana Insan Muda Selaras",
+      position: "Technical E-Government & Corporate Support",
+      summary: "Supported IT infrastructure and system deployment for government and corporate environments.",
+      highlight: "Government and corporate IT support"
     },
     {
-      date: "2021 - 2023",
+      date: "Aug 2021 - Jan 2023",
       location: "Surabaya",
-      company: "PT. Supra Primatama (Biznet)",
-      position: "Project Engineer",
-      y: -20
+      company: "Biznet (PT Supra Primatama Nusantara)",
+      label: "Biznet",
+      position: "Project Engineer FTTH / Project Building",
+      summary: "Handled network infrastructure deployment, QA/QC standards, and vendor coordination for fiber and building projects.",
+      highlight: "Infrastructure rollout and QA/QC"
     },
     {
-      date: "Jun - Des 2023",
+      date: "Jun 2023 - Dec 2023",
       location: "Yogyakarta",
-      company: "PT. Divistant Teknologi",
-      position: "PM DevOps & Software",
-      y: 20
-    },
-    {
-      date: "2023 - 2025",
-      location: "Remote",
-      company: "PT. Juragan Inovator",
+      company: "Divistant (PT Divistant Teknologi Indonesia)",
+      label: "Divistant",
       position: "Project Manager",
-      y: -20
+      summary: "Delivered software projects from initiation to closure under Agile frameworks while maintaining team execution and client communication.",
+      highlight: "Agile software delivery execution"
     },
     {
-      date: "Jan - May 2025",
+      date: "Dec 2023 - Jan 2025",
+      location: "Yogyakarta",
+      company: "JITILab (PT Juragan Inovator Teknologi Indonesia)",
+      label: "JITILab",
+      position: "Product & Project Manager",
+      summary: "Managed web and mobile product lifecycles covering planning, design, testing, deployment, budget control, and risk mitigation.",
+      highlight: "Web and mobile product ownership"
+    },
+    {
+      date: "Jan 2025 - May 2025",
       location: "Jakarta",
-      company: "SALT (Ako Media)",
-      position: "Project Manager",
-      y: 20
+      company: "SALT (PT Ako Media Asia)",
+      label: "SALT",
+      position: "IT Project Manager",
+      summary: "Led MAXstream enhancements and migration to MyTelkomsel Super App while facilitating Agile ceremonies and sprint delivery.",
+      highlight: "MAXstream to MyTelkomsel migration"
     },
     {
-      date: "2025 - 2026",
+      date: "Jun 2025 - Present",
       location: "Yogyakarta",
-      company: "PT Dazo Kreatif",
-      position: "Head IT Project Manager",
-      y: -20
+      company: "PT Dazo Kreatif Indonesia",
+      label: "Dazo Kreatif",
+      position: "IT Project Manager",
+      summary: "Manage AI-powered SaaS delivery across order management, chat automation, digital storefronts, and omnichannel campaigns.",
+      highlight: "AI SaaS and omnichannel delivery",
+      current: true
     }
   ];
 
+  const renderRoadmapContent = (exp: (typeof experiences)[number]) => (
+    <div className="mx-auto flex w-[188px] flex-col items-center text-center">
+      <div className="mb-2 flex min-h-[20px] items-center justify-center gap-2">
+        <p className="text-[11px] font-semibold tracking-[0.08em] text-[#0fa3b1]">{exp.date}</p>
+        {exp.current && (
+          <span className="rounded-full border border-[#cfe6ea] bg-[#f4fafb] px-2 py-0.5 text-[9px] font-semibold tracking-[0.08em] text-[#0fa3b1]">
+            Current
+          </span>
+        )}
+      </div>
+      <div className="min-h-[114px]">
+        <h3 className="mb-1 text-[17px] font-black leading-[1.15] text-[#12212d]">{exp.label}</h3>
+        <p className="mb-4 text-[12px] font-medium leading-[1.4] text-[#72808d]">{exp.location}</p>
+        <p className="mb-4 text-[12px] font-semibold leading-[1.55] text-[#243341]">{exp.position}</p>
+        <p className="text-[12px] leading-[1.55] text-[#6f7c89]">{exp.highlight}</p>
+      </div>
+    </div>
+  );
+
   return (
-    <section id="journey" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+    <section id="journey" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
       <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16 2xl:mb-20">
-          <p className="text-[12px] font-semibold text-[#4a7c8c] mb-3 tracking-[0.14em]">Milestones</p>
-          <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            Journey & <span className="text-gray-300">Experience</span>
+          <p className="text-[12px] font-semibold tracking-[0.14em] text-[#0fa3b1] mb-3">
+            Milestones
+          </p>
+          <h2 className="text-4xl lg:text-6xl font-black text-[#0c1a24] tracking-tight leading-[1]">
+            Career Journey
           </h2>
+          <p className="text-[#5f6670] text-[15px] mt-4 max-w-2xl">
+            Three years focused on software and digital delivery, built across startup, enterprise, and client-facing environments.
+          </p>
         </div>
 
-        {/* Desktop Timeline (Horizontal) */}
-        <div className="hidden lg:block relative h-[350px] mt-10">
-          {/* Wavy Dotted Line */}
-          <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none opacity-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path 
-              d="M0,60 C100,0 200,120 300,60 C400,0 500,120 600,60 C700,0 800,120 900,60 C1000,0 1100,120 1200,60" 
-              fill="none" 
-              stroke="#4a7c8c" 
-              strokeWidth="2" 
-              strokeDasharray="8 8"
-            />
-          </svg>
-
-          <div className="flex justify-between items-center h-full px-10">
-            {experiences.map((exp, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="relative flex flex-col items-center"
-                style={{ transform: `translateY(${exp.y}px)` }}
-              >
-                {/* Circle */}
-                <div className="w-24 h-24 rounded-full bg-[#4a7c8c] text-white flex flex-col items-center justify-center p-3 text-center shadow-lg border-4 border-white/20 z-10 hover:scale-110 transition-all duration-500 group cursor-default">
-                  <span className="text-[10px] font-semibold opacity-80 tracking-[0.04em] mb-1">{exp.date}</span>
-                  <span className="text-[12px] font-black leading-tight">{exp.location}</span>
-                </div>
-
-                {/* Info Label */}
-                <div className={`absolute left-1/2 -translate-x-1/2 w-48 text-center ${exp.y > 0 ? '-top-24' : 'top-28'}`}>
-                  <p className="text-[15px] font-black text-[#1a2e35] leading-tight mb-1">{exp.company}</p>
-                  <p className="text-[12px] text-gray-500 font-semibold tracking-[0.03em] opacity-80">{exp.position}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Timeline (Vertical Cards) */}
-        <div className="lg:hidden space-y-7 relative">
-          <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0fa3b1] via-[#2eccc7] to-[#0fa3b1]/20"></div>
+        <div className="lg:hidden space-y-6">
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className="flex items-start gap-6 relative z-10 cursor-pointer"
-              onClick={() => setSelectedExperience(idx)}
+              whileHover={{ x: 2 }}
+              className="relative pl-8 pr-2 py-2"
             >
-              <motion.div 
-                whileHover={{ scale: 1.15 }}
-                className="w-14 h-14 shrink-0 rounded-[16px] bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
-              >
-                <Briefcase size={20} />
-              </motion.div>
-              <div className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[18px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/90 transition-all">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[12px] font-black text-white bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] px-4 py-1.5 rounded-full border border-[#0fa3b1]/20">
-                    {exp.date}
+              <div className="absolute left-0 top-2 bottom-2 w-px bg-[#dbe3ea]" aria-hidden="true" />
+              <div className="absolute left-[-5px] top-3 w-[10px] h-[10px] rounded-full bg-[#0fa3b1]/75 ring-4 ring-[#f4f6fb]" aria-hidden="true" />
+
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <p className="text-[11px] font-semibold tracking-[0.08em] text-[#0fa3b1]">
+                  {exp.date}
+                </p>
+                {exp.current && (
+                  <span className="rounded-full bg-[#0fa3b1]/10 px-2.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-[#0fa3b1]">
+                    Current
                   </span>
-                  <span className="text-[13px] font-semibold text-[#0fa3b1] tracking-[0.03em]">
-                    {exp.location}
-                  </span>
-                </div>
-                <h3 className="text-[18px] lg:text-[19px] font-black text-[#0d1f2b] leading-tight mb-2">{exp.company}</h3>
-                <p className="text-[14px] text-[#0fa3b1] font-semibold tracking-[0.03em]">{exp.position}</p>
+                )}
               </div>
+              <h3 className="text-[17px] font-black text-[#12212d] mb-1">{exp.company}</h3>
+              <p className="text-[14px] text-[#243341] font-semibold mb-2">{exp.position}</p>
+              <p className="text-[12px] text-[#72808d] mb-3">{exp.location}</p>
+              <p className="text-[13px] text-[#41505d] leading-[1.75]">{exp.summary}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="hidden lg:block">
+          <div className="overflow-x-auto no-scrollbar pb-4">
+            <div className="relative min-w-[1120px] px-4 pt-2 pb-6">
+              <div className="grid min-h-[168px] grid-cols-6 items-end gap-6">
+                {experiences.map((exp, idx) =>
+                  idx % 2 === 1 ? (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -2 }}
+                      className="flex justify-center"
+                    >
+                      {renderRoadmapContent(exp)}
+                    </motion.div>
+                  ) : (
+                    <div key={idx} aria-hidden="true" />
+                  )
+                )}
+              </div>
+
+              <div className="relative mb-6 h-[170px]">
+                <svg
+                  className="absolute inset-x-0 top-[42px] h-[118px] w-full"
+                  viewBox="0 0 1120 118"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 60C54 60 54 88 101 88C148 88 148 16 195 16C242 16 242 88 289 88C336 88 336 16 383 16C430 16 430 88 477 88C524 88 524 16 571 16C618 16 618 88 665 88C712 88 712 16 759 16C806 16 806 88 853 88C900 88 900 16 947 16C994 16 994 88 1041 88C1088 88 1088 60 1112 60"
+                    stroke="#173e58"
+                    strokeWidth="34"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M8 60C54 60 54 88 101 88C148 88 148 16 195 16C242 16 242 88 289 88C336 88 336 16 383 16C430 16 430 88 477 88C524 88 524 16 571 16C618 16 618 88 665 88C712 88 712 16 759 16C806 16 806 88 853 88C900 88 900 16 947 16C994 16 994 88 1041 88C1088 88 1088 60 1112 60"
+                    stroke="rgba(255,255,255,0.82)"
+                    strokeWidth="2.5"
+                    strokeDasharray="10 12"
+                    strokeLinecap="round"
+                  />
+                </svg>
+
+                <div className="relative grid grid-cols-6 gap-6">
+                  {experiences.map((exp, idx) => {
+                    const yOffset = idx % 2 === 0 ? 'pt-[98px]' : 'pt-[28px]';
+
+                    return (
+                      <div key={idx} className={`mx-auto flex w-[182px] flex-col items-center ${yOffset}`}>
+                        <div className="relative flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-[0_12px_24px_rgba(15,23,42,0.08)] ring-8 ring-[#f4f6fb]">
+                          <div
+                            className={`flex h-[54px] w-[54px] items-center justify-center rounded-full text-[15px] font-black text-white ${
+                              exp.current ? 'bg-[#173e58]' : 'bg-[#0fa3b1]'
+                            }`}
+                          >
+                            0{idx + 1}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="grid min-h-[168px] grid-cols-6 gap-6">
+                {experiences.map((exp, idx) =>
+                  idx % 2 === 0 ? (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -2 }}
+                      className="flex justify-center"
+                    >
+                      {renderRoadmapContent(exp)}
+                    </motion.div>
+                  ) : (
+                    <div key={idx} aria-hidden="true" />
+                  )
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -861,23 +925,23 @@ const Journey = () => {
 const Skills = () => {
   const skills = [
     {
-      title: "Project Strategy",
-      desc: "End-to-end software project planning from initiation to delivery with clear milestones.",
+      title: "Digital Program Delivery",
+      desc: "Coordinate planning, development, QA, and release so software initiatives move with clarity.",
       icon: <Layout size={20} />
     },
     {
-      title: "Agile Leadership",
-      desc: "Leading high-performance Agile teams to ensure rapid and high-quality releases.",
+      title: "Agile Delivery Leadership",
+      desc: "Facilitate Scrum, Agile, and hybrid cadences that keep squads aligned and predictable.",
       icon: <Settings size={20} />
     },
     {
-      title: "System Delivery",
-      desc: "Coordinating complex system integrations aligned with core business objectives.",
+      title: "System Integration Oversight",
+      desc: "Guide enterprise integrations, migrations, and launch readiness across multiple stakeholders.",
       icon: <Layers size={20} />
     },
     {
-      title: "Stakeholder Mgmt",
-      desc: "Effective collaboration with stakeholders to ensure project alignment and success.",
+      title: "Stakeholder & Risk Alignment",
+      desc: "Maintain visibility on scope, dependencies, vendors, and decisions throughout delivery.",
       icon: <Users size={20} />
     }
   ];
@@ -888,28 +952,26 @@ const Skills = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
             <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-              Core <span className="text-gray-300">Capabilities</span>
+              Core <span className="text-[#0fa3b1]">Capabilities</span>
             </h2>
           </div>
-          <p className="text-gray-500 max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
-            Bridging technical complexity with business value through strategic project management.
+          <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+            Four project-management strengths that support business alignment, execution clarity, and reliable software delivery.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 2xl:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((skill, idx) => (
             <motion.div 
               key={idx}
-              whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-8 lg:p-10 2xl:p-12 rounded-[20px] lg:rounded-[24px] 2xl:rounded-[28px] border border-white/40 transition-all duration-500 group hover:bg-[#1a2e35] hover:border-[#1a2e35] shadow-sm hover:shadow-2xl"
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-7"
             >
-                <div className="w-12 h-12 rounded-[16px] bg-white/60 flex items-center justify-center mb-6 lg:mb-8 shadow-sm group-hover:bg-[#4a7c8c] transition-colors duration-500">
-                <div className="text-[#4a7c8c] group-hover:text-white transition-colors">
-                  {skill.icon}
-                </div>
+              <div className="w-11 h-11 rounded-[14px] bg-[#0fa3b1]/10 text-[#0fa3b1] flex items-center justify-center mb-5">
+                {skill.icon}
               </div>
-              <h3 className="text-xl 2xl:text-2xl font-black text-[#1a2e35] mb-4 2xl:mb-6 tracking-tight group-hover:text-white transition-colors">{skill.title}</h3>
-              <p className="text-[14px] 2xl:text-[15px] text-gray-500 leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{skill.desc}</p>
+              <h3 className="text-xl 2xl:text-2xl font-black text-[#0c1a24] mb-3 tracking-tight">{skill.title}</h3>
+              <p className="text-[14px] 2xl:text-[15px] text-[#5f6670] leading-relaxed font-medium">{skill.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -918,96 +980,150 @@ const Skills = () => {
   );
 };
 
-const ToolsCarousel = ({ tools }) => {
-  const carouselRef = React.useRef(null);
+const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: string }[] }) => {
+  const carouselRef = React.useRef<HTMLDivElement | null>(null);
+  const singleSetWidthRef = React.useRef(0);
+  const isDraggingRef = React.useRef(false);
+  const isHoveringRef = React.useRef(false);
+  const dragStartX = React.useRef(0);
+  const scrollStart = React.useRef(0);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const repeatedTools = React.useMemo(() => [...tools, ...tools, ...tools], [tools]);
+
+  const normalizeScroll = React.useCallback(() => {
+    const carousel = carouselRef.current;
+    const singleSetWidth = singleSetWidthRef.current;
+    if (!carousel || !singleSetWidth) return;
+
+    if (carousel.scrollLeft <= 0) {
+      carousel.scrollLeft += singleSetWidth;
+    } else if (carousel.scrollLeft >= singleSetWidth * 2) {
+      carousel.scrollLeft -= singleSetWidth;
+    }
+  }, []);
 
   React.useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    const animate = () => {
-      carousel.scrollLeft += 1;
-      
-      // Reset to start when reaching end
-      if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
-        carousel.scrollLeft = 0;
+    const updateMetrics = () => {
+      singleSetWidthRef.current = carousel.scrollWidth / 3;
+      if (singleSetWidthRef.current > 0 && carousel.scrollLeft === 0) {
+        carousel.scrollLeft = singleSetWidthRef.current;
       }
     };
 
-    const intervalId = setInterval(animate, 50);
-    return () => clearInterval(intervalId);
-  }, []);
+    updateMetrics();
+    window.addEventListener('resize', updateMetrics);
+    return () => window.removeEventListener('resize', updateMetrics);
+  }, [repeatedTools.length]);
+
+  React.useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    let animationFrame = 0;
+    const tick = () => {
+      if (!isDraggingRef.current && !isHoveringRef.current) {
+        carousel.scrollLeft += 0.9;
+        normalizeScroll();
+      }
+      animationFrame = window.requestAnimationFrame(tick);
+    };
+
+    animationFrame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [normalizeScroll]);
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!carouselRef.current) return;
+    isDraggingRef.current = true;
+    setIsDragging(true);
+    dragStartX.current = event.clientX;
+    scrollStart.current = carouselRef.current.scrollLeft;
+    carouselRef.current.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current || !carouselRef.current) return;
+    const delta = event.clientX - dragStartX.current;
+    carouselRef.current.scrollLeft = scrollStart.current - delta;
+    normalizeScroll();
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!carouselRef.current) return;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+    try {
+      carouselRef.current.releasePointerCapture(event.pointerId);
+    } catch (error) {
+      // ignore if capture already released
+    }
+    normalizeScroll();
+  };
 
   return (
     <div
       ref={carouselRef}
-      className="w-full overflow-x-hidden select-none"
-      style={{
-        scrollBehavior: 'auto',
-        display: 'flex',
-        alignItems: 'center',
+      className={`flex w-full gap-6 overflow-x-auto pb-4 no-scrollbar select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      onMouseEnter={() => {
+        isHoveringRef.current = true;
       }}
+      onMouseLeave={() => {
+        isHoveringRef.current = false;
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={(event) => {
+        if (isDraggingRef.current && carouselRef.current) {
+          handlePointerUp(event);
+        }
+      }}
+      onPointerCancel={(event) => handlePointerUp(event)}
     >
-      <div className="flex gap-12 lg:gap-16 w-max py-4 lg:py-6 px-4">
-        {[...tools, ...tools, ...tools, ...tools, ...tools].map((tool, idx) => (
-          <div
-            key={idx}
-            className="flex-shrink-0 flex items-center justify-center transition-transform duration-500 hover:scale-110"
-            style={{ minWidth: '140px', height: '140px' }}
-          >
-            {typeof tool.icon === 'string' && tool.icon.startsWith('/') ? (
-              <img 
-                src={tool.icon} 
-                alt={tool.name}
-                className="w-28 h-28 object-contain"
-              />
-            ) : (
-              <div className="text-5xl lg:text-6xl">
-                {tool.icon}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      {repeatedTools.map((tool, idx) => (
+        <div
+          key={`${tool.name}-${idx}`}
+          className="flex h-[92px] min-w-[118px] flex-shrink-0 items-center justify-center px-2 py-2 transition-transform duration-300 hover:-translate-y-0.5 sm:h-[100px] sm:min-w-[126px] lg:h-[108px] lg:min-w-[138px]"
+          aria-hidden={idx >= tools.length}
+        >
+          {tool.icon.startsWith('/') ? (
+            <img
+              src={tool.icon}
+              alt={tool.name}
+              className="h-12 w-auto object-contain sm:h-14 lg:h-16"
+            />
+          ) : (
+            <div className="text-3xl sm:text-4xl lg:text-5xl">{tool.icon}</div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
 
 const SDLCFlow = () => {
-  const scrimStages = [
+  const scrumFlowSteps = [
     {
-      title: "Grooming",
-      desc: "Story refinement & requirements clarity",
-      variant: "grooming"
-    },
-    {
-      title: "Story Sizing",
-      desc: "Estimate effort & complexity",
-      variant: "sizing"
+      title: "Product Backlog",
+      desc: "Prioritized requirements",
+      icon: <FolderKanban size={18} />
     },
     {
       title: "Sprint Planning",
-      desc: "Define sprint goals & tasks",
-      variant: "planning"
+      desc: "Scope and sprint goals",
+      icon: <Layout size={18} />
     },
     {
-      title: "Sprint Dev",
-      desc: "Execute & develop features (24H)",
-      variant: "dev"
-    },
-    {
-      title: "Review",
-      desc: "Showcase completed work",
-      variant: "review"
-    },
-    {
-      title: "Retrospective",
-      desc: "Continuous improvement",
-      variant: "retrospective"
+      title: "Sprint Backlog",
+      desc: "Ready sprint tasks",
+      icon: <Layers size={18} />
     }
   ];
 
-  const reportingStructure = [
+  const reportingStructure: { level: string; frequency: string; variant: ReportingVariant; items: string[] }[] = [
     {
       level: "User Level",
       frequency: "Weekly/BI-Weekly",
@@ -1030,162 +1146,253 @@ const SDLCFlow = () => {
     { name: "Slack", color: "from-rose-300 to-red-500", icon: "/aset/slack.png" },
     { name: "GitLab", color: "from-red-400 to-orange-600", icon: "/aset/gitlab.png" },
     { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "/aset/office.png" },
-    { name: "Google Sheets", color: "from-green-400 to-emerald-600", icon: "📑" }
+    { name: "Google Sheets", color: "from-green-400 to-emerald-600", icon: "GS" }
   ];
+
+  const FlowArrow = ({ width = 56 }: { width?: number }) => (
+    <svg width={width} height="18" viewBox={`0 0 ${width} 18`} fill="none" aria-hidden="true" className="shrink-0">
+      <path d={`M2 9H${width - 14}`} stroke="#0fa3b1" strokeWidth="5" strokeLinecap="round" />
+      <path d={`M${width - 20} 4L${width - 10} 9L${width - 20} 14`} stroke="#0fa3b1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  const ScrumFlowNode = ({
+    title,
+    desc,
+    icon,
+  }: {
+    title: string;
+    desc: string;
+    icon: React.ReactNode;
+  }) => (
+    <div className="flex min-w-0 flex-col items-center text-center">
+      <div className="mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] bg-[#57c3cf] text-white shadow-[0_4px_10px_rgba(15,163,177,0.10)]">
+        {icon}
+      </div>
+      <h4 className="text-[12px] font-black leading-tight text-[#1a2e35]">{title}</h4>
+      <p className="mt-1 max-w-[116px] text-[11px] leading-[1.45] text-[#6b7785]">{desc}</p>
+    </div>
+  );
 
   return (
     <>
-      {/* Tools Management & Coordination */}
-    <section id="tools" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden bg-gradient-to-br from-[#1a2e35]/5 to-[#4a7c8c]/5">
+      <section id="tools" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 bg-[#f4f6fb]">
       <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
             <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-                Tools & <span className="text-gray-300">Project Management</span>
+                Tools & <span className="text-[#0fa3b1]">Project Management</span>
               </h2>
             </div>
-            <p className="text-gray-500 max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+            <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
               Leveraging industry-leading tools to streamline team collaboration and project delivery.
             </p>
           </div>
 
-          {/* Tools Carousel - Draggable */}
           <div className="mb-16 lg:mb-20 2xl:mb-24">
-            <style>{`
-              @keyframes scroll-left {
-                0% {
-                  transform: translateX(0);
-                }
-                100% {
-                  transform: translateX(-100%);
-                }
-              }
-              
-              .carousel-scroll {
-                animation: scroll-left 80s linear infinite;
-              }
-              
-              .carousel-scroll:hover {
-                animation-play-state: paused;
-              }
-              
-              .carousel-container {
-                scroll-behavior: smooth;
-              }
-              
-              .carousel-container.dragging {
-                scroll-behavior: auto;
-              }
-            `}</style>
-            
-            <p className="text-[12px] font-semibold text-gray-500 tracking-[0.08em] mb-8">Primary tools stack</p>
-            
+            <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-8">Primary tools stack</p>
             <ToolsCarousel tools={tools} />
           </div>
 
-          {/* Features Info */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 2xl:gap-10">
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-white p-6 lg:p-8 2xl:p-10 rounded-[18px] lg:rounded-[20px] 2xl:rounded-[22px] border border-[#d9e4ea] transition-all flex flex-col gap-3 items-start"
+            <motion.div
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="recruitment" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Recruitment Gathering</h3>
-              <p className="text-[12px] text-gray-500 leading-relaxed">Collecting team requirements and resource planning for project success.</p>
+              <p className="text-[12px] text-[#5f6670] leading-relaxed">Collecting requirements, dependencies, and capacity needs before execution starts.</p>
             </motion.div>
 
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-white p-6 lg:p-8 2xl:p-10 rounded-[18px] lg:rounded-[20px] 2xl:rounded-[22px] border border-[#d9e4ea] transition-all flex flex-col gap-3 items-start"
+            <motion.div
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="analysis" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Analysis & Planning</h3>
-              <p className="text-[12px] text-gray-500 leading-relaxed">In-depth analysis of scope, timeline, and resource allocation for optimal delivery.</p>
+              <p className="text-[12px] text-[#5f6670] leading-relaxed">Clarifying scope, timeline, and priorities so teams can deliver with fewer surprises.</p>
             </motion.div>
 
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-white p-6 lg:p-8 2xl:p-10 rounded-[18px] lg:rounded-[20px] 2xl:rounded-[22px] border border-[#d9e4ea] transition-all flex flex-col gap-3 items-start"
+            <motion.div
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="brd" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">BRD Creation (2 Week)</h3>
-              <p className="text-[12px] text-gray-500 leading-relaxed">Comprehensive Business Requirements Document crafted within a two-week sprint cycle.</p>
+              <p className="text-[12px] text-[#5f6670] leading-relaxed">Turning product and business needs into structured documentation ready for design and build.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* SDLC Flow - Scrum Process */}
-    <section id="sdlc" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+      <section id="sdlc" className="py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
       <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
             <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-                SDLC <span className="text-gray-300">Scrum Flow</span>
+                SDLC <span className="text-[#0fa3b1]">Scrum Flow</span>
               </h2>
             </div>
-            <p className="text-gray-500 max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
-              Agile-driven development process ensuring rapid delivery with continuous quality assurance.
+            <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+              A clearer Scrum visual that helps explain backlog, sprint execution, daily cadence, and delivery outcomes.
             </p>
           </div>
 
-          {/* Scrum Process Flow */}
           <div className="mb-16 lg:mb-20 2xl:mb-24">
-            {/* Mobile View - Vertical Stack */}
-            <div className="lg:hidden">
-              <div className="space-y-4">
-                {scrimStages.map((stage, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="group relative"
-                  >
-                    <div className="relative bg-white p-5 rounded-[16px] border border-[#d9e4ea] hover:bg-[#1a2e35] hover:text-white transition-all duration-500">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0">
-                          <StageIcon variant={stage.variant} />
+            <div className="xl:hidden">
+              <div className="rounded-[22px] border border-[#e3e8ef] bg-[#fbfdff] p-5 sm:p-6">
+                <div className="mb-5 flex flex-wrap gap-2">
+                  {["Product Owner", "Team", "Scrum Master", "Review & Retro"].map((role) => (
+                    <span key={role} className="rounded-full border border-[#d9ebee] bg-white px-3 py-1.5 text-[10px] font-semibold tracking-[0.04em] text-[#5f6670]">
+                      {role}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="space-y-4">
+                  {scrumFlowSteps.map((step, idx) => (
+                    <React.Fragment key={step.title}>
+                      <div className="flex items-center gap-4 rounded-[18px] border border-[#e3e8ef] bg-white p-4">
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#55c8d5] text-white">
+                          {step.icon}
                         </div>
                         <div>
-                          <h4 className="text-[13px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
-                          <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors">{stage.desc}</p>
+                          <h4 className="text-[13px] font-black text-[#0c1a24]">{step.title}</h4>
+                          <p className="mt-1 text-[11px] text-[#5f6670]">{step.desc}</p>
                         </div>
                       </div>
+                      {idx < scrumFlowSteps.length - 1 && (
+                        <div className="flex justify-center">
+                          <svg width="18" height="30" viewBox="0 0 18 30" fill="none" aria-hidden="true">
+                            <path d="M9 2V22" stroke="#0fa3b1" strokeWidth="4" strokeLinecap="round" />
+                            <path d="M3 18L9 26L15 18" stroke="#0fa3b1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+
+                <div className="relative mt-6 rounded-[22px] border border-[#dcecf0] bg-white px-4 py-6">
+                  <div className="mx-auto flex h-[168px] w-[168px] items-center justify-center rounded-full border-[14px] border-[#0fa3b1] text-center">
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.08em] text-[#5f6670]">SPRINT</p>
+                      <p className="mt-1 text-[26px] font-black leading-none text-[#1a2e35]">1-4</p>
+                      <p className="text-[12px] font-semibold tracking-[0.04em] text-[#5f6670]">WEEKS</p>
                     </div>
-                  </motion.div>
-                ))}
+                  </div>
+                  <div className="absolute right-3 top-3 rounded-full border border-[#dcecf0] bg-[#f7fcfd] px-3 py-2 text-center">
+                    <p className="text-[11px] font-black text-[#0fa3b1]">24 H</p>
+                    <p className="text-[9px] font-semibold tracking-[0.04em] text-[#72808d]">Daily Scrum</p>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex justify-center">
+                  <FlowArrow width={92} />
+                </div>
+
+                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="rounded-[18px] border border-[#e3e8ef] bg-white p-4 text-center">
+                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#0fa3b1] text-white">
+                      <Send size={18} />
+                    </div>
+                    <h4 className="text-[13px] font-black text-[#0c1a24]">Finished Work</h4>
+                    <p className="mt-1 text-[11px] text-[#5f6670]">Potentially shippable increment</p>
+                  </div>
+                  <div className="rounded-[18px] border border-[#e3e8ef] bg-white p-4 text-center">
+                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#55c8d5] text-white">
+                      <MessageCircle size={18} />
+                    </div>
+                    <h4 className="text-[13px] font-black text-[#0c1a24]">Review & Retrospective</h4>
+                    <p className="mt-1 text-[11px] text-[#5f6670]">Inspect results and improve the next sprint</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Desktop View - Horizontal Grid */}
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-3 lg:grid-cols-6 gap-4 2xl:gap-6">
-                {scrimStages.map((stage, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="group relative"
-                  >
-                    <div className="relative bg-white p-5 rounded-[16px] border border-[#d9e4ea] hover:bg-[#1a2e35] hover:text-white transition-all duration-500 flex flex-col items-center justify-center text-center h-40">
-                      <div className="mb-2">
-                        <StageIcon variant={stage.variant} className="w-16 h-16" />
-                      </div>
-                      <h4 className="text-[12px] font-black text-[#1a2e35] group-hover:text-white transition-colors mb-1">{stage.title}</h4>
-                      <p className="text-[11px] text-gray-500 group-hover:text-gray-300 transition-colors leading-snug">{stage.desc}</p>
+            <div className="hidden xl:block">
+              <div className="overflow-hidden rounded-[24px] border border-[#e3e8ef] bg-[#fbfdff] px-8 py-10 2xl:px-10">
+                <div className="mb-8 flex items-center justify-between text-center">
+                  <div className="flex w-[132px] flex-col items-center gap-2">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d9ebee] bg-[#f9fcfd] text-[#0fa3b1]">
+                      <FolderKanban size={16} />
                     </div>
-                  </motion.div>
-                ))}
+                    <p className="text-[11px] font-semibold text-[#5f6670]">Product Owner</p>
+                  </div>
+                  <div className="flex w-[132px] flex-col items-center gap-2">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d9ebee] bg-[#f9fcfd] text-[#0fa3b1]">
+                      <Users size={16} />
+                    </div>
+                    <p className="text-[11px] font-semibold text-[#5f6670]">Team</p>
+                  </div>
+                  <div className="flex w-[148px] flex-col items-center gap-2">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d9ebee] bg-[#f9fcfd] text-[#0fa3b1]">
+                      <Info size={16} />
+                    </div>
+                    <p className="text-[11px] font-semibold text-[#5f6670]">Scrum Master</p>
+                  </div>
+                  <div className="flex w-[172px] flex-col items-center gap-2">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d9ebee] bg-[#f9fcfd] text-[#0fa3b1]">
+                      <MessageCircle size={16} />
+                    </div>
+                    <p className="text-[11px] font-semibold text-[#5f6670]">Sprint Review + Retrospective</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-start gap-3">
+                    <ScrumFlowNode {...scrumFlowSteps[0]} />
+                    <div className="pt-[34px]"><FlowArrow width={44} /></div>
+                    <ScrumFlowNode {...scrumFlowSteps[1]} />
+                    <div className="pt-[34px]"><FlowArrow width={44} /></div>
+                    <ScrumFlowNode {...scrumFlowSteps[2]} />
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="pt-[34px]"><FlowArrow width={52} /></div>
+
+                    <div className="relative h-[250px] w-[320px]">
+                      <div className="absolute left-1/2 top-1/2 flex h-[190px] w-[190px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[14px] border-[#0fa3b1] bg-white text-center shadow-[0_8px_18px_rgba(15,163,177,0.06)]">
+                        <div>
+                          <p className="text-[13px] font-semibold tracking-[0.08em] text-[#5f6670]">SPRINT</p>
+                          <p className="mt-1 text-[34px] font-black leading-none text-[#1a2e35]">1-4</p>
+                          <p className="text-[14px] font-semibold tracking-[0.04em] text-[#5f6670]">WEEKS</p>
+                        </div>
+                      </div>
+
+                      <div className="absolute left-[58px] top-[128px] h-0 w-0 rotate-[16deg] border-y-[9px] border-r-[12px] border-y-transparent border-r-[#0fa3b1]" />
+                      <div className="absolute right-[64px] bottom-[52px] h-0 w-0 rotate-[-12deg] border-y-[9px] border-l-[12px] border-y-transparent border-l-[#0fa3b1]" />
+
+                      <div className="absolute right-[18px] top-[22px] flex h-[88px] w-[88px] items-center justify-center rounded-full border-[10px] border-[#0fa3b1] border-l-transparent border-b-transparent bg-white rotate-[32deg]">
+                        <div className="-rotate-[32deg] text-center">
+                          <p className="text-[16px] font-black text-[#1a2e35]">24 H</p>
+                        </div>
+                      </div>
+                      <div className="absolute right-[-52px] top-[54px]">
+                        <div className="rounded-[7px] border border-[#b9e2e7] bg-[#eff9fb] px-3 py-1.5">
+                          <p className="text-[11px] font-semibold leading-none text-[#0f5160]">Daily Scrum</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-[34px]"><FlowArrow width={70} /></div>
+
+                    <div className="flex min-w-0 flex-col items-center text-center">
+                      <div className="mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] bg-[#0fa3b1] text-white shadow-[0_4px_10px_rgba(15,163,177,0.10)]">
+                        <Send size={18} />
+                      </div>
+                      <h4 className="text-[12px] font-black leading-tight text-[#1a2e35]">Finished Work</h4>
+                      <p className="mt-1 max-w-[124px] text-[11px] leading-[1.45] text-[#6b7785]">Potentially shippable increment</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Reporting & Stakeholder Communication */}
           <div className="mb-16 lg:mb-0">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-11 h-11 rounded-[14px] bg-[#4a7c8c] text-white flex items-center justify-center border border-white/40">
+              <div className="w-11 h-11 rounded-[14px] bg-[#0fa3b1] text-white flex items-center justify-center border border-white/40">
                 <svg width="22" height="22" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 10H28" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
                   <path d="M8 18H22" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
@@ -1202,20 +1409,20 @@ const SDLCFlow = () => {
               {reportingStructure.map((report, idx) => (
                 <motion.div
                   key={idx}
-                  whileHover={{ y: -5 }}
-                  className="bg-white p-7 lg:p-9 2xl:p-10 rounded-[18px] border border-[#d9e4ea] transition-all min-h-[225px]"
+                  whileHover={{ x: 4 }}
+                  className="border-l-2 border-[#dbe3ea] pl-5 lg:pl-6 py-2"
                 >
-                  <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-3 mb-5">
                     <ReportingIcon variant={report.variant} />
                     <div>
                       <h4 className="text-[14px] font-black text-[#1a2e35]">{report.level}</h4>
-                      <p className="text-[12px] text-[#0f172a]/60 font-semibold tracking-[0.04em]">{report.frequency}</p>
+                      <p className="text-[12px] text-[#5f6670] font-semibold tracking-[0.04em]">{report.frequency}</p>
                     </div>
                   </div>
                   <div className="space-y-3">
                     {report.items.map((item, itemIdx) => (
                         <div key={itemIdx} className="flex items-center gap-3">
-                          <div className="w-2.5 h-2.5 rounded-full bg-[#4a7c8c]"></div>
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#0fa3b1]"></div>
                         <span className="text-[12px] text-[#1f2937] font-medium">{item}</span>
                       </div>
                     ))}
@@ -1233,6 +1440,7 @@ const SDLCFlow = () => {
 interface PortfolioItemProps {
   project: any;
   idx: number;
+  key?: React.Key;
 }
 
 const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
@@ -1243,34 +1451,29 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center border-b border-white/10 pb-10 last:border-0"
+      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center border-b border-[#e3e8ef] pb-10 last:border-0"
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-        <div className="relative group">
-          <div className="absolute -inset-6 bg-gradient-to-br from-[#0fa3b1]/8 to-[#2eccc7]/4 rounded-[28px] blur-2xl group-hover:from-[#0fa3b1]/15 group-hover:to-[#2eccc7]/10 transition-all duration-700"></div>
-          <div className="rounded-[20px] lg:rounded-[24px] overflow-hidden shadow-xl aspect-[16/10] relative bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-md border border-[#0fa3b1]/30 group-hover:border-[#0fa3b1]/50 transition-all duration-500">
+        <div className="relative">
+          <div className="surface-card surface-card-tight aspect-[16/10] overflow-hidden relative">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
             <img 
               src={project.image} 
               alt={project.title} 
               onLoad={() => setIsLoaded(true)}
               loading="lazy"
-              className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-full object-cover transition duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
         </div>
       </div>
 
       <div className={`order-2 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-        <div className="flex items-center gap-4 mb-5">
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7]"></div>
-            <span className="text-[12px] font-semibold text-[#0fa3b1] tracking-[0.08em]">{project.type}</span>
-          </div>
-          <span className="w-6 h-px bg-gradient-to-r from-[#0fa3b1]/40 to-transparent"></span>
-          <span className="text-[12px] font-semibold text-[#0fa3b1]/60 tracking-[0.04em]">{project.role}</span>
+        <div className="flex flex-wrap items-center gap-2 mb-5 text-[12px] text-[#5f6670]">
+          <span className="text-[#0fa3b1] font-semibold tracking-[0.08em]">{project.type}</span>
+          <span className="text-[#c0c7cf]">·</span>
+          <span className="text-[#0c1a24]">{project.role}</span>
         </div>
         
         <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
@@ -1279,18 +1482,17 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <p className="text-[15px] text-[#1a2e35]/80 leading-relaxed">
             {project.desc}
           </p>
-          <div className="bg-[#1a2e35] p-6 rounded-[18px] lg:rounded-[20px] border-l-4 border-[#4a7c8c] shadow-xl text-white relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#4a7c8c]/20 rounded-full -mr-12 -mt-12 blur-2xl"></div>
-            <p className="text-[12px] font-semibold text-[#4a7c8c] mb-2 tracking-[0.08em] relative z-10">Key impact</p>
-            <p className="text-[14px] leading-relaxed italic font-medium relative z-10 opacity-90">"{project.impact}"</p>
+          <div className="border-l-2 border-[#0fa3b1]/35 pl-5">
+            <p className="text-[12px] font-semibold text-[#0fa3b1] mb-2 tracking-[0.08em] uppercase">Key impact</p>
+            <p className="text-[14px] leading-relaxed italic text-[#0c1a24]">"{project.impact}"</p>
           </div>
         </div>
         
         <div className="mb-6">
-          <p className="text-[12px] font-semibold text-gray-500 tracking-[0.08em] mb-4">Technology stack</p>
+          <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-4">Technology stack</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag: string) => (
-              <span key={tag} className="bg-gray-50 text-[#1a2e35] px-4 py-2 rounded-xl text-[11px] font-semibold tracking-[0.03em] border border-gray-100">
+              <span key={tag} className="bg-[#f8fafc] text-[#1a2e35] px-4 py-2 rounded-xl text-[11px] font-semibold tracking-[0.03em] border border-[#e3e8ef]">
                 {tag}
               </span>
             ))}
@@ -1305,7 +1507,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           className="flex items-center gap-4 text-[#1a2e35] group/btn"
         >
           <span className="text-[12px] font-semibold tracking-[0.08em]">View case study</span>
-          <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover/btn:bg-[#1a2e35] group-hover/btn:text-white transition-all duration-500">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#d7e2e8] flex items-center justify-center group-hover/btn:bg-[#0c1a24] group-hover/btn:text-white transition-all duration-300">
             <ArrowUpRight size={18} />
           </div>
         </motion.a>
@@ -1324,7 +1526,7 @@ const Portfolio = () => {
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
       desc: "A comprehensive digital platform for MRT Jakarta's business operations, featuring real-time data integration and a modern user interface for enhanced stakeholder engagement. I managed the full lifecycle from requirements gathering to final deployment.",
       tags: ["React", "Next.js", "TypeScript", "NestJS", "PostgreSQL", "Tailwind CSS", "Figma"],
-      image: "/aset/project-mrt-jakarta.svg",
+      image: "/aset/project-mrt-jakarta.jpg",
       url: "https://bisnis.jakartamrt.co.id/"
     },
     {
@@ -1380,12 +1582,12 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-8 lg:py-12 px-6 relative overflow-hidden">
+    <section id="portfolio" className="py-8 lg:py-12 px-6">
       <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 px-6 xl:px-8 2xl:px-12">
         <div className="mb-6 lg:mb-10 2xl:mb-14">
-          <p className="text-[12px] font-semibold text-[#4a7c8c] mb-3 lg:mb-4 tracking-[0.14em]">Professional portfolio</p>
+          <p className="text-[12px] font-semibold text-[#0fa3b1] mb-3 lg:mb-4 tracking-[0.14em]">Professional portfolio</p>
           <h2 className="text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
-            Detailed <span className="text-gray-300 italic font-serif">Case Studies</span>
+            Detailed <span className="text-[#c3cbd4] italic font-serif">Case Studies</span>
           </h2>
         </div>
 
@@ -1395,12 +1597,12 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center border-t border-gray-100 pt-10">
+        <div className="mt-12 flex justify-center border-t border-[#e3e8ef] pt-10">
           <a
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 bg-[#1a2e35] text-white px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] hover:bg-[#4a7c8c] transition-all shadow-2xl"
+            className="inline-flex items-center gap-3 bg-[#0c1a24] text-white px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] hover:bg-[#0fa3b1] transition-all shadow-soft"
           >
             Explore More on GitHub
             <Github size={16} />
@@ -1424,7 +1626,7 @@ const Contact = () => {
     <section id="contact" className="py-16 lg:py-28 px-6 xl:px-8 2xl:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
-          <p className="text-[12px] font-semibold text-[#4a7c8c] mb-3 tracking-[0.14em]">Get in touch</p>
+          <p className="text-[12px] font-semibold text-[#0fa3b1] mb-3 tracking-[0.14em]">Get in touch</p>
           <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-6">
             Let&apos;s talk about your next project.
           </h2>
@@ -1434,49 +1636,49 @@ const Contact = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#4a7c8c] shadow">
+              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Globe size={18} />
               </div>
               <a
                 href={mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#4a7c8c] transition-colors"
+                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
               >
                 Sleman, Yogyakarta
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#4a7c8c] shadow">
+              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Linkedin size={18} />
               </div>
               <a
                 href={linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#4a7c8c] transition-colors"
+                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
               >
                 linkedin.com/in/oktawahyudi
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#4a7c8c] shadow">
+              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Mail size={18} />
               </div>
               <a
                 href={`mailto:${emailAddress}`}
-                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#4a7c8c] transition-colors"
+                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
               >
                 {emailAddress}
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#4a7c8c] shadow">
+              <div className="w-10 h-10 rounded-full bg-[#f1f5f9] flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Phone size={18} />
               </div>
               <a
                 href={`tel:${phoneNumber}`}
-                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#4a7c8c] transition-colors"
+                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
               >
                 {phoneNumber}
               </a>
@@ -1484,7 +1686,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-md border border-white/50 rounded-[24px] p-8 shadow-2xl">
+        <div className="surface-card surface-card-tight p-8">
           <p className="text-[12px] font-semibold tracking-[0.12em] text-[#0fa3b1] mb-4">WhatsApp</p>
           <h3 className="text-3xl font-black text-[#0a1620] mb-6">Chat with me directly</h3>
           <p className="text-[#1f2937]/80 leading-relaxed mb-8">
@@ -1494,7 +1696,7 @@ const Contact = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#2dd4bf] via-[#14b8a6] to-[#0ea5e9] text-white px-8 py-4 text-[13px] font-semibold tracking-[0.08em] shadow-[0_25px_45px_rgba(15,23,42,0.35)] transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0fa3b1] text-white px-8 py-4 text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:bg-[#0c918f]"
           >
             Message on WhatsApp
             <ArrowUpRight size={16} />
@@ -1521,21 +1723,19 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: idx * 0.1 }}
-      whileHover={{ y: -8, shadow: "0 20px 40px rgba(15, 163, 177, 0.2)" }}
-      className="min-h-[320px] min-w-[300px] lg:min-w-[340px] max-w-[370px] bg-white/50 backdrop-blur-md p-8 rounded-[18px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-xl hover:border-[#0fa3b1]/40 transition-all duration-500 flex flex-col justify-between group relative overflow-hidden"
+      whileHover={{ y: -6 }}
+      className="surface-card surface-card-tight min-h-[300px] min-w-[260px] sm:min-w-[290px] lg:min-w-[320px] xl:min-w-[340px] max-w-[370px] p-6 sm:p-8 flex flex-col justify-between gap-6"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0fa3b1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      
-      <div className="relative z-10">
+      <div>
         <div className="flex gap-1 mb-4">
           {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#0fa3b1" className="text-[#0fa3b1]" />)}
         </div>
-        <p className="text-[13px] text-[#0d1f2b]/70 italic leading-relaxed font-medium line-clamp-5">
+        <p className="text-[13px] text-[#0d1f2b]/70 italic leading-relaxed font-medium">
           "{t.text}"
         </p>
       </div>
       
-      <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-[#0fa3b1]/10">
+      <div className="flex items-center gap-3 pt-4 border-t border-[#e3e8ef]">
         <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
           <img 
@@ -1549,7 +1749,7 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
         </div>
         <div className="min-w-0">
           <h4 className="font-black text-[13px] text-[#0d1f2b] tracking-tight truncate">{t.name}</h4>
-          <p className="text-[11px] text-[#0fa3b1]/70 font-semibold tracking-[0.04em] truncate">{t.company}</p>
+          <p className="text-[11px] text-[#5f6670] font-semibold tracking-[0.04em] truncate">{t.company}</p>
         </div>
       </div>
     </motion.div>
@@ -1654,7 +1854,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="feedback" className="py-16 lg:py-32 px-6 relative overflow-hidden">
+    <section id="feedback" className="py-16 lg:py-32 px-6 bg-[#f4f6fb]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16">
           <p className="text-[12px] font-semibold text-[#0fa3b1] mb-3 tracking-[0.14em]">Feedback</p>
@@ -1761,18 +1961,18 @@ const LegalPage = ({
   const content = LEGAL_CONTENT[type];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] text-[#1a2e35]">
+    <div className="min-h-screen bg-[#f4f6fb] text-[#1a2e35]">
       <div className="max-w-5xl mx-auto px-6 lg:px-8 py-10 lg:py-14">
         <button
           type="button"
           onClick={() => onRouteChange('/')}
-          className="inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-white/80 px-5 py-2.5 text-[14px] font-semibold tracking-[0.04em] text-[#173041] shadow-sm transition hover:border-[#4a7c8c]/40 hover:text-[#4a7c8c]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-white px-5 py-2.5 text-[14px] font-semibold tracking-[0.04em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
         >
           Back to Home
         </button>
 
-        <div className="mt-8 rounded-[24px] border border-white/60 bg-white/75 p-8 lg:p-12 shadow-[0_28px_70px_rgba(15,23,42,0.10)] backdrop-blur-md">
-          <p className="text-[12px] font-semibold tracking-[0.14em] text-[#4a7c8c]">
+        <div className="mt-8 rounded-[24px] border border-[#e3edf3] bg-white p-8 lg:p-12 shadow-soft">
+          <p className="text-[12px] font-semibold tracking-[0.14em] text-[#0fa3b1]">
             Legal Information
           </p>
           <h1 className="mt-4 text-4xl lg:text-6xl font-black tracking-tight text-[#102635]">
@@ -1796,7 +1996,7 @@ const LegalPage = ({
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-4 text-[14px] font-semibold text-[#4a7c8c]">
+        <div className="mt-8 flex flex-wrap gap-4 text-[14px] font-semibold text-[#0fa3b1]">
           <button type="button" onClick={() => onRouteChange('/privacy')} className="hover:text-[#173041] transition-colors">
             Privacy Policy
           </button>
@@ -1822,9 +2022,7 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
   return (
     <footer className="px-6 pb-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#070b10] via-[#0f172a] to-[#10233a] text-white shadow-[0_40px_90px_rgba(2,17,33,0.8)]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#3ab5c7_10%,_transparent_60%)] opacity-40 blur-3xl" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#102333_0%,_transparent_60%)] opacity-70" />
+        <div className="rounded-[24px] bg-[#0f1724] text-white shadow-soft">
           <div className="relative z-10 px-8 py-10 lg:px-12 lg:py-14 space-y-10">
             <div>
               <div className="text-3xl lg:text-4xl font-black tracking-tight">OKTA.</div>
@@ -2026,9 +2224,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen pb-24 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] font-sans selection:bg-[#4a7c8c] selection:text-white antialiased relative overflow-hidden">
-      {/* Noise Texture Overlay */}
-      <div className="fixed inset-0 opacity-[0.03] pointer-events-none -z-50 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
+    <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
 
       {pathname === '/privacy' ? (
         <LegalPage type="privacy" onRouteChange={handleRouteChange} />

@@ -6,6 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   const siteUrl = (env.VITE_SITE_URL || 'https://oktawahyu.web.id').replace(/\/$/, '');
+  const apiPort = process.env.VITE_API_PORT || env.VITE_API_PORT || '3000';
   return {
     plugins: [
       react(),
@@ -31,7 +32,7 @@ export default defineConfig(({mode}) => {
       hmr: process.env.DISABLE_HMR !== 'true',
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: `http://localhost:${apiPort}`,
           changeOrigin: true,
         },
       },
