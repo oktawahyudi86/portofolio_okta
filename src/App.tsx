@@ -597,8 +597,8 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
       </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-4 pb-4">
-        <nav className="navbar-glass mx-auto max-w-md rounded-[22px] px-3 py-3">
+      <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-3 pb-3">
+        <nav className="navbar-glass mx-auto max-w-md rounded-[20px] px-2.5 py-2.5">
           <div className="flex items-center justify-between gap-1">
             {mobileMenuItems.map((item, idx) => (
               <a
@@ -613,7 +613,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   e.preventDefault();
                   onNavigate(item.href);
                 }}
-                className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[14px] px-2 py-3 transition-colors ${
+                className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[12px] px-1.5 py-2.5 transition-colors ${
                   activeSection === item.href.replace('#', '')
                     ? 'bg-white/90 text-[#0f1724]'
                     : 'text-[#0f1724]/70 hover:text-[#0f1724]'
@@ -631,7 +631,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                 >
                   {React.cloneElement(item.icon, { size: 18 })}
                 </motion.div>
-                <span className={`text-[10px] font-semibold leading-none transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
+                <span className={`text-[9px] font-semibold leading-none transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
                   {'mobileLabel' in item ? item.mobileLabel : item.name}
                 </span>
               </a>
@@ -653,9 +653,10 @@ const heroStats = [
 ];
 
 const Hero = () => {
+
   return (
-    <section id="home" className="section-shell section-tone-hero pt-[8.5rem] lg:pt-[16rem] pb-12 lg:pb-20 px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
-      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
+    <section id="home" className="section-shell section-tone-hero pt-12 sm:pt-16 lg:pt-[16rem] pb-10 lg:pb-20 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -665,23 +666,23 @@ const Hero = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="lg:hidden mb-10"
+          className="lg:hidden mb-6"
         >
           <div
             onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
-            className="bg-white rounded-[18px] border border-[#e3e8ef] shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
+            className="bg-white rounded-[16px] border border-[#e3e8ef] shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
           >
             <div className="accent-gradient-soft w-10 h-10 rounded-[14px] flex items-center justify-center text-[#0fa3b1]">
               <MessageCircle size={18} />
             </div>
-            <p className="text-[13px] font-bold text-[#5f6670]">Ajukan pertanyaan ke OktaAI</p>
+            <p className="text-[12px] font-bold text-[#5f6670]">Talk With Okta AI</p>
           </div>
         </motion.div>
 
-        <div className="accent-gradient-soft inline-block mt-16 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-6 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
+        <div className="accent-gradient-soft inline-block mt-6 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[11px] lg:text-[13px] border border-[#0fa3b1]/20">
           <span className="accent-gradient-text">IT Project Manager</span>
         </div>
-        <h1 className="text-[clamp(2.6rem,7vw,4.4rem)] font-black text-[#0c1a24] leading-[0.96] mb-5 tracking-[-0.03em]">
+        <h1 className="text-[clamp(2.35rem,11vw,4.4rem)] font-black text-[#0c1a24] leading-[0.96] mb-4 tracking-[-0.03em]">
           <span className="block">Leading software</span>
           <span className="accent-gradient-text block pb-1">delivery with clarity</span>
           <span className="block">
@@ -689,25 +690,29 @@ const Hero = () => {
           </span>
         </h1>
 
-        <div className="mb-5 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-5">
+        <div className="mb-4 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-4 sm:pl-5">
           <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2">
             <span className="accent-gradient-text">What I bring</span>
           </p>
-          <p className="text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
-            Senior-level project coordination for product, enterprise, and SaaS delivery.
+          <p className="text-[14px] sm:text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
+            Hands-on project coordination for product, enterprise, and SaaS delivery.
           </p>
-          <ul className="space-y-1 text-[14px] text-[#5f6670]">
-            <li>Sprint planning and release coordination</li>
-            <li>Stakeholder, team, and delivery alignment</li>
-            <li>Enterprise, SaaS, and digital product execution</li>
+          <ul className="space-y-1 text-[13px] sm:text-[14px] text-[#5f6670]">
+            {[
+              'Sprint planning and release coordination',
+              'Stakeholder, team, and delivery alignment',
+              'Enterprise, SaaS, and digital product execution',
+            ].map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-6 mb-8 max-w-[520px]">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-5 mb-6 max-w-[520px]">
           {heroStats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <span className="text-4xl font-black text-[#0c1a24]">{stat.value}</span>
-              <p className="text-[12px] text-[#5f6670] tracking-[0.08em] uppercase">{stat.label}</p>
+              <span className="text-[2rem] sm:text-4xl font-black text-[#0c1a24]">{stat.value}</span>
+              <p className="text-[10px] sm:text-[12px] text-[#5f6670] tracking-[0.08em] uppercase">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -723,7 +728,7 @@ const Hero = () => {
           <div className="absolute inset-x-[4%] top-[14%] bottom-[7%] rounded-[22px] bg-[radial-gradient(circle_at_72%_85%,rgba(114,179,154,0.95),transparent_34%),linear-gradient(180deg,#112a31_0%,#1e3b40_58%,#78bea1_100%)] shadow-[0_26px_56px_rgba(15,32,39,0.18)]" />
           <div className="absolute inset-x-[9%] top-[-4%] bottom-[7%] z-10 flex items-end justify-center">
             <img 
-              src="/aset/profil-hero-new.png" 
+              src="/aset/profil-hero-new.webp" 
               alt="Okta" 
               loading="eager"
               decoding="async"
@@ -735,16 +740,16 @@ const Hero = () => {
           </div>
           <div className="pointer-events-none absolute inset-x-[4%] bottom-[7%] h-[14%] rounded-b-[22px] bg-[linear-gradient(180deg,rgba(17,42,49,0)_0%,rgba(30,59,64,0.08)_46%,rgba(120,190,161,0.34)_100%)] z-20" />
 
-          <div className="absolute left-[1%] bottom-[14%] z-30 rounded-[14px] border border-[rgba(114,179,154,0.26)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.12))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.09)] backdrop-blur-md sm:left-[-9%] sm:bottom-[17%] sm:px-4 sm:py-3">
-            <p className="text-[11px] font-semibold tracking-[0.04em] sm:text-[12px]">
-              <span className="accent-gradient-text">B.Sc. in Informatics</span>
+          <div className="absolute left-[1%] bottom-[14%] z-30 rounded-[14px] border border-[rgba(30,59,64,0.18)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(220,243,234,0.92))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.09)] backdrop-blur-md sm:left-[-9%] sm:bottom-[17%] sm:px-4 sm:py-3">
+            <p className="text-[11px] font-semibold tracking-[0.04em] text-[#17363d] sm:text-[12px]">
+              B.Sc. in Informatics
             </p>
           </div>
 
-          <div className="absolute right-[2%] top-[52%] z-30 flex items-center gap-2 rounded-[14px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.10)] backdrop-blur-md sm:hidden">
+          <div className="absolute right-[1%] top-[52%] z-30 flex max-w-[150px] items-center gap-2 rounded-[14px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.10)] backdrop-blur-md sm:hidden">
             <div className="flex h-9 w-9 items-center justify-center rounded-[11px] bg-[linear-gradient(135deg,rgba(15,32,39,0.05),rgba(114,179,154,0.16))]">
               <img
-                src="/aset/amikom-logo.png"
+                src="/aset/amikom-logo.webp"
                 alt="AMIKOM University logo"
                 className="h-7 w-7 object-contain"
                 loading="lazy"
@@ -753,8 +758,8 @@ const Hero = () => {
             </div>
             <div className="text-left">
               <p className="text-[11px] font-black leading-tight text-[#102a31]">AMIKOM University</p>
-              <p className="mt-1 inline-flex rounded-full bg-[rgba(114,179,154,0.18)] px-2 py-0.5 text-[9px] font-semibold tracking-[0.04em]">
-                <span className="accent-gradient-text">2016 - 2020</span>
+              <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.92)] px-2 py-0.5 text-[8px] font-semibold tracking-[0.04em] text-[#21424d]">
+                Bachelor's Degree, 2016 - 2020
               </p>
             </div>
           </div>
@@ -762,7 +767,7 @@ const Hero = () => {
           <div className="absolute right-[-4%] top-[48%] z-30 hidden sm:flex items-center gap-3 rounded-[16px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-4 py-3 shadow-[0_16px_28px_rgba(15,32,39,0.10)] backdrop-blur-md">
             <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[linear-gradient(135deg,rgba(15,32,39,0.05),rgba(114,179,154,0.16))]">
               <img
-                src="/aset/amikom-logo.png"
+                src="/aset/amikom-logo.webp"
                 alt="AMIKOM University logo"
                 className="h-8 w-8 object-contain"
                 loading="lazy"
@@ -771,8 +776,8 @@ const Hero = () => {
             </div>
             <div className="text-left">
               <p className="text-[13px] font-black text-[#102a31] leading-tight">AMIKOM University</p>
-              <p className="mt-1 inline-flex rounded-full bg-[rgba(114,179,154,0.18)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.06em]">
-                <span className="accent-gradient-text">Bachelor's Degree, 2016 - 2020</span>
+              <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.94)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.06em] text-[#21424d]">
+                Bachelor's Degree, 2016 - 2020
               </p>
             </div>
           </div>
@@ -789,7 +794,7 @@ const Journey = () => {
       date: "Mar 2020 - Apr 2021",
       location: "Yogyakarta",
       company: "PT Sarana Insan Muda Selaras",
-      label: "Sarana Insan Muda Selaras",
+      label: "PT Sarana Insan Muda Selaras",
       position: "Technical E-Government & Corporate Support",
       summary: "Built early delivery discipline through government and corporate implementation work, supporting deployment readiness, coordination, and operational follow-through.",
       highlight: "Implementation support and operational coordination"
@@ -797,8 +802,8 @@ const Journey = () => {
     {
       date: "Aug 2021 - Jan 2023",
       location: "Surabaya",
-      company: "Biznet (PT Supra Primatama Nusantara)",
-      label: "Biznet",
+      company: "PT Supra Primatama Nusantara",
+      label: "PT Supra Primatama Nusantara",
       position: "Project Engineer FTTH / Project Building",
       summary: "Managed infrastructure rollout activities covering vendor coordination, QA/QC control, and field execution across fiber and building projects.",
       highlight: "Infrastructure rollout, QA/QC, and vendor coordination"
@@ -806,8 +811,8 @@ const Journey = () => {
     {
       date: "Jun 2023 - Dec 2023",
       location: "Yogyakarta",
-      company: "Divistant (PT Divistant Teknologi Indonesia)",
-      label: "Divistant",
+      company: "PT Divistant Teknologi Indonesia",
+      label: "PT Divistant Teknologi Indonesia",
       position: "Project Manager",
       summary: "Managed software delivery from project initiation through closure, maintaining execution cadence, client communication, and day-to-day delivery control.",
       highlight: "Agile software delivery ownership"
@@ -815,8 +820,8 @@ const Journey = () => {
     {
       date: "Dec 2023 - Jan 2025",
       location: "Yogyakarta",
-      company: "JITILab (PT Juragan Inovator Teknologi Indonesia)",
-      label: "JITILab",
+      company: "PT Juragan Inovator Teknologi Indonesia",
+      label: "PT Juragan Inovator Teknologi Indonesia",
       position: "Product & Project Manager",
       summary: "Owned web and mobile product delivery across planning, design, testing, deployment, budget monitoring, and delivery risk management.",
       highlight: "Product lifecycle ownership and delivery governance"
@@ -824,8 +829,8 @@ const Journey = () => {
     {
       date: "Jan 2025 - May 2025",
       location: "Jakarta",
-      company: "SALT (PT Ako Media Asia)",
-      label: "SALT",
+      company: "PT Ako Media Asia",
+      label: "PT Ako Media Asia",
       position: "IT Project Manager",
       summary: "Led delivery coordination for MAXstream enhancements and migration into MyTelkomsel, driving sprint execution, stakeholder alignment, and release readiness.",
       highlight: "Enterprise migration and sprint governance"
@@ -834,7 +839,7 @@ const Journey = () => {
       date: "Jun 2025 - Present",
       location: "Yogyakarta",
       company: "PT Dazo Kreatif Indonesia",
-      label: "Dazo Kreatif",
+      label: "PT Dazo Kreatif Indonesia",
       position: "IT Project Manager",
       summary: "Lead AI SaaS delivery across order management, chat automation, digital storefronts, and omnichannel initiatives with a strong focus on planning, coordination, and release execution.",
       highlight: "AI SaaS, product delivery, and execution control",
@@ -846,7 +851,7 @@ const Journey = () => {
     <div className="mx-auto flex w-[188px] flex-col items-center text-center">
       <div className="mb-2 flex min-h-[20px] items-center justify-center gap-2">
         <p className="text-[11px] font-semibold tracking-[0.08em]">
-          <span className="accent-gradient-text">{exp.date}</span>
+            <span className="accent-gradient-text">{exp.date}</span>
         </p>
         {exp.current && (
           <span className="rounded-full border border-[#cfe6ea] bg-[#f4fafb] px-2 py-0.5 text-[9px] font-semibold tracking-[0.08em]">
@@ -864,7 +869,7 @@ const Journey = () => {
   );
 
   return (
-    <section id="journey" className="lazy-render-section section-shell section-tone-journey py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
+    <section id="journey" className="lazy-render-section section-shell section-tone-journey py-12 lg:py-24 2xl:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16 2xl:mb-20">
           <p className="section-kicker text-[12px] font-semibold tracking-[0.14em] mb-3">
@@ -1017,7 +1022,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="lazy-render-section section-shell section-tone-skills py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
+    <section id="skills" className="lazy-render-section section-shell section-tone-skills py-12 lg:py-24 2xl:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 relative overflow-hidden">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
@@ -1211,13 +1216,13 @@ const SDLCFlow = () => {
   ];
 
   const tools = [
-    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "/aset/trello.png" },
-    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "/aset/jira.png" },
-    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "/aset/confluence.png" },
-    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "/aset/notion.png" },
-    { name: "Slack", color: "from-rose-300 to-red-500", icon: "/aset/slack.png" },
-    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "/aset/gitlab.png" },
-    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "/aset/office.png" },
+    { name: "Trello", color: "from-blue-400 to-blue-600", icon: "/aset/trello.webp" },
+    { name: "Jira", color: "from-blue-500 to-blue-700", icon: "/aset/jira.webp" },
+    { name: "Confluence", color: "from-cyan-400 to-blue-500", icon: "/aset/confluence.webp" },
+    { name: "Notion", color: "from-slate-400 to-slate-600", icon: "/aset/notion.webp" },
+    { name: "Slack", color: "from-rose-300 to-red-500", icon: "/aset/slack.webp" },
+    { name: "GitLab", color: "from-red-400 to-orange-600", icon: "/aset/gitlab.webp" },
+    { name: "PowerPoint", color: "from-orange-400 to-red-600", icon: "/aset/office.webp" },
     { name: "Google Sheets", color: "from-green-400 to-emerald-600", icon: "GS" }
   ];
 
@@ -1248,7 +1253,7 @@ const SDLCFlow = () => {
 
   return (
     <>
-      <section id="tools" className="lazy-render-section section-shell section-tone-tools py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
+      <section id="tools" className="lazy-render-section section-shell section-tone-tools py-12 lg:py-24 2xl:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
@@ -1297,7 +1302,7 @@ const SDLCFlow = () => {
         </div>
       </section>
 
-      <section id="sdlc" className="lazy-render-section section-shell section-tone-tools py-12 lg:py-24 2xl:py-32 px-6 xl:px-8 2xl:px-12">
+      <section id="sdlc" className="lazy-render-section section-shell section-tone-tools py-12 lg:py-24 2xl:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
@@ -1312,20 +1317,20 @@ const SDLCFlow = () => {
 
           <div className="mb-16 lg:mb-20 2xl:mb-24">
             <div className="xl:hidden">
-              <div className="rounded-[22px] border border-[#e3e8ef] bg-[#fbfdff] p-5 sm:p-6">
-                <div className="mb-5 flex flex-wrap gap-2">
-                  {["Product Owner", "Team", "Scrum Master", "Review & Retro"].map((role) => (
-                    <span key={role} className="rounded-full border border-[#d9ebee] bg-white px-3 py-1.5 text-[10px] font-semibold tracking-[0.04em] text-[#5f6670]">
+              <div className="rounded-[20px] border border-[#e3e8ef] bg-[#fbfdff] p-4 sm:p-6">
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {["Product Owner", "Team", "Scrum Master", "Sprint Review + Retrospective"].map((role) => (
+                    <span key={role} className="rounded-full border border-[#d9ebee] bg-white px-2.5 py-1.5 text-[9px] font-semibold tracking-[0.03em] text-[#5f6670]">
                       {role}
                     </span>
                   ))}
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {scrumFlowSteps.map((step, idx) => (
                     <React.Fragment key={step.title}>
-                      <div className="flex items-center gap-4 rounded-[18px] border border-[#e3e8ef] bg-white p-4">
-                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#55c8d5] text-white">
+                      <div className="flex items-center gap-3 rounded-[16px] border border-[#e3e8ef] bg-white p-3.5">
+                        <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-[#55c8d5] text-white">
                           {step.icon}
                         </div>
                         <div>
@@ -1345,11 +1350,11 @@ const SDLCFlow = () => {
                   ))}
                 </div>
 
-                <div className="relative mt-6 rounded-[22px] border border-[#dcecf0] bg-white px-4 py-6">
-                  <div className="mx-auto flex h-[168px] w-[168px] items-center justify-center rounded-full border-[14px] border-[#0fa3b1] text-center">
+                <div className="relative mt-5 rounded-[20px] border border-[#dcecf0] bg-white px-4 py-5">
+                  <div className="mx-auto flex h-[152px] w-[152px] items-center justify-center rounded-full border-[12px] border-[#0fa3b1] text-center">
                     <div>
                       <p className="text-[11px] font-semibold tracking-[0.08em] text-[#5f6670]">SPRINT</p>
-                      <p className="mt-1 text-[26px] font-black leading-none text-[#1a2e35]">1-4</p>
+                      <p className="mt-1 text-[24px] font-black leading-none text-[#1a2e35]">1-4</p>
                       <p className="text-[12px] font-semibold tracking-[0.04em] text-[#5f6670]">WEEKS</p>
                     </div>
                   </div>
@@ -1365,19 +1370,19 @@ const SDLCFlow = () => {
                   <FlowArrow width={92} />
                 </div>
 
-                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="rounded-[18px] border border-[#e3e8ef] bg-white p-4 text-center">
+                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="rounded-[16px] border border-[#e3e8ef] bg-white p-3.5 text-center">
                     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#0fa3b1] text-white">
                       <Send size={18} />
                     </div>
                     <h4 className="text-[13px] font-black text-[#0c1a24]">Finished Work</h4>
                     <p className="mt-1 text-[11px] text-[#5f6670]">Potentially shippable increment</p>
                   </div>
-                  <div className="rounded-[18px] border border-[#e3e8ef] bg-white p-4 text-center">
+                  <div className="rounded-[16px] border border-[#e3e8ef] bg-white p-3.5 text-center">
                     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#55c8d5] text-white">
                       <MessageCircle size={18} />
                     </div>
-                    <h4 className="text-[13px] font-black text-[#0c1a24]">Review & Retrospective</h4>
+                    <h4 className="text-[13px] font-black text-[#0c1a24]">Sprint Review + Retrospective</h4>
                     <p className="mt-1 text-[11px] text-[#5f6670]">Inspect results and improve the next sprint</p>
                   </div>
                 </div>
@@ -1517,8 +1522,17 @@ interface PortfolioItemProps {
   key?: React.Key;
 }
 
+const portfolioImageFallbacks: Record<string, string> = {
+  "/aset/project-mrt-jakarta.webp": "/aset/project-mrt-jakarta.svg",
+  "/aset/project-yulo-laundry.webp": "/aset/project-yulo-laundry.svg",
+  "/aset/project-dazo-ai.webp": "/aset/project-dazo-ai.svg",
+  "/aset/project-maxtream.webp": "/aset/project-maxtream.svg",
+  "/aset/project-bpjstk.webp": "/aset/project-bpjstk.svg",
+};
+
 const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
+  const [imageSrc, setImageSrc] = React.useState(project.image);
 
   return (
     <motion.div
@@ -1532,9 +1546,16 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <div className="surface-card surface-card-tight aspect-[16/10] overflow-hidden relative">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
             <img
-              src={project.image}
+              src={imageSrc}
               alt={project.title}
               onLoad={() => setIsLoaded(true)}
+              onError={() => {
+                const fallbackSrc = portfolioImageFallbacks[imageSrc] || "/aset/og-preview.jpg";
+                if (fallbackSrc !== imageSrc) {
+                  setIsLoaded(false);
+                  setImageSrc(fallbackSrc);
+                }
+              }}
               loading="lazy"
               decoding="async"
               className={`w-full h-full object-cover transition duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -1605,7 +1626,7 @@ const Portfolio = () => {
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
       desc: "Led end-to-end delivery of MRT Jakarta's business website, coordinating requirement gathering, scope alignment, design-development handoff, testing, and deployment. The main challenge was keeping multiple stakeholder requests aligned without slowing delivery.",
       tags: ["Requirement gathering", "Stakeholder alignment", "UAT coordination", "Deployment"],
-      image: "/aset/project-mrt-jakarta.jpg",
+      image: "/aset/project-mrt-jakarta.webp",
       url: "https://bisnis.jakartamrt.co.id/"
     },
     {
@@ -1615,7 +1636,7 @@ const Portfolio = () => {
       impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
       desc: "Managed product delivery for a laundry management app focused on order flow, customer notifications, and operational reporting. My role covered backlog prioritization, stakeholder communication, and keeping releases aligned with business needs.",
       tags: ["Product backlog", "Workflow improvement", "Release planning", "Client communication"],
-      image: "/aset/project-yulo-laundry.svg",
+      image: "/aset/project-yulo-laundry.webp",
       url: "https://play.google.com/store/apps/details?id=com.yulo.customer&hl=id"
     },
     {
@@ -1625,7 +1646,7 @@ const Portfolio = () => {
       impact: "Successfully integrated LLM capabilities, resulting in a 50% increase in user engagement within the first month.",
       desc: "Coordinated delivery for an AI SaaS and operations platform, turning fast-changing business requests into clear sprint priorities, milestone tracking, and release follow-up. This project is a strong example of balancing innovation with execution discipline.",
       tags: ["AI SaaS delivery", "Milestone tracking", "Feature rollout", "Cross-team coordination"],
-      image: "/aset/project-dazo-ai.svg",
+      image: "/aset/project-dazo-ai.webp",
       url: "https://dazo.id/"
     },
     {
@@ -1635,7 +1656,7 @@ const Portfolio = () => {
       impact: "Delivered robust streaming infrastructure supporting 50K+ concurrent users with 99.8% uptime.",
       desc: "Supported delivery for MAXstream enhancement work and transformation into the MyTelkomsel ecosystem. My contribution focused on sprint execution, requirement clarity, stakeholder coordination, and keeping release readiness under control.",
       tags: ["Enterprise migration", "Sprint governance", "Requirement alignment", "Release readiness"],
-      image: "/aset/project-maxtream.svg",
+      image: "/aset/project-maxtream.webp",
       url: "https://maxstream.tv/home"
     },
     {
@@ -1645,14 +1666,14 @@ const Portfolio = () => {
       impact: "Streamlined benefit processing for 40M+ participants, reducing processing time by 60%.",
       desc: "Handled delivery coordination for a large-scale government integration system where stakeholder alignment, compliance awareness, and rollout stability were critical. This case reflects the type of structured execution often discussed in PM interviews.",
       tags: ["Enterprise integration", "Regulatory coordination", "Risk management", "Rollout control"],
-      image: "/aset/project-bpjstk.svg",
+      image: "/aset/project-bpjstk.webp",
       url: "https://www.bpjsketenagakerjaan.go.id/"
     }
   ];
 
   return (
-    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio py-8 lg:py-12 px-6">
-      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10 px-6 xl:px-8 2xl:px-12">
+    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio py-8 lg:py-12 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
         <div className="mb-6 lg:mb-10 2xl:mb-14">
           <p className="section-kicker text-[12px] font-semibold mb-3 lg:mb-4 tracking-[0.14em]">
             <span className="accent-gradient-text">Selected Project Experience</span>
@@ -1698,16 +1719,16 @@ const Contact = () => {
   const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${whatsAppMessage}`;
 
   return (
-    <section id="contact" className="lazy-render-section section-shell section-tone-contact py-16 lg:py-28 px-6 xl:px-8 2xl:px-12">
-      <div className="section-inner max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="contact" className="lazy-render-section section-shell section-tone-contact py-14 lg:py-28 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
           <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
             <span className="accent-gradient-text">Get in touch</span>
           </p>
-          <h2 className="text-5xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-6">
+          <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-5">
             Let&apos;s talk about your next project.
           </h2>
-          <p className="text-[#1f2937]/70 text-[15px] leading-relaxed max-w-lg mb-8">
+          <p className="text-[#1f2937]/70 text-[14px] sm:text-[15px] leading-relaxed max-w-lg mb-7">
             If you need an IT Project Manager who can coordinate delivery, align stakeholders, and keep execution on track, feel free to reach out via WhatsApp. I&apos;m open to discussing roles, projects, and collaboration opportunities.
           </p>
 
@@ -1763,19 +1784,19 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="surface-card surface-card-tight p-8">
+        <div className="surface-card surface-card-tight p-6 sm:p-8">
           <p className="section-kicker text-[12px] font-semibold tracking-[0.12em] mb-4">
             <span className="accent-gradient-text">WhatsApp</span>
           </p>
-          <h3 className="text-3xl font-black text-[#0a1620] mb-6">Chat with me directly</h3>
-          <p className="text-[#1f2937]/80 leading-relaxed mb-8">
+          <h3 className="text-[1.75rem] sm:text-3xl font-black text-[#0a1620] mb-5">Chat with me directly</h3>
+          <p className="text-[#1f2937]/80 text-[14px] sm:text-base leading-relaxed mb-7">
             Send a short brief, role overview, or project need, and I&apos;ll respond to continue the conversation.
           </p>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="accent-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:opacity-95"
+            className="accent-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-[12px] sm:text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:opacity-95"
           >
             Message on WhatsApp
             <ArrowUpRight size={16} />
@@ -1839,34 +1860,34 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Budi Santoso",
-      company: "PT. Supra Primatama",
-      image: "/aset/testimonial-budi.jpg",
-      text: "Okta brought structure, follow-through, and calm coordination to a delivery environment that required both technical understanding and strong execution control."
+      name: "Pandu Wicaksono",
+      company: "Lead Project Building, Biznet",
+      image: "/aset/testimonial-budi.webp",
+      text: "Okta was consistent in keeping project progress on track and communication clear across the team. He was responsive when issues came up in the field and helped coordination stay orderly until the work was completed."
     },
     {
-      name: "Siti Nurhaliza",
-      company: "PT. Juragan Inovator",
-      image: "/aset/testimonial-siti.jpg",
-      text: "He handled planning and execution with strong ownership. Milestones stayed visible, communication stayed clear, and the team always knew what mattered most."
+      name: "Dwi Antoro",
+      company: "HR Manager, JITILab.id",
+      image: "/aset/testimonial-siti.webp",
+      text: "From an HR and collaboration perspective, Okta showed good ownership in managing delivery and working across functions. He communicated clearly, handled responsibilities well, and contributed to a more structured project environment."
     },
     {
-      name: "Ahmad Prasetyo",
-      company: "PT. Dazo Kreatif",
-      image: "/aset/testimonial-ahmad.jpg",
-      text: "Okta combines delivery discipline with practical leadership. He keeps teams aligned, follows through on blockers, and makes progress easier to trust."
+      name: "Muhammad Madum",
+      company: "CEO, Dazo.id",
+      image: "/aset/testimonial-ahmad.webp",
+      text: "Okta helped turn ideas and business needs into a delivery process the team could actually execute. He kept priorities visible, followed up on blockers, and made it easier for us to move faster without losing direction."
     },
     {
-      name: "Ratna Wijaya",
-      company: "PT. Digital Solusi",
-      image: "/aset/testimonial-ratna.jpg",
-      text: "What stands out is his ability to connect business expectations with delivery reality. He communicates clearly, escalates appropriately, and keeps projects moving."
+      name: "Edy",
+      company: "Manager E-Gov & Support, Lifemedia.id",
+      image: "/aset/testimonial-ratna.webp",
+      text: "What stood out from Okta was his discipline in follow-up and his ability to keep technical work aligned with operational needs. He was dependable in coordination, especially when timelines and stakeholder expectations had to be managed carefully."
     },
     {
-      name: "Rido Pratama",
-      company: "PT. Innovation Hub",
-      image: "/aset/testimonial-rido.jpg",
-      text: "He is dependable in high-pressure situations and strong at keeping delivery organized. The team benefited from his consistency, ownership, and communication style."
+      name: "Yogi Yulianto",
+      company: "Backend Engineer, Detik.com",
+      image: "/aset/testimonial-rido.webp",
+      text: "Okta is easy to work with because he keeps discussions focused and makes priorities easier to understand from the engineering side. He brings structure to planning, follows through on action items, and helps delivery move with less confusion."
     }
   ];
 
@@ -1934,7 +1955,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="feedback" className="lazy-render-section section-shell section-tone-feedback py-16 lg:py-32 px-6">
+    <section id="feedback" className="lazy-render-section section-shell section-tone-feedback py-16 lg:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl mx-auto">
         <div className="mb-10 lg:mb-16">
           <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
@@ -2046,7 +2067,7 @@ const LegalPage = ({
 
   return (
     <div className="min-h-screen bg-[#f4f6fb] text-[#1a2e35]">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8 py-10 lg:py-14">
+      <div className="max-w-5xl mx-auto px-4 sm:px-5 md:px-6 lg:px-8 py-10 lg:py-14">
         <button
           type="button"
           onClick={() => onRouteChange('/')}
@@ -2104,21 +2125,21 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
   ];
 
   return (
-    <footer className="lazy-render-footer section-shell px-6 pb-12 relative overflow-hidden">
+    <footer className="lazy-render-footer section-shell px-4 sm:px-5 md:px-6 pb-10 sm:pb-12 relative overflow-hidden">
       <div className="section-inner max-w-7xl mx-auto">
         <div className="footer-surface rounded-[24px] text-white shadow-soft">
-          <div className="relative z-10 px-6 py-8 md:px-8 md:py-10 space-y-8">
+          <div className="relative z-10 px-5 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 space-y-6 sm:space-y-8">
             <div className="space-y-2">
               <div className="text-3xl font-black tracking-tight">OKTA.</div>
               <p className="text-[14px] text-white/70 max-w-lg leading-relaxed">
-                Senior-minded project delivery for digital products, enterprise initiatives, and software teams that need stronger alignment and steadier execution.
+                Project delivery for digital products, enterprise initiatives, and software teams that need stronger alignment and steadier execution.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 text-sm md:grid-cols-4 md:gap-8">
+            <div className="grid grid-cols-2 gap-5 text-sm md:grid-cols-4 md:gap-8">
               <div className="space-y-1">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
-                  <span className="accent-gradient-text">Navigation</span>
+                  <span className="text-[#bfe7da]">Navigation</span>
                 </p>
                 <div className="space-y-1 text-white/80">
                   {navPrimary.map(label => (
@@ -2130,17 +2151,17 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
-                  <span className="accent-gradient-text">Contact</span>
+                  <span className="text-[#bfe7da]">Contact</span>
                 </p>
-                <div className="space-y-1 text-white/70 leading-relaxed">
+                <div className="space-y-1 text-white/70 leading-relaxed min-w-0">
                   <span className="block">Sleman, Yogyakarta</span>
-                  <a href="mailto:okta.wahyudi86@gmail.com" className="block">okta.wahyudi86@gmail.com</a>
+                  <a href="mailto:okta.wahyudi86@gmail.com" className="block break-all text-[13px] leading-relaxed">okta.wahyudi86@gmail.com</a>
                   <a href="tel:089675080104" className="block">089675080104</a>
                 </div>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
-                  <span className="accent-gradient-text">Quick links</span>
+                  <span className="text-[#bfe7da]">Quick links</span>
                 </p>
                 <div className="space-y-1 text-white/70">
                   {quickLinks.map(link => (
@@ -2157,7 +2178,7 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase">
-                  <span className="accent-gradient-text">Follow</span>
+                  <span className="text-[#bfe7da]">Follow</span>
                 </p>
                 <div className="flex items-center gap-2">
                   {[
