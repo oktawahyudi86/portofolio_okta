@@ -597,8 +597,8 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
       </div>
 
       {/* Bottom Navigation - Mobile Only */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 px-3 pb-3">
-        <nav className="navbar-glass mx-auto max-w-md rounded-[20px] px-2.5 py-2.5">
+      <div className="mobile-bottom-nav lg:hidden fixed bottom-0 left-0 w-full z-50 px-3 pb-3">
+        <nav className="mobile-bottom-nav-inner navbar-glass mx-auto max-w-md rounded-[20px] px-2.5 py-2.5">
           <div className="flex items-center justify-between gap-1">
             {mobileMenuItems.map((item, idx) => (
               <a
@@ -613,7 +613,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   e.preventDefault();
                   onNavigate(item.href);
                 }}
-                className={`relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[12px] px-1.5 py-2.5 transition-colors ${
+                className={`mobile-bottom-nav-link relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[12px] px-1.5 py-2.5 transition-colors ${
                   activeSection === item.href.replace('#', '')
                     ? 'bg-white/90 text-[#0f1724]'
                     : 'text-[#0f1724]/70 hover:text-[#0f1724]'
@@ -631,7 +631,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                 >
                   {React.cloneElement(item.icon, { size: 18 })}
                 </motion.div>
-                <span className={`text-[9px] font-semibold leading-none transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
+                <span className={`mobile-bottom-nav-label text-[9px] font-semibold leading-none transition-colors ${activeSection === item.href.replace('#', '') ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
                   {'mobileLabel' in item ? item.mobileLabel : item.name}
                 </span>
               </a>
@@ -655,8 +655,8 @@ const heroStats = [
 const Hero = () => {
 
   return (
-    <section id="home" className="section-shell section-tone-hero pt-12 sm:pt-16 lg:pt-[16rem] pb-10 lg:pb-20 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
-      <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-20 items-center">
+    <section id="home" className="mobile-hero-shell section-shell section-tone-hero pt-12 sm:pt-16 lg:pt-[16rem] pb-10 lg:pb-20 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
+      <div className="mobile-hero-grid section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -679,10 +679,10 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <div className="accent-gradient-soft inline-block mt-6 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[11px] lg:text-[13px] border border-[#0fa3b1]/20">
+        <div className="mobile-hero-badge accent-gradient-soft inline-block mt-6 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[11px] lg:text-[13px] border border-[#0fa3b1]/20">
           <span className="accent-gradient-text">IT Project Manager</span>
         </div>
-        <h1 className="text-[clamp(2.35rem,11vw,4.4rem)] font-black text-[#0c1a24] leading-[0.96] mb-4 tracking-[-0.03em]">
+        <h1 className="mobile-hero-title copy-balance max-w-[11ch] text-[clamp(2.35rem,11vw,4.4rem)] font-black text-[#0c1a24] leading-[0.96] mb-4 tracking-[-0.03em]">
           <span className="block">Leading software</span>
           <span className="accent-gradient-text block pb-1">delivery with clarity</span>
           <span className="block">
@@ -690,29 +690,29 @@ const Hero = () => {
           </span>
         </h1>
 
-        <div className="mb-4 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-4 sm:pl-5">
+        <div className="mobile-hero-copy copy-measure mb-4 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-4 sm:pl-5">
           <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2">
             <span className="accent-gradient-text">What I bring</span>
           </p>
-          <p className="text-[14px] sm:text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
+          <p className="copy-pretty text-[14px] sm:text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
             Hands-on project coordination for product, enterprise, and SaaS delivery.
           </p>
-          <ul className="space-y-1 text-[13px] sm:text-[14px] text-[#5f6670]">
+          <ul className="space-y-1.5 text-[13px] sm:text-[14px] text-[#5f6670] leading-relaxed">
             {[
               'Sprint planning and release coordination',
               'Stakeholder, team, and delivery alignment',
               'Enterprise, SaaS, and digital product execution',
             ].map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="copy-pretty">{item}</li>
             ))}
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-5 mb-6 max-w-[520px]">
+        <div className="mobile-hero-stats grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-5 mb-6 max-w-[520px]">
           {heroStats.map((stat) => (
             <div key={stat.label} className="text-center">
               <span className="text-[2rem] sm:text-4xl font-black text-[#0c1a24]">{stat.value}</span>
-              <p className="text-[10px] sm:text-[12px] text-[#5f6670] tracking-[0.08em] uppercase">{stat.label}</p>
+              <p className="copy-pretty mx-auto max-w-[12ch] text-[10px] sm:text-[12px] text-[#5f6670] tracking-[0.08em] uppercase">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -724,7 +724,7 @@ const Hero = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative w-full lg:-mt-4 flex flex-col items-center"
       >
-        <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[470px] xl:max-w-[500px] aspect-[0.92/1]">
+        <div className="mobile-hero-visual relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[470px] xl:max-w-[500px] aspect-[0.92/1]">
           <div className="absolute inset-x-[4%] top-[14%] bottom-[7%] rounded-[22px] bg-[radial-gradient(circle_at_72%_85%,rgba(114,179,154,0.95),transparent_34%),linear-gradient(180deg,#112a31_0%,#1e3b40_58%,#78bea1_100%)] shadow-[0_26px_56px_rgba(15,32,39,0.18)]" />
           <div className="absolute inset-x-[9%] top-[-4%] bottom-[7%] z-10 flex items-end justify-center">
             <img 
@@ -860,10 +860,10 @@ const Journey = () => {
         )}
       </div>
       <div className="min-h-[114px]">
-        <h3 className="mb-1 text-[17px] font-black leading-[1.15] text-[#12212d]">{exp.label}</h3>
+        <h3 className="copy-balance mb-1 text-[17px] font-black leading-[1.15] text-[#12212d]">{exp.label}</h3>
         <p className="mb-4 text-[12px] font-medium leading-[1.4] text-[#72808d]">{exp.location}</p>
-        <p className="mb-4 text-[12px] font-semibold leading-[1.55] text-[#243341]">{exp.position}</p>
-        <p className="text-[12px] leading-[1.55] text-[#6f7c89]">{exp.highlight}</p>
+        <p className="copy-pretty mb-4 text-[12px] font-semibold leading-[1.55] text-[#243341]">{exp.position}</p>
+        <p className="copy-pretty text-[12px] leading-[1.55] text-[#6f7c89]">{exp.highlight}</p>
       </div>
     </div>
   );
@@ -875,10 +875,10 @@ const Journey = () => {
           <p className="section-kicker text-[12px] font-semibold tracking-[0.14em] mb-3">
             <span className="accent-gradient-text">Milestones</span>
           </p>
-          <h2 className="text-4xl lg:text-6xl font-black text-[#0c1a24] tracking-tight leading-[1]">
+          <h2 className="copy-balance max-w-[12ch] text-4xl lg:text-6xl font-black text-[#0c1a24] tracking-tight leading-[1]">
             Professional Journey
           </h2>
-          <p className="text-[#5f6670] text-[15px] mt-4 max-w-2xl">
+          <p className="copy-pretty copy-measure-wide text-[#5f6670] text-[15px] mt-4 max-w-2xl leading-relaxed">
             A delivery track record built across startup, enterprise, and client-facing environments with increasing ownership in planning, stakeholder management, and release execution.
           </p>
         </div>
@@ -903,10 +903,10 @@ const Journey = () => {
                   </span>
                 )}
               </div>
-              <h3 className="text-[17px] font-black text-[#12212d] mb-1">{exp.company}</h3>
-              <p className="text-[14px] text-[#243341] font-semibold mb-2">{exp.position}</p>
+              <h3 className="copy-balance text-[17px] font-black text-[#12212d] mb-1">{exp.company}</h3>
+              <p className="copy-pretty text-[14px] text-[#243341] font-semibold mb-2">{exp.position}</p>
               <p className="text-[12px] text-[#72808d] mb-3">{exp.location}</p>
-              <p className="text-[13px] text-[#41505d] leading-[1.75]">{exp.summary}</p>
+              <p className="copy-pretty text-[13px] text-[#41505d] leading-[1.75]">{exp.summary}</p>
             </motion.div>
           ))}
         </div>
@@ -1026,11 +1026,11 @@ const Skills = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
-            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+            <h2 className="copy-balance max-w-[11ch] text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
               Core <span className="accent-gradient-text">Capabilities</span>
             </h2>
           </div>
-          <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+          <p className="copy-pretty max-w-sm text-[#5f6670] text-[13px] lg:text-[14px] leading-relaxed font-medium">
             Four delivery strengths that reflect how I lead teams, manage execution, and keep projects moving with control.
           </p>
         </div>
@@ -1045,8 +1045,8 @@ const Skills = () => {
               <div className="w-11 h-11 rounded-[14px] bg-[#0fa3b1]/10 text-[#0fa3b1] flex items-center justify-center mb-5">
                 {skill.icon}
               </div>
-              <h3 className="text-xl 2xl:text-2xl font-black text-[#0c1a24] mb-3 tracking-tight">{skill.title}</h3>
-              <p className="text-[14px] 2xl:text-[15px] text-[#5f6670] leading-relaxed font-medium">{skill.desc}</p>
+              <h3 className="copy-balance text-xl 2xl:text-2xl font-black text-[#0c1a24] mb-3 tracking-tight">{skill.title}</h3>
+              <p className="copy-pretty text-[14px] 2xl:text-[15px] text-[#5f6670] leading-relaxed font-medium">{skill.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -1257,11 +1257,11 @@ const SDLCFlow = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
-              <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+              <h2 className="copy-balance max-w-[12ch] text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 Tools & <span className="accent-gradient-text">Project Management</span>
               </h2>
             </div>
-            <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+            <p className="copy-pretty max-w-sm text-[#5f6670] text-[13px] lg:text-[14px] leading-relaxed font-medium">
               The toolset I rely on to keep planning structured, teams aligned, and delivery progress visible.
             </p>
           </div>
@@ -1278,7 +1278,7 @@ const SDLCFlow = () => {
             >
               <FeatureIcon type="recruitment" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Requirement Discovery</h3>
-              <p className="text-[12px] text-[#5f6670] leading-relaxed">Clarifying business needs, constraints, dependencies, and delivery expectations before work begins.</p>
+              <p className="copy-pretty text-[12px] text-[#5f6670] leading-relaxed">Clarifying business needs, constraints, dependencies, and delivery expectations before work begins.</p>
             </motion.div>
 
             <motion.div
@@ -1287,7 +1287,7 @@ const SDLCFlow = () => {
             >
               <FeatureIcon type="analysis" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Planning & Prioritization</h3>
-              <p className="text-[12px] text-[#5f6670] leading-relaxed">Shaping scope, timeline, and execution priorities so teams can move with clearer direction.</p>
+              <p className="copy-pretty text-[12px] text-[#5f6670] leading-relaxed">Shaping scope, timeline, and execution priorities so teams can move with clearer direction.</p>
             </motion.div>
 
             <motion.div
@@ -1296,7 +1296,7 @@ const SDLCFlow = () => {
             >
               <FeatureIcon type="brd" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">BRD & Delivery Readiness</h3>
-              <p className="text-[12px] text-[#5f6670] leading-relaxed">Turning requirements into structured documentation and actionable inputs for design, build, and testing.</p>
+              <p className="copy-pretty text-[12px] text-[#5f6670] leading-relaxed">Turning requirements into structured documentation and actionable inputs for design, build, and testing.</p>
             </motion.div>
           </div>
         </div>
@@ -1306,11 +1306,11 @@ const SDLCFlow = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 2xl:mb-20 gap-8">
           <div className="max-w-xl 2xl:max-w-2xl">
-              <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+              <h2 className="copy-balance max-w-[10ch] text-4xl lg:text-6xl 2xl:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
                 SDLC <span className="accent-gradient-text">Scrum Flow</span>
               </h2>
             </div>
-            <p className="text-[#5f6670] max-w-xs text-[13px] lg:text-[14px] leading-relaxed font-medium">
+            <p className="copy-pretty max-w-sm text-[#5f6670] text-[13px] lg:text-[14px] leading-relaxed font-medium">
               A delivery model I use to keep work visible, sprint execution disciplined, and outcomes easier to manage.
             </p>
           </div>
@@ -1335,7 +1335,7 @@ const SDLCFlow = () => {
                         </div>
                         <div>
                           <h4 className="text-[13px] font-black text-[#0c1a24]">{step.title}</h4>
-                          <p className="mt-1 text-[11px] text-[#5f6670]">{step.desc}</p>
+                          <p className="copy-pretty mt-1 text-[11px] text-[#5f6670] leading-relaxed">{step.desc}</p>
                         </div>
                       </div>
                       {idx < scrumFlowSteps.length - 1 && (
@@ -1539,7 +1539,7 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center border-b border-[#e3e8ef] pb-10 last:border-0"
+      className="mobile-portfolio-item grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center border-b border-[#e3e8ef] pb-10 last:border-0"
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
         <div className="relative">
@@ -1574,17 +1574,17 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="text-[#0c1a24]">{project.role}</span>
         </div>
 
-        <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
+        <h3 className="copy-balance max-w-[14ch] text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
 
         <div className="space-y-5 mb-8">
-          <p className="text-[15px] text-[#1a2e35]/80 leading-relaxed">
+          <p className="copy-pretty max-w-2xl text-[15px] text-[#1a2e35]/80 leading-relaxed">
             {project.desc}
           </p>
           <div className="border-l-2 border-[#0fa3b1]/35 pl-5">
             <p className="text-[12px] font-semibold mb-2 tracking-[0.08em] uppercase">
               <span className="accent-gradient-text">Key impact</span>
             </p>
-            <p className="text-[14px] leading-relaxed italic text-[#0c1a24]">{project.impact}</p>
+            <p className="copy-pretty max-w-xl text-[14px] leading-relaxed italic text-[#0c1a24]">{project.impact}</p>
           </div>
         </div>
 
@@ -1678,11 +1678,11 @@ const Portfolio = () => {
           <p className="section-kicker text-[12px] font-semibold mb-3 lg:mb-4 tracking-[0.14em]">
             <span className="accent-gradient-text">Selected Project Experience</span>
           </p>
-          <h2 className="text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
+          <h2 className="copy-balance max-w-[14ch] text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
             <span className="accent-gradient-text">Case Studies</span>{" "}
             <span className="accent-gradient-text italic font-serif">That Show How I Work</span>
           </h2>
-          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-[#5f6670]">
+          <p className="copy-pretty copy-measure-wide mt-4 max-w-3xl text-[15px] leading-relaxed text-[#5f6670]">
             These are the project stories HR and interviewers usually ask about: what the project was, where the challenge lived, what I handled, and what result the delivery achieved.
           </p>
         </div>
@@ -1698,7 +1698,7 @@ const Portfolio = () => {
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="accent-gradient-bg inline-flex items-center gap-3 px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] transition-all shadow-soft hover:opacity-95"
+            className="mobile-cta-button accent-gradient-bg inline-flex items-center gap-3 px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] transition-all shadow-soft hover:opacity-95"
           >
             Explore More on GitHub
             <Github size={16} />
@@ -1725,15 +1725,15 @@ const Contact = () => {
           <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
             <span className="accent-gradient-text">Get in touch</span>
           </p>
-          <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-5">
+          <h2 className="copy-balance max-w-[12ch] text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-5">
             Let&apos;s talk about your next project.
           </h2>
-          <p className="text-[#1f2937]/70 text-[14px] sm:text-[15px] leading-relaxed max-w-lg mb-7">
+          <p className="copy-pretty copy-measure text-[#1f2937]/70 text-[14px] sm:text-[15px] leading-relaxed max-w-lg mb-7">
             If you need an IT Project Manager who can coordinate delivery, align stakeholders, and keep execution on track, feel free to reach out via WhatsApp. I&apos;m open to discussing roles, projects, and collaboration opportunities.
           </p>
 
           <div className="space-y-4">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 min-w-0">
               <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Globe size={18} />
               </div>
@@ -1741,12 +1741,12 @@ const Contact = () => {
                 href={mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
+                className="min-w-0 break-words text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
               >
                 Sleman, Yogyakarta
               </a>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 min-w-0">
               <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
                 <Linkedin size={18} />
               </div>
@@ -1754,7 +1754,7 @@ const Contact = () => {
                 href={linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
+                className="min-w-0 break-all text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
               >
                 linkedin.com/in/oktawahyudi
               </a>
@@ -1788,15 +1788,15 @@ const Contact = () => {
           <p className="section-kicker text-[12px] font-semibold tracking-[0.12em] mb-4">
             <span className="accent-gradient-text">WhatsApp</span>
           </p>
-          <h3 className="text-[1.75rem] sm:text-3xl font-black text-[#0a1620] mb-5">Chat with me directly</h3>
-          <p className="text-[#1f2937]/80 text-[14px] sm:text-base leading-relaxed mb-7">
+          <h3 className="copy-balance max-w-[11ch] text-[1.75rem] sm:text-3xl font-black text-[#0a1620] mb-5">Chat with me directly</h3>
+          <p className="copy-pretty max-w-md text-[#1f2937]/80 text-[14px] sm:text-base leading-relaxed mb-7">
             Send a short brief, role overview, or project need, and I&apos;ll respond to continue the conversation.
           </p>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="accent-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-[12px] sm:text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:opacity-95"
+            className="mobile-cta-button accent-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-[12px] sm:text-[13px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:opacity-95"
           >
             Message on WhatsApp
             <ArrowUpRight size={16} />
@@ -1824,13 +1824,13 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
       viewport={{ once: true }}
       transition={{ delay: idx * 0.1 }}
       whileHover={{ y: -6 }}
-      className="surface-card surface-card-tight min-h-[300px] min-w-[260px] sm:min-w-[290px] lg:min-w-[320px] xl:min-w-[340px] max-w-[370px] p-6 sm:p-8 flex flex-col justify-between gap-6"
+      className="mobile-feedback-card surface-card surface-card-tight min-h-[300px] min-w-[260px] sm:min-w-[290px] lg:min-w-[320px] xl:min-w-[340px] max-w-[370px] p-6 sm:p-8 flex flex-col justify-between gap-6"
     >
       <div>
         <div className="flex gap-1 mb-4">
           {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#72b39a" className="text-[#0fa3b1]" />)}
         </div>
-        <p className="text-[13px] text-[#0d1f2b]/70 italic leading-relaxed font-medium">
+        <p className="copy-pretty text-[13px] text-[#0d1f2b]/70 italic leading-relaxed font-medium">
           "{t.text}"
         </p>
       </div>
@@ -1961,10 +1961,10 @@ const Testimonials = () => {
           <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
             <span className="accent-gradient-text">Recommendations</span>
           </p>
-          <h2 className="text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
+          <h2 className="copy-balance max-w-[12ch] text-5xl lg:text-7xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9]">
             Professional <span className="accent-gradient-text">Feedback</span>
           </h2>
-          <p className="text-[13px] mt-4 font-medium">
+          <p className="copy-pretty max-w-xl text-[13px] mt-4 font-medium leading-relaxed">
             <span className="accent-gradient-text">Feedback that reflects how I lead delivery, communicate with stakeholders, and keep execution under control.</span>
           </p>
         </div>
@@ -2125,13 +2125,13 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
   ];
 
   return (
-    <footer className="lazy-render-footer section-shell px-4 sm:px-5 md:px-6 pb-10 sm:pb-12 relative overflow-hidden">
+    <footer className="mobile-footer-shell lazy-render-footer section-shell px-4 sm:px-5 md:px-6 pb-10 sm:pb-12 relative overflow-hidden">
       <div className="section-inner max-w-7xl mx-auto">
-        <div className="footer-surface rounded-[24px] text-white shadow-soft">
+        <div className="mobile-footer-surface footer-surface rounded-[24px] text-white shadow-soft">
           <div className="relative z-10 px-5 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 space-y-6 sm:space-y-8">
             <div className="space-y-2">
               <div className="text-3xl font-black tracking-tight">OKTA.</div>
-              <p className="text-[14px] text-white/70 max-w-lg leading-relaxed">
+              <p className="copy-pretty max-w-md text-[14px] text-white/70 leading-relaxed">
                 Project delivery for digital products, enterprise initiatives, and software teams that need stronger alignment and steadier execution.
               </p>
             </div>
@@ -2199,12 +2199,12 @@ const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) =>
                     </a>
                   ))}
                 </div>
-                <p className="text-[11px] text-white/60 mt-2">Thank you for exploring Okta.</p>
+                <p className="copy-pretty max-w-[12rem] text-[11px] text-white/60 mt-2 leading-relaxed">Thank you for exploring Okta.</p>
               </div>
             </div>
 
             <div className="border-t border-white/10 pt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] tracking-[0.08em] text-white/50">
-              <p>© 2026 Okta. All rights reserved.</p>
+              <p>&copy; 2026 Okta. All rights reserved.</p>
               <div className="flex gap-4 text-[11px]">
                 <button type="button" onClick={() => onRouteChange('/privacy')} className="hover:text-white transition">
                   Privacy

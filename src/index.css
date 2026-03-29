@@ -386,6 +386,128 @@ a {
     box-shadow: 0 18px 40px rgb(var(--color-primary-deep-rgb) / 0.07);
   }
 
+  .copy-balance {
+    text-wrap: balance;
+  }
+
+  .copy-pretty {
+    text-wrap: pretty;
+  }
+
+  .copy-measure {
+    max-width: 34rem;
+  }
+
+  .copy-measure-wide {
+    max-width: 42rem;
+  }
+
+  @media (max-width: 390px) {
+    .mobile-hero-shell {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .mobile-hero-grid {
+      gap: 1.75rem;
+    }
+
+    .mobile-hero-badge {
+      margin-top: 0.5rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .mobile-hero-title {
+      max-width: 9.5ch;
+      font-size: clamp(2.05rem, 10.2vw, 2.8rem);
+      line-height: 0.94;
+    }
+
+    .mobile-hero-copy {
+      margin-bottom: 0.875rem;
+    }
+
+    .mobile-hero-stats {
+      gap: 0.75rem;
+      padding-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .mobile-hero-visual {
+      max-width: 320px;
+    }
+
+    .mobile-bottom-nav {
+      padding-inline: 0.625rem;
+      padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+    }
+
+    .mobile-bottom-nav-inner {
+      padding: 0.45rem;
+      border-radius: 18px;
+    }
+
+    .mobile-bottom-nav-link {
+      padding-top: 0.55rem;
+      padding-bottom: 0.55rem;
+    }
+
+    .mobile-bottom-nav-label {
+      font-size: 8px;
+    }
+
+    .mobile-portfolio-item {
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+    }
+
+    .mobile-feedback-card {
+      min-width: 84vw;
+      max-width: 84vw;
+      padding: 1.25rem;
+      min-height: 280px;
+    }
+
+    .mobile-cta-button {
+      width: 100%;
+      justify-content: center;
+      padding-inline: 1rem;
+    }
+
+    .mobile-footer-shell {
+      padding-bottom: 7.5rem;
+    }
+
+    .mobile-footer-surface {
+      border-radius: 20px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .mobile-hero-shell {
+      padding-top: 1.75rem;
+    }
+
+    .mobile-hero-grid {
+      gap: 1.5rem;
+    }
+
+    .mobile-hero-title {
+      max-width: 9ch;
+      font-size: clamp(1.95rem, 10vw, 2.55rem);
+    }
+
+    .mobile-hero-visual {
+      max-width: 300px;
+    }
+
+    .mobile-feedback-card {
+      min-width: 86vw;
+      max-width: 86vw;
+      padding: 1.125rem;
+    }
+  }
+
   @supports (content-visibility: auto) {
     .lazy-render-section {
       content-visibility: auto;
