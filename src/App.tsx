@@ -1058,17 +1058,39 @@ const Skills = () => {
 };
 
 const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: string }[] }) => {
-  const carouselRef = React.useRef<HTMLDivElement | null>(null);
+  const desktopCarouselRef = React.useRef<HTMLDivElement | null>(null);
+  const mobileCarouselRef = React.useRef<HTMLDivElement | null>(null);
   const singleSetWidthRef = React.useRef(0);
   const isDraggingRef = React.useRef(false);
   const isHoveringRef = React.useRef(false);
   const dragStartX = React.useRef(0);
   const scrollStart = React.useRef(0);
+  const mobileResumeTimeoutRef = React.useRef<number | null>(null);
   const [isDragging, setIsDragging] = React.useState(false);
+  const [isMobilePaused, setIsMobilePaused] = React.useState(false);
+  const marqueeSets = React.useMemo(() => [tools, tools], [tools]);
   const repeatedTools = React.useMemo(() => [...tools, ...tools, ...tools], [tools]);
 
-  const measureCarousel = React.useCallback(() => {
-    const carousel = carouselRef.current;
+  const pauseMobileMarquee = React.useCallback(() => {
+    setIsMobilePaused(true);
+    if (mobileResumeTimeoutRef.current) {
+      window.clearTimeout(mobileResumeTimeoutRef.current);
+      mobileResumeTimeoutRef.current = null;
+    }
+  }, []);
+
+  const resumeMobileMarquee = React.useCallback((delay = 1400) => {
+    if (mobileResumeTimeoutRef.current) {
+      window.clearTimeout(mobileResumeTimeoutRef.current);
+    }
+    mobileResumeTimeoutRef.current = window.setTimeout(() => {
+      setIsMobilePaused(false);
+      mobileResumeTimeoutRef.current = null;
+    }, delay);
+  }, []);
+
+  const measureDesktopCarousel = React.useCallback(() => {
+    const carousel = desktopCarouselRef.current;
     if (!carousel) return;
 
     singleSetWidthRef.current = carousel.scrollWidth / 3;
@@ -1077,8 +1099,8 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
     }
   }, []);
 
-  const normalizeScroll = React.useCallback(() => {
-    const carousel = carouselRef.current;
+  const normalizeDesktopScroll = React.useCallback(() => {
+    const carousel = desktopCarouselRef.current;
     const singleSetWidth = singleSetWidthRef.current;
     if (!carousel || !singleSetWidth) return;
 
@@ -1090,116 +1112,150 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
   }, []);
 
   React.useEffect(() => {
-    measureCarousel();
-
-    const orientationMedia =
-      typeof window.matchMedia === 'function'
-        ? window.matchMedia('(orientation: portrait)')
-        : null;
-
-    window.addEventListener('resize', measureCarousel);
-    window.addEventListener('orientationchange', measureCarousel);
-    orientationMedia?.addEventListener?.('change', measureCarousel);
-
-    const timeoutId = window.setTimeout(measureCarousel, 180);
-
-    return () => {
-      window.removeEventListener('resize', measureCarousel);
-      window.removeEventListener('orientationchange', measureCarousel);
-      orientationMedia?.removeEventListener?.('change', measureCarousel);
-      window.clearTimeout(timeoutId);
-    };
-  }, [measureCarousel, repeatedTools.length]);
+    measureDesktopCarousel();
+    window.addEventListener('resize', measureDesktopCarousel);
+    return () => window.removeEventListener('resize', measureDesktopCarousel);
+  }, [measureDesktopCarousel, repeatedTools.length]);
 
   React.useEffect(() => {
-    const carousel = carouselRef.current;
+    return () => {
+      if (mobileResumeTimeoutRef.current) {
+        window.clearTimeout(mobileResumeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const carousel = desktopCarouselRef.current;
     if (!carousel) return;
 
     const intervalId = window.setInterval(() => {
       if (document.visibilityState !== 'visible') return;
       if (!isDraggingRef.current && !isHoveringRef.current) {
         carousel.scrollLeft += 1;
-        normalizeScroll();
+        normalizeDesktopScroll();
       }
-    }, 24);
+    }, 22);
 
     return () => window.clearInterval(intervalId);
-  }, [normalizeScroll]);
+  }, [normalizeDesktopScroll]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!carouselRef.current) return;
+    if (!desktopCarouselRef.current) return;
     isDraggingRef.current = true;
     setIsDragging(true);
     dragStartX.current = event.clientX;
-    scrollStart.current = carouselRef.current.scrollLeft;
+    scrollStart.current = desktopCarouselRef.current.scrollLeft;
     try {
-      carouselRef.current.setPointerCapture(event.pointerId);
+      desktopCarouselRef.current.setPointerCapture(event.pointerId);
     } catch (error) {
-      // Safari on older iOS versions can ignore pointer capture.
+      // Ignore browser-specific pointer capture limitations.
     }
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingRef.current || !carouselRef.current) return;
+    if (!isDraggingRef.current || !desktopCarouselRef.current) return;
     const delta = event.clientX - dragStartX.current;
-    carouselRef.current.scrollLeft = scrollStart.current - delta;
-    normalizeScroll();
+    desktopCarouselRef.current.scrollLeft = scrollStart.current - delta;
+    normalizeDesktopScroll();
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!carouselRef.current) return;
+    if (!desktopCarouselRef.current) return;
     isDraggingRef.current = false;
     setIsDragging(false);
     try {
-      carouselRef.current.releasePointerCapture(event.pointerId);
+      desktopCarouselRef.current.releasePointerCapture(event.pointerId);
     } catch (error) {
-      // ignore if capture already released
+      // Ignore if pointer capture was not active.
     }
-    normalizeScroll();
+    normalizeDesktopScroll();
   };
 
   return (
-    <div
-      ref={carouselRef}
-      className={`flex w-full gap-6 overflow-x-auto pb-4 no-scrollbar select-none touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-      style={{ WebkitOverflowScrolling: 'touch' }}
-      onMouseEnter={() => {
-        isHoveringRef.current = true;
-      }}
-      onMouseLeave={() => {
-        isHoveringRef.current = false;
-      }}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerLeave={(event) => {
-        if (isDraggingRef.current && carouselRef.current) {
-          handlePointerUp(event);
-        }
-      }}
-      onPointerCancel={(event) => handlePointerUp(event)}
-    >
-      {repeatedTools.map((tool, idx) => (
-        <div
-          key={`${tool.name}-${idx}`}
-          className="flex h-[92px] min-w-[118px] flex-shrink-0 items-center justify-center px-2 py-2 transition-transform duration-300 hover:-translate-y-0.5 sm:h-[100px] sm:min-w-[126px] lg:h-[108px] lg:min-w-[138px]"
-          aria-hidden={idx >= tools.length}
-        >
-          {tool.icon.startsWith('/') ? (
-            <img
-              src={tool.icon}
-              alt={tool.name}
-              loading={idx < tools.length ? 'eager' : 'lazy'}
-              decoding="async"
-              onLoad={measureCarousel}
-              className="h-12 w-auto object-contain sm:h-14 lg:h-16"
-            />
-          ) : (
-            <div className="text-3xl sm:text-4xl lg:text-5xl">{tool.icon}</div>
-          )}
+    <>
+      <div
+        ref={mobileCarouselRef}
+        className="tools-marquee-shell overflow-x-auto pb-4 no-scrollbar touch-pan-x md:hidden"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+        onTouchStart={pauseMobileMarquee}
+        onTouchEnd={() => resumeMobileMarquee()}
+        onTouchCancel={() => resumeMobileMarquee(600)}
+        onPointerDown={pauseMobileMarquee}
+        onPointerUp={() => resumeMobileMarquee()}
+        onPointerCancel={() => resumeMobileMarquee(600)}
+        onScroll={() => {
+          pauseMobileMarquee();
+          resumeMobileMarquee();
+        }}
+      >
+        <div className={`tools-marquee-track flex w-max items-center gap-6 ${isMobilePaused ? 'is-paused' : ''}`}>
+          {marqueeSets.map((set, setIdx) => (
+            <div key={setIdx} className="flex items-center gap-6" aria-hidden={setIdx === 1}>
+              {set.map((tool, idx) => (
+                <div
+                  key={`${tool.name}-${setIdx}-${idx}`}
+                  className="flex h-[92px] min-w-[118px] flex-shrink-0 items-center justify-center px-2 py-2 sm:h-[100px] sm:min-w-[126px]"
+                >
+                  {tool.icon.startsWith('/') ? (
+                    <img
+                      src={tool.icon}
+                      alt={tool.name}
+                      loading={setIdx === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      className="h-12 w-auto object-contain sm:h-14"
+                    />
+                  ) : (
+                    <div className="text-3xl sm:text-4xl">{tool.icon}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+
+      <div
+        ref={desktopCarouselRef}
+        className={`tools-desktop-carousel hidden w-full gap-6 overflow-x-auto pb-4 no-scrollbar select-none md:flex ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+        onMouseEnter={() => {
+          isHoveringRef.current = true;
+        }}
+        onMouseLeave={() => {
+          isHoveringRef.current = false;
+        }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={(event) => {
+          if (isDraggingRef.current && desktopCarouselRef.current) {
+            handlePointerUp(event);
+          }
+        }}
+        onPointerCancel={(event) => handlePointerUp(event)}
+      >
+        {repeatedTools.map((tool, idx) => (
+          <div
+            key={`${tool.name}-desktop-${idx}`}
+            className="flex h-[100px] min-w-[126px] flex-shrink-0 items-center justify-center px-2 py-2 transition-transform duration-300 hover:-translate-y-0.5 lg:h-[108px] lg:min-w-[138px]"
+            aria-hidden={idx >= tools.length}
+          >
+            {tool.icon.startsWith('/') ? (
+              <img
+                src={tool.icon}
+                alt={tool.name}
+                loading={idx < tools.length ? 'eager' : 'lazy'}
+                decoding="async"
+                onLoad={measureDesktopCarousel}
+                className="h-14 w-auto object-contain lg:h-16"
+              />
+            ) : (
+              <div className="text-4xl lg:text-5xl">{tool.icon}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
