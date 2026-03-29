@@ -1067,6 +1067,16 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
   const [isDragging, setIsDragging] = React.useState(false);
   const repeatedTools = React.useMemo(() => [...tools, ...tools, ...tools], [tools]);
 
+  const measureCarousel = React.useCallback(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    singleSetWidthRef.current = carousel.scrollWidth / 3;
+    if (singleSetWidthRef.current > 0 && carousel.scrollLeft === 0) {
+      carousel.scrollLeft = singleSetWidthRef.current;
+    }
+  }, []);
+
   const normalizeScroll = React.useCallback(() => {
     const carousel = carouselRef.current;
     const singleSetWidth = singleSetWidthRef.current;
@@ -1080,36 +1090,40 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
   }, []);
 
   React.useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
+    measureCarousel();
 
-    const updateMetrics = () => {
-      singleSetWidthRef.current = carousel.scrollWidth / 3;
-      if (singleSetWidthRef.current > 0 && carousel.scrollLeft === 0) {
-        carousel.scrollLeft = singleSetWidthRef.current;
-      }
+    const orientationMedia =
+      typeof window.matchMedia === 'function'
+        ? window.matchMedia('(orientation: portrait)')
+        : null;
+
+    window.addEventListener('resize', measureCarousel);
+    window.addEventListener('orientationchange', measureCarousel);
+    orientationMedia?.addEventListener?.('change', measureCarousel);
+
+    const timeoutId = window.setTimeout(measureCarousel, 180);
+
+    return () => {
+      window.removeEventListener('resize', measureCarousel);
+      window.removeEventListener('orientationchange', measureCarousel);
+      orientationMedia?.removeEventListener?.('change', measureCarousel);
+      window.clearTimeout(timeoutId);
     };
-
-    updateMetrics();
-    window.addEventListener('resize', updateMetrics);
-    return () => window.removeEventListener('resize', updateMetrics);
-  }, [repeatedTools.length]);
+  }, [measureCarousel, repeatedTools.length]);
 
   React.useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    let animationFrame = 0;
-    const tick = () => {
+    const intervalId = window.setInterval(() => {
+      if (document.visibilityState !== 'visible') return;
       if (!isDraggingRef.current && !isHoveringRef.current) {
-        carousel.scrollLeft += 0.9;
+        carousel.scrollLeft += 1;
         normalizeScroll();
       }
-      animationFrame = window.requestAnimationFrame(tick);
-    };
+    }, 24);
 
-    animationFrame = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(animationFrame);
+    return () => window.clearInterval(intervalId);
   }, [normalizeScroll]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -1118,7 +1132,11 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
     setIsDragging(true);
     dragStartX.current = event.clientX;
     scrollStart.current = carouselRef.current.scrollLeft;
-    carouselRef.current.setPointerCapture(event.pointerId);
+    try {
+      carouselRef.current.setPointerCapture(event.pointerId);
+    } catch (error) {
+      // Safari on older iOS versions can ignore pointer capture.
+    }
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -1143,7 +1161,8 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
   return (
     <div
       ref={carouselRef}
-      className={`flex w-full gap-6 overflow-x-auto pb-4 no-scrollbar select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      className={`flex w-full gap-6 overflow-x-auto pb-4 no-scrollbar select-none touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      style={{ WebkitOverflowScrolling: 'touch' }}
       onMouseEnter={() => {
         isHoveringRef.current = true;
       }}
@@ -1170,8 +1189,9 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
             <img
               src={tool.icon}
               alt={tool.name}
-              loading="lazy"
+              loading={idx < tools.length ? 'eager' : 'lazy'}
               decoding="async"
+              onLoad={measureCarousel}
               className="h-12 w-auto object-contain sm:h-14 lg:h-16"
             />
           ) : (
