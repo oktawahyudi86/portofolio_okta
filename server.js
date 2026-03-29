@@ -98,6 +98,67 @@ const buildOktaContext = () => {
 
 const oktaContext = buildOktaContext();
 
+const normalizeText = (value = '') =>
+  value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+const buildLocalFallbackReply = (messages = []) => {
+  const latestUserMessage = [...messages]
+    .reverse()
+    .find((message) => message?.role === 'user' && typeof message.text === 'string');
+
+  const question = normalizeText(latestUserMessage?.text || '');
+
+  if (!question) {
+    return 'Halo! Saya bisa bantu jawab pertanyaan tentang pengalaman kerja, project, skills, atau background Okta Wahyudi.';
+  }
+
+  if (question.includes('siapa okta') || question.includes('tentang okta') || question.includes('perkenalkan')) {
+    return `Okta Wahyudi adalah IT Project Manager yang berfokus pada software delivery, stakeholder alignment, dan koordinasi project digital. Saat ini Okta berbasis di ${oktaData.personalInfo.location} dan memiliki pengalaman menangani project enterprise, SaaS, dan digital product.`;
+  }
+
+  if (question.includes('pengalaman') || question.includes('career') || question.includes('journey')) {
+    const latestRole = oktaData.professionalExperience[0];
+    return `Saat ini Okta bekerja sebagai ${latestRole.position} di ${latestRole.company}. Sebelumnya Okta juga menangani delivery dan product execution di perusahaan seperti PT Ako Media Asia, PT Juragan Inovator Teknologi Indonesia, PT Divistant Teknologi Indonesia, Biznet, dan PT Sarana Insan Muda Selaras.`;
+  }
+
+  if (question.includes('skill') || question.includes('keahlian') || question.includes('kompetensi')) {
+    return `Keahlian utama Okta mencakup IT project management, Agile dan Scrum delivery, stakeholder communication, release planning, risk management, serta koordinasi lintas tim product, engineering, dan QA.`;
+  }
+
+  if (question.includes('project') || question.includes('portfolio') || question.includes('proyek')) {
+    const featuredProjects = oktaData.projects.slice(0, 3).map((project) => project.title).join(', ');
+    return `Beberapa project utama yang pernah ditangani Okta antara lain ${featuredProjects}. Jika kamu mau, saya bisa jelaskan salah satu project tersebut lebih detail dari sisi peran, tantangan, dan hasil delivery-nya.`;
+  }
+
+  if (question.includes('mrt')) {
+    const project = oktaData.projects.find((item) => normalizeText(item.title).includes('mrt'));
+    return `${project.title} adalah project ${project.type} dengan peran Okta sebagai ${project.role}. Fokus utamanya ada di koordinasi requirement, stakeholder alignment, handoff ke tim development, testing, dan delivery sampai rilis.`;
+  }
+
+  if (question.includes('yulo')) {
+    const project = oktaData.projects.find((item) => normalizeText(item.title).includes('yulo'));
+    return `${project.title} adalah ${project.type} yang ditangani Okta sebagai ${project.role}. Kontribusinya mencakup backlog prioritization, komunikasi stakeholder, dan menjaga rilis tetap selaras dengan kebutuhan bisnis.`;
+  }
+
+  if (question.includes('dazo') || question.includes('ai')) {
+    const project = oktaData.projects.find((item) => normalizeText(item.title).includes('dazo'));
+    return `${project.title} menunjukkan pengalaman Okta dalam koordinasi delivery untuk platform AI dan operasional. Peran Okta berfokus pada milestone tracking, prioritas sprint, dan menjaga execution tetap rapi saat kebutuhan bisnis berubah cepat.`;
+  }
+
+  if (question.includes('kontak') || question.includes('hubungi') || question.includes('email') || question.includes('wa')) {
+    return `Okta bisa dihubungi melalui email ${oktaData.personalInfo.email}, nomor ${oktaData.personalInfo.phone}, atau LinkedIn ${oktaData.personalInfo.linkedin}.`;
+  }
+
+  if (question.includes('pendidikan') || question.includes('kuliah') || question.includes('universitas')) {
+    return `Okta menempuh pendidikan di ${oktaData.education.university} dengan gelar ${oktaData.education.degree} dan spesialisasi ${oktaData.education.specialization}.`;
+  }
+
+  return 'Saya bisa bantu jelaskan pengalaman kerja, project, skills, pendidikan, atau kontak Okta Wahyudi. Coba tanyakan salah satu topik itu ya.';
+};
+
 const systemPrompt = `Kamu adalah OktaAI, asisten virtual untuk menjawab pertanyaan tentang Okta Wahyudi saja.
 
 PERATURAN KETAT YANG HARUS DIIKUTI:
@@ -128,7 +189,11 @@ app.post('/api/chat', async (req, res) => {
     }
 
     if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({ error: 'GEMINI_API_KEY is not configured' });
+      return res.json({
+        text: buildLocalFallbackReply(messages),
+        fallback: true,
+        provider: 'local',
+      });
     }
 
     // Build conversation history for Gemini with system prompt
@@ -155,19 +220,17 @@ app.post('/api/chat', async (req, res) => {
 
     const aiText = result.response.text() || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti. Apakah ada yang ingin ditanyakan tentang Okta?";
     
-    res.json({ text: aiText });
+    res.json({ text: aiText, fallback: false, provider: 'gemini' });
   } catch (error) {
     console.error('AI API Error:', error);
-    const status = error?.status === 429 ? 429 : 500;
-    const message =
-      status === 429
-        ? 'Kuota Gemini API untuk sementara habis. Coba lagi beberapa saat lagi atau periksa billing dan limit API key Anda.'
-        : 'AI sedang mengalami kendala saat memproses permintaan. Coba lagi sebentar lagi.';
-
-    res.status(status).json({
-      error: status === 429 ? 'quota_exceeded' : 'ai_request_failed',
-      message,
-      details: error?.message ?? 'Unknown server error',
+    res.json({
+      text: buildLocalFallbackReply(req.body?.messages),
+      fallback: true,
+      provider: 'local',
+      error:
+        error?.status === 429
+          ? 'quota_exceeded'
+          : 'ai_request_failed',
     });
   }
 });

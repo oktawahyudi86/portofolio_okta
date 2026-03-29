@@ -34,6 +34,8 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+const LazyOktaAI = React.lazy(() => import('./OktaAI'));
+
 type FeatureType = 'recruitment' | 'analysis' | 'brd';
 const featureBackgroundMap: Record<FeatureType, string> = {
   recruitment: 'accent-gradient-bg',
@@ -172,7 +174,7 @@ const ReportingIcon = ({ variant }: { variant: ReportingVariant }) => (
   </div>
 );
 
-const OktaAI = () => {
+const LegacyOktaAI = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showWelcome, setShowWelcome] = React.useState(true);
   const [messages, setMessages] = React.useState<{ role: 'user' | 'ai', text: string }[]>([
@@ -2225,6 +2227,7 @@ export default function App() {
   const [pathname, setPathname] = React.useState(() => window.location.pathname);
   const [isInitialLoading, setIsInitialLoading] = React.useState(true);
   const [isSectionLoading, setIsSectionLoading] = React.useState(false);
+  const [showDeferredSections, setShowDeferredSections] = React.useState(() => window.location.pathname !== '/');
   const loadingTimeoutRef = React.useRef<number | null>(null);
   const isCvRoute = pathname === '/cv_oktawahyudi' || pathname === '/cv_oktawahyudi/';
 
@@ -2288,31 +2291,63 @@ export default function App() {
   }, [isCvRoute, pathname]);
 
   React.useEffect(() => {
-    const startedAt = Date.now();
-    let releaseTimeout: number | null = null;
+    let frameA: number | null = null;
+    let frameB: number | null = null;
 
     const finishInitialLoading = () => {
-      const elapsed = Date.now() - startedAt;
-      const remaining = Math.max(0, 900 - elapsed);
-
-      releaseTimeout = window.setTimeout(() => {
-        setIsInitialLoading(false);
-      }, remaining);
+      frameA = window.requestAnimationFrame(() => {
+        frameB = window.requestAnimationFrame(() => {
+          setIsInitialLoading(false);
+        });
+      });
     };
 
-    if (document.readyState === 'complete') {
-      finishInitialLoading();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finishInitialLoading, { once: true });
     } else {
-      window.addEventListener('load', finishInitialLoading, { once: true });
+      finishInitialLoading();
     }
 
     return () => {
-      window.removeEventListener('load', finishInitialLoading);
-      if (releaseTimeout) {
-        window.clearTimeout(releaseTimeout);
-      }
+      document.removeEventListener('DOMContentLoaded', finishInitialLoading);
+      if (frameA) window.cancelAnimationFrame(frameA);
+      if (frameB) window.cancelAnimationFrame(frameB);
     };
   }, []);
+
+  React.useEffect(() => {
+    if (pathname !== '/') {
+      setShowDeferredSections(true);
+      return;
+    }
+
+    if (showDeferredSections) return;
+
+    let revealTimeout: number | null = window.setTimeout(() => {
+      setShowDeferredSections(true);
+    }, 220);
+
+    const revealSections = () => {
+      setShowDeferredSections(true);
+      if (revealTimeout) {
+        window.clearTimeout(revealTimeout);
+        revealTimeout = null;
+      }
+    };
+
+    window.addEventListener('scroll', revealSections, { once: true, passive: true });
+    window.addEventListener('touchstart', revealSections, { once: true, passive: true });
+    window.addEventListener('mousemove', revealSections, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', revealSections);
+      window.removeEventListener('touchstart', revealSections);
+      window.removeEventListener('mousemove', revealSections);
+      if (revealTimeout) {
+        window.clearTimeout(revealTimeout);
+      }
+    };
+  }, [pathname, showDeferredSections]);
 
   React.useEffect(() => {
     if (isInitialLoading) {
@@ -2364,13 +2399,23 @@ export default function App() {
 
           <Navbar onNavigate={handleNavigate} />
           <Hero />
-          <Journey />
-          <Skills />
-          <SDLCFlow />
-          <Portfolio />
-          <Contact />
-          <Testimonials />
-          <Footer onRouteChange={handleRouteChange} />
+          {showDeferredSections ? (
+            <>
+              <Journey />
+              <Skills />
+              <SDLCFlow />
+              <Portfolio />
+              <Contact />
+              <Testimonials />
+              <Footer onRouteChange={handleRouteChange} />
+            </>
+          ) : (
+            <div className="px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 py-8 lg:py-10">
+              <div className="mx-auto max-w-7xl">
+                <TravelokaSkeletonBlock className="h-40 rounded-[28px]" />
+              </div>
+            </div>
+          )}
           <style>{`
             section[id] {
               padding-top: clamp(40px, 4vw, 70px) !important;
@@ -2384,7 +2429,9 @@ export default function App() {
               100% { background-position: 200% 50%; }
             }
           `}</style>
-          <OktaAI />
+          <React.Suspense fallback={null}>
+            <LazyOktaAI />
+          </React.Suspense>
         </>
       )}
     </div>
