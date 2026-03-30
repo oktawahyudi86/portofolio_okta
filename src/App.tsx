@@ -153,7 +153,7 @@ export default function App() {
       return;
     }
 
-    let timeoutId: number | null = null;
+    let timeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
     let idleId: number | null = null;
 
     const loadFonts = () => {
