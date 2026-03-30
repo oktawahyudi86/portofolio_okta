@@ -12,14 +12,6 @@
       "destination": "/share/index.html"
     },
     {
-      "source": "/cv_oktawahyudi",
-      "destination": "/cv_oktawahyudi/index.html"
-    },
-    {
-      "source": "/cv_oktawahyudi/",
-      "destination": "/cv_oktawahyudi/index.html"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

@@ -34,6 +34,6 @@ PORT=3000
 ## Struktur penting
 
 - `src/` komponen React utama
-- `public/` asset publik, halaman share, dan file CV
+- `public/` asset publik dan file CV
 - `server.js` server Express untuk mode production/local preview
 - `vercel.json` rewrite static route untuk deployment Vercel

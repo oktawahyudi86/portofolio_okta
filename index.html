@@ -18,12 +18,15 @@
     </noscript>
     <link rel="preload" as="image" href="/aset/profil-hero-new.webp" type="image/webp" fetchpriority="high" />
     <link rel="canonical" href="%SITE_URL%/" />
+    <link rel="alternate" href="%VERCEL_SITE_URL%/" />
+    <link rel="image_src" href="%OG_IMAGE_URL%" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Okta Wahyudi | Project Manager" />
     <meta property="og:description" content="Lihat portfolio Okta Wahyudi yang menampilkan pengalaman kerja, case studies, dan pendekatan project management untuk delivery software yang terarah, kolaboratif, dan tepat waktu." />
-    <meta property="og:image" content="%SITE_URL%/aset/og-preview.jpg?v=20260329-2" />
-    <meta property="og:image:secure_url" content="%SITE_URL%/aset/og-preview.jpg?v=20260329-2" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image" content="%OG_IMAGE_URL%" />
+    <meta property="og:image:url" content="%OG_IMAGE_URL%" />
+    <meta property="og:image:secure_url" content="%OG_IMAGE_URL%" />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="628" />
     <meta property="og:image:alt" content="Preview portfolio Okta Wahyudi sebagai Project Manager" />
@@ -33,9 +36,70 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Okta Wahyudi | Project Manager" />
     <meta name="twitter:description" content="Lihat portfolio Okta Wahyudi yang menampilkan pengalaman kerja, case studies, dan pendekatan project management untuk delivery software yang terarah, kolaboratif, dan tepat waktu." />
-    <meta name="twitter:image" content="%SITE_URL%/aset/og-preview.jpg?v=20260329-2" />
+    <meta name="twitter:image" content="%OG_IMAGE_URL%" />
     <meta name="twitter:image:alt" content="Portfolio preview of Okta Wahyudi, IT Project Manager" />
     <meta property="article:author" content="Okta Wahyudi" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "%SITE_URL%/#website",
+            "url": "%SITE_URL%/",
+            "name": "Okta Wahyudi Portfolio",
+            "description": "Portfolio Okta Wahyudi yang menampilkan pengalaman kerja, case studies, dan pendekatan project management untuk delivery software yang terarah, kolaboratif, dan tepat waktu.",
+            "inLanguage": "id-ID"
+          },
+          {
+            "@type": "Person",
+            "@id": "%SITE_URL%/#person",
+            "name": "Okta Wahyudi",
+            "url": "%SITE_URL%/",
+            "jobTitle": "IT Project Manager",
+            "image": "%OG_IMAGE_URL%",
+            "sameAs": [
+              "https://www.linkedin.com/in/oktawahyudi",
+              "https://github.com/oktawahyu"
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "name": "Primary Site Pages",
+            "itemListElement": [
+              {
+                "@type": "SiteNavigationElement",
+                "position": 1,
+                "name": "Journey",
+                "description": "Career milestones, roles, and leadership progression across software and enterprise delivery.",
+                "url": "%SITE_URL%/journey"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 2,
+                "name": "Skills",
+                "description": "Core delivery capabilities, SDLC flow, and tools used to keep software projects on track.",
+                "url": "%SITE_URL%/skills"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 3,
+                "name": "Portfolio",
+                "description": "Selected case studies that show delivery leadership across SaaS, marketplaces, and enterprise platforms.",
+                "url": "%SITE_URL%/portfolio"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 4,
+                "name": "Contact",
+                "description": "Direct contact options for project roles, collaboration, and software delivery discussions.",
+                "url": "%SITE_URL%/contact"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
     <style>
       :root {
         color-scheme: light;
