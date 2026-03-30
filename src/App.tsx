@@ -4,13 +4,6 @@
  */
 
 import React from 'react';
-import {
-  Instagram,
-  Twitter,
-  Linkedin,
-  Facebook,
-  Download,
-  ExternalLink,
 import { 
   Linkedin, 
   Download, 
@@ -287,17 +280,17 @@ const LegacyOktaAI = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{
-              opacity: 0,
-              y: position === 'bottom' ? 50 : -50,
-              scale: 0.9,
-              transformOrigin: position === 'bottom' ? 'bottom right' : 'top right'
+            initial={{ 
+              opacity: 0, 
+              y: position === 'bottom' ? 50 : -50, 
+              scale: 0.9, 
+              transformOrigin: position === 'bottom' ? 'bottom right' : 'top right' 
             }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{
-              opacity: 0,
-              y: position === 'bottom' ? 50 : -50,
-              scale: 0.9
+            exit={{ 
+              opacity: 0, 
+              y: position === 'bottom' ? 50 : -50, 
+              scale: 0.9 
             }}
             className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white/95 backdrop-blur-3xl lg:rounded-[28px] border border-white/30 shadow-[0_10px_32px_rgba(15,23,42,0.18)] z-[100] flex flex-col overflow-hidden`}
           >
@@ -306,13 +299,13 @@ const LegacyOktaAI = () => {
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  animate={{
+                  animate={{ 
                     scale: [1, 1.5, 1],
                     opacity: [0.3, 0.7, 0.3],
                     rotate: [0, 180, 360]
                   }}
-                  transition={{
-                    repeat: Infinity,
+                  transition={{ 
+                    repeat: Infinity, 
                     duration: 4 + i,
                     delay: i * 0.5
                   }}
@@ -333,7 +326,7 @@ const LegacyOktaAI = () => {
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-[16px] bg-white/80 backdrop-blur-sm flex items-center justify-center border border-slate-200 shadow-sm group overflow-hidden relative">
                   <motion.div
-                    animate={{
+                    animate={{ 
                       y: [0, -4, 0],
                       rotate: [0, 5, -5, 0]
                     }}
@@ -342,11 +335,11 @@ const LegacyOktaAI = () => {
                   >
                     <Cpu size={28} className="text-white" />
                   </motion.div>
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    className="absolute inset-0 bg-gradient-to-tr from-[#4a7c8c] to-transparent"
-                  />
+                    <motion.div 
+                      animate={{ scale: [1, 1.05, 1], opacity: [0.25, 0.55, 0.25] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                      className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent"
+                    />
                 </div>
                 <div>
                     <h4 className="text-[17px] font-black tracking-tight flex items-center gap-2">
@@ -355,9 +348,9 @@ const LegacyOktaAI = () => {
                     <p className="text-[12px] text-slate-500 font-semibold tracking-[0.08em]">Asisten pintar & sigap ✨</p>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-all relative z-10"
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center transition-all relative z-10 border border-white/60"
               >
                 <X size={20} />
               </button>
@@ -367,14 +360,14 @@ const LegacyOktaAI = () => {
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 no-scrollbar bg-white relative z-10">
               {messages.length === 1 && (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <motion.div
+                  <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     className="w-32 h-32 bg-white rounded-[24px] flex items-center justify-center mb-6 border border-slate-200 relative overflow-hidden group"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#4a7c8c]/5 to-transparent"></div>
-                    <Cpu size={56} className="text-[#1a2e35] relative z-10 group-hover:scale-110 transition-transform duration-500" />
-                    <motion.div
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent"></div>
+                    <Cpu size={56} className="text-[#0f1724] relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                    <motion.div 
                       animate={{ rotate: 360 }}
                       transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
                       className="absolute inset-0 border-2 border-dashed border-slate-200 rounded-[20px] m-2"
@@ -386,16 +379,17 @@ const LegacyOktaAI = () => {
               )}
 
               {messages.map((m, i) => (
-                <motion.div
-                  key={i}
+                <motion.div 
+                  key={i} 
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] p-5 rounded-[30px] text-[13px] leading-relaxed font-medium shadow-sm relative group ${m.role === 'user'
-                    ? 'bg-[#1a2e35] text-white rounded-tr-none'
-                    : 'bg-white text-[#1a2e35] border border-gray-100 rounded-tl-none'
-                    }`}>
+                  <div className={`max-w-[85%] p-4 rounded-[22px] text-base leading-relaxed font-medium relative group ${
+                    m.role === 'user' 
+                      ? 'bg-[#0f1724] text-white rounded-tr-none shadow-[0_8px_24px_rgba(15,23,42,0.18)]' 
+                      : 'bg-[#f6f7fb] text-[#0f1724] border border-slate-200 rounded-tl-none shadow-sm'
+                  }`}>
                     {m.text}
                     {m.role === 'model' && (
                       <div className="absolute -left-2 -top-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -405,7 +399,7 @@ const LegacyOktaAI = () => {
                   </div>
                 </motion.div>
               ))}
-
+              
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-white p-4 rounded-[20px] rounded-tl-none border border-slate-200 shadow-sm flex gap-1.5 items-center">
@@ -416,78 +410,6 @@ const LegacyOktaAI = () => {
                 </div>
               )}
             </div>
-
-            {/* Quick Actions Carousel */}
-            {!isLoading && (
-              <div className="px-6 py-4 bg-white border-t border-gray-50 relative z-10">
-                <div className="flex items-center justify-between gap-3">
-                  {/* Previous Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setCarouselIndex((prev) => (prev - 1 + quickActions.length) % quickActions.length)}
-                    className="p-2 rounded-full bg-gray-50 border border-gray-100 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                  </motion.button>
-
-                  {/* Carousel Items - Show 2 items at a time */}
-                  <div className="flex-1 overflow-hidden">
-                    <motion.div
-                      key={carouselIndex}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex gap-2"
-                    >
-                      {[
-                        quickActions[carouselIndex],
-                        quickActions[(carouselIndex + 1) % quickActions.length]
-                      ].map((action, idx) => (
-                        <motion.button
-                          key={idx}
-                          whileHover={{ scale: 1.05, y: -2, backgroundColor: '#1a2e35', color: '#fff' }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => handleSend(action.label)}
-                          className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-100 rounded-2xl text-[10px] font-black text-[#1a2e35] shadow-sm flex flex-col items-center gap-1.5 transition-all duration-300"
-                        >
-                          <span className="text-[16px]">{action.icon}</span>
-                          <span className="line-clamp-2">{action.label}</span>
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  </div>
-
-                  {/* Next Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setCarouselIndex((prev) => (prev + 1) % quickActions.length)}
-                    className="p-2 rounded-full bg-gray-50 border border-gray-100 text-[#1a2e35] hover:bg-[#1a2e35] hover:text-white transition-all duration-300"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                  </motion.button>
-                </div>
-
-                {/* Carousel Indicators */}
-                <div className="flex justify-center gap-1.5 mt-3">
-                  {quickActions.map((_, idx) => (
-                    <motion.button
-                      key={idx}
-                      onClick={() => setCarouselIndex(idx)}
-                      whileHover={{ scale: 1.2 }}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === carouselIndex ? 'bg-[#1a2e35] w-6' : 'bg-gray-200'
-                        }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Input Area */}
             <div className="p-5 lg:p-6 pb-8 bg-white border-t border-slate-200 relative z-10">
@@ -500,9 +422,9 @@ const LegacyOktaAI = () => {
                   placeholder="Tanya apa saja..."
                   className="flex-1 bg-white border border-slate-200 outline-none px-5 md:px-6 py-3.5 md:py-4 rounded-[18px] text-base font-medium placeholder:text-slate-400 focus:ring-2 focus:ring-[#6fc7d7]/30 transition-all"
                 />
-                <motion.button
-                  whileHover={{ scale: 1.1, backgroundColor: '#4a7c8c' }}
-                  whileTap={{ scale: 0.9 }}
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend()}
                   disabled={isLoading || !input.trim()}
                   className="accent-gradient-bg w-12 h-12 md:w-14 md:h-14 rounded-[16px] flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_10px_20px_rgba(114,179,154,0.18)]"
@@ -609,18 +531,17 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
 
   return (
     <>
-      {/* Top Navbar - Desktop Only */}
-      <div className="hidden lg:block fixed top-8 left-0 w-full z-50 px-6">
-        <nav className="max-w-6xl mx-auto bg-white/80 backdrop-blur-2xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.08)] rounded-[32px] overflow-hidden">
-          <div className="px-8 py-4 flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center gap-10">
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="text-xl lg:text-2xl font-black tracking-tighter text-[#1a2e35] cursor-default"
-              >
-                OKTA<span className="text-[#4a7c8c]">.</span>
-              </motion.div>
+      <div className="hidden lg:block fixed top-5 left-0 w-full z-50 px-6 xl:px-8 2xl:px-12">
+        <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+          <nav className="navbar-glass rounded-[18px] px-4 py-2">
+            <div className="flex items-center justify-between gap-6">
+              <div className="flex items-center gap-7">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="text-[1.45rem] font-black tracking-tight text-[#0c1a24] leading-none cursor-default"
+                >
+                  OKTA<span className="accent-gradient-text">.</span>
+                </motion.div>
 
                 <div className="navbar-pill hidden lg:flex items-center gap-1 rounded-[14px] p-1">
                   {menuItems.slice(0, 4).map((item, idx) => (
@@ -646,34 +567,6 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   ))}
                 </div>
               </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* AI Button */}
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={openChat}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#4a7c8c] via-[#ff6b6b] to-[#4a7c8c] rounded-full blur-md opacity-40 group-hover:opacity-100 transition-all duration-500 animate-gradient-x"></div>
-                <div className="relative bg-[#1a2e35] text-white px-4 lg:px-7 py-2 lg:py-3 rounded-full text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2 lg:gap-3 shadow-xl border border-white/10 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#4a7c8c]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                  <div className="relative flex items-center gap-2">
-                    <div className="relative">
-                      <MessageCircle size={14} className="lg:w-4 lg:h-4 group-hover:rotate-12 transition-transform duration-500" />
-                      <motion.div
-                        animate={{ scale: [1, 1.5, 1], opacity: [0, 1, 0] }}
-                        transition={{ repeat: Infinity, duration: 2 }}
-                        className="absolute -top-1 -right-1 text-yellow-300"
-                      >
-                        <Sparkles size={6} className="lg:w-2 lg:h-2" fill="currentColor" />
-                      </motion.div>
-                    </div>
-                    <span className="hidden sm:inline">Talk With Okta AI</span>
-                    <span className="sm:hidden">OktaAI</span>
-                  </div>
 
               <div className="flex items-center gap-3">
                 <motion.a
@@ -735,8 +628,8 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   />
                 )}
                 <motion.div
-                  whileTap={{ scale: 0.8 }}
-                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#4a7c8c]' : 'text-gray-300'} transition-colors`}
+                  whileTap={{ scale: 0.9 }}
+                  className={`${activeSection === item.href.replace('#', '') ? 'text-[#6fc7d7]' : 'text-[#94a3b8]'} transition-colors`}
                 >
                   {React.cloneElement(item.icon, { size: 18 })}
                 </motion.div>
@@ -764,13 +657,13 @@ const heroStats = [
 const Hero = () => {
 
   return (
-    <section id="home" className="pt-16 lg:pt-56 pb-12 lg:pb-24 px-6 max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center relative overflow-hidden lg:overflow-visible">
+    <section id="home" className="mobile-hero-shell section-shell section-tone-hero pt-12 sm:pt-16 lg:pt-[16rem] pb-10 lg:pb-20 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
+      <div className="mobile-hero-grid section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-20 items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Mobile AI Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -799,31 +692,9 @@ const Hero = () => {
           </span>
         </h1>
 
-        <div className="bg-[#1a2e35] text-white p-7 lg:p-8 rounded-[32px] lg:rounded-[40px] mb-10 relative shadow-2xl overflow-hidden group border border-white/10">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-[#4a7c8c]/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-[#4a7c8c]/30 transition-all duration-1000"></div>
-          <p className="italic text-base lg:text-lg leading-relaxed font-medium relative z-10 opacity-90">
-            "I manage software projects end-to-end, ensuring timely delivery, quality results, and strong team alignment."
-          </p>
-        </div>
-
-        <div className="flex gap-10 lg:gap-12 mb-10 px-2">
-          <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">3+</span>
-            <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
-              Years<br />experience
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-4xl lg:text-5xl font-black text-[#1a2e35] tracking-tighter">30</span>
-            <div className="text-[9px] lg:text-[11px] text-gray-400 font-black leading-tight uppercase tracking-widest mt-1">
-              Projects<br />delivered
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-100 pt-10 mb-10">
-          <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
-            I am an IT Project Manager focused on software development, delivering projects efficiently and on time.
+        <div className="mobile-hero-copy copy-measure mb-4 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-4 sm:pl-5">
+          <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2">
+            <span className="accent-gradient-text">What I bring</span>
           </p>
           <p className="copy-pretty text-[14px] sm:text-[15px] text-[#0c1a24] leading-relaxed font-semibold mb-2">
             Hands-on project coordination for product, enterprise, and SaaS delivery.
@@ -849,24 +720,69 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      <motion.div
+      <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative w-full lg:-mt-4 flex flex-col items-center"
       >
-        <div className="rounded-[40px] lg:rounded-[60px] overflow-hidden relative aspect-[4/5] lg:aspect-auto">
-          {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-          <img
-            src="/aset/profil.png"
-            alt="Okta"
-            onLoad={() => setIsLoaded(true)}
-            loading="eager"
-            // @ts-ignore
-            fetchPriority="high"
-            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            referrerPolicy="no-referrer"
-          />
+        <div className="mobile-hero-visual relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[470px] xl:max-w-[500px] aspect-[0.92/1]">
+          <div className="absolute inset-x-[4%] top-[14%] bottom-[7%] rounded-[22px] bg-[radial-gradient(circle_at_72%_85%,rgba(114,179,154,0.95),transparent_34%),linear-gradient(180deg,#112a31_0%,#1e3b40_58%,#78bea1_100%)] shadow-[0_26px_56px_rgba(15,32,39,0.18)]" />
+          <div className="absolute inset-x-[9%] top-[-4%] bottom-[7%] z-10 flex items-end justify-center">
+            <img 
+              src="/aset/profil-hero-new.webp" 
+              alt="Okta" 
+              loading="eager"
+              decoding="async"
+              // @ts-ignore
+              fetchPriority="high"
+              className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_18px_32px_rgba(15,32,39,0.16)]"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-x-[4%] bottom-[7%] h-[14%] rounded-b-[22px] bg-[linear-gradient(180deg,rgba(17,42,49,0)_0%,rgba(30,59,64,0.08)_46%,rgba(120,190,161,0.34)_100%)] z-20" />
+
+          <div className="absolute left-[1%] bottom-[14%] z-30 rounded-[14px] border border-[rgba(30,59,64,0.18)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(220,243,234,0.92))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.09)] backdrop-blur-md sm:left-[-9%] sm:bottom-[17%] sm:px-4 sm:py-3">
+            <p className="text-[11px] font-semibold tracking-[0.04em] text-[#17363d] sm:text-[12px]">
+              B.Sc. in Informatics
+            </p>
+          </div>
+
+          <div className="absolute right-[1%] top-[52%] z-30 flex max-w-[150px] items-center gap-2 rounded-[14px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.10)] backdrop-blur-md sm:hidden">
+            <div className="flex h-9 w-9 items-center justify-center rounded-[11px] bg-[linear-gradient(135deg,rgba(15,32,39,0.05),rgba(114,179,154,0.16))]">
+              <img
+                src="/aset/amikom-logo.webp"
+                alt="AMIKOM University logo"
+                className="h-7 w-7 object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-[11px] font-black leading-tight text-[#102a31]">AMIKOM University</p>
+              <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.92)] px-2 py-0.5 text-[8px] font-semibold tracking-[0.04em] text-[#21424d]">
+                Bachelor's Degree, 2016 - 2020
+              </p>
+            </div>
+          </div>
+
+          <div className="absolute right-[-4%] top-[48%] z-30 hidden sm:flex items-center gap-3 rounded-[16px] border border-[rgba(114,179,154,0.24)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(114,179,154,0.10))] px-4 py-3 shadow-[0_16px_28px_rgba(15,32,39,0.10)] backdrop-blur-md">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[linear-gradient(135deg,rgba(15,32,39,0.05),rgba(114,179,154,0.16))]">
+              <img
+                src="/aset/amikom-logo.webp"
+                alt="AMIKOM University logo"
+                className="h-8 w-8 object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-[13px] font-black text-[#102a31] leading-tight">AMIKOM University</p>
+              <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.94)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.06em] text-[#21424d]">
+                Bachelor's Degree, 2016 - 2020
+              </p>
+            </div>
+          </div>
         </div>
       </motion.div>
       </div>
@@ -882,8 +798,8 @@ const Journey = () => {
       company: "PT Sarana Insan Muda Selaras",
       label: "PT Sarana Insan Muda Selaras",
       position: "Technical E-Government & Corporate Support",
-      summary: "Kept government and corporate deployments on track with readiness checks, coordination, and operational follow-through.",
-      highlight: "Deployment readiness support"
+      summary: "Built early delivery discipline through government and corporate implementation work, supporting deployment readiness, coordination, and operational follow-through.",
+      highlight: "Implementation support and operational coordination"
     },
     {
       date: "Aug 2021 - Jan 2023",
@@ -891,8 +807,8 @@ const Journey = () => {
       company: "PT Supra Primatama Nusantara",
       label: "PT Supra Primatama Nusantara",
       position: "Project Engineer FTTH / Project Building",
-      summary: "Delivered fiber and building rollouts while coordinating vendors and QA/QC across field teams.",
-      highlight: "Infrastructure rollout & QA/QC"
+      summary: "Managed infrastructure rollout activities covering vendor coordination, QA/QC control, and field execution across fiber and building projects.",
+      highlight: "Infrastructure rollout, QA/QC, and vendor coordination"
     },
     {
       date: "Jun 2023 - Dec 2023",
@@ -900,8 +816,8 @@ const Journey = () => {
       company: "PT Divistant Teknologi Indonesia",
       label: "PT Divistant Teknologi Indonesia",
       position: "Project Manager",
-      summary: "Directed agile software delivery from kickoff to close with steady cadence and client-facing updates.",
-      highlight: "Agile delivery ownership"
+      summary: "Managed software delivery from project initiation through closure, maintaining execution cadence, client communication, and day-to-day delivery control.",
+      highlight: "Agile software delivery ownership"
     },
     {
       date: "Dec 2023 - Jan 2025",
@@ -909,8 +825,8 @@ const Journey = () => {
       company: "PT Juragan Inovator Teknologi Indonesia",
       label: "PT Juragan Inovator Teknologi Indonesia",
       position: "Product & Project Manager",
-      summary: "Led web and mobile releases end-to-end, from planning through launch while balancing budgets and risk.",
-      highlight: "Product lifecycle governance"
+      summary: "Owned web and mobile product delivery across planning, design, testing, deployment, budget monitoring, and delivery risk management.",
+      highlight: "Product lifecycle ownership and delivery governance"
     },
     {
       date: "Jan 2025 - May 2025",
@@ -918,8 +834,8 @@ const Journey = () => {
       company: "PT Ako Media Asia",
       label: "PT Ako Media Asia",
       position: "IT Project Manager",
-      summary: "Coordinated MAXstream migration/feature delivery into MyTelkomsel with tight sprint execution.",
-      highlight: "Enterprise migration"
+      summary: "Led delivery coordination for MAXstream enhancements and migration into MyTelkomsel, driving sprint execution, stakeholder alignment, and release readiness.",
+      highlight: "Enterprise migration and sprint governance"
     },
     {
       date: "Jun 2025 - Present",
@@ -927,8 +843,8 @@ const Journey = () => {
       company: "PT Dazo Kreatif Indonesia",
       label: "PT Dazo Kreatif Indonesia",
       position: "IT Project Manager",
-      summary: "Running AI SaaS delivery across order management, chat automation, digital storefronts, and omnichannel releases.",
-      highlight: "AI SaaS & execution control",
+      summary: "Lead AI SaaS delivery across order management, chat automation, digital storefronts, and omnichannel initiatives with a strong focus on planning, coordination, and release execution.",
+      highlight: "AI SaaS, product delivery, and execution control",
       current: true
     }
   ];
@@ -969,65 +885,23 @@ const Journey = () => {
           </p>
         </div>
 
-        {/* Desktop Timeline (Horizontal) */}
-        <div className="hidden lg:block relative h-[350px] mt-10">
-          {/* Wavy Dotted Line */}
-          <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 pointer-events-none opacity-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-              d="M0,60 C100,0 200,120 300,60 C400,0 500,120 600,60 C700,0 800,120 900,60 C1000,0 1100,120 1200,60"
-              fill="none"
-              stroke="#4a7c8c"
-              strokeWidth="2"
-              strokeDasharray="8 8"
-            />
-          </svg>
-
-          <div className="flex justify-between items-center h-full px-10">
-            {experiences.map((exp, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="relative flex flex-col items-center"
-                style={{ transform: `translateY(${exp.y}px)` }}
-              >
-                {/* Circle */}
-                <div className="w-24 h-24 rounded-full bg-[#4a7c8c] text-white flex flex-col items-center justify-center p-3 text-center shadow-lg border-4 border-white/20 z-10 hover:scale-110 transition-all duration-500 group cursor-default">
-                  <span className="text-[8px] font-bold opacity-70 uppercase tracking-tighter mb-0.5">{exp.date}</span>
-                  <span className="text-[10px] font-black leading-tight">{exp.location}</span>
-                </div>
-
-                {/* Info Label */}
-                <div className={`absolute left-1/2 -translate-x-1/2 w-48 text-center ${exp.y > 0 ? '-top-24' : 'top-28'}`}>
-                  <p className="text-[12px] font-black text-[#1a2e35] leading-tight mb-0.5">{exp.company}</p>
-                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest opacity-70">{exp.position}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Timeline (Vertical Cards) */}
-        <div className="lg:hidden space-y-7 relative">
-          <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0fa3b1] via-[#2eccc7] to-[#0fa3b1]/20"></div>
+        <div className="lg:hidden space-y-6">
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
               whileHover={{ x: 2 }}
               className="relative pl-8 pr-2 py-2"
             >
-              <motion.div
-                whileHover={{ scale: 1.15 }}
-                className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#0fa3b1] to-[#2eccc7] text-white flex items-center justify-center shadow-lg shadow-[#0fa3b1]/30 border-4 border-white"
-              >
-                <Briefcase size={20} />
-              </motion.div>
-              <div className="flex-1 bg-white/70 backdrop-blur-sm p-7 rounded-[24px] border border-[#0fa3b1]/20 shadow-sm hover:shadow-md hover:bg-white/90 transition-all">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[12px] font-black text-white bg-gradient-to-r from-[#0fa3b1] to-[#2eccc7] px-4 py-1.5 rounded-full border border-[#0fa3b1]/20">
-                    {exp.date}
+              <div className="absolute left-0 top-2 bottom-2 w-px bg-[#dbe3ea]" aria-hidden="true" />
+              <div className="absolute left-[-5px] top-3 w-[10px] h-[10px] rounded-full bg-[#0fa3b1]/75 ring-4 ring-[#f4f6fb]" aria-hidden="true" />
+
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <p className="text-[11px] font-semibold tracking-[0.08em]">
+                  <span className="accent-gradient-text">{exp.date}</span>
+                </p>
+                {exp.current && (
+                  <span className="rounded-full bg-[#0fa3b1]/10 px-2.5 py-1 text-[10px] font-semibold tracking-[0.08em]">
+                    <span className="accent-gradient-text">Current</span>
                   </span>
                 )}
               </div>
@@ -1162,10 +1036,10 @@ const Skills = () => {
             Four delivery strengths that reflect how I lead teams, manage execution, and keep projects moving with control.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((skill, idx) => (
-            <motion.div
+            <motion.div 
               key={idx}
               whileHover={{ y: -2 }}
               className="border-t border-[#dbe3ea] pt-6 lg:pt-7"
@@ -1219,12 +1093,34 @@ const ToolsCarousel = ({ tools }: { tools: { name: string; color: string; icon: 
     const carousel = desktopCarouselRef.current;
     if (!carousel) return;
 
-    const animate = () => {
-      carousel.scrollLeft += 1;
+    singleSetWidthRef.current = carousel.scrollWidth / 3;
+    if (singleSetWidthRef.current > 0 && carousel.scrollLeft === 0) {
+      carousel.scrollLeft = singleSetWidthRef.current;
+    }
+  }, []);
 
-      // Reset to start when reaching end
-      if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
-        carousel.scrollLeft = 0;
+  const normalizeDesktopScroll = React.useCallback(() => {
+    const carousel = desktopCarouselRef.current;
+    const singleSetWidth = singleSetWidthRef.current;
+    if (!carousel || !singleSetWidth) return;
+
+    if (carousel.scrollLeft <= 0) {
+      carousel.scrollLeft += singleSetWidth;
+    } else if (carousel.scrollLeft >= singleSetWidth * 2) {
+      carousel.scrollLeft -= singleSetWidth;
+    }
+  }, []);
+
+  React.useEffect(() => {
+    measureDesktopCarousel();
+    window.addEventListener('resize', measureDesktopCarousel);
+    return () => window.removeEventListener('resize', measureDesktopCarousel);
+  }, [measureDesktopCarousel, repeatedTools.length]);
+
+  React.useEffect(() => {
+    return () => {
+      if (mobileResumeTimeoutRef.current) {
+        window.clearTimeout(mobileResumeTimeoutRef.current);
       }
     };
   }, []);
@@ -1367,27 +1263,18 @@ const SDLCFlow = () => {
   const scrumFlowSteps = [
     {
       title: "Grooming",
-      desc: "Story refinement & requirements clarity",
-    },
-    {
-      title: "Story Sizing",
-      desc: "Estimate effort & complexity",
+      desc: "Prioritized requirements",
+      icon: <FolderKanban size={18} />
     },
     {
       title: "Sprint Planning",
-      desc: "Define sprint goals & tasks",
+      desc: "Scope and sprint goals",
+      icon: <Layout size={18} />
     },
     {
-      title: "Sprint Dev",
-      desc: "Execute & develop features (24H)",
-    },
-    {
-      title: "Review",
-      desc: "Showcase completed work",
-    },
-    {
-      title: "Retrospective",
-      desc: "Continuous improvement",
+      title: "Sprint Backlog",
+      desc: "Ready sprint tasks",
+      icon: <Layers size={18} />
     }
   ];
 
@@ -1457,45 +1344,15 @@ const SDLCFlow = () => {
             </p>
           </div>
 
-          {/* Tools Carousel - Draggable */}
-          <div className="mb-16 lg:mb-20">
-            <style>{`
-              @keyframes scroll-left {
-                0% {
-                  transform: translateX(0);
-                }
-                100% {
-                  transform: translateX(-100%);
-                }
-              }
-              
-              .carousel-scroll {
-                animation: scroll-left 80s linear infinite;
-              }
-              
-              .carousel-scroll:hover {
-                animation-play-state: paused;
-              }
-              
-              .carousel-container {
-                scroll-behavior: smooth;
-              }
-              
-              .carousel-container.dragging {
-                scroll-behavior: auto;
-              }
-            `}</style>
-
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">Primary Tools Stack</p>
-
+          <div className="mb-16 lg:mb-20 2xl:mb-24">
+            <p className="text-[12px] font-semibold text-[#5f6670] tracking-[0.08em] mb-8">Primary delivery toolkit</p>
             <ToolsCarousel tools={tools} />
           </div>
 
-          {/* Features Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 2xl:gap-10">
             <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="recruitment" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Requirement Discovery</h3>
@@ -1503,8 +1360,8 @@ const SDLCFlow = () => {
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="analysis" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">Planning & Prioritization</h3>
@@ -1512,8 +1369,8 @@ const SDLCFlow = () => {
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-white/40 backdrop-blur-sm p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] border border-white/40 shadow-sm hover:shadow-xl transition-all"
+              whileHover={{ y: -2 }}
+              className="border-t border-[#dbe3ea] pt-6 lg:pt-8 flex flex-col gap-3 items-start"
             >
               <FeatureIcon type="brd" />
               <h3 className="text-[14px] font-black text-[#1a2e35] mb-0">BRD & Delivery Readiness</h3>
@@ -1719,7 +1576,6 @@ const SDLCFlow = () => {
                       <p className="text-[12px] text-[#5f6670] font-semibold tracking-[0.04em]">{report.frequency}</p>
                     </div>
                   </div>
-
                   <div className="space-y-3">
                     {report.items.map((item, itemIdx) => (
                         <div key={itemIdx} className="flex items-center gap-3">
@@ -1745,14 +1601,19 @@ interface PortfolioItemProps {
 }
 
 const portfolioImageFallbacks: Record<string, string> = {
+  "/aset/project-mrt-jakarta.webp": "/aset/project-mrt-jakarta.svg",
   "/aset/project-mrt-real.webp": "/aset/project-mrt-jakarta.svg",
+  "/aset/project-yulo-laundry.webp": "/aset/project-yulo-laundry.svg",
   "/aset/project-yulo-real.webp": "/aset/project-yulo-laundry.svg",
+  "/aset/project-dazo-ai.webp": "/aset/project-dazo-ai.svg",
   "/aset/project-dazo-porto.webp": "/aset/project-dazo-ai.svg",
-  "/aset/project-melodiamusik.webp": "/aset/project-dazo-ai.svg",
-  "/aset/project-paketur.webp": "/aset/project-dazo-ai.svg",
-  "/aset/project-juragankucek.webp": "/aset/project-dazo-ai.svg",
+  "/aset/project-maxtream.webp": "/aset/project-maxtream.svg",
   "/aset/project-maxtream-real.webp": "/aset/project-maxtream.svg",
+  "/aset/project-bpjstk.webp": "/aset/project-bpjstk.svg",
   "/aset/project-bpjstk-real.webp": "/aset/project-bpjstk.svg",
+  "/aset/project-melodiamusik.webp": "/aset/project-meloadia.svg",
+  "/aset/project-paketur.webp": "/aset/og-preview.jpg",
+  "/aset/project-juragankucek.webp": "/aset/og-preview.jpg",
 };
 
 const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
@@ -1764,27 +1625,35 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="mobile-portfolio-item grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center border-b border-[#e3e8ef] pb-10 last:border-0"
+      className="mobile-portfolio-item grid items-start gap-6 border-b border-[#e3e8ef] pb-7 lg:grid-cols-[1fr_0.92fr] lg:gap-8 lg:pb-8 last:border-0"
     >
       <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-        <div className="relative">
-          <div className="surface-card surface-card-tight aspect-[16/10] overflow-hidden relative">
+        <div className="relative mx-auto w-full max-w-[620px]">
+          <div className="surface-card surface-card-tight relative aspect-[16/9] overflow-hidden border border-[#e3e8ef] bg-[#f5f8fa]">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
             <img
-              src={project.image}
+              src={imageSrc}
               alt={project.title}
               onLoad={() => setIsLoaded(true)}
+              onError={() => {
+                const fallbackSrc = portfolioImageFallbacks[imageSrc] || "/aset/og-preview.jpg";
+                if (fallbackSrc !== imageSrc) {
+                  setIsLoaded(false);
+                  setImageSrc(fallbackSrc);
+                }
+              }}
               loading="lazy"
-              className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              decoding="async"
+              className={`h-full w-full object-cover transition duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{ objectPosition: project.imageFocus || "center" }}
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
         </div>
       </div>
 
-      <div className={`order-2 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-        <div className="flex flex-wrap items-center gap-2 mb-5 text-[12px] text-[#5f6670]">
+      <div className={`order-2 space-y-5 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+        <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#5f6670] lg:text-[12px]">
           <span className="font-semibold tracking-[0.08em]">
             <span className="accent-gradient-text">{project.type}</span>
           </span>
@@ -1792,37 +1661,39 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
           <span className="text-[#0c1a24]">{project.role}</span>
         </div>
 
-        <h3 className="text-3xl lg:text-5xl font-black text-[#0d1f2b] tracking-tighter leading-[0.9] mb-6">{project.title}</h3>
+        <h3 className="copy-balance max-w-[16ch] text-[28px] font-black leading-[0.95] tracking-tighter text-[#0d1f2b] lg:text-[40px] xl:text-[44px]">
+          {project.title}
+        </h3>
 
-        <div className="space-y-6 mb-10">
-          <p className="text-[15px] lg:text-[17px] text-gray-500 leading-relaxed font-medium">
+        <div className="space-y-4">
+          <p className="copy-pretty max-w-xl text-[14px] leading-[1.75] text-[#1a2e35]/80 lg:text-[15px]">
             {project.desc}
           </p>
-          <div className="border-l-2 border-[#0fa3b1]/35 pl-5">
-            <p className="text-[12px] font-semibold mb-2 tracking-[0.08em] uppercase">
+          <div className="border-l-2 border-[#0fa3b1]/35 pl-4">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em]">
               <span className="accent-gradient-text">Key impact</span>
             </p>
-            <p className="copy-pretty max-w-xl text-[14px] leading-relaxed italic text-[#0c1a24]">{project.impact}</p>
+            <p className="copy-pretty max-w-xl text-[13px] italic leading-[1.7] text-[#0c1a24] lg:text-[14px]">{project.impact}</p>
           </div>
         </div>
 
-        <div className="mb-10">
-          <p className="text-[10px] lg:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4">Technology Stack</p>
+        <div>
+          <p className="mb-3 text-[11px] font-semibold tracking-[0.08em] text-[#5f6670]">Common interview topics</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag: string) => (
-              <span key={tag} className="bg-[#f8fafc] text-[#1a2e35] px-4 py-2 rounded-xl text-[11px] font-semibold tracking-[0.03em] border border-[#e3e8ef]">
+              <span key={tag} className="rounded-xl border border-[#e3e8ef] bg-[#f8fafc] px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.03em] text-[#1a2e35] lg:text-[11px]">
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <motion.button
+        <motion.a
           whileHover={{ x: 10 }}
           href={project.url}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-4 text-[#1a2e35] group/btn"
+          className="flex items-center gap-3 text-[#1a2e35] group/btn"
         >
           <span className="text-[12px] font-semibold tracking-[0.08em]">View project reference</span>
           <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#d7e2e8] flex items-center justify-center group-hover/btn:bg-[#0c1a24] group-hover/btn:text-white transition-all duration-300">
@@ -1839,21 +1710,21 @@ const Portfolio = () => {
   const projects = [
     {
       title: "DazoApps SaaS AI & OMS",
-      type: "SaaS Platform, AI & OMS",
-      role: "Technical Project Lead",
-      impact: "Delivered the hybrid DazoApps platform with AI WhatsApp chat support and an integrated digital store, boosting engagement 50% within the first month.",
-      desc: "Coordinated delivery for an AI SaaS/OMS platform that now includes a digital storefront plus AI-enabled WhatsApp chat automation, translating fast-changing business requests into sprint priorities, milestone tracking, and release follow-up.",
-      tags: ["AI SaaS delivery", "Chat automation", "Digital storefront", "Cross-team coordination"],
+      type: "SaaS Platform, AI Chat & OMS",
+      role: "IT Project Manager",
+      impact: "Shipped SaaS, OMS, digital store, and AI WhatsApp chat flows to accelerate launch readiness and early adoption.",
+      desc: "Led DazoApps delivery across AI chat, OMS, and storefront features by turning business requests into sprint priorities and release control.",
+      tags: ["AI WhatsApp chat", "OMS delivery", "Digital storefront", "Release management"],
       image: "/aset/project-dazo-porto.webp",
       url: "https://dazo.id/"
     },
     {
       title: "Paketur Travel Marketplace",
-      type: "Travel Marketplace & OMS Platform",
-      role: "Product Delivery Lead / Delivery Revamp",
-      impact: "Re-launched the platform by closing the gaps left by the prior PM so travelers finally got access to curated packages supported by polished OMS tools.",
-      desc: "Took over the Paketur initiative mid-stream, shipping the multi-channel app, website, and OMS back office while rapidly fixing delivery gaps to avoid another missed release.",
-      tags: ["Travel discovery", "OMS automation", "Mobile + web", "Customer journeys"],
+      type: "Travel Marketplace, App, Web & OMS",
+      role: "Product Delivery Lead",
+      impact: "Recovered a delayed travel platform and pushed the app, website, and OMS toward release.",
+      desc: "Took over Paketur mid-project, reset priorities, and drove delivery across the mobile app, website, and management OMS.",
+      tags: ["Delivery revamp", "App + website", "OMS management", "Release recovery"],
       image: "/aset/project-paketur.webp",
       url: "https://paketur.com/"
     },
@@ -1861,19 +1732,19 @@ const Portfolio = () => {
       title: "Juragan Kucek Laundry POS",
       type: "Laundry POS & Order Management",
       role: "Product Delivery Lead",
-      impact: "Delivered an offline-capable POS app and management console so laundry outlets could run cashiering and order tracking without disruptions.",
-      desc: "Implemented Juragan Kucek’s mobile POS, order management, and cashier workflows that sync with the OMS for centralized reporting, inventory checks, and technician queues.",
-      tags: ["POS workflow", "Order management", "Cashier operations", "Offline-first"],
+      impact: "Delivered an offline-ready laundry POS for cashiering, order tracking, and outlet operations.",
+      desc: "Led delivery of the merchant app for offline laundry operations, covering cashier flow, order management, and operational control.",
+      tags: ["Laundry POS", "Order management", "Cashier flow", "Offline operations"],
       image: "/aset/project-juragankucek.webp",
-      url: "https://example.com/"
+      url: "https://play.google.com/store/search?q=Merchant%20Juragan%20Kucek&c=apps&hl=id"
     },
     {
       title: "Melodia Musik Marketplace",
-      type: "Music Retail & Commerce",
+      type: "Music Commerce Platform",
       role: "Product Delivery Lead",
-      impact: "Launched a polished e-commerce front end for musical instruments, improving discovery flow and purchase clarity.",
-      desc: "Delivered the end-to-end Melodia Musik storefront experience, from curated homepage components to integrated checkout flows backed by automation for inventory updates.",
-      tags: ["E-commerce UX", "Omnichannel merchandising", "Inventory automation", "Checkout optimization"],
+      impact: "Delivered a cleaner buying journey for musical instruments and pro-audio products.",
+      desc: "Managed Melodia's storefront delivery to improve product discovery, campaign presentation, and checkout readiness.",
+      tags: ["E-commerce delivery", "Catalog experience", "Campaign landing", "Checkout flow"],
       image: "/aset/project-melodiamusik.webp",
       url: "https://melodia.id/"
     },
@@ -1881,8 +1752,8 @@ const Portfolio = () => {
       title: "Maxtream Platform",
       type: "Video Streaming & Content Delivery",
       role: "Project Manager",
-      impact: "Delivered robust streaming infrastructure supporting 50K+ concurrent users with 99.8% uptime.",
-      desc: "Supported delivery for MAXstream enhancement work and transformation into the MyTelkomsel ecosystem. My contribution focused on sprint execution, requirement clarity, stakeholder coordination, and keeping release readiness under control.",
+      impact: "Supported streaming delivery for 50K+ concurrent users while keeping release readiness on track.",
+      desc: "Coordinated MAXstream enhancement and migration work through sprint execution, requirement alignment, stakeholder coordination, and release readiness.",
       tags: ["Enterprise migration", "Sprint governance", "Requirement alignment", "Release readiness"],
       image: "/aset/project-maxtream-real.webp",
       imageFocus: "20% center",
@@ -1890,11 +1761,11 @@ const Portfolio = () => {
     },
     {
       title: "Implementation DevOps Infrastructure",
-      type: "Government Enterprise Solution",
-      role: "Lead Project Manager",
-      impact: "Modernized deployment and monitoring capabilities for critical services serving 40M+ members.",
-      desc: "Oversaw rollout of DevOps pipelines, observability, and infrastructure automation to support high-volume BPJSTK systems while keeping compliance and uptime targets in check.",
-      tags: ["DevOps automation", "Observability", "Infrastructure-as-Code", "Service reliability"],
+      type: "Enterprise DevOps Infrastructure",
+      role: "Project Manager",
+      impact: "Improved delivery reliability and infrastructure visibility for services serving 40M+ members.",
+      desc: "Coordinated DevOps infrastructure rollout for BPJSTK across pipeline readiness, environment setup, and cross-team delivery alignment.",
+      tags: ["DevOps rollout", "Infrastructure readiness", "Cross-team coordination", "Service reliability"],
       image: "/aset/project-bpjstk-real.webp",
       url: "https://www.bpjsketenagakerjaan.go.id/"
     },
@@ -1903,7 +1774,7 @@ const Portfolio = () => {
       type: "Management System & Mobile App",
       role: "Product Owner & Manager",
       impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
-      desc: "Managed product delivery for a laundry management app focused on order flow, customer notifications, and operational reporting. My role covered backlog prioritization, stakeholder communication, and keeping releases aligned with business needs.",
+      desc: "Managed Yulo delivery across order flow, customer notifications, and operational reporting from backlog priorities to release planning.",
       tags: ["Product backlog", "Workflow improvement", "Release planning", "Client communication"],
       image: "/aset/project-yulo-real.webp",
       url: "https://play.google.com/store/apps/details?id=com.yulo.customer&hl=id"
@@ -1913,7 +1784,7 @@ const Portfolio = () => {
       type: "Enterprise Digital Platform",
       role: "Lead Project Manager",
       impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
-      desc: "Led end-to-end delivery of MRT Jakarta's business website, coordinating requirement gathering, scope alignment, design-development handoff, testing, and deployment. The main challenge was keeping multiple stakeholder requests aligned without slowing delivery.",
+      desc: "Led MRT Jakarta business website delivery from requirements and scope alignment to testing and deployment.",
       tags: ["Requirement gathering", "Stakeholder alignment", "UAT coordination", "Deployment"],
       image: "/aset/project-mrt-real.webp",
       url: "https://bisnis.jakartamrt.co.id/"
@@ -1921,28 +1792,28 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio py-8 lg:py-12 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
+    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio px-4 py-8 sm:px-5 md:px-6 lg:py-10 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
-        <div className="mb-6 lg:mb-10 2xl:mb-14">
-          <p className="section-kicker text-[12px] font-semibold mb-3 lg:mb-4 tracking-[0.14em]">
+        <div className="mb-5 lg:mb-8 2xl:mb-10">
+          <p className="section-kicker mb-3 text-[12px] font-semibold tracking-[0.14em]">
             <span className="accent-gradient-text">Selected Project Experience</span>
           </p>
           <h2 className="copy-balance max-w-[14ch] text-4xl lg:text-7xl 2xl:text-8xl font-black text-[#1a2e35] tracking-tighter leading-[0.9]">
             <span className="accent-gradient-text">Case Studies</span>{" "}
             <span className="accent-gradient-text italic font-serif">That Show How I Work</span>
           </h2>
-          <p className="copy-pretty copy-measure-wide mt-4 max-w-3xl text-[15px] leading-relaxed text-[#5f6670]">
-            These are the project stories HR and interviewers usually ask about: what the project was, where the challenge lived, what I handled, and what result the delivery achieved.
+          <p className="copy-pretty copy-measure-wide mt-3 max-w-2xl text-[14px] leading-relaxed text-[#5f6670] lg:text-[15px]">
+            A few delivery stories that show how I align teams, keep execution moving, and bring releases across the finish line.
           </p>
         </div>
 
-        <div className="space-y-6 lg:space-y-8 2xl:space-y-10">
+        <div className="space-y-5 lg:space-y-6 2xl:space-y-7">
           {projects.map((project, idx) => (
             <PortfolioItem key={idx} project={project} idx={idx} />
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center border-t border-[#e3e8ef] pt-10">
+        <div className="mt-9 flex justify-center border-t border-[#e3e8ef] pt-8">
           <a
             href={githubUrl}
             target="_blank"
@@ -1968,30 +1839,23 @@ const Contact = () => {
   const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${whatsAppMessage}`;
 
   return (
-    <section id="contact" className="py-12 lg:py-24 px-6 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <p className="text-[11px] font-black text-[#4a7c8c] mb-4 uppercase tracking-[0.4em]">Get in touch</p>
-            <h2 className="text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tighter leading-[0.9] mb-6 lg:mb-8">
-              Let's <span className="text-gray-300">Connect</span>
-            </h2>
-            <p className="text-gray-500 text-[13px] lg:text-[14px] leading-relaxed max-w-sm mb-8 lg:mb-10">
-              Have a project in mind? I&apos;m always open to discussing new opportunities and strategic partnerships.
-            </p>
+    <section id="contact" className="lazy-render-section section-shell section-tone-contact py-14 lg:py-28 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
+      <div className="section-inner max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
+            <span className="accent-gradient-text">Get in touch</span>
+          </p>
+          <h2 className="copy-balance max-w-[12ch] text-4xl lg:text-7xl font-black text-[#1a2e35] tracking-tight leading-[1] mb-5">
+            Let&apos;s talk about your next project.
+          </h2>
+          <p className="copy-pretty copy-measure text-[#1f2937]/70 text-[14px] sm:text-[15px] leading-relaxed max-w-lg mb-7">
+            If you need an IT Project Manager who can coordinate delivery, align stakeholders, and keep execution on track, feel free to reach out via WhatsApp. I&apos;m open to discussing roles, projects, and collaboration opportunities.
+          </p>
 
-            <div className="space-y-4 lg:space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
-                  <Globe size={18} />
-                </div>
-                <span className="text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-[#1a2e35]">Jakarta, Indonesia</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-[#4a7c8c]">
-                  <Linkedin size={18} />
-                </div>
-                <span className="text-[11px] lg:text-[12px] font-black uppercase tracking-widest text-[#1a2e35]">linkedin.com/in/okta</span>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
+                <Globe size={18} />
               </div>
               <a
                 href={mapsUrl}
@@ -2002,41 +1866,40 @@ const Contact = () => {
                 Sleman, Yogyakarta
               </a>
             </div>
-          </div>
-
-          <form onSubmit={handleSubmit} className="bg-white/40 backdrop-blur-md p-8 lg:p-10 rounded-[24px] lg:rounded-[40px] border border-white/40 space-y-4 shadow-sm">
-            <div className="space-y-1">
-              <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Full Name</label>
-              <input
-                type="text"
-                required
-                placeholder="John Doe"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium focus:bg-white transition-all"
-              />
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
+                <Linkedin size={18} />
+              </div>
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="min-w-0 break-all text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
+              >
+                linkedin.com/in/oktawahyudi
+              </a>
             </div>
-            <div className="space-y-1">
-              <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Email Address</label>
-              <input
-                type="email"
-                required
-                placeholder="john@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium focus:bg-white transition-all"
-              />
+            <div className="flex items-center gap-4">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
+                <Mail size={18} />
+              </div>
+              <a
+                href={`mailto:${emailAddress}`}
+                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
+              >
+                {emailAddress}
+              </a>
             </div>
-            <div className="space-y-1">
-              <label className="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Message</label>
-              <textarea
-                required
-                placeholder="Tell me about your project..."
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-5 lg:px-6 py-3 lg:py-4 rounded-xl lg:rounded-2xl border-none outline-none bg-white/60 backdrop-blur-sm shadow-sm text-[13px] lg:text-[14px] font-medium resize-none focus:bg-white transition-all"
-              ></textarea>
+            <div className="flex items-center gap-4">
+              <div className="accent-gradient-soft w-10 h-10 rounded-full flex items-center justify-center text-[#0fa3b1] shadow-sm">
+                <Phone size={18} />
+              </div>
+              <a
+                href={`tel:${phoneNumber}`}
+                className="text-[13px] font-semibold tracking-[0.04em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors"
+              >
+                {phoneNumber}
+              </a>
             </div>
           </div>
         </div>
@@ -2074,8 +1937,8 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <motion.div
-      key={idx}
+    <motion.div 
+      key={idx} 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -2083,9 +1946,7 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
       whileHover={{ y: -6 }}
       className="mobile-feedback-card surface-card surface-card-tight min-h-[300px] min-w-[260px] sm:min-w-[290px] lg:min-w-[320px] xl:min-w-[340px] max-w-[370px] p-6 sm:p-8 flex flex-col justify-between gap-6"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0fa3b1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-      <div className="relative z-10">
+      <div>
         <div className="flex gap-1 mb-4">
           {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#72b39a" className="text-[#0fa3b1]" />)}
         </div>
@@ -2093,17 +1954,18 @@ const TestimonialItem = ({ t, idx }: TestimonialItemProps) => {
           "{t.text}"
         </p>
       </div>
-
-      <div className="relative z-10 flex items-center gap-3 pt-4 border-t border-[#0fa3b1]/10">
+      
+      <div className="flex items-center gap-3 pt-4 border-t border-[#e3e8ef]">
         <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-          <img
-            src={t.image}
-            alt={t.name}
+          <img 
+            src={t.image} 
+            alt={t.name} 
             onLoad={() => setIsLoaded(true)}
             loading="lazy"
-            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            referrerPolicy="no-referrer"
+            decoding="async"
+            className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} 
+            referrerPolicy="no-referrer" 
           />
         </div>
         <div className="min-w-0">
@@ -2324,19 +2186,15 @@ const LegalPage = ({
   const content = LEGAL_CONTENT[type];
 
   return (
-    <footer className="px-6 pb-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto bg-[#1a2e35] text-white rounded-[32px] lg:rounded-[40px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#4a7c8c]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-
-        <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-8 relative z-10">
-          <div className="text-2xl font-black tracking-tighter">OKTA.</div>
-
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[10px] lg:text-[11px] font-black uppercase tracking-widest text-gray-400">
-            <a href="#home" className="hover:text-white transition-colors">Home</a>
-            <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-          </div>
+    <div className="min-h-screen bg-[#f4f6fb] text-[#1a2e35]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-5 md:px-6 lg:px-8 py-10 lg:py-14">
+        <button
+          type="button"
+          onClick={() => onRouteChange('/')}
+          className="inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-white px-5 py-2.5 text-[14px] font-semibold tracking-[0.04em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
+        >
+          Back to Home
+        </button>
 
         <div className="mt-8 rounded-[24px] border border-[#e3edf3] bg-white p-8 lg:p-12 shadow-soft">
           <p className="section-kicker text-[12px] font-semibold tracking-[0.14em]">
@@ -2637,25 +2495,63 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen pb-24 lg:pb-0 bg-[#f8fafc] bg-[radial-gradient(circle_at_top_right,_#f1f5f9_0%,_transparent_40%),_radial-gradient(circle_at_bottom_left,_#f1f5f9_0%,_transparent_40%)] font-sans selection:bg-[#4a7c8c] selection:text-white antialiased relative overflow-hidden">
-      {/* Noise Texture Overlay */}
-      <div className="fixed inset-0 opacity-[0.03] pointer-events-none -z-50 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
+    <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
+      {isCvRoute ? null : pathname === '/privacy' ? (
+        <LegalPage type="privacy" onRouteChange={handleRouteChange} />
+      ) : pathname === '/terms' ? (
+        <LegalPage type="terms" onRouteChange={handleRouteChange} />
+      ) : (
+        <>
+          <AnimatePresence>
+            {isSectionLoading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.22 }}
+              >
+                <SectionTransitionSkeleton />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-      {/* Global Atmospheric Blurs */}
-      <div className="fixed top-[20%] -left-[10%] w-[40%] h-[40%] bg-[#4a7c8c]/5 rounded-full blur-[120px] pointer-events-none -z-40"></div>
-      <div className="fixed bottom-[20%] -right-[10%] w-[40%] h-[40%] bg-[#1a2e35]/5 rounded-full blur-[120px] pointer-events-none -z-40"></div>
-      <div className="fixed top-[60%] left-[30%] w-[30%] h-[30%] bg-[#4a7c8c]/3 rounded-full blur-[100px] pointer-events-none -z-40"></div>
-
-      <Navbar />
-      <Hero />
-      <Journey />
-      <Skills />
-      <SDLCFlow />
-      <Portfolio />
-      <Contact />
-      <Testimonials />
-      <Footer />
-      <OktaAI />
+          <Navbar onNavigate={handleNavigate} />
+          <Hero />
+          {showDeferredSections ? (
+            <>
+              <Journey />
+              <Skills />
+              <SDLCFlow />
+              <Portfolio />
+              <Contact />
+              <Testimonials />
+              <Footer onRouteChange={handleRouteChange} />
+            </>
+          ) : (
+            <div className="px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 py-8 lg:py-10">
+              <div className="mx-auto max-w-7xl">
+                <TravelokaSkeletonBlock className="h-40 rounded-[28px]" />
+              </div>
+            </div>
+          )}
+          <style>{`
+            section[id] {
+              padding-top: clamp(40px, 4vw, 70px) !important;
+              padding-bottom: clamp(40px, 4vw, 70px) !important;
+            }
+            section[id] + section[id] {
+              margin-top: 0;
+            }
+            @keyframes gradient-slider {
+              0% { background-position: 0% 50%; }
+              100% { background-position: 200% 50%; }
+            }
+          `}</style>
+          <React.Suspense fallback={null}>
+            <LazyOktaAI />
+          </React.Suspense>
+        </>
+      )}
     </div>
   );
 }
