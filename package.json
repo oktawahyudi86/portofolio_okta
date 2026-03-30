@@ -4,14 +4,14 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node -e \"const path=require('node:path'); const {pathToFileURL}=require('node:url'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); const viteCli=path.resolve(root,'node_modules','vite','bin','vite.js'); process.chdir(root); process.argv=[process.execPath,viteCli,'--host=0.0.0.0','--port=5173']; import(pathToFileURL(viteCli).href)\"",
-    "dev:server": "node -e \"const path=require('node:path'); const {pathToFileURL}=require('node:url'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); const entry=path.resolve(root,'server.js'); process.chdir(root); import(pathToFileURL(entry).href)\"",
-    "build": "node -e \"const path=require('node:path'); const {pathToFileURL}=require('node:url'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); const viteCli=path.resolve(root,'node_modules','vite','bin','vite.js'); process.chdir(root); process.argv=[process.execPath,viteCli,'build']; import(pathToFileURL(viteCli).href)\"",
-    "preview": "node -e \"const path=require('node:path'); const {pathToFileURL}=require('node:url'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); const viteCli=path.resolve(root,'node_modules','vite','bin','vite.js'); process.chdir(root); process.argv=[process.execPath,viteCli,'preview','--host=0.0.0.0','--port=4173']; import(pathToFileURL(viteCli).href)\"",
-    "start": "node -e \"const path=require('node:path'); const {pathToFileURL}=require('node:url'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); const entry=path.resolve(root,'server.js'); process.chdir(root); import(pathToFileURL(entry).href)\"",
+    "dev": "node ./scripts/run-vite.mjs --host=0.0.0.0 --port=5173",
+    "dev:server": "node ./scripts/run-entry.mjs ./server.js",
+    "build": "node ./scripts/run-vite.mjs build",
+    "preview": "node ./scripts/run-vite.mjs preview --host=0.0.0.0 --port=4173",
+    "start": "node ./scripts/run-entry.mjs ./server.js",
     "prod": "npm run build && npm run start",
-    "clean": "node -e \"const fs=require('node:fs'); const path=require('node:path'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); fs.rmSync(path.join(root,'dist'), { recursive: true, force: true })\"",
-    "lint": "node -e \"const path=require('node:path'); const {pathToFileURL}=require('node:url'); const normalize=p=>process.platform==='win32'&&p.startsWith('\\\\\\\\?\\\\')?p.slice(4):p; const root=normalize(path.dirname(process.env.npm_package_json)); const tscCli=path.resolve(root,'node_modules','typescript','bin','tsc'); process.chdir(root); process.argv=[process.execPath,tscCli,'--noEmit']; import(pathToFileURL(tscCli).href)\""
+    "clean": "node ./scripts/clean-dist.mjs",
+    "lint": "node ./scripts/run-tsc.mjs --noEmit"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
