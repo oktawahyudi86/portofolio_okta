@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-import { AnimatePresence, motion } from 'motion/react';
 import { Hero } from './components/site/Hero';
 import {
   SectionTransitionSkeleton,
@@ -30,6 +29,7 @@ export default function App() {
   const [isSectionLoading, setIsSectionLoading] = React.useState(false);
   const [showDeferredSections, setShowDeferredSections] = React.useState(() => window.location.pathname !== '/');
   const loadingTimeoutRef = React.useRef<number | null>(null);
+  const deferredTriggerRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleRouteChange = React.useCallback((path: string) => {
     if (window.location.pathname !== path) {
@@ -103,31 +103,83 @@ export default function App() {
 
     if (showDeferredSections) return;
 
-    let revealTimeout: number | null = window.setTimeout(() => {
-      setShowDeferredSections(true);
-    }, 220);
-
     const revealSections = () => {
       setShowDeferredSections(true);
-      if (revealTimeout) {
-        window.clearTimeout(revealTimeout);
-        revealTimeout = null;
-      }
     };
 
-    window.addEventListener('scroll', revealSections, { once: true, passive: true });
-    window.addEventListener('touchstart', revealSections, { once: true, passive: true });
-    window.addEventListener('mousemove', revealSections, { once: true, passive: true });
+    const sentinel = deferredTriggerRef.current;
+    let fallbackTimeout: number | null = window.setTimeout(revealSections, 3500);
+    let observer: IntersectionObserver | null = null;
+
+    if (sentinel && typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            revealSections();
+          }
+        },
+        { rootMargin: '320px 0px' },
+      );
+
+      observer.observe(sentinel);
+    }
+
+    const handleFirstInteraction = () => {
+      revealSections();
+    };
+
+    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
 
     return () => {
-      window.removeEventListener('scroll', revealSections);
-      window.removeEventListener('touchstart', revealSections);
-      window.removeEventListener('mousemove', revealSections);
-      if (revealTimeout) {
-        window.clearTimeout(revealTimeout);
+      window.removeEventListener('scroll', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      observer?.disconnect();
+      if (fallbackTimeout) {
+        window.clearTimeout(fallbackTimeout);
       }
     };
   }, [pathname, showDeferredSections]);
+
+  React.useEffect(() => {
+    const fontStylesheetId = 'google-fonts-stylesheet';
+
+    if (document.getElementById(fontStylesheetId)) {
+      document.body.setAttribute('data-fonts-ready', 'true');
+      return;
+    }
+
+    let timeoutId: number | null = null;
+    let idleId: number | null = null;
+
+    const loadFonts = () => {
+      if (document.getElementById(fontStylesheetId)) return;
+
+      const link = document.createElement('link');
+      link.id = fontStylesheetId;
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Sora:wght@300;400;500;600;700;800&display=swap';
+      link.onload = () => {
+        document.body.setAttribute('data-fonts-ready', 'true');
+      };
+      document.head.appendChild(link);
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(loadFonts, { timeout: 1800 });
+    } else {
+      timeoutId = window.setTimeout(loadFonts, 900);
+    }
+
+    return () => {
+      if (idleId && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   React.useEffect(() => {
     if (isInitialLoading) {
@@ -165,22 +217,12 @@ export default function App() {
 
   const renderHomePage = () => (
     <>
-      <AnimatePresence>
-        {isSectionLoading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.22 }}
-          >
-            <SectionTransitionSkeleton />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isSectionLoading && <SectionTransitionSkeleton />}
 
       <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
       <main id="main-content" role="main">
         <Hero />
+        {!showDeferredSections && <div ref={deferredTriggerRef} aria-hidden="true" className="h-px w-full" />}
         {showDeferredSections ? (
           <React.Suspense fallback={deferredSectionsFallback}>
             <Journey />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { heroHighlights, heroStats } from '../../data/site-content';
 import { SmartImage } from './SmartImage';
 
@@ -27,11 +26,7 @@ export const Hero = () => {
   return (
     <section id="home" className="mobile-hero-shell section-shell section-tone-hero pt-12 sm:pt-16 lg:pt-[16rem] pb-10 lg:pb-20 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 relative overflow-hidden lg:overflow-visible">
       <div className="mobile-hero-grid section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-20 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
           <div className="mobile-hero-badge accent-gradient-soft inline-block mt-1 lg:mt-3 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
             <span className="accent-gradient-text">Mid-Level IT Project Manager</span>
           </div>
@@ -63,14 +58,9 @@ export const Hero = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="relative w-full lg:-mt-4 flex flex-col items-center"
-        >
+        <div className="relative w-full lg:-mt-4 flex flex-col items-center">
           <div className="mobile-hero-visual relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[470px] xl:max-w-[500px] aspect-[0.92/1]">
             <div className="absolute inset-x-[4%] top-[14%] bottom-[7%] rounded-[22px] bg-[radial-gradient(circle_at_72%_85%,rgba(114,179,154,0.95),transparent_34%),linear-gradient(180deg,#112a31_0%,#1e3b40_58%,#78bea1_100%)] shadow-[0_26px_56px_rgba(15,32,39,0.18)]" />
             <div className="absolute inset-x-[9%] top-[-4%] bottom-[7%] z-10 flex items-end justify-center">
@@ -132,7 +122,7 @@ export const Hero = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

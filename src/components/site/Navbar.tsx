@@ -1,6 +1,5 @@
 import React from 'react';
 import { Download } from 'lucide-react';
-import { motion } from 'motion/react';
 import { cvUrl, navigationItems, primarySectionIds } from '../../data/site-content';
 
 type MobileMenuItem = {
@@ -102,12 +101,9 @@ export const Navbar = ({
           <nav className="navbar-glass rounded-[18px] px-4 py-2">
             <div className="flex items-center justify-between gap-6">
               <div className="flex items-center gap-7">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="text-[1.45rem] font-black tracking-tight text-[#0c1a24] leading-none cursor-default"
-                >
+                <div className="text-[1.45rem] font-black tracking-tight text-[#0c1a24] leading-none cursor-default">
                   OKTA<span className="accent-gradient-text">.</span>
-                </motion.div>
+                </div>
 
                 <div className="navbar-pill hidden lg:flex items-center gap-1 rounded-[14px] p-1">
                   {navigationItems.map((item, idx) => {
@@ -115,7 +111,7 @@ export const Navbar = ({
                     const isActive = isItemActive(item);
 
                     return (
-                      <motion.a
+                      <a
                         key={idx}
                         href={item.href}
                         onClick={(event) => {
@@ -128,7 +124,6 @@ export const Navbar = ({
 
                           onRouteChange(item.path);
                         }}
-                        whileHover={{ y: -1 }}
                         className={`flex items-center gap-2 rounded-[10px] px-3 py-2 text-[12px] font-semibold transition-all ${
                           isActive
                             ? 'bg-white/95 text-[#0c1a24] shadow-[0_6px_14px_rgba(15,32,39,0.08)]'
@@ -139,16 +134,14 @@ export const Navbar = ({
                           <Icon size={16} />
                         </span>
                         {item.name}
-                      </motion.a>
+                      </a>
                     );
                   })}
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <motion.a
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
+                <a
                   href={cvUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -158,7 +151,7 @@ export const Navbar = ({
                     <Download size={14} className="text-[#21424d]" />
                   </span>
                   <span className="text-[#1a3640]">View CV</span>
-                </motion.a>
+                </a>
               </div>
             </div>
           </nav>
@@ -199,17 +192,11 @@ export const Navbar = ({
                   }`}
                 >
                   {isActive && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="accent-gradient-line absolute inset-x-3 bottom-0 h-[3px] rounded-full"
-                    />
+                    <div className="accent-gradient-line absolute inset-x-3 bottom-0 h-[3px] rounded-full" />
                   )}
-                  <motion.div
-                    whileTap={{ scale: 0.9 }}
-                    className={`${isActive ? 'text-[#6fc7d7]' : 'text-[#94a3b8]'} transition-colors`}
-                  >
+                  <div className={`${isActive ? 'text-[#6fc7d7]' : 'text-[#94a3b8]'} transition-colors`}>
                     <Icon size={18} />
-                  </motion.div>
+                  </div>
                   <span className={`mobile-bottom-nav-label text-[9px] font-semibold leading-none transition-colors ${isActive ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
                     {'mobileLabel' in item ? item.mobileLabel : item.name}
                   </span>
