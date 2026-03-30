@@ -1601,11 +1601,14 @@ interface PortfolioItemProps {
 }
 
 const portfolioImageFallbacks: Record<string, string> = {
-  "/aset/project-mrt-jakarta.webp": "/aset/project-mrt-jakarta.svg",
-  "/aset/project-yulo-laundry.webp": "/aset/project-yulo-laundry.svg",
-  "/aset/project-dazo-ai.webp": "/aset/project-dazo-ai.svg",
-  "/aset/project-maxtream.webp": "/aset/project-maxtream.svg",
-  "/aset/project-bpjstk.webp": "/aset/project-bpjstk.svg",
+  "/aset/project-mrt-real.webp": "/aset/project-mrt-jakarta.svg",
+  "/aset/project-yulo-real.webp": "/aset/project-yulo-laundry.svg",
+  "/aset/project-dazo-porto.webp": "/aset/project-dazo-ai.svg",
+  "/aset/project-melodiamusik.webp": "/aset/project-dazo-ai.svg",
+  "/aset/project-paketur.webp": "/aset/project-dazo-ai.svg",
+  "/aset/project-juragankucek.webp": "/aset/project-dazo-ai.svg",
+  "/aset/project-maxtream-real.webp": "/aset/project-maxtream.svg",
+  "/aset/project-bpjstk-real.webp": "/aset/project-bpjstk.svg",
 };
 
 const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
@@ -1623,22 +1626,23 @@ const PortfolioItem = ({ project, idx }: PortfolioItemProps) => {
         <div className="relative">
           <div className="surface-card surface-card-tight aspect-[16/10] overflow-hidden relative">
             {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-            <img
-              src={imageSrc}
-              alt={project.title}
-              onLoad={() => setIsLoaded(true)}
-              onError={() => {
-                const fallbackSrc = portfolioImageFallbacks[imageSrc] || "/aset/og-preview.jpg";
-                if (fallbackSrc !== imageSrc) {
-                  setIsLoaded(false);
-                  setImageSrc(fallbackSrc);
-                }
-              }}
-              loading="lazy"
-              decoding="async"
-              className={`w-full h-full object-cover transition duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-              referrerPolicy="no-referrer"
-            />
+          <img
+            src={imageSrc}
+            alt={project.title}
+            onLoad={() => setIsLoaded(true)}
+            onError={() => {
+              const fallbackSrc = portfolioImageFallbacks[imageSrc] || "/aset/og-preview.jpg";
+              if (fallbackSrc !== imageSrc) {
+                setIsLoaded(false);
+                setImageSrc(fallbackSrc);
+              }
+            }}
+            loading="lazy"
+            decoding="async"
+            className={`w-full h-full object-cover transition duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            style={{ objectPosition: project.imageFocus || "center" }}
+            referrerPolicy="no-referrer"
+          />
           </div>
         </div>
       </div>
@@ -1698,34 +1702,44 @@ const Portfolio = () => {
   const githubUrl = "https://github.com/oktawahyu";
   const projects = [
     {
-      title: "Website Business MRT Jakarta",
-      type: "Enterprise Digital Platform",
-      role: "Lead Project Manager",
-      impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
-      desc: "Led end-to-end delivery of MRT Jakarta's business website, coordinating requirement gathering, scope alignment, design-development handoff, testing, and deployment. The main challenge was keeping multiple stakeholder requests aligned without slowing delivery.",
-      tags: ["Requirement gathering", "Stakeholder alignment", "UAT coordination", "Deployment"],
-      image: "/aset/project-mrt-jakarta.webp",
-      url: "https://bisnis.jakartamrt.co.id/"
-    },
-    {
-      title: "Yulo Laundry Mobile App",
-      type: "Management System & Mobile App",
-      role: "Product Owner & Manager",
-      impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
-      desc: "Managed product delivery for a laundry management app focused on order flow, customer notifications, and operational reporting. My role covered backlog prioritization, stakeholder communication, and keeping releases aligned with business needs.",
-      tags: ["Product backlog", "Workflow improvement", "Release planning", "Client communication"],
-      image: "/aset/project-yulo-laundry.webp",
-      url: "https://play.google.com/store/apps/details?id=com.yulo.customer&hl=id"
-    },
-    {
       title: "DazoApps SaaS AI & OMS",
       type: "SaaS Platform, AI & OMS",
       role: "Technical Project Lead",
-      impact: "Successfully integrated LLM capabilities, resulting in a 50% increase in user engagement within the first month.",
-      desc: "Coordinated delivery for an AI SaaS and operations platform, turning fast-changing business requests into clear sprint priorities, milestone tracking, and release follow-up. This project is a strong example of balancing innovation with execution discipline.",
-      tags: ["AI SaaS delivery", "Milestone tracking", "Feature rollout", "Cross-team coordination"],
-      image: "/aset/project-dazo-ai.webp",
+      impact: "Delivered the hybrid DazoApps platform with AI WhatsApp chat support and an integrated digital store, boosting engagement 50% within the first month.",
+      desc: "Coordinated delivery for an AI SaaS/OMS platform that now includes a digital storefront plus AI-enabled WhatsApp chat automation, translating fast-changing business requests into sprint priorities, milestone tracking, and release follow-up.",
+      tags: ["AI SaaS delivery", "Chat automation", "Digital storefront", "Cross-team coordination"],
+      image: "/aset/project-dazo-porto.webp",
       url: "https://dazo.id/"
+    },
+    {
+      title: "Paketur Travel Marketplace",
+      type: "Travel Marketplace & OMS Platform",
+      role: "Product Delivery Lead / Delivery Revamp",
+      impact: "Re-launched the platform by closing the gaps left by the prior PM so travelers finally got access to curated packages supported by polished OMS tools.",
+      desc: "Took over the Paketur initiative mid-stream, shipping the multi-channel app, website, and OMS back office while rapidly fixing delivery gaps to avoid another missed release.",
+      tags: ["Travel discovery", "OMS automation", "Mobile + web", "Customer journeys"],
+      image: "/aset/project-paketur.webp",
+      url: "https://paketur.com/"
+    },
+    {
+      title: "Juragan Kucek Laundry POS",
+      type: "Laundry POS & Order Management",
+      role: "Product Delivery Lead",
+      impact: "Delivered an offline-capable POS app and management console so laundry outlets could run cashiering and order tracking without disruptions.",
+      desc: "Implemented Juragan Kucek’s mobile POS, order management, and cashier workflows that sync with the OMS for centralized reporting, inventory checks, and technician queues.",
+      tags: ["POS workflow", "Order management", "Cashier operations", "Offline-first"],
+      image: "/aset/project-juragankucek.webp",
+      url: "https://example.com/"
+    },
+    {
+      title: "Melodia Musik Marketplace",
+      type: "Music Retail & Commerce",
+      role: "Product Delivery Lead",
+      impact: "Launched a polished e-commerce front end for musical instruments, improving discovery flow and purchase clarity.",
+      desc: "Delivered the end-to-end Melodia Musik storefront experience, from curated homepage components to integrated checkout flows backed by automation for inventory updates.",
+      tags: ["E-commerce UX", "Omnichannel merchandising", "Inventory automation", "Checkout optimization"],
+      image: "/aset/project-melodiamusik.webp",
+      url: "https://melodia.id/"
     },
     {
       title: "Maxtream Platform",
@@ -1734,18 +1748,39 @@ const Portfolio = () => {
       impact: "Delivered robust streaming infrastructure supporting 50K+ concurrent users with 99.8% uptime.",
       desc: "Supported delivery for MAXstream enhancement work and transformation into the MyTelkomsel ecosystem. My contribution focused on sprint execution, requirement clarity, stakeholder coordination, and keeping release readiness under control.",
       tags: ["Enterprise migration", "Sprint governance", "Requirement alignment", "Release readiness"],
-      image: "/aset/project-maxtream.webp",
+      image: "/aset/project-maxtream-real.webp",
+      imageFocus: "20% center",
       url: "https://maxstream.tv/home"
     },
     {
-      title: "BPJSTK Integrated System",
+      title: "Implementation DevOps Infrastructure",
       type: "Government Enterprise Solution",
       role: "Lead Project Manager",
-      impact: "Streamlined benefit processing for 40M+ participants, reducing processing time by 60%.",
-      desc: "Handled delivery coordination for a large-scale government integration system where stakeholder alignment, compliance awareness, and rollout stability were critical. This case reflects the type of structured execution often discussed in PM interviews.",
-      tags: ["Enterprise integration", "Regulatory coordination", "Risk management", "Rollout control"],
-      image: "/aset/project-bpjstk.webp",
+      impact: "Modernized deployment and monitoring capabilities for critical services serving 40M+ members.",
+      desc: "Oversaw rollout of DevOps pipelines, observability, and infrastructure automation to support high-volume BPJSTK systems while keeping compliance and uptime targets in check.",
+      tags: ["DevOps automation", "Observability", "Infrastructure-as-Code", "Service reliability"],
+      image: "/aset/project-bpjstk-real.webp",
       url: "https://www.bpjsketenagakerjaan.go.id/"
+    },
+    {
+      title: "Yulo Laundry Mobile App",
+      type: "Management System & Mobile App",
+      role: "Product Owner & Manager",
+      impact: "Reduced order processing time by 25% and increased customer retention through automated notifications.",
+      desc: "Managed product delivery for a laundry management app focused on order flow, customer notifications, and operational reporting. My role covered backlog prioritization, stakeholder communication, and keeping releases aligned with business needs.",
+      tags: ["Product backlog", "Workflow improvement", "Release planning", "Client communication"],
+      image: "/aset/project-yulo-real.webp",
+      url: "https://play.google.com/store/apps/details?id=com.yulo.customer&hl=id"
+    },
+    {
+      title: "Website Business MRT Jakarta",
+      type: "Enterprise Digital Platform",
+      role: "Lead Project Manager",
+      impact: "Streamlined stakeholder communication and improved operational efficiency by 40%.",
+      desc: "Led end-to-end delivery of MRT Jakarta's business website, coordinating requirement gathering, scope alignment, design-development handoff, testing, and deployment. The main challenge was keeping multiple stakeholder requests aligned without slowing delivery.",
+      tags: ["Requirement gathering", "Stakeholder alignment", "UAT coordination", "Deployment"],
+      image: "/aset/project-mrt-real.webp",
+      url: "https://bisnis.jakartamrt.co.id/"
     }
   ];
 
