@@ -143,6 +143,10 @@ export default function App() {
 
   React.useEffect(() => {
     const fontStylesheetId = 'google-fonts-stylesheet';
+    const browserWindow = window as Window & typeof globalThis & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
 
     if (document.getElementById(fontStylesheetId)) {
       document.body.setAttribute('data-fonts-ready', 'true');
@@ -165,18 +169,18 @@ export default function App() {
       document.head.appendChild(link);
     };
 
-    if ('requestIdleCallback' in window) {
-      idleId = window.requestIdleCallback(loadFonts, { timeout: 1800 });
+    if (browserWindow.requestIdleCallback) {
+      idleId = browserWindow.requestIdleCallback(loadFonts, { timeout: 1800 });
     } else {
-      timeoutId = window.setTimeout(loadFonts, 900);
+      timeoutId = globalThis.setTimeout(loadFonts, 900);
     }
 
     return () => {
-      if (idleId && 'cancelIdleCallback' in window) {
-        window.cancelIdleCallback(idleId);
+      if (idleId && browserWindow.cancelIdleCallback) {
+        browserWindow.cancelIdleCallback(idleId);
       }
       if (timeoutId) {
-        window.clearTimeout(timeoutId);
+        globalThis.clearTimeout(timeoutId);
       }
     };
   }, []);

@@ -6,12 +6,12 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Home',
     title: 'Okta Wahyudi | IT Project Manager Portfolio',
     description:
-      'Portfolio Okta Wahyudi yang menampilkan pengalaman kerja, case studies, delivery skills, dan pendekatan project management untuk software delivery yang terarah dan kolaboratif.',
-    shortDescription: 'Portfolio utama yang merangkum profil, experience, skills, case studies, dan contact.',
+      'Explore the portfolio of Okta Wahyudi, an IT Project Manager trusted to align teams, drive delivery, and keep SaaS, product, and enterprise projects moving with clarity.',
+    shortDescription: 'A complete portfolio covering profile, experience, delivery strengths, case studies, and contact details.',
     heroEyebrow: 'Portfolio Overview',
     heroTitle: 'Project management portfolio built for stronger search visibility.',
     heroDescription:
-      'A structured overview of Okta Wahyudi covering delivery leadership, selected work, and collaboration details across software, SaaS, and enterprise projects.',
+      'A polished overview of Okta Wahyudi, highlighting delivery leadership, selected projects, and collaboration details across software, SaaS, and enterprise work.',
     schemaType: 'ProfilePage',
   },
   {
@@ -19,12 +19,12 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Journey',
     title: 'Professional Journey | Okta Wahyudi',
     description:
-      'Explore the professional journey of Okta Wahyudi, from implementation and infrastructure coordination to IT Project Manager roles across startups and enterprise delivery.',
+      'Follow Okta Wahyudi’s journey from implementation and infrastructure coordination to leading software delivery across startup and enterprise projects.',
     shortDescription: 'Career milestones, roles, and leadership progression across software and enterprise delivery.',
     heroEyebrow: 'Career Milestones',
     heroTitle: 'Professional journey across software, infrastructure, and product delivery.',
     heroDescription:
-      'A focused page that highlights Okta Wahyudi’s experience timeline, leadership growth, and current role in managing software delivery and stakeholder alignment.',
+      'A focused timeline of experience, growth, and delivery ownership that shaped Okta Wahyudi as an IT Project Manager.',
     schemaType: 'AboutPage',
     includeInSitelinks: true,
   },
@@ -33,12 +33,12 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Skills',
     title: 'Project Management Skills | Okta Wahyudi',
     description:
-      'Review Okta Wahyudi’s core project management skills, including sprint leadership, stakeholder management, release coordination, and structured SDLC execution.',
+      'Discover Okta Wahyudi’s core strengths in sprint leadership, stakeholder alignment, release coordination, and structured software delivery.',
     shortDescription: 'Core delivery capabilities, SDLC flow, and tools used to keep software projects on track.',
     heroEyebrow: 'Delivery Strengths',
     heroTitle: 'Core capabilities for planning, delivery control, and team alignment.',
     heroDescription:
-      'A dedicated page for the working style, delivery strengths, and Scrum-based execution approach used to keep software projects visible, structured, and moving forward.',
+      'A dedicated page covering the working style, delivery discipline, and Scrum-based execution approach used to keep software projects structured and moving forward.',
     schemaType: 'CollectionPage',
     includeInSitelinks: true,
   },
@@ -47,12 +47,12 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Portfolio',
     title: 'Portfolio & Case Studies | Okta Wahyudi',
     description:
-      'Browse selected portfolio case studies by Okta Wahyudi covering SaaS, marketplace, POS, enterprise digital platforms, and software delivery execution.',
+      'Browse selected case studies led by Okta Wahyudi across SaaS, marketplaces, POS products, and enterprise digital platforms.',
     shortDescription: 'Selected case studies that show delivery leadership across SaaS, marketplaces, and enterprise platforms.',
     heroEyebrow: 'Selected Work',
     heroTitle: 'Case studies that show how delivery moves from planning to release.',
     heroDescription:
-      'A curated portfolio page that focuses on project context, delivery role, and impact across software products, enterprise platforms, and operational systems.',
+      'A curated portfolio focused on project context, delivery role, and measurable impact across software products, enterprise platforms, and operational systems.',
     schemaType: 'CollectionPage',
     includeInSitelinks: true,
   },
@@ -61,12 +61,12 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Contact',
     title: 'Contact Okta Wahyudi | IT Project Manager',
     description:
-      'Contact Okta Wahyudi for project management roles, software delivery opportunities, stakeholder coordination needs, or collaboration discussions.',
+      'Connect with Okta Wahyudi for IT Project Manager roles, software delivery opportunities, and collaboration discussions.',
     shortDescription: 'Direct contact options for project roles, collaboration, and software delivery discussions.',
     heroEyebrow: 'Let’s Connect',
     heroTitle: 'Direct contact details for project discussions and collaboration.',
     heroDescription:
-      'A dedicated contact page with WhatsApp, email, LinkedIn, and location details for recruiters, hiring teams, and partners who want to discuss project delivery support.',
+      'A dedicated contact page for recruiters, hiring teams, and partners who want to discuss delivery support, collaboration, or project opportunities.',
     schemaType: 'ContactPage',
     includeInSitelinks: true,
   },
@@ -75,7 +75,7 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Privacy',
     title: 'Privacy Policy | Okta Wahyudi',
     description:
-      'Privacy policy for Okta Wahyudi portfolio website covering contact details, communication data, and reasonable professional use of information.',
+      'Privacy policy for the Okta Wahyudi portfolio website, covering contact details, communication data, and responsible professional use of information.',
     shortDescription: 'Privacy information for contact and communication data shared through the portfolio website.',
     heroEyebrow: 'Legal Information',
     heroTitle: 'Privacy policy for the portfolio website.',
@@ -88,7 +88,7 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Terms',
     title: 'Terms & Conditions | Okta Wahyudi',
     description:
-      'Terms and conditions for the Okta Wahyudi portfolio website covering content use, accuracy, and communication for professional purposes.',
+      'Terms and conditions for the Okta Wahyudi portfolio website, covering content use, accuracy, and communication for professional purposes.',
     shortDescription: 'Terms covering content usage, website purpose, and limitations for the portfolio website.',
     heroEyebrow: 'Legal Information',
     heroTitle: 'Terms and conditions for the portfolio website.',
