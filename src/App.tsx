@@ -23,18 +23,13 @@ import {
   Globe,
   Code2,
   Database,
-  Cpu,
   MessageCircle,
   Mail,
-  X,
   Phone,
   Send,
-  Loader2,
   ArrowUpRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-
-const LazyOktaAI = React.lazy(() => import('./OktaAI'));
 
 type FeatureType = 'recruitment' | 'analysis' | 'brd';
 const featureBackgroundMap: Record<FeatureType, string> = {
@@ -174,277 +169,6 @@ const ReportingIcon = ({ variant }: { variant: ReportingVariant }) => (
   </div>
 );
 
-const LegacyOktaAI = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [showWelcome, setShowWelcome] = React.useState(true);
-  const [messages, setMessages] = React.useState<{ role: 'user' | 'ai', text: string }[]>([
-    { role: 'ai', text: "Halo! Saya OktaAI, asisten virtual Okta. Ada yang ingin kamu tanyakan seputar pengalaman atau project Okta? ✨" }
-  ]);
-  const [input, setInput] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  const portfolioContext = `
-    You are OktaAI, a friendly, cute, and professional AI assistant for Okta, an IT Project Manager.
-    Okta's Profile:
-    - Role: Project Manager with 3+ years of experience.
-    - Delivered 30+ software projects.
-    - Skills: Project Strategy, Agile Leadership, System Delivery, Stakeholder Management.
-    - Journey:
-      * 2020-2021: PT. Sarana Insan Muda Selaras (Technical Gov & Corp) in Yogyakarta.
-      * 2021-2023: PT. Supra Primatama/Biznet (Project Engineer) in Surabaya.
-      * Jun-Des 2023: PT. Divistant Teknologi (PM DevOps & Software) in Yogyakarta.
-      * 2023-2025: PT. Juragan Inovator (Project Manager) Remote.
-      * Jan-May 2025: SALT/Ako Media (Project Manager) in Jakarta.
-      * 2025-2026: PT Dazo Kreatif (Head IT Project Manager) in Yogyakarta.
-    - Projects:
-      * Website Business MRT Jakarta: Enterprise Digital Platform, Lead PM.
-      * Aplikasi Yulo Laundry: Management System & Mobile App, Product Owner.
-      * Dazo Apps & Cha AI: AI Ecosystem & Mobile Suite, Technical Project Lead.
-    
-    Instructions:
-    - Be professional but very friendly, "lucu" (cute), and helpful.
-    - Use emojis like ✨, 🚀, 💡, 👋 to keep it friendly.
-    - Use Indonesian as the primary language, but you can mix with English.
-    - If asked "Siapa Okta?", explain he is an IT Project Manager with 3+ years experience.
-    - If asked about projects, mention MRT Jakarta and Yulo Laundry.
-  `;
-
-  const [position, setPosition] = React.useState<'bottom' | 'top'>('bottom');
-
-  React.useEffect(() => {
-    const handleOpen = (e: any) => {
-      setIsOpen(true);
-      setShowWelcome(false);
-      if (e.detail?.from === 'navbar') {
-        setPosition('top');
-      } else {
-        setPosition('bottom');
-      }
-    };
-    window.addEventListener('openOktaAI', handleOpen as any);
-    return () => window.removeEventListener('openOktaAI', handleOpen as any);
-  }, []);
-
-  const handleSend = async (textOverride?: string) => {
-    const userMsg = textOverride || input;
-    if (!userMsg.trim()) return;
-
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
-    setInput('');
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: [
-            ...messages,
-            { role: 'user', text: userMsg }
-          ]
-        })
-      });
-
-      const data = await response.json().catch(() => null);
-
-      if (!response.ok) {
-        throw new Error(data?.message || `API error: ${response.status}`);
-      }
-
-      const aiText = data.text || "Maaf ya, OktaAI lagi istirahat sebentar. Coba lagi nanti? ✨";
-      setMessages(prev => [...prev, { role: 'ai', text: aiText }]);
-    } catch (error) {
-      console.error("[v0] AI Error:", error);
-      const fallbackText =
-        error instanceof Error
-          ? error.message
-          : "Aduh, sinyalnya lagi main petak umpet. Coba lagi ya! 🔌";
-      setMessages(prev => [...prev, { role: 'ai', text: fallbackText }]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  React.useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  return (
-    <>
-      {/* Chat Interface */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ 
-              opacity: 0, 
-              y: position === 'bottom' ? 50 : -50, 
-              scale: 0.9, 
-              transformOrigin: position === 'bottom' ? 'bottom right' : 'top right' 
-            }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ 
-              opacity: 0, 
-              y: position === 'bottom' ? 50 : -50, 
-              scale: 0.9 
-            }}
-            className={`fixed inset-0 lg:inset-auto ${position === 'bottom' ? 'lg:bottom-28' : 'lg:top-28'} lg:right-8 w-full h-full lg:w-[400px] lg:h-[600px] bg-white/95 backdrop-blur-3xl lg:rounded-[28px] border border-white/30 shadow-[0_10px_32px_rgba(15,23,42,0.18)] z-[100] flex flex-col overflow-hidden`}
-          >
-            {/* Background Sparkles */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{ 
-                    scale: [1, 1.5, 1],
-                    opacity: [0.3, 0.7, 0.3],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{ 
-                    repeat: Infinity, 
-                    duration: 4 + i,
-                    delay: i * 0.5
-                  }}
-                  className="absolute text-[#4a7c8c]"
-                  style={{
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`
-                  }}
-                >
-                  <Star size={10} fill="currentColor" />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Header */}
-              <div className="p-5 lg:p-6 pt-12 lg:pt-7 bg-gradient-to-b from-[#edf4f6] to-white text-[#0f1724] flex items-center justify-between relative border-b border-slate-200">
-                <div className="absolute inset-x-0 top-0 h-24 bg-white/60 blur-3xl opacity-60 pointer-events-none"></div>
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-[16px] bg-white/80 backdrop-blur-sm flex items-center justify-center border border-slate-200 shadow-sm group overflow-hidden relative">
-                  <motion.div
-                    animate={{ 
-                      y: [0, -4, 0],
-                      rotate: [0, 5, -5, 0]
-                    }}
-                    transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                    className="relative z-10"
-                  >
-                    <Cpu size={28} className="text-white" />
-                  </motion.div>
-                    <motion.div 
-                      animate={{ scale: [1, 1.05, 1], opacity: [0.25, 0.55, 0.25] }}
-                      transition={{ repeat: Infinity, duration: 2 }}
-                      className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent"
-                    />
-                </div>
-                <div>
-                    <h4 className="text-[17px] font-black tracking-tight flex items-center gap-2">
-                    OktaAI <span className="accent-gradient-bg w-2.5 h-2.5 rounded-full animate-pulse shadow-[0_0_14px_rgba(114,179,154,0.42)]"></span>
-                  </h4>
-                    <p className="text-[12px] text-slate-500 font-semibold tracking-[0.08em]">Asisten pintar & sigap ✨</p>
-                </div>
-              </div>
-              <button 
-                onClick={() => setIsOpen(false)} 
-                className="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center transition-all relative z-10 border border-white/60"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Messages Area */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 no-scrollbar bg-white relative z-10">
-              {messages.length === 1 && (
-                <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="w-32 h-32 bg-white rounded-[24px] flex items-center justify-center mb-6 border border-slate-200 relative overflow-hidden group"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-transparent"></div>
-                    <Cpu size={56} className="text-[#0f1724] relative z-10 group-hover:scale-110 transition-transform duration-500" />
-                    <motion.div 
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-                      className="absolute inset-0 border-2 border-dashed border-slate-200 rounded-[20px] m-2"
-                    />
-                  </motion.div>
-                      <h5 className="text-[16px] font-black text-[#0f1724] mb-2 tracking-[0.04em]">Halo! Aku OktaAI 👋</h5>
-                  <p className="text-[12px] font-medium text-slate-500 max-w-[220px] leading-relaxed">Ada yang bisa aku bantu seputar portfolio Okta? ✨</p>
-                </div>
-              )}
-
-              {messages.map((m, i) => (
-                <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[85%] p-4 rounded-[22px] text-base leading-relaxed font-medium relative group ${
-                    m.role === 'user' 
-                      ? 'bg-[#0f1724] text-white rounded-tr-none shadow-[0_8px_24px_rgba(15,23,42,0.18)]' 
-                      : 'bg-[#f6f7fb] text-[#0f1724] border border-slate-200 rounded-tl-none shadow-sm'
-                  }`}>
-                    {m.text}
-                    {m.role === 'model' && (
-                      <div className="absolute -left-2 -top-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Star size={12} className="text-yellow-400 fill-yellow-400" />
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-              
-              {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-white p-4 rounded-[20px] rounded-tl-none border border-slate-200 shadow-sm flex gap-1.5 items-center">
-                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="accent-gradient-bg w-2 h-2 rounded-full"></motion.div>
-                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="accent-gradient-bg w-2 h-2 rounded-full"></motion.div>
-                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="accent-gradient-bg w-2 h-2 rounded-full"></motion.div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Input Area */}
-            <div className="p-5 lg:p-6 pb-8 bg-white border-t border-slate-200 relative z-10">
-              <div className="relative flex items-center gap-3">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Tanya apa saja..."
-                  className="flex-1 bg-white border border-slate-200 outline-none px-5 md:px-6 py-3.5 md:py-4 rounded-[18px] text-base font-medium placeholder:text-slate-400 focus:ring-2 focus:ring-[#6fc7d7]/30 transition-all"
-                />
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleSend()}
-                  disabled={isLoading || !input.trim()}
-                  className="accent-gradient-bg w-12 h-12 md:w-14 md:h-14 rounded-[16px] flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_10px_20px_rgba(114,179,154,0.18)]"
-                >
-                  <Send size={20} />
-                </motion.button>
-              </div>
-              <div className="flex justify-center items-center gap-2 mt-5">
-                <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
-                <p className="text-[11px] text-gray-400 font-semibold tracking-[0.08em]">OktaAI Assistant ✨</p>
-                <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-};
-
 const TravelokaSkeletonBlock = ({ className = '' }: { className?: string }) => (
   <div className={`traveloka-skeleton ${className}`} />
 );
@@ -485,10 +209,6 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
   const [activeSection, setActiveSection] = React.useState('home');
   const cvUrl = '/cv_oktawahyudi/';
 
-  const openChat = () => {
-    window.dispatchEvent(new CustomEvent('openOktaAI', { detail: { from: 'navbar' } }));
-  };
-
   React.useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'journey', 'skills', 'portfolio'];
@@ -512,7 +232,6 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
     { name: 'Journey', href: '#journey', icon: <Briefcase size={20} /> },
     { name: 'Skills', href: '#skills', icon: <Wand2 size={20} /> },
     { name: 'Portfolio', href: '#portfolio', icon: <FolderKanban size={20} /> },
-    { name: 'Chat AI', href: '#', icon: <MessageCircle size={20} />, action: openChat },
   ];
 
   const mobileMenuItems = [
@@ -544,7 +263,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                 </motion.div>
 
                 <div className="navbar-pill hidden lg:flex items-center gap-1 rounded-[14px] p-1">
-                  {menuItems.slice(0, 4).map((item, idx) => (
+                  {menuItems.map((item, idx) => (
                     <motion.a
                       key={idx}
                       href={item.href}
@@ -582,16 +301,6 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                   </span>
                   <span className="text-[#1a3640]">View CV</span>
                 </motion.a>
-
-                <motion.button
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={openChat}
-                  className="accent-gradient-bg inline-flex items-center gap-2 rounded-[12px] border border-[rgba(255,255,255,0.34)] px-4 py-2 text-[12px] font-semibold text-white shadow-[0_12px_28px_rgba(15,32,39,0.14)] transition-all hover:brightness-[1.03]"
-                >
-                  <MessageCircle size={15} className="text-white/90" />
-                  <span className="text-white">Talk With Okta AI</span>
-                </motion.button>
               </div>
             </div>
           </nav>
@@ -621,7 +330,7 @@ const Navbar = ({ onNavigate }: { onNavigate: (href: string) => void }) => {
                     : 'text-[#0f1724]/70 hover:text-[#0f1724]'
                 }`}
               >
-                {activeSection === item.href.replace('#', '') && item.name !== 'Chat AI' && (
+                {activeSection === item.href.replace('#', '') && (
                   <motion.div
                     layoutId="activeNav"
                     className="accent-gradient-line absolute inset-x-3 bottom-0 h-[3px] rounded-full"
@@ -664,23 +373,6 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="lg:hidden mb-6"
-        >
-          <div
-            onClick={() => window.dispatchEvent(new CustomEvent('openOktaAI'))}
-            className="bg-white rounded-[16px] border border-[#e3e8ef] shadow-sm p-1.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all"
-          >
-            <div className="accent-gradient-soft w-10 h-10 rounded-[14px] flex items-center justify-center text-[#0fa3b1]">
-              <MessageCircle size={18} />
-            </div>
-            <p className="text-[12px] font-bold text-[#5f6670]">Talk With Okta AI</p>
-          </div>
-        </motion.div>
-
         <div className="mobile-hero-badge accent-gradient-soft inline-block mt-6 lg:mt-14 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[11px] lg:text-[13px] border border-[#0fa3b1]/20">
           <span className="accent-gradient-text">IT Project Manager</span>
         </div>
@@ -2391,7 +2083,7 @@ export default function App() {
 
   React.useEffect(() => {
     if (isCvRoute) {
-      window.location.replace('/CV_Oktawahyudi.pdf');
+      window.location.replace('/cv_oktawahyudi/CV_Oktawahyudi.pdf');
       return;
     }
 
@@ -2547,11 +2239,9 @@ export default function App() {
               100% { background-position: 200% 50%; }
             }
           `}</style>
-          <React.Suspense fallback={null}>
-            <LazyOktaAI />
-          </React.Suspense>
         </>
       )}
     </div>
   );
 }
+

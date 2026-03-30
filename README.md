@@ -1,24 +1,39 @@
-<<<<<<< HEAD
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Okta Portfolio
 
-# Run and deploy your AI Studio app
+Website portfolio untuk Okta Wahyudi yang dibangun dengan React, Vite, Tailwind CSS, dan Express untuk serving hasil build production.
 
-This contains everything you need to run your app locally.
+## Menjalankan project
 
-View your app in AI Studio: https://ai.studio/apps/0bce983f-966e-4555-962b-dd795c1a7a87
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
+1. Install dependency:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Jalankan mode development:
    `npm run dev`
-=======
-# portofolio_okta
->>>>>>> 028bad8500552d6b8f586af4cf2b8e43c5b80a49
+3. Build production:
+   `npm run build`
+4. Jalankan hasil build:
+   `npm start`
+
+## Environment variables
+
+Salin `.env.example` lalu sesuaikan bila perlu:
+
+```bash
+VITE_SITE_URL=https://oktawahyu.web.id
+PORT=3000
+```
+
+## Script yang tersedia
+
+- `npm run dev` untuk Vite dev server
+- `npm run build` untuk build production
+- `npm run preview` untuk preview hasil build via Vite
+- `npm start` untuk menjalankan Express server yang menyajikan folder `dist`
+- `npm run lint` untuk type-check TypeScript
+- `npm run clean` untuk menghapus folder `dist`
+
+## Struktur penting
+
+- `src/` komponen React utama
+- `public/` asset publik, halaman share, dan file CV
+- `server.js` server Express untuk mode production/local preview
+- `vercel.json` rewrite static route untuk deployment Vercel
