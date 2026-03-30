@@ -80,6 +80,21 @@ body {
   max-width: none !important;
 }
 
+.recaptcha-badge-trigger {
+  position: fixed;
+  right: 14px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+  width: 74px;
+  height: 60px;
+  z-index: 46;
+  cursor: pointer;
+  background: transparent;
+}
+
+.recaptcha-badge-trigger--hidden {
+  pointer-events: none;
+}
+
 @media (max-width: 1023.98px) {
   .grecaptcha-badge {
     right: 12px !important;
@@ -97,6 +112,13 @@ body {
     width: 236px !important;
     max-width: 236px !important;
     transform: scale(0.9);
+  }
+
+  .recaptcha-badge-trigger {
+    right: 12px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.85rem);
+    width: 68px;
+    height: 56px;
   }
 }
 
@@ -117,6 +139,13 @@ body {
     width: 216px !important;
     max-width: 216px !important;
     transform: scale(0.84);
+  }
+
+  .recaptcha-badge-trigger {
+    right: 8px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.6rem);
+    width: 60px;
+    height: 52px;
   }
 }
 

@@ -35,6 +35,8 @@ export const executeRecaptchaAction = async (action: string) => (
 );
 
 export const RecaptchaBadge = ({ pathname }: { pathname: string }) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
   React.useEffect(() => {
     let isCancelled = false;
     let retryTimeout: number | null = null;
@@ -75,15 +77,7 @@ export const RecaptchaBadge = ({ pathname }: { pathname: string }) => {
 
   React.useEffect(() => {
     let observer: MutationObserver | null = null;
-    let collapseTimeout: number | null = null;
     const cleanups: Array<() => void> = [];
-
-    const clearCollapseTimeout = () => {
-      if (collapseTimeout) {
-        window.clearTimeout(collapseTimeout);
-        collapseTimeout = null;
-      }
-    };
 
     const attachBadgeInteractions = (badge: HTMLElement) => {
       if (badge.dataset.interactiveBadgeReady === 'true') {
@@ -92,51 +86,21 @@ export const RecaptchaBadge = ({ pathname }: { pathname: string }) => {
 
       badge.dataset.interactiveBadgeReady = 'true';
 
-      const expandBadge = () => {
-        clearCollapseTimeout();
-        badge.classList.add('grecaptcha-badge--expanded');
-      };
-
-      const collapseBadge = (delay = 0) => {
-        clearCollapseTimeout();
-
-        if (delay === 0) {
-          badge.classList.remove('grecaptcha-badge--expanded');
-          return;
-        }
-
-        collapseTimeout = window.setTimeout(() => {
-          badge.classList.remove('grecaptcha-badge--expanded');
-        }, delay);
-      };
-
-      const handlePointerEnter = () => expandBadge();
-      const handlePointerLeave = () => collapseBadge(140);
-      const handleFocusIn = () => expandBadge();
-      const handleFocusOut = () => collapseBadge(220);
-      const handleTouchStart = () => expandBadge();
-      const handleTouchEnd = () => collapseBadge(2200);
-      const handleTouchCancel = () => collapseBadge(600);
-      const handleClick = () => collapseBadge(2400);
+      const handlePointerEnter = () => setIsExpanded(true);
+      const handlePointerLeave = () => setIsExpanded(false);
+      const handleFocusIn = () => setIsExpanded(true);
+      const handleFocusOut = () => setIsExpanded(false);
 
       badge.addEventListener('pointerenter', handlePointerEnter);
       badge.addEventListener('pointerleave', handlePointerLeave);
       badge.addEventListener('focusin', handleFocusIn);
       badge.addEventListener('focusout', handleFocusOut);
-      badge.addEventListener('touchstart', handleTouchStart, { passive: true });
-      badge.addEventListener('touchend', handleTouchEnd, { passive: true });
-      badge.addEventListener('touchcancel', handleTouchCancel, { passive: true });
-      badge.addEventListener('click', handleClick, { passive: true });
 
       cleanups.push(() => {
         badge.removeEventListener('pointerenter', handlePointerEnter);
         badge.removeEventListener('pointerleave', handlePointerLeave);
         badge.removeEventListener('focusin', handleFocusIn);
         badge.removeEventListener('focusout', handleFocusOut);
-        badge.removeEventListener('touchstart', handleTouchStart);
-        badge.removeEventListener('touchend', handleTouchEnd);
-        badge.removeEventListener('touchcancel', handleTouchCancel);
-        badge.removeEventListener('click', handleClick);
         badge.classList.remove('grecaptcha-badge--expanded');
         delete badge.dataset.interactiveBadgeReady;
       });
@@ -159,10 +123,37 @@ export const RecaptchaBadge = ({ pathname }: { pathname: string }) => {
 
     return () => {
       observer?.disconnect();
-      clearCollapseTimeout();
       cleanups.forEach((cleanup) => cleanup());
     };
   }, []);
 
-  return null;
+  React.useEffect(() => {
+    const badge = document.querySelector<HTMLElement>('.grecaptcha-badge');
+    if (!badge) return;
+
+    badge.classList.toggle('grecaptcha-badge--expanded', isExpanded);
+  }, [isExpanded]);
+
+  React.useEffect(() => {
+    if (!isExpanded) return;
+
+    const collapseTimeout = window.setTimeout(() => {
+      setIsExpanded(false);
+    }, 2200);
+
+    return () => {
+      window.clearTimeout(collapseTimeout);
+    };
+  }, [isExpanded]);
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`recaptcha-badge-trigger ${isExpanded ? 'recaptcha-badge-trigger--hidden' : ''}`}
+      onMouseEnter={() => setIsExpanded(true)}
+      onFocus={() => setIsExpanded(true)}
+      onTouchStart={() => setIsExpanded(true)}
+      onClick={() => setIsExpanded(true)}
+    />
+  );
 };
