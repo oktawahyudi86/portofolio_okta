@@ -798,8 +798,8 @@ const Journey = () => {
       company: "PT Sarana Insan Muda Selaras",
       label: "PT Sarana Insan Muda Selaras",
       position: "Technical E-Government & Corporate Support",
-      summary: "Built early delivery discipline through government and corporate implementation work, supporting deployment readiness, coordination, and operational follow-through.",
-      highlight: "Implementation support and operational coordination"
+      summary: "Kept government and corporate deployments on track with readiness checks, coordination, and operational follow-through.",
+      highlight: "Deployment readiness support"
     },
     {
       date: "Aug 2021 - Jan 2023",
@@ -807,8 +807,8 @@ const Journey = () => {
       company: "PT Supra Primatama Nusantara",
       label: "PT Supra Primatama Nusantara",
       position: "Project Engineer FTTH / Project Building",
-      summary: "Managed infrastructure rollout activities covering vendor coordination, QA/QC control, and field execution across fiber and building projects.",
-      highlight: "Infrastructure rollout, QA/QC, and vendor coordination"
+      summary: "Delivered fiber and building rollouts while coordinating vendors and QA/QC across field teams.",
+      highlight: "Infrastructure rollout & QA/QC"
     },
     {
       date: "Jun 2023 - Dec 2023",
@@ -816,8 +816,8 @@ const Journey = () => {
       company: "PT Divistant Teknologi Indonesia",
       label: "PT Divistant Teknologi Indonesia",
       position: "Project Manager",
-      summary: "Managed software delivery from project initiation through closure, maintaining execution cadence, client communication, and day-to-day delivery control.",
-      highlight: "Agile software delivery ownership"
+      summary: "Directed agile software delivery from kickoff to close with steady cadence and client-facing updates.",
+      highlight: "Agile delivery ownership"
     },
     {
       date: "Dec 2023 - Jan 2025",
@@ -825,8 +825,8 @@ const Journey = () => {
       company: "PT Juragan Inovator Teknologi Indonesia",
       label: "PT Juragan Inovator Teknologi Indonesia",
       position: "Product & Project Manager",
-      summary: "Owned web and mobile product delivery across planning, design, testing, deployment, budget monitoring, and delivery risk management.",
-      highlight: "Product lifecycle ownership and delivery governance"
+      summary: "Led web and mobile releases end-to-end, from planning through launch while balancing budgets and risk.",
+      highlight: "Product lifecycle governance"
     },
     {
       date: "Jan 2025 - May 2025",
@@ -834,8 +834,8 @@ const Journey = () => {
       company: "PT Ako Media Asia",
       label: "PT Ako Media Asia",
       position: "IT Project Manager",
-      summary: "Led delivery coordination for MAXstream enhancements and migration into MyTelkomsel, driving sprint execution, stakeholder alignment, and release readiness.",
-      highlight: "Enterprise migration and sprint governance"
+      summary: "Coordinated MAXstream migration/feature delivery into MyTelkomsel with tight sprint execution.",
+      highlight: "Enterprise migration"
     },
     {
       date: "Jun 2025 - Present",
@@ -843,8 +843,8 @@ const Journey = () => {
       company: "PT Dazo Kreatif Indonesia",
       label: "PT Dazo Kreatif Indonesia",
       position: "IT Project Manager",
-      summary: "Lead AI SaaS delivery across order management, chat automation, digital storefronts, and omnichannel initiatives with a strong focus on planning, coordination, and release execution.",
-      highlight: "AI SaaS, product delivery, and execution control",
+      summary: "Running AI SaaS delivery across order management, chat automation, digital storefronts, and omnichannel releases.",
+      highlight: "AI SaaS & execution control",
       current: true
     }
   ];
