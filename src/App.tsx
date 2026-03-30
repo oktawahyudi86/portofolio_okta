@@ -32,9 +32,8 @@ export default function App() {
 
   const handleRouteChange = React.useCallback((path: string) => {
     if (window.location.pathname !== path) {
-      window.history.pushState({}, '', path);
-      setPathname(path);
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.location.assign(path);
+      return;
     } else {
       window.scrollTo({ top: 0, behavior: path === '/' ? 'smooth' : 'auto' });
     }

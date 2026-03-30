@@ -56,8 +56,6 @@ export const SectionPageShell = ({
             )}
             <a
               href={cvUrl}
-              target="_blank"
-              rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[12px] font-semibold tracking-[0.06em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
             >
               View CV
