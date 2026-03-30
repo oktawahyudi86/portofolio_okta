@@ -18,7 +18,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const envFiles = ['.env.production', '.env'];
 
-envFiles.forEach((file, index) => {
+// Load environment variables
+envFiles.forEach((file) => {
   const fullPath = path.join(__dirname, file);
   if (fs.existsSync(fullPath)) {
     dotenv.config({ path: fullPath, override: false });
@@ -29,36 +30,40 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'dist')));
+// Serve static files from dist if it exists
+const distPath = path.join(__dirname, 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+}
 
-// Initialize Gemini AI only if API key exists
-const genAI = process.env.GEMINI_API_KEY
-  ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-  : null;
+// Shared chat request handler
+async function processChatRequest(messages) {
+  // Validate messages
+  const validation = validateMessages(messages);
+  if (!validation.valid) {
+    return {
+      success: false,
+      error: validation.error,
+      statusCode: 400,
+    };
+  }
 
-// API route for AI chat
-app.post('/api/chat', async (req, res) => {
-  try {
-    const { messages } = req.body;
-
-    // Validate messages
-    const validation = validateMessages(messages);
-    if (!validation.valid) {
-      return res.status(400).json({ error: validation.error });
-    }
-
-    // If API key is not available, use fallback
-    if (!process.env.GEMINI_API_KEY || !genAI) {
-      console.log('[v0] No GEMINI_API_KEY found, using fallback response');
-      return res.json({
+  // If API key is not available, use fallback
+  if (!process.env.GEMINI_API_KEY) {
+    console.log('[v0] No GEMINI_API_KEY found, using fallback response');
+    return {
+      success: true,
+      data: {
         text: buildLocalFallbackReply(messages),
         fallback: true,
         provider: 'local',
-      });
-    }
+      },
+    };
+  }
 
-    // Get system prompt and create model
+  try {
+    // Initialize Gemini
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const systemPrompt = getSystemPrompt();
     const model = genAI.getGenerativeModel({
       model: 'gemini-1.5-flash',
@@ -84,19 +89,52 @@ app.post('/api/chat', async (req, res) => {
       extractTextFromResponse(result) ||
       'Maaf, ada masalah saat memproses pertanyaan Anda. Silakan coba lagi.';
 
-    res.json({ text: aiText, fallback: false, provider: 'gemini' });
+    return {
+      success: true,
+      data: {
+        text: aiText,
+        fallback: false,
+        provider: 'gemini',
+      },
+    };
   } catch (error) {
-    console.error('[v0] API Error:', error);
+    console.error('[v0] Gemini API Error:', error);
     const fallbackText = handleGeminiError(error, console);
 
-    res.json({
-      text: fallbackText,
+    return {
+      success: true,
+      data: {
+        text: fallbackText,
+        fallback: true,
+        provider: 'local',
+        error:
+          error?.status === 429
+            ? 'quota_exceeded'
+            : 'ai_request_failed',
+      },
+    };
+  }
+}
+
+// API route for AI chat
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { messages } = req.body;
+
+    const result = await processChatRequest(messages);
+
+    if (!result.success) {
+      return res.status(result.statusCode).json({ error: result.error });
+    }
+
+    res.json(result.data);
+  } catch (error) {
+    console.error('[v0] Request handler error:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      text: 'Maaf, ada masalah pada server. Coba lagi nanti.',
       fallback: true,
       provider: 'local',
-      error:
-        error?.status === 429
-          ? 'quota_exceeded'
-          : 'ai_request_failed',
     });
   }
 });

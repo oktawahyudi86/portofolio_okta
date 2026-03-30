@@ -22,5 +22,11 @@
   ],
   "env": {
     "GEMINI_API_KEY": "@gemini_api_key"
+  },
+  "functions": {
+    "api/chat.js": {
+      "memory": 512,
+      "maxDuration": 30
+    }
   }
 }

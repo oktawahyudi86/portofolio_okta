@@ -1,291 +1,323 @@
 # OktaAI Setup & Deployment Guide
 
 ## Overview
-OktaAI adalah chatbot virtual yang terintegrasi dengan portfolio Okta Wahyudi. Chatbot ini menggunakan Google Gemini API untuk memberikan respons yang intelligent tentang pengalaman, project, dan skill Okta.
+
+OktaAI is an intelligent assistant integrated into Okta's portfolio that answers questions about his professional experience, projects, skills, and background. It works in both development and production environments with graceful fallback when API key is unavailable.
 
 ## Architecture
-- **Frontend**: React + Vite (Client-side UI)
-- **Backend**: Express.js (API Server)
-- **AI Model**: Google Gemini 2.0 Flash
-- **Deployment**: Can be deployed on Vercel, Railway, Heroku, or any Node.js hosting
 
----
+### Development Environment (npm run dev)
 
-## Local Development Setup
+```
+┌─────────────────────────────────────────────────────────────┐
+│ npm run dev (concurrently)                                  │
+├──────────────────────┬──────────────────────────────────────┤
+│ Vite Dev Server      │ Node.js API Server                   │
+│ Port: 5173          │ Port: 3000                           │
+│                      │                                      │
+│ React Frontend       │ server.js handler                    │
+│ + HMR               │ - Validates requests                 │
+│                      │ - Checks GEMINI_API_KEY             │
+│                      │ - Calls Gemini API or fallback      │
+│                      │ - Returns JSON response             │
+│                      │                                      │
+│ Proxy: /api/* →      │                                      │
+│ localhost:3000       │                                      │
+└──────────────────────┴──────────────────────────────────────┘
+```
 
-### 1. Get Gemini API Key
-1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
+### Production Environment (Vercel)
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Vercel Deployment                                            │
+├──────────────────────┬───────────────────────────────────────┤
+│ Static Files (dist/) │ Serverless Functions (/api)          │
+│                      │                                      │
+│ React App            │ api/chat.js                          │
+│ - dist/index.html    │ - Runs on every request             │
+│ - dist/*.js          │ - Cold starts: ~1-2s                │
+│ - dist/*.css         │ - Warm: <100ms                      │
+│ - dist/CV_*.pdf      │ - Memory: 512MB                     │
+│                      │ - Timeout: 30s                      │
+│                      │ - Uses GEMINI_API_KEY from env vars  │
+└──────────────────────┴───────────────────────────────────────┘
+```
+
+## Setup Instructions
+
+### 1. Get Google Gemini API Key
+
+1. Go to: https://aistudio.google.com/app/apikey
 2. Click "Create API Key"
-3. Copy your API key
+3. Choose your project or create a new one
+4. Copy the API key
 
-### 2. Setup Environment
+### 2. Development Setup
+
+#### Option A: With GEMINI_API_KEY (Full AI Features)
+
 ```bash
-# Copy example env file
+# 1. Create .env file
 cp .env.example .env
 
-# Edit .env and add your Gemini API Key
-GEMINI_API_KEY=your_key_here
-```
+# 2. Add your Gemini API key to .env
+echo "GEMINI_API_KEY=your_key_here" >> .env
 
-### 3. Install Dependencies
-```bash
-npm install
-# or
-pnpm install
-```
-
-### 4. Run Development Mode
-
-**Option A: Run Both Frontend & Backend**
-```bash
-npm run dev:all
-```
-This runs:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
-
-**Option B: Run Separately (in different terminals)**
-```bash
-# Terminal 1: Frontend
+# 3. Start development with concurrent servers
 npm run dev
 
-# Terminal 2: Backend
-npm run dev:server
+# Frontend: http://localhost:5173
+# API: http://localhost:3000/api/chat
 ```
 
-### 5. Test the AI Chat
-1. Open http://localhost:3000
-2. Click "Talk With Okta AI" button
-3. Type a message and send
-
----
-
-## Production Deployment
-
-### Option 1: Deploy on Vercel (Recommended)
-
-#### Step 1: Build the App
-```bash
-npm run build
-```
-
-#### Step 2: Setup Vercel Project
-```bash
-# If not already set up
-vercel
-
-# Or use GitHub integration in Vercel dashboard
-```
-
-#### Step 3: Add Environment Variables
-1. Go to Vercel Dashboard → Project Settings → Environment Variables
-2. Add `GEMINI_API_KEY` with your API key value
-3. Make sure it's added to Production, Preview, and Development environments
-
-#### Step 4: Configure vercel.json (if needed)
-```json
-{
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "env": {
-    "GEMINI_API_KEY": "@gemini_api_key"
-  }
-}
-```
-
-**Note**: Vercel serverless functions have limitations. For a full Node.js backend, use the "Vercel Node.js Runtime" or consider other hosting options.
-
-### Option 2: Deploy on Railway
-
-#### Step 1: Connect GitHub
-1. Go to [Railway.app](https://railway.app)
-2. Click "New Project" → "Deploy from GitHub"
-3. Select your repository
-
-#### Step 2: Add Environment Variables
-1. In Railway dashboard → Variables
-2. Add `GEMINI_API_KEY=your_key_here`
-
-#### Step 3: Configure Start Command
-In Railway → Settings → Start Command:
-```bash
-npm run build && npm start
-```
-
-#### Step 4: Deploy
-Railway auto-deploys on push to main branch
-
-### Option 3: Deploy on Heroku (Deprecated but still works)
+#### Option B: Without GEMINI_API_KEY (Graceful Fallback)
 
 ```bash
-# Login to Heroku
-heroku login
+# 1. Just run dev - AI will use local fallback responses
+npm run dev
 
-# Create app
-heroku create your-app-name
-
-# Add environment variable
-heroku config:set GEMINI_API_KEY=your_key_here
-
-# Deploy
-git push heroku main
+# The app works fully, but AI uses pre-configured Okta data instead of Gemini
 ```
 
-### Option 4: Deploy on Your Own Server
+### 3. Production Setup on Vercel
 
-#### Requirements
-- Node.js 16+ installed
-- PM2 or similar for process management (optional but recommended)
+#### Step 1: Deploy to Vercel
 
-#### Steps
 ```bash
-# SSH into server
-ssh user@your-server.com
-
-# Clone repository
-git clone https://github.com/oktawahyudi86/portofolio_okta.git
-cd portofolio_okta
-
-# Install dependencies
-npm install
-
-# Build frontend
-npm run build
-
-# Create .env file
-echo "GEMINI_API_KEY=your_key_here" > .env
-
-# Run with PM2
-npm install -g pm2
-pm2 start server.js --name "okta-portfolio"
-pm2 startup
-pm2 save
-
-# Check status
-pm2 status
+# Push code to GitHub first
+git add .
+git commit -m "AI setup complete"
+git push origin main
 ```
 
----
+#### Step 2: Add Environment Variable on Vercel
 
-## API Endpoints
+1. Go to Vercel Dashboard
+2. Select your project
+3. Settings → Environment Variables
+4. Add new variable:
+   - Name: `GEMINI_API_KEY`
+   - Value: `[Your Gemini API Key]`
+   - Select: Production
+5. Redeploy the project
 
-### POST /api/chat
-Send a message and get AI response
+#### Step 3: Verify Deployment
 
-**Request:**
-```json
-{
-  "messages": [
-    { "role": "user", "text": "Siapa itu Okta?" },
-    { "role": "ai", "text": "..." }
-  ]
-}
+```bash
+# Test the API endpoint
+curl https://your-vercel-domain.com/api/chat \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"messages": [{"role": "user", "text": "Siapa Okta?"}]}'
+
+# Expected response:
+# {
+#   "text": "Okta Wahyudi adalah IT Project Manager...",
+#   "fallback": false,
+#   "provider": "gemini"
+# }
 ```
 
-**Response:**
-```json
-{
-  "text": "Okta Wahyudi adalah seorang Full Stack Developer..."
-}
+## Testing Guide
+
+### Test 1: Development Environment (npm run dev)
+
+```bash
+# Start dev mode
+npm run dev
+
+# Wait for both servers to start:
+# [v0] Server running on http://localhost:3000
+# > VITE v... ready in ... ms
+# > Local: http://localhost:5173
+
+# Test the frontend
+# 1. Open http://localhost:5173
+# 2. Click the OktaAI chat button
+# 3. Ask: "Siapa Okta Wahyudi?"
+# 4. Should see response (either from Gemini or fallback)
+
+# Test the API directly
+curl http://localhost:3000/api/chat \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"messages": [{"role": "user", "text": "What are Oktas skills?"}]}'
 ```
 
-### GET /api/health
-Check server health
+### Test 2: Production Build Locally (npm run prod)
 
-**Response:**
-```json
-{
-  "status": "OK",
-  "message": "Server is running"
-}
+```bash
+# Build and serve production locally
+npm run prod
+
+# Should see:
+# dist/ folder created
+# Server running on http://localhost:3000
+
+# Visit http://localhost:3000 and test the chat
 ```
 
----
+### Test 3: Vercel Production Deployment
+
+```bash
+# After deploying to Vercel, test the API
+curl https://your-vercel-domain.com/api/chat \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"messages": [{"role": "user", "text": "Oktas projects?"}]}'
+
+# Should see:
+# {
+#   "text": "Beberapa project utama yang pernah ditangani Okta...",
+#   "fallback": false,
+#   "provider": "gemini"
+# }
+```
+
+## Environment Variables
+
+### GEMINI_API_KEY (Required for Full AI)
+
+- **Where used**: Both server.js and api/chat.js
+- **Visibility**: Server-side only (never exposed to browser)
+- **When missing**: System gracefully falls back to local responses
+- **Production**: Set via Vercel Dashboard → Environment Variables
+
+### VITE_SITE_URL (Optional)
+
+- **Default**: https://oktawahyu.web.id
+- **Used for**: Meta tags, canonical URLs, Open Graph
+- **Override**: Set in .env file
+
+### PORT (Optional)
+
+- **Default**: 3000
+- **Used in**: server.js only
+- **Overrides**: `process.env.PORT` or `.env`
 
 ## Troubleshooting
 
-### Issue: "GEMINI_API_KEY is not configured"
-**Solution**: Make sure `GEMINI_API_KEY` is set in your `.env` file
+### Issue: "Server not running on port 3000" during npm run dev
 
-### Issue: CORS Error
-**Solution**: Backend CORS is already configured. If still getting errors:
-- Check that both frontend and backend are running
-- Verify frontend is calling `http://localhost:5000/api/chat` (or your backend URL)
+**Cause**: The Vite dev server can't connect to the API server
 
-### Issue: AI Not Responding
-**Solution**: 
-1. Check Gemini API quota (free tier has limits)
-2. Verify API key is valid
-3. Check server logs: `pm2 logs okta-portfolio`
-
-### Issue: Frontend Built Successfully but Backend API Not Working
-**Solution**: Make sure to run `npm start` or `npm run dev:server` after building
-
----
-
-## API Key Limits & Quotas
-
-### Google Gemini Free Tier (Generous)
-- **Rate Limit**: 60 requests per minute
-- **Quota**: 1,000 requests per day
-- **Max Tokens**: 2M tokens per minute
-
-For production with higher traffic:
-- Upgrade to paid tier
-- Monitor usage in [Google Cloud Console](https://console.cloud.google.com)
-- Set up billing alerts
-
----
-
-## Security Best Practices
-
-1. **Never commit .env file** ✅ Already in .gitignore
-2. **Rotate API keys regularly** - Generate new keys every 3-6 months
-3. **Use environment variables** - Never hardcode API keys
-4. **Rate limiting** - Consider adding rate limiting for API calls
-5. **CORS configuration** - Review and restrict origins if needed
-
----
-
-## Monitoring & Logging
-
-### Local Development
+**Solution**:
 ```bash
-# View frontend logs
-npm run dev  # Check browser console
+# Make sure both processes started
+# You should see two log lines like:
+# [v0] Server running on http://localhost:3000
+# > VITE v... ready in ... ms
 
-# View backend logs
-npm run dev:server  # Check terminal output
+# If you only see the Vite line, try:
+npm run dev:server  # In separate terminal
+npm run dev:vite    # In another terminal
 ```
 
-### Production (with PM2)
+### Issue: "GEMINI_API_KEY is not set" message
+
+**Cause**: No API key configured, which is fine!
+
+**Solution**:
+- This is expected behavior - the system falls back to local responses
+- To enable Gemini AI: Add `GEMINI_API_KEY` to .env (dev) or Vercel env vars (production)
+
+### Issue: API returns 500 error
+
+**Check**:
 ```bash
-# View logs
-pm2 logs okta-portfolio
+# 1. Is the API key valid?
+# 2. Has API quota been exceeded? (429 error)
+# 3. Check server logs for detailed error
 
-# Real-time monitoring
-pm2 monit
-
-# Save logs to file
-pm2 logs okta-portfolio > app.log
+# In production:
+# Vercel Dashboard → Logs → Function logs
 ```
 
----
+### Issue: Frontend chat doesn't send messages
+
+**Check**:
+```bash
+# 1. Is the API endpoint reachable?
+curl http://localhost:3000/api/chat
+
+# 2. Check browser DevTools → Network tab
+# Should show POST request to /api/chat
+
+# 3. Check server logs for validation errors
+```
+
+## Performance Notes
+
+### Development
+
+- **First load**: ~2-3 seconds (both servers starting)
+- **HMR refresh**: <200ms (hot module replacement)
+- **API response**: ~1-2s with Gemini, <50ms with fallback
+
+### Production (Vercel)
+
+- **Cold start** (first request after deploy): ~1-2s
+- **Warm requests**: <100ms
+- **Gemini API latency**: 500-2000ms depending on API availability
+- **Cached responses**: Instant (browser cache)
+
+## API Response Format
+
+### Success Response
+
+```json
+{
+  "text": "Response text from Gemini or fallback",
+  "fallback": false,
+  "provider": "gemini"
+}
+```
+
+### Fallback Response (no API key)
+
+```json
+{
+  "text": "Local response based on Okta data",
+  "fallback": true,
+  "provider": "local"
+}
+```
+
+### Error Response (API error)
+
+```json
+{
+  "text": "Maaf, ada masalah saat memproses pertanyaan Anda",
+  "fallback": true,
+  "provider": "local",
+  "error": "quota_exceeded" or "ai_request_failed"
+}
+```
+
+## Files Modified for AI Integration
+
+- **server.js** - Updated with improved error handling and structured chat logic
+- **api/chat.js** - Refactored as Vercel serverless function
+- **api/utils.js** - No changes (utilities already framework-agnostic)
+- **package.json** - Added concurrent dev scripts using `concurrently`
+- **.env.example** - Enhanced documentation
+- **vercel.json** - Added function configuration
+- **vite.config.ts** - Already properly configured with proxy
 
 ## Next Steps
 
-1. ✅ Get Gemini API Key from [AI Studio](https://aistudio.google.com/app/apikey)
-2. ✅ Setup local development environment
-3. ✅ Test AI chat locally
-4. ✅ Deploy to your chosen platform
-5. ✅ Monitor API usage and logs
-6. ✅ Update portfolio context in `server.js` as needed
-
----
+1. Get GEMINI_API_KEY from https://aistudio.google.com/app/apikey
+2. Create `.env` file: `cp .env.example .env`
+3. Add your API key to `.env`
+4. Run development: `npm run dev`
+5. Test the chat functionality
+6. Deploy to Vercel
+7. Add GEMINI_API_KEY to Vercel environment variables
+8. Monitor production logs
 
 ## Support & Resources
 
-- [Google Gemini API Docs](https://ai.google.dev/docs)
-- [Express.js Docs](https://expressjs.com)
-- [Vercel Deployment](https://vercel.com/docs)
-- [Railway Docs](https://docs.railway.app)
+- **Gemini API Docs**: https://ai.google.dev/docs
+- **Vercel Docs**: https://vercel.com/docs
+- **Concurrently npm**: https://www.npmjs.com/package/concurrently
