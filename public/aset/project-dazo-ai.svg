@@ -1,0 +1,41 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="100" x2="1420" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081826"/>
+      <stop offset="1" stop-color="#122D46"/>
+    </linearGradient>
+    <linearGradient id="orb" x1="1080" y1="200" x2="1370" y2="510" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55E6FF"/>
+      <stop offset="1" stop-color="#827CFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="52" fill="url(#bg)"/>
+  <circle cx="1310" cy="210" r="170" fill="#41D7F4" fill-opacity="0.14"/>
+  <circle cx="1150" cy="260" r="110" fill="url(#orb)" fill-opacity="0.35"/>
+  <text x="162" y="230" fill="#F7FCFF" font-family="Poppins, Arial, sans-serif" font-size="68" font-weight="700">AI suite delivery command</text>
+  <text x="162" y="292" fill="#A7BED0" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="500">Technical Project Lead for app ecosystem and conversational experience</text>
+  <rect x="162" y="352" width="312" height="82" rx="24" fill="#F4FBFF" fill-opacity="0.12"/>
+  <text x="206" y="405" fill="#FFFFFF" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Technical Project Lead</text>
+  <rect x="162" y="500" width="540" height="292" rx="38" fill="#0D2132"/>
+  <rect x="204" y="546" width="206" height="208" rx="26" fill="#133048"/>
+  <circle cx="307" cy="612" r="44" fill="#5BE5FF"/>
+  <path d="M276 612C286 582 329 582 339 612C329 642 286 642 276 612Z" fill="#0D2132"/>
+  <text x="244" y="708" fill="#E6F6FF" font-family="Poppins, Arial, sans-serif" font-size="26" font-weight="600">Assistant flow</text>
+  <rect x="436" y="546" width="224" height="66" rx="22" fill="#F7FBFF"/>
+  <rect x="436" y="632" width="176" height="24" rx="12" fill="#D8E5EE"/>
+  <rect x="436" y="676" width="198" height="24" rx="12" fill="#D8E5EE"/>
+  <rect x="436" y="720" width="142" height="24" rx="12" fill="#D8E5EE"/>
+  <rect x="820" y="168" width="632" height="664" rx="42" fill="#F8FCFF"/>
+  <rect x="864" y="220" width="544" height="106" rx="30" fill="#0F2437"/>
+  <text x="904" y="283" fill="#F7FCFF" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">System orchestration</text>
+  <rect x="864" y="370" width="246" height="186" rx="30" fill="#EAF6FB"/>
+  <rect x="1130" y="370" width="278" height="186" rx="30" fill="#132F48"/>
+  <rect x="864" y="588" width="544" height="196" rx="30" fill="#F5FBFF"/>
+  <path d="M914 710C972 636 1034 634 1090 702C1148 768 1200 766 1266 678C1298 636 1330 614 1360 606" stroke="#59DDF8" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="914" cy="710" r="16" fill="#123048"/>
+  <circle cx="1090" cy="702" r="16" fill="#123048"/>
+  <circle cx="1266" cy="678" r="16" fill="#123048"/>
+  <text x="918" y="446" fill="#19405B" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="700">Mobile app</text>
+  <text x="1174" y="446" fill="#F2FBFF" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="700">AI response</text>
+  <text x="162" y="908" fill="#E8F3F9" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Portfolio dummy visual for AI ecosystem delivery and technical coordination</text>
+</svg>

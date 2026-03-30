@@ -5,7 +5,7 @@ export const oktaData = {
     phone: "089675080104",
     email: "okta.wahyudi86@gmail.com",
     linkedin: "linkedin.com/in/oktawahyudi",
-    github: "github.com/oktawahyu",
+  github: "https://github.com/oktawahyu",
     location: "Ambarketawang Sleman Yogyakarta",
     maritalStatus: "Sudah menikah",
     children: "1 anak"

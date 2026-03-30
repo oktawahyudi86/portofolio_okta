@@ -1,0 +1,35 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="120" x2="1460" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1D2D"/>
+      <stop offset="1" stop-color="#1B3B5A"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="920" y1="250" x2="1330" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB44D"/>
+      <stop offset="1" stop-color="#FF6B4D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="52" fill="url(#bg)"/>
+  <circle cx="1360" cy="170" r="190" fill="#FFB44D" fill-opacity="0.12"/>
+  <text x="154" y="220" fill="#F9FCFF" font-family="Poppins, Arial, sans-serif" font-size="68" font-weight="700">Streaming platform delivery</text>
+  <text x="154" y="282" fill="#ADC4D5" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="500">Project leadership for scalable video experience and content distribution</text>
+  <rect x="154" y="342" width="244" height="82" rx="24" fill="#F5FBFF" fill-opacity="0.14"/>
+  <text x="194" y="395" fill="#FFFFFF" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Project Manager</text>
+  <rect x="154" y="486" width="1292" height="334" rx="40" fill="#F6FBFF"/>
+  <rect x="210" y="542" width="664" height="222" rx="34" fill="#102638"/>
+  <rect x="910" y="542" width="206" height="98" rx="24" fill="#EDF5FA"/>
+  <rect x="1136" y="542" width="254" height="98" rx="24" fill="#EDF5FA"/>
+  <rect x="910" y="666" width="480" height="98" rx="24" fill="#0F2638"/>
+  <circle cx="542" cy="653" r="52" fill="url(#hero)"/>
+  <path d="M526 624L580 654L526 684V624Z" fill="#FFF7EF"/>
+  <rect x="956" y="574" width="112" height="18" rx="9" fill="#D4E4EE"/>
+  <rect x="956" y="606" width="84" height="16" rx="8" fill="#E6EFF5"/>
+  <rect x="1180" y="574" width="148" height="18" rx="9" fill="#D4E4EE"/>
+  <rect x="1180" y="606" width="106" height="16" rx="8" fill="#E6EFF5"/>
+  <rect x="954" y="698" width="108" height="18" rx="9" fill="#46D1F2"/>
+  <rect x="954" y="730" width="260" height="16" rx="8" fill="#38546B"/>
+  <rect x="210" y="844" width="202" height="26" rx="13" fill="#9DB7C9"/>
+  <rect x="434" y="844" width="220" height="26" rx="13" fill="#9DB7C9"/>
+  <rect x="676" y="844" width="174" height="26" rx="13" fill="#9DB7C9"/>
+  <text x="154" y="916" fill="#E7F2F9" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="600">Portfolio dummy visual for streaming operations and content distribution platform</text>
+</svg>
