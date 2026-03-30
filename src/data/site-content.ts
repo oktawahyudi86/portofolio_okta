@@ -365,54 +365,54 @@ export const LEGAL_CONTENT: LegalContent = {
   privacy: {
     title: 'Privacy Policy',
     description:
-      'Informasi ini menjelaskan bagaimana data kontak dan interaksi di website portfolio Okta Wahyudi digunakan secara wajar untuk kebutuhan komunikasi profesional.',
+      'This page explains how contact details and communication submitted through this portfolio website are handled in a responsible and professional way.',
     sections: [
       {
-        heading: 'Informasi yang dikumpulkan',
-        body: 'Website ini dapat menampilkan dan memproses informasi kontak profesional seperti nama, alamat email, nomor telepon, tautan LinkedIn, serta pesan yang dikirim melalui tautan WhatsApp atau email. Data tersebut hanya digunakan untuk kebutuhan komunikasi, rekrutmen, dan peluang kolaborasi profesional.',
+        heading: 'Information Collected',
+        body: 'This website may display or receive professional contact details such as name, email address, phone number, LinkedIn profile, and messages sent through email or WhatsApp links. The information is only used for professional communication, recruitment discussions, and collaboration opportunities.',
       },
       {
-        heading: 'Cara penggunaan data',
-        body: 'Informasi yang diterima digunakan untuk merespons pertanyaan, menjadwalkan diskusi, menindaklanjuti peluang kerja, serta membangun komunikasi profesional yang relevan. Data tidak digunakan untuk tujuan yang tidak berhubungan dengan kebutuhan profesional atau portfolio ini.',
+        heading: 'How Information Is Used',
+        body: 'Any information received is used to respond to inquiries, schedule discussions, follow up on relevant opportunities, and support professional communication related to this portfolio. It is not used for unrelated marketing or non-professional purposes.',
       },
       {
-        heading: 'Penyimpanan dan keamanan',
-        body: 'Pemilik website berupaya menjaga keamanan informasi yang diterima dengan langkah yang wajar dan proporsional. Meskipun demikian, pengiriman data melalui internet tetap memiliki risiko umum yang tidak selalu dapat dihindari sepenuhnya.',
+        heading: 'Storage and Security',
+        body: 'Reasonable steps are taken to protect information shared through this website. However, no internet-based communication method can be guaranteed to be completely secure, so users should avoid sending highly sensitive information through public channels.',
       },
       {
-        heading: 'Tautan pihak ketiga',
-        body: 'Website ini dapat mengarahkan pengunjung ke layanan pihak ketiga seperti LinkedIn, WhatsApp, atau email client. Setiap layanan tersebut memiliki kebijakan privasi masing-masing yang berada di luar kendali website ini.',
+        heading: 'Third-Party Services',
+        body: 'This website may link to third-party services such as LinkedIn, WhatsApp, Google Maps, or email clients. Each service operates under its own privacy practices, and their policies are outside the control of this website.',
       },
       {
-        heading: 'Kontak',
-        body: 'Untuk permintaan koreksi, pembaruan, atau pertanyaan terkait informasi pribadi, silakan hubungi Okta Wahyudi melalui email di okta.wahyudi86@gmail.com atau LinkedIn di linkedin.com/in/oktawahyudi.',
+        heading: 'Privacy Requests',
+        body: 'For correction requests, updates, or questions related to personal information, please contact Okta Wahyudi via email at okta.wahyudi86@gmail.com or LinkedIn at linkedin.com/in/oktawahyudi.',
       },
     ],
   },
   terms: {
     title: 'Terms & Conditions',
     description:
-      'Halaman ini menjelaskan ketentuan penggunaan website portfolio Okta Wahyudi untuk kebutuhan profesional, rekrutmen, dan komunikasi kerja.',
+      'This page outlines the terms for using the Okta Wahyudi portfolio website for professional review, recruitment, and business communication.',
     sections: [
       {
-        heading: 'Penggunaan website',
-        body: 'Website ini disediakan sebagai portfolio profesional untuk menampilkan pengalaman kerja, project, keahlian, dan informasi kontak Okta Wahyudi. Pengunjung diperbolehkan menggunakan informasi di dalamnya untuk keperluan evaluasi kandidat, rekrutmen, networking, atau peluang kerja yang relevan.',
+        heading: 'Website Purpose',
+        body: 'This website is provided as a professional portfolio to present work experience, selected projects, skills, and contact information related to Okta Wahyudi. Visitors may use the information for candidate evaluation, recruitment, networking, or relevant collaboration opportunities.',
       },
       {
-        heading: 'Hak atas konten',
-        body: 'Seluruh konten, termasuk teks, tata letak, deskripsi project, dan visual presentasi yang ada di website ini, digunakan untuk kebutuhan personal branding dan dokumentasi profesional. Penggunaan ulang, reproduksi, atau distribusi konten secara penuh untuk kepentingan lain sebaiknya dilakukan dengan izin terlebih dahulu.',
+        heading: 'Content Ownership',
+        body: 'All content on this website, including copy, project summaries, structure, and visual presentation, is used for personal branding and professional documentation. Reuse, reproduction, or redistribution of the content in full should only be done with prior permission.',
       },
       {
-        heading: 'Akurasi informasi',
-        body: 'Pemilik website berupaya menjaga seluruh informasi tetap akurat, relevan, dan mutakhir. Namun, penyesuaian terhadap pengalaman kerja, project, kontak, dan materi portfolio dapat dilakukan sewaktu-waktu tanpa pemberitahuan terlebih dahulu.',
+        heading: 'Accuracy of Information',
+        body: 'Reasonable effort is made to keep the information accurate, relevant, and up to date. However, project details, experience summaries, contact information, and portfolio materials may be updated or revised at any time without prior notice.',
       },
       {
-        heading: 'Batas tanggung jawab',
-        body: 'Website ini disediakan sebagaimana adanya untuk kebutuhan presentasi profesional. Pemilik website tidak bertanggung jawab atas keputusan bisnis, rekrutmen, atau penggunaan lain yang diambil pihak ketiga hanya berdasarkan materi yang tersedia di website ini tanpa proses verifikasi lanjutan.',
+        heading: 'Limitation of Liability',
+        body: 'This website is provided as-is for professional presentation purposes. The owner is not responsible for business, hiring, or other third-party decisions made solely based on the information available here without further validation or discussion.',
       },
       {
-        heading: 'Hubungi pemilik website',
-        body: 'Jika Anda membutuhkan klarifikasi terkait pengalaman kerja, project, atau penggunaan konten portfolio ini, silakan hubungi Okta Wahyudi melalui email okta.wahyudi86@gmail.com atau nomor 089675080104.',
+        heading: 'Contact and Clarification',
+        body: 'If you need clarification regarding experience, project delivery, or the use of portfolio content, please contact Okta Wahyudi via email at okta.wahyudi86@gmail.com or by phone at 089675080104.',
       },
     ],
   },

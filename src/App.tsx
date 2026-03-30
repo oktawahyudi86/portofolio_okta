@@ -10,6 +10,7 @@ import {
   TravelokaSkeletonBlock,
 } from './components/site/LoadingPrimitives';
 import { Navbar } from './components/site/Navbar';
+import { RecaptchaBadge } from './components/site/RecaptchaBadge';
 import { SeoMetadata } from './components/site/SeoMetadata';
 import { sitePageByPath } from './data/site-pages';
 
@@ -337,6 +338,7 @@ export default function App() {
   return (
     <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
       <SeoMetadata page={currentPage} />
+      <RecaptchaBadge pathname={pathname} />
       {pathname === '/privacy' ? (
         <React.Suspense fallback={deferredSectionsFallback}>
           <LegalPage type="privacy" onRouteChange={handleRouteChange} />

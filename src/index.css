@@ -44,6 +44,32 @@ body {
   background-color: var(--color-bg);
 }
 
+.grecaptcha-badge {
+  visibility: visible !important;
+  right: 14px !important;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 14px) !important;
+  transform: scale(0.94);
+  transform-origin: right bottom;
+  z-index: 45 !important;
+  filter: drop-shadow(0 14px 28px rgba(15, 32, 39, 0.14));
+}
+
+@media (max-width: 1023.98px) {
+  .grecaptcha-badge {
+    right: 12px !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.85rem) !important;
+    transform: scale(0.88);
+  }
+}
+
+@media (max-width: 480px) {
+  .grecaptcha-badge {
+    right: 8px !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.6rem) !important;
+    transform: scale(0.82);
+  }
+}
+
 h1,
 h2,
 h3,
