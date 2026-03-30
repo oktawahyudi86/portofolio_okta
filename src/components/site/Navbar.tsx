@@ -81,7 +81,7 @@ export const Navbar = ({
       mobileLabel: 'CV',
       href: cvUrl,
       icon: Download,
-      action: () => window.location.assign(cvUrl),
+      action: () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
     },
   ];
 
@@ -150,6 +150,8 @@ export const Navbar = ({
                   whileHover={{ y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
                 >
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(15,32,39,0.08),rgba(114,179,154,0.26))]">

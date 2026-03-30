@@ -38,12 +38,15 @@ const TestimonialItem = React.memo(({ t, idx }: TestimonialItemProps) => (
           loading="lazy"
           fetchPriority="low"
           rootMargin="640px 0px"
+          width={96}
+          height={96}
+          sizes="48px"
           className="h-full w-full object-cover grayscale hover:grayscale-0"
           referrerPolicy="no-referrer"
         />
       </div>
       <div className="min-w-0">
-        <h4 className="font-black text-[14px] text-[#0d1f2b] tracking-tight truncate">{t.name}</h4>
+        <p className="font-black text-[14px] text-[#0d1f2b] tracking-tight truncate">{t.name}</p>
         <p className="text-[12px] text-[#5f6670] font-semibold tracking-[0.03em] truncate">{t.company}</p>
       </div>
     </div>

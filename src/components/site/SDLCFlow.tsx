@@ -43,7 +43,7 @@ export const SDLCFlow = () => {
       <div className="accent-gradient-bg mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] text-white shadow-[0_6px_14px_rgba(114,179,154,0.16)]">
         {icon}
       </div>
-      <h4 className="text-[13px] font-black leading-tight text-[#1a2e35]">{title}</h4>
+      <h3 className="text-[13px] font-black leading-tight text-[#1a2e35]">{title}</h3>
       <p className="mt-1 max-w-[124px] text-[12px] leading-[1.55] text-[#6b7785]">{desc}</p>
     </div>
   );
@@ -119,7 +119,7 @@ export const SDLCFlow = () => {
                             <Icon size={18} />
                           </div>
                           <div>
-                            <h4 className="text-[14px] font-black text-[#0c1a24]">{step.title}</h4>
+                            <h3 className="text-[14px] font-black text-[#0c1a24]">{step.title}</h3>
                             <p className="copy-pretty mt-1 text-[12px] text-[#5f6670] leading-[1.62]">{step.desc}</p>
                           </div>
                         </div>
@@ -161,14 +161,14 @@ export const SDLCFlow = () => {
                     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#0fa3b1] text-white">
                       <Send size={18} />
                     </div>
-                    <h4 className="text-[14px] font-black text-[#0c1a24]">Finished Work</h4>
+                    <h3 className="text-[14px] font-black text-[#0c1a24]">Finished Work</h3>
                     <p className="mt-1 text-[12px] text-[#5f6670]">Potentially shippable increment</p>
                   </div>
                   <div className="rounded-[16px] border border-[#e3e8ef] bg-white p-3.5 text-center">
                     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#55c8d5] text-white">
                       <MessageCircle size={18} />
                     </div>
-                    <h4 className="text-[14px] font-black text-[#0c1a24]">Sprint Review + Retrospective</h4>
+                    <h3 className="text-[14px] font-black text-[#0c1a24]">Sprint Review + Retrospective</h3>
                     <p className="mt-1 text-[12px] text-[#5f6670]">Inspect results and improve the next sprint</p>
                   </div>
                 </div>
@@ -258,7 +258,7 @@ export const SDLCFlow = () => {
                       <div className="accent-gradient-bg mb-3 flex h-[68px] w-[68px] items-center justify-center rounded-full border border-[#cfe7eb] text-white shadow-[0_6px_14px_rgba(114,179,154,0.16)]">
                         <Send size={18} />
                       </div>
-                      <h4 className="text-[13px] font-black leading-tight text-[#1a2e35]">Finished Work</h4>
+                      <h3 className="text-[13px] font-black leading-tight text-[#1a2e35]">Finished Work</h3>
                       <p className="mt-1 max-w-[132px] text-[12px] leading-[1.55] text-[#6b7785]">Potentially shippable increment</p>
                     </div>
                   </div>

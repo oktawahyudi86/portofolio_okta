@@ -29,6 +29,9 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
             loading="lazy"
             fetchPriority="low"
             rootMargin={idx < 2 ? '720px 0px' : '520px 0px'}
+            width={1280}
+            height={720}
+            sizes="(min-width: 1280px) 620px, (min-width: 1024px) 46vw, 92vw"
             className="h-full w-full object-cover"
             style={{ objectPosition: project.imageFocus || 'center' }}
             referrerPolicy="no-referrer"

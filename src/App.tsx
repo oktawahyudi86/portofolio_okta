@@ -5,23 +5,24 @@
 
 import React from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Contact } from './components/site/Contact';
-import { Footer } from './components/site/Footer';
 import { Hero } from './components/site/Hero';
-import { Journey } from './components/site/Journey';
-import { LegalPage } from './components/site/LegalPage';
 import {
   SectionTransitionSkeleton,
   TravelokaSkeletonBlock,
 } from './components/site/LoadingPrimitives';
 import { Navbar } from './components/site/Navbar';
-import { Portfolio } from './components/site/Portfolio';
-import { SectionPageShell } from './components/site/SectionPageShell';
 import { SeoMetadata } from './components/site/SeoMetadata';
-import { SDLCFlow } from './components/site/SDLCFlow';
-import { Skills } from './components/site/Skills';
-import { Testimonials } from './components/site/Testimonials';
 import { sitePageByPath } from './data/site-pages';
+
+const Contact = React.lazy(async () => ({ default: (await import('./components/site/Contact')).Contact }));
+const Footer = React.lazy(async () => ({ default: (await import('./components/site/Footer')).Footer }));
+const Journey = React.lazy(async () => ({ default: (await import('./components/site/Journey')).Journey }));
+const LegalPage = React.lazy(async () => ({ default: (await import('./components/site/LegalPage')).LegalPage }));
+const Portfolio = React.lazy(async () => ({ default: (await import('./components/site/Portfolio')).Portfolio }));
+const SectionPageShell = React.lazy(async () => ({ default: (await import('./components/site/SectionPageShell')).SectionPageShell }));
+const SDLCFlow = React.lazy(async () => ({ default: (await import('./components/site/SDLCFlow')).SDLCFlow }));
+const Skills = React.lazy(async () => ({ default: (await import('./components/site/Skills')).Skills }));
+const Testimonials = React.lazy(async () => ({ default: (await import('./components/site/Testimonials')).Testimonials }));
 
 export default function App() {
   const [pathname, setPathname] = React.useState(() => window.location.pathname);
@@ -154,6 +155,13 @@ export default function App() {
   }, []);
 
   const currentPage = sitePageByPath[pathname] ?? sitePageByPath['/'];
+  const deferredSectionsFallback = (
+    <div className="px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 py-8 lg:py-10">
+      <div className="mx-auto max-w-7xl">
+        <TravelokaSkeletonBlock className="h-40 rounded-[28px]" />
+      </div>
+    </div>
+  );
 
   const renderHomePage = () => (
     <>
@@ -171,24 +179,22 @@ export default function App() {
       </AnimatePresence>
 
       <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
-      <Hero />
-      {showDeferredSections ? (
-        <>
-          <Journey />
-          <Skills />
-          <SDLCFlow />
-          <Portfolio />
-          <Contact />
-          <Testimonials />
-          <Footer onRouteChange={handleRouteChange} />
-        </>
-      ) : (
-        <div className="px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 py-8 lg:py-10">
-          <div className="mx-auto max-w-7xl">
-            <TravelokaSkeletonBlock className="h-40 rounded-[28px]" />
-          </div>
-        </div>
-      )}
+      <main id="main-content" role="main">
+        <Hero />
+        {showDeferredSections ? (
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <Journey />
+            <Skills />
+            <SDLCFlow />
+            <Portfolio />
+            <Contact />
+            <Testimonials />
+            <Footer onRouteChange={handleRouteChange} />
+          </React.Suspense>
+        ) : (
+          deferredSectionsFallback
+        )}
+      </main>
       <style>{`
         section[id] {
           scroll-margin-top: clamp(88px, 10vw, 132px);
@@ -226,10 +232,12 @@ export default function App() {
       return (
         <>
           <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
-          <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
-            <Journey />
-          </SectionPageShell>
-          <Footer onRouteChange={handleRouteChange} />
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
+              <Journey />
+            </SectionPageShell>
+            <Footer onRouteChange={handleRouteChange} />
+          </React.Suspense>
         </>
       );
     }
@@ -238,11 +246,13 @@ export default function App() {
       return (
         <>
           <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
-          <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
-            <Skills />
-            <SDLCFlow />
-          </SectionPageShell>
-          <Footer onRouteChange={handleRouteChange} />
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
+              <Skills />
+              <SDLCFlow />
+            </SectionPageShell>
+            <Footer onRouteChange={handleRouteChange} />
+          </React.Suspense>
         </>
       );
     }
@@ -251,10 +261,12 @@ export default function App() {
       return (
         <>
           <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
-          <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
-            <Portfolio />
-          </SectionPageShell>
-          <Footer onRouteChange={handleRouteChange} />
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
+              <Portfolio />
+            </SectionPageShell>
+            <Footer onRouteChange={handleRouteChange} />
+          </React.Suspense>
         </>
       );
     }
@@ -263,10 +275,12 @@ export default function App() {
       return (
         <>
           <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
-          <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
-            <Contact />
-          </SectionPageShell>
-          <Footer onRouteChange={handleRouteChange} />
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <SectionPageShell page={currentPage} onRouteChange={handleRouteChange}>
+              <Contact />
+            </SectionPageShell>
+            <Footer onRouteChange={handleRouteChange} />
+          </React.Suspense>
         </>
       );
     }
@@ -278,9 +292,13 @@ export default function App() {
     <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
       <SeoMetadata page={currentPage} />
       {pathname === '/privacy' ? (
-        <LegalPage type="privacy" onRouteChange={handleRouteChange} />
+        <React.Suspense fallback={deferredSectionsFallback}>
+          <LegalPage type="privacy" onRouteChange={handleRouteChange} />
+        </React.Suspense>
       ) : pathname === '/terms' ? (
-        <LegalPage type="terms" onRouteChange={handleRouteChange} />
+        <React.Suspense fallback={deferredSectionsFallback}>
+          <LegalPage type="terms" onRouteChange={handleRouteChange} />
+        </React.Suspense>
       ) : (
         renderSectionPage()
       )}

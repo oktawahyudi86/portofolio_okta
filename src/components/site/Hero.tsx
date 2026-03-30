@@ -80,6 +80,9 @@ export const Hero = () => {
                 priority
                 loading="eager"
                 showSkeleton={false}
+                width={760}
+                height={820}
+                sizes="(min-width: 1280px) 530px, (min-width: 1024px) 500px, (min-width: 640px) 420px, 360px"
                 wrapperClassName="h-full w-full"
                 className="h-full w-auto max-w-none object-contain object-bottom drop-shadow-[0_18px_32px_rgba(15,32,39,0.16)]"
                 referrerPolicy="no-referrer"
