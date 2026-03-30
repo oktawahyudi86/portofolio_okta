@@ -565,15 +565,15 @@ const Journey = () => {
   return (
     <section id="journey" className="lazy-render-section section-shell section-tone-journey py-12 lg:py-24 2xl:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-        <div className="mb-10 lg:mb-16 2xl:mb-20">
+        <div className="mb-8 lg:mb-12 2xl:mb-16">
           <p className="section-kicker text-[12px] font-semibold tracking-[0.14em] mb-3">
             <span className="accent-gradient-text">Milestones</span>
           </p>
           <h2 className="copy-balance max-w-[12ch] text-4xl lg:text-6xl font-black text-[#0c1a24] tracking-tight leading-[1]">
             Professional Journey
           </h2>
-          <p className="copy-pretty copy-measure-wide text-[#5f6670] text-[15px] mt-4 max-w-2xl leading-relaxed">
-            A delivery track record built across startup, enterprise, and client-facing environments with increasing ownership in planning, stakeholder management, and release execution.
+          <p className="copy-pretty copy-measure-wide text-[#5f6670] text-[15px] mt-3 max-w-2xl leading-relaxed">
+            Track record across startups and enterprises, building expertise in project delivery, stakeholder management, and team leadership.
           </p>
         </div>
 
