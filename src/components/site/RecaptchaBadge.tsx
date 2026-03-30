@@ -73,5 +73,96 @@ export const RecaptchaBadge = ({ pathname }: { pathname: string }) => {
     };
   }, [pathname]);
 
+  React.useEffect(() => {
+    let observer: MutationObserver | null = null;
+    let collapseTimeout: number | null = null;
+    const cleanups: Array<() => void> = [];
+
+    const clearCollapseTimeout = () => {
+      if (collapseTimeout) {
+        window.clearTimeout(collapseTimeout);
+        collapseTimeout = null;
+      }
+    };
+
+    const attachBadgeInteractions = (badge: HTMLElement) => {
+      if (badge.dataset.interactiveBadgeReady === 'true') {
+        return;
+      }
+
+      badge.dataset.interactiveBadgeReady = 'true';
+
+      const expandBadge = () => {
+        clearCollapseTimeout();
+        badge.classList.add('grecaptcha-badge--expanded');
+      };
+
+      const collapseBadge = (delay = 0) => {
+        clearCollapseTimeout();
+
+        if (delay === 0) {
+          badge.classList.remove('grecaptcha-badge--expanded');
+          return;
+        }
+
+        collapseTimeout = window.setTimeout(() => {
+          badge.classList.remove('grecaptcha-badge--expanded');
+        }, delay);
+      };
+
+      const handlePointerEnter = () => expandBadge();
+      const handlePointerLeave = () => collapseBadge(140);
+      const handleFocusIn = () => expandBadge();
+      const handleFocusOut = () => collapseBadge(220);
+      const handleTouchStart = () => expandBadge();
+      const handleTouchEnd = () => collapseBadge(2200);
+      const handleTouchCancel = () => collapseBadge(600);
+      const handleClick = () => collapseBadge(2400);
+
+      badge.addEventListener('pointerenter', handlePointerEnter);
+      badge.addEventListener('pointerleave', handlePointerLeave);
+      badge.addEventListener('focusin', handleFocusIn);
+      badge.addEventListener('focusout', handleFocusOut);
+      badge.addEventListener('touchstart', handleTouchStart, { passive: true });
+      badge.addEventListener('touchend', handleTouchEnd, { passive: true });
+      badge.addEventListener('touchcancel', handleTouchCancel, { passive: true });
+      badge.addEventListener('click', handleClick, { passive: true });
+
+      cleanups.push(() => {
+        badge.removeEventListener('pointerenter', handlePointerEnter);
+        badge.removeEventListener('pointerleave', handlePointerLeave);
+        badge.removeEventListener('focusin', handleFocusIn);
+        badge.removeEventListener('focusout', handleFocusOut);
+        badge.removeEventListener('touchstart', handleTouchStart);
+        badge.removeEventListener('touchend', handleTouchEnd);
+        badge.removeEventListener('touchcancel', handleTouchCancel);
+        badge.removeEventListener('click', handleClick);
+        badge.classList.remove('grecaptcha-badge--expanded');
+        delete badge.dataset.interactiveBadgeReady;
+      });
+    };
+
+    const findAndAttach = () => {
+      const badge = document.querySelector<HTMLElement>('.grecaptcha-badge');
+      if (badge) {
+        attachBadgeInteractions(badge);
+      }
+    };
+
+    findAndAttach();
+
+    observer = new MutationObserver(() => {
+      findAndAttach();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer?.disconnect();
+      clearCollapseTimeout();
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, []);
+
   return null;
 };

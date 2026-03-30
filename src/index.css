@@ -48,17 +48,55 @@ body {
   visibility: visible !important;
   right: 14px !important;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 14px) !important;
+  width: 74px !important;
+  min-width: 74px !important;
+  max-width: 74px !important;
+  overflow: hidden !important;
+  border-radius: 2px !important;
   transform: scale(0.94);
   transform-origin: right bottom;
   z-index: 45 !important;
   filter: drop-shadow(0 14px 28px rgba(15, 32, 39, 0.14));
+  will-change: width, transform, filter;
+  backface-visibility: hidden;
+  transition:
+    width 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.grecaptcha-badge:hover,
+.grecaptcha-badge.grecaptcha-badge--expanded,
+.grecaptcha-badge:focus-within,
+.grecaptcha-badge:active {
+  width: 256px !important;
+  max-width: 256px !important;
+  transform: scale(0.97);
+  filter: drop-shadow(0 16px 34px rgba(15, 32, 39, 0.18));
+}
+
+.grecaptcha-badge iframe {
+  max-width: none !important;
 }
 
 @media (max-width: 1023.98px) {
   .grecaptcha-badge {
     right: 12px !important;
     bottom: calc(env(safe-area-inset-bottom, 0px) + 5.85rem) !important;
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
     transform: scale(0.88);
+  }
+
+  .grecaptcha-badge:hover,
+  .grecaptcha-badge.grecaptcha-badge--expanded,
+  .grecaptcha-badge:focus-within,
+  .grecaptcha-badge:active {
+    width: 236px !important;
+    max-width: 236px !important;
+    transform: scale(0.9);
   }
 }
 
@@ -66,7 +104,19 @@ body {
   .grecaptcha-badge {
     right: 8px !important;
     bottom: calc(env(safe-area-inset-bottom, 0px) + 5.6rem) !important;
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
     transform: scale(0.82);
+  }
+
+  .grecaptcha-badge:hover,
+  .grecaptcha-badge.grecaptcha-badge--expanded,
+  .grecaptcha-badge:focus-within,
+  .grecaptcha-badge:active {
+    width: 216px !important;
+    max-width: 216px !important;
+    transform: scale(0.84);
   }
 }
 
