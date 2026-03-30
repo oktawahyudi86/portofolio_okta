@@ -11,36 +11,36 @@ export const Journey = () => {
       }`}
     >
       <div className="mb-2 flex min-h-[24px] items-center justify-center gap-2">
-        <p className="text-[11px] font-semibold tracking-[0.08em]">
+        <p className="text-[12px] font-semibold tracking-[0.08em]">
           <span className="accent-gradient-text">{exp.date}</span>
         </p>
         {exp.current && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-[#0fa3b1]/20 bg-white/90 px-2.5 py-1 text-[9px] font-black tracking-[0.12em] shadow-[0_8px_16px_rgba(15,32,39,0.07)]">
+            <span className="inline-flex items-center gap-1 rounded-full border border-[#0fa3b1]/20 bg-white/90 px-2.5 py-1 text-[10px] font-black tracking-[0.12em] shadow-[0_8px_16px_rgba(15,32,39,0.07)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#72b39a] animate-pulse" />
             <span className="accent-gradient-text">CURRENT</span>
           </span>
         )}
       </div>
       <div className="min-h-[114px]">
-        <h3 className="copy-balance mb-1 text-[17px] font-black leading-[1.15] text-[#12212d]">{exp.label}</h3>
-        <p className="mb-4 text-[12px] font-medium leading-[1.4] text-[#72808d]">{exp.location}</p>
-        <p className="copy-pretty mb-4 text-[12px] font-semibold leading-[1.55] text-[#243341]">{exp.position}</p>
-        <p className="copy-pretty text-[12px] leading-[1.55] text-[#6f7c89]">{exp.highlight}</p>
+        <h3 className="copy-balance mb-1 text-[18px] font-black leading-[1.15] text-[#12212d]">{exp.label}</h3>
+        <p className="mb-4 text-[13px] font-medium leading-[1.45] text-[#72808d]">{exp.location}</p>
+        <p className="copy-pretty mb-4 text-[13px] font-semibold leading-[1.6] text-[#243341]">{exp.position}</p>
+        <p className="copy-pretty text-[13px] leading-[1.6] text-[#6f7c89]">{exp.highlight}</p>
       </div>
     </div>
   );
 
   return (
-    <section id="journey" className="lazy-render-section section-shell section-tone-journey py-12 lg:py-24 2xl:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
+    <section id="journey" className="lazy-render-section section-shell section-tone-journey section-spacing px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-        <div className="mb-9 lg:mb-14 2xl:mb-18">
-          <p className="section-kicker text-[12px] font-semibold tracking-[0.14em] mb-3">
+        <div className="section-header-stack">
+          <p className="section-kicker section-kicker-label">
             <span className="accent-gradient-text">Milestones</span>
           </p>
           <h2 className="section-heading-display copy-balance max-w-[12ch] font-black text-[#0c1a24]">
             Career Journey
           </h2>
-          <p className="section-intro copy-pretty mt-4 max-w-2xl">
+          <p className="section-intro copy-pretty max-w-2xl">
             A concise view of the roles that shaped how I plan, align, and deliver software projects.
           </p>
         </div>
@@ -77,20 +77,20 @@ export const Journey = () => {
                 }
               >
                 <div className="mb-3 flex flex-wrap items-center gap-2">
-                  <p className="text-[11px] font-semibold tracking-[0.08em]">
+                  <p className="text-[12px] font-semibold tracking-[0.08em]">
                     <span className="accent-gradient-text">{exp.date}</span>
                   </p>
                   {exp.current && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-[#0fa3b1]/20 bg-white/90 px-2.5 py-1 text-[10px] font-black tracking-[0.12em] shadow-[0_8px_16px_rgba(15,32,39,0.07)]">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-[#0fa3b1]/20 bg-white/90 px-2.5 py-1 text-[11px] font-black tracking-[0.12em] shadow-[0_8px_16px_rgba(15,32,39,0.07)]">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#72b39a] animate-pulse" />
                       <span className="accent-gradient-text">CURRENT ROLE</span>
                     </span>
                   )}
                 </div>
-                <h3 className="copy-balance text-[17px] font-black text-[#12212d] mb-1.5">{exp.company}</h3>
-                <p className="copy-pretty text-[14px] text-[#243341] font-semibold mb-2">{exp.position}</p>
-                <p className="text-[12px] text-[#72808d] mb-3">{exp.location}</p>
-                <p className="copy-pretty text-[13px] text-[#41505d] leading-[1.7]">{exp.summary}</p>
+                <h3 className="copy-balance text-[18px] font-black text-[#12212d] mb-1.5">{exp.company}</h3>
+                <p className="copy-pretty text-[15px] text-[#243341] font-semibold mb-2">{exp.position}</p>
+                <p className="text-[13px] text-[#72808d] mb-3">{exp.location}</p>
+                <p className="copy-pretty text-[14px] text-[#41505d] leading-[1.72]">{exp.summary}</p>
               </div>
             </motion.div>
           ))}

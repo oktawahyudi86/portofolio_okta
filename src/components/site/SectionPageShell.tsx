@@ -15,7 +15,7 @@ export const SectionPageShell = ({
   children: ReactNode;
 }) => (
   <main>
-    <section className="section-shell section-tone-hero px-4 pt-24 pb-8 sm:px-5 md:px-6 lg:pt-36 xl:px-8 2xl:px-12">
+    <section className="section-shell section-tone-hero px-4 pt-24 pb-8 sm:px-5 md:px-6 lg:pt-32 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <a
           href="/"
@@ -30,17 +30,17 @@ export const SectionPageShell = ({
         </a>
 
         <div className="mt-6 max-w-4xl">
-          <p className="section-kicker text-[12px] font-semibold tracking-[0.14em]">
+          <p className="section-kicker section-kicker-label mb-0">
             <span className="accent-gradient-text">{page.heroEyebrow}</span>
           </p>
-          <h1 className="section-heading-display copy-balance mt-4 max-w-[14ch] font-black text-[#102635]">
+          <h1 className="section-heading-display copy-balance mt-3 max-w-[14ch] font-black text-[#102635]">
             {page.heroTitle}
           </h1>
-          <p className="section-intro copy-pretty mt-5 max-w-3xl">
+          <p className="section-intro copy-pretty mt-4 max-w-3xl">
             {page.heroDescription}
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             {page.path !== '/contact' && (
               <a
                 href="/contact"

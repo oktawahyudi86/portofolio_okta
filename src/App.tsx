@@ -200,14 +200,18 @@ export default function App() {
         }
         #home {
           padding-top: clamp(58px, 8vw, 108px) !important;
-          padding-bottom: clamp(52px, 6vw, 92px) !important;
+          padding-bottom: clamp(28px, 4vw, 56px) !important;
         }
         section[id] + section[id] {
           margin-top: 0;
         }
         @media (min-width: 1024px) {
           #home {
-            padding-top: clamp(86px, 8vw, 132px) !important;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            padding-top: clamp(72px, 6vw, 96px) !important;
+            padding-bottom: 0 !important;
           }
         }
         @keyframes gradient-slider {

@@ -42,14 +42,14 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 export const heroHighlights = [
-  'Sprint planning, tracking, and release control',
-  'Team, stakeholder, and delivery alignment',
-  'SaaS, product, and enterprise project coordination',
+  'Sprint planning and release control',
+  'Stakeholder and team alignment',
+  'SaaS and product delivery',
 ];
 
 export const heroStats: HeroStat[] = [
-  { value: '3+', label: 'Years leading delivery' },
-  { value: '30+', label: 'Projects coordinated' },
+  { value: '3+', label: 'Years in delivery' },
+  { value: '30+', label: 'Projects led' },
 ];
 
 export const experiences: Experience[] = [

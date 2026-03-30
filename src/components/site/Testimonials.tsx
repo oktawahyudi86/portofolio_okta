@@ -23,7 +23,7 @@ const TestimonialItem = React.memo(({ t, idx }: TestimonialItemProps) => (
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#72b39a" className="text-[#0fa3b1]" />)}
       </div>
-      <p className="copy-pretty text-[13px] text-[#0d1f2b]/70 italic leading-[1.78] font-medium">
+      <p className="copy-pretty text-[14px] sm:text-[15px] text-[#0d1f2b]/70 italic leading-[1.82] font-medium">
         "{t.text}"
       </p>
     </div>
@@ -43,8 +43,8 @@ const TestimonialItem = React.memo(({ t, idx }: TestimonialItemProps) => (
         />
       </div>
       <div className="min-w-0">
-        <h4 className="font-black text-[13px] text-[#0d1f2b] tracking-tight truncate">{t.name}</h4>
-        <p className="text-[11px] text-[#5f6670] font-semibold tracking-[0.04em] truncate">{t.company}</p>
+        <h4 className="font-black text-[14px] text-[#0d1f2b] tracking-tight truncate">{t.name}</h4>
+        <p className="text-[12px] text-[#5f6670] font-semibold tracking-[0.03em] truncate">{t.company}</p>
       </div>
     </div>
   </motion.div>
@@ -120,16 +120,16 @@ export const Testimonials = () => {
   };
 
   return (
-    <section id="feedback" className="lazy-render-section section-shell section-tone-feedback py-16 lg:py-32 px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
+    <section id="feedback" className="lazy-render-section section-shell section-tone-feedback section-spacing px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl mx-auto">
-        <div className="mb-10 lg:mb-16">
-          <p className="section-kicker text-[12px] font-semibold mb-3 tracking-[0.14em]">
+        <div className="section-header-stack">
+          <p className="section-kicker section-kicker-label">
             <span className="accent-gradient-text">Recommendations</span>
           </p>
           <h2 className="section-heading-display copy-balance max-w-[12ch] font-black text-[#0d1f2b]">
             What teams say <span className="accent-gradient-text">about working with me</span>
           </h2>
-          <p className="section-intro copy-pretty max-w-xl mt-4 font-medium">
+          <p className="section-intro copy-pretty max-w-xl">
             <span className="accent-gradient-text">Short feedback that reflects delivery ownership, communication style, and day-to-day execution.</span>
           </p>
         </div>

@@ -32,36 +32,34 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="mobile-hero-badge accent-gradient-soft inline-block mt-1 lg:mt-3 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[11px] lg:text-[13px] border border-[#0fa3b1]/20">
+          <div className="mobile-hero-badge accent-gradient-soft inline-block mt-1 lg:mt-3 px-4 py-1.5 rounded-full font-semibold mb-5 tracking-[0.08em] text-[12px] lg:text-[13px] border border-[#0fa3b1]/20">
             <span className="accent-gradient-text">Mid-Level IT Project Manager</span>
           </div>
-          <h1 className="mobile-hero-title copy-balance max-w-[11ch] text-[clamp(2.55rem,10.8vw,5rem)] font-black text-[#0c1a24] leading-[0.92] mb-5 tracking-[-0.04em]">
-            <span className="block">Keeping delivery</span>
-            <span className="accent-gradient-text block pb-1">clear, steady,</span>
-            <span className="block">
-              and stakeholder-ready.
-            </span>
+          <h1 className="mobile-hero-title copy-balance max-w-[10.5ch] lg:max-w-[11.6ch] text-[clamp(2.45rem,10.2vw,4.7rem)] lg:text-[clamp(3.45rem,5.35vw,4.28rem)] font-black text-[#0c1a24] leading-[0.94] mb-3 lg:mb-2 tracking-[-0.045em]">
+            <span className="block">Leading delivery</span>
+            <span className="accent-gradient-text block pb-1">with clarity,</span>
+            <span className="block">control, and trust.</span>
           </h1>
 
-          <div className="mobile-hero-copy copy-measure mb-5 max-w-[560px] border-l-2 border-[#0fa3b1]/35 pl-4 sm:pl-5">
-            <p className="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2">
+          <div className="mobile-hero-copy copy-measure mb-3 lg:mb-2 max-w-[520px] border-l-2 border-[#0fa3b1]/35 pl-4 sm:pl-5">
+            <p className="text-[11px] lg:text-[12px] font-semibold tracking-[0.12em] uppercase mb-1.5">
               <span className="accent-gradient-text">What I bring</span>
             </p>
-            <p className="copy-pretty text-[14px] sm:text-[15px] lg:text-[16px] text-[#0c1a24] leading-[1.8] font-semibold mb-2.5">
-              I help teams plan clearly, coordinate better, and move releases forward with less friction.
+            <p className="copy-pretty text-[15px] sm:text-[16px] lg:text-[16px] text-[#0c1a24] leading-[1.68] font-semibold mb-2">
+              I keep teams aligned, sprints focused, and releases moving.
             </p>
-            <ul className="space-y-1.5 text-[13px] sm:text-[14px] lg:text-[14.5px] text-[#5f6670] leading-[1.75]">
+            <ul className="space-y-1 text-[14px] sm:text-[15px] lg:text-[15px] text-[#5f6670] leading-[1.68]">
               {heroHighlights.map((item) => (
                 <li key={item} className="copy-pretty">{item}</li>
               ))}
             </ul>
           </div>
 
-          <div className="mobile-hero-stats grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-5 mb-6 max-w-[520px]">
+          <div className="mobile-hero-stats grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#e3e8ef] pt-3 lg:pt-2.5 mb-0 max-w-[400px]">
             {heroStats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <span className="text-[2rem] sm:text-[2.35rem] lg:text-[2.7rem] font-black text-[#0c1a24]">{stat.value}</span>
-                <p className="copy-pretty mx-auto max-w-[12ch] text-[10px] sm:text-[11px] lg:text-[12px] text-[#5f6670] tracking-[0.08em] uppercase">{stat.label}</p>
+                <span className="text-[1.95rem] sm:text-[2.2rem] lg:text-[2.35rem] font-black text-[#0c1a24]">{stat.value}</span>
+                <p className="copy-pretty mx-auto max-w-[10ch] text-[11px] sm:text-[12px] lg:text-[12px] text-[#5f6670] tracking-[0.06em] uppercase">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -90,7 +88,7 @@ export const Hero = () => {
             <div className="pointer-events-none absolute inset-x-[4%] bottom-[7%] h-[14%] rounded-b-[22px] bg-[linear-gradient(180deg,rgba(17,42,49,0)_0%,rgba(30,59,64,0.08)_46%,rgba(120,190,161,0.34)_100%)] z-20" />
 
             <div className="absolute left-[1%] bottom-[14%] z-30 rounded-[14px] border border-[rgba(30,59,64,0.18)] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(220,243,234,0.92))] px-3 py-2 shadow-[0_14px_26px_rgba(15,32,39,0.09)] backdrop-blur-md sm:left-[-9%] sm:bottom-[17%] sm:px-4 sm:py-3">
-              <p className="text-[11px] font-semibold tracking-[0.04em] text-[#17363d] sm:text-[12px]">
+              <p className="text-[12px] font-semibold tracking-[0.04em] text-[#17363d] sm:text-[13px]">
                 B.Sc. in Informatics
               </p>
             </div>
@@ -106,8 +104,8 @@ export const Hero = () => {
                 />
               </div>
               <div className="text-left">
-                <p className="text-[10px] font-black leading-tight text-[#102a31]">AMIKOM University</p>
-                <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.92)] px-2 py-0.5 text-[8px] font-semibold tracking-[0.06em] text-[#21424d]">
+                <p className="text-[11px] font-black leading-tight text-[#102a31]">AMIKOM University</p>
+                <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.92)] px-2 py-0.5 text-[9px] font-semibold tracking-[0.06em] text-[#21424d]">
                   2016 - 2020
                 </p>
               </div>
@@ -124,8 +122,8 @@ export const Hero = () => {
                 />
               </div>
               <div className="text-left">
-                <p className="text-[13px] font-black text-[#102a31] leading-tight">AMIKOM University</p>
-                <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.94)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.06em] text-[#21424d]">
+                <p className="text-[14px] font-black text-[#102a31] leading-tight">AMIKOM University</p>
+                <p className="mt-1 inline-flex rounded-full border border-[rgba(30,59,64,0.14)] bg-[rgba(220,243,234,0.94)] px-2.5 py-1 text-[11px] font-semibold tracking-[0.06em] text-[#21424d]">
                   2016 - 2020
                 </p>
               </div>

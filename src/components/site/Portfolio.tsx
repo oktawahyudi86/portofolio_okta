@@ -38,7 +38,7 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
     </div>
 
     <div className={`order-2 space-y-4.5 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-      <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#5f6670] lg:text-[12px]">
+      <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#5f6670] lg:text-[13px]">
         <span className="font-semibold tracking-[0.08em]">
           <span className="accent-gradient-text">{project.type}</span>
         </span>
@@ -51,22 +51,22 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
       </h3>
 
       <div className="space-y-3.5">
-        <p className="copy-pretty max-w-xl text-[14px] leading-[1.72] text-[#1a2e35]/80 lg:text-[15px]">
+        <p className="copy-pretty max-w-xl text-[15px] leading-[1.78] text-[#1a2e35]/80 lg:text-[16px]">
           {project.desc}
         </p>
         <div className="border-l-2 border-[#0fa3b1]/35 pl-4">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em]">
+          <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.08em]">
             <span className="accent-gradient-text">Key impact</span>
           </p>
-          <p className="copy-pretty max-w-xl text-[13px] italic leading-[1.7] text-[#0c1a24] lg:text-[14px]">{project.impact}</p>
+          <p className="copy-pretty max-w-xl text-[14px] italic leading-[1.76] text-[#0c1a24] lg:text-[15px]">{project.impact}</p>
         </div>
       </div>
 
       <div>
-        <p className="mb-3 text-[11px] font-semibold tracking-[0.08em] text-[#5f6670]">Common interview topics</p>
+        <p className="mb-3 text-[12px] font-semibold tracking-[0.08em] text-[#5f6670]">Common interview topics</p>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <span key={tag} className="rounded-xl border border-[#e3e8ef] bg-[#f8fafc] px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.03em] text-[#1a2e35] lg:text-[11px]">
+            <span key={tag} className="rounded-xl border border-[#e3e8ef] bg-[#f8fafc] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.03em] text-[#1a2e35] lg:text-[12px]">
               {tag}
             </span>
           ))}
@@ -80,7 +80,7 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
         rel="noreferrer"
         className="flex items-center gap-3 text-[#1a2e35] group/btn"
       >
-        <span className="text-[12px] font-semibold tracking-[0.08em]">View project reference</span>
+        <span className="text-[13px] font-semibold tracking-[0.08em]">View project reference</span>
         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#d7e2e8] flex items-center justify-center group-hover/btn:bg-[#0c1a24] group-hover/btn:text-white transition-all duration-300">
           <ArrowUpRight size={18} />
         </div>
@@ -95,17 +95,17 @@ export const Portfolio = () => {
   const githubUrl = 'https://github.com/oktawahyu';
 
   return (
-    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio px-4 py-8 sm:px-5 md:px-6 lg:py-10 xl:px-8 2xl:px-12">
+    <section id="portfolio" className="lazy-render-section section-shell section-tone-portfolio section-spacing px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
-        <div className="mb-6 lg:mb-10 2xl:mb-12">
-          <p className="section-kicker mb-3 text-[12px] font-semibold tracking-[0.14em]">
+        <div className="section-header-stack">
+          <p className="section-kicker section-kicker-label">
             <span className="accent-gradient-text">Selected Project Experience</span>
           </p>
           <h2 className="section-heading-display copy-balance max-w-[14ch] font-black text-[#1a2e35]">
             <span className="accent-gradient-text">Case Studies</span>{' '}
             <span className="accent-gradient-text italic font-serif">That Show How I Work</span>
           </h2>
-          <p className="section-intro copy-pretty copy-measure-wide mt-4 max-w-2xl">
+          <p className="section-intro copy-pretty copy-measure-wide max-w-2xl">
             A selection of projects that show how I manage scope, coordination, and release execution.
           </p>
         </div>
