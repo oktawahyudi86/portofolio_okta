@@ -96,6 +96,19 @@ export const sitePages: SitePageMeta[] = [
       'A legal page that explains how this portfolio website may be used for recruitment, networking, and professional communication purposes.',
     schemaType: 'WebPage',
   },
+  {
+    path: '/handover',
+    navLabel: 'Handover',
+    title: 'Project Handover Documentation | Okta Wahyudi',
+    description:
+      'Dokumentasi lengkap dan progress handover project mencakup project timeline, QA testing results, technical documentation, dan akses credential untuk kelanjutan proyek yang seamless.',
+    shortDescription: 'Project handover documentation dengan timeline, QA results, technical docs, dan credentials untuk directors dan successors.',
+    heroEyebrow: 'Project Handover',
+    heroTitle: 'Dokumentasi dan progres handover untuk kelanjutan proyek.',
+    heroDescription:
+      'Halaman khusus untuk direktur dan penerus, berisi akses dokumen penting, status progres, dan catatan handover project dengan informasi lengkap untuk transisi yang smooth.',
+    schemaType: 'WebPage',
+  },
 ];
 
 export const sitePageByPath = sitePages.reduce<Record<string, SitePageMeta>>((accumulator, page) => {
