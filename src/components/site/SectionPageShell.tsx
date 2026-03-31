@@ -23,7 +23,7 @@ export const SectionPageShell = ({
             event.preventDefault();
             onRouteChange('/');
           }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-white px-4 py-2 text-[12px] font-semibold tracking-[0.06em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
+          className="site-enter site-enter--section-chip inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-white px-4 py-2 text-[12px] font-semibold tracking-[0.06em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
         >
           <ArrowLeft size={15} />
           Back to home
@@ -33,14 +33,14 @@ export const SectionPageShell = ({
           <p className="section-kicker section-kicker-label mb-0">
             <span className="accent-gradient-text">{page.heroEyebrow}</span>
           </p>
-          <h1 className="section-heading-display copy-balance mt-3 max-w-[14ch] font-black text-[#102635]">
+          <h1 className="site-enter site-enter--section-title section-heading-display copy-balance mt-3 max-w-[14ch] font-black text-[#102635]">
             {page.heroTitle}
           </h1>
-          <p className="section-intro copy-pretty mt-4 max-w-3xl">
+          <p className="site-enter site-enter--section-copy section-intro copy-pretty mt-4 max-w-3xl">
             {page.heroDescription}
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="site-enter site-enter--section-actions mt-5 flex flex-wrap gap-3">
             {page.path !== '/contact' && (
               <a
                 href="/contact"

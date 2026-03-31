@@ -96,9 +96,9 @@ export const Navbar = ({
 
   return (
     <>
-      <div className="hidden lg:block fixed top-5 left-0 w-full z-50 px-6 xl:px-8 2xl:px-12">
+      <div className="site-enter site-enter--nav hidden lg:block fixed top-5 left-0 w-full z-50 px-6 xl:px-8 2xl:px-12">
         <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-          <nav className="navbar-glass rounded-[18px] px-4 py-2">
+          <nav className="navbar-glass navbar-glass--interactive rounded-[18px] px-4 py-2">
             <div className="flex items-center justify-between gap-6">
               <div className="flex items-center gap-7">
                 <div className="text-[1.45rem] font-black tracking-tight text-[#0c1a24] leading-none cursor-default">
@@ -158,8 +158,8 @@ export const Navbar = ({
         </div>
       </div>
 
-      <div className="mobile-bottom-nav lg:hidden fixed bottom-0 left-0 w-full z-50 px-3 pb-3">
-        <nav className="mobile-bottom-nav-inner navbar-glass mx-auto max-w-md rounded-[20px] px-2.5 py-2.5">
+      <div className="site-enter site-enter--mobile-nav mobile-bottom-nav lg:hidden fixed bottom-0 left-0 w-full z-50 px-3 pb-3">
+        <nav className="mobile-bottom-nav-inner navbar-glass navbar-glass--interactive mx-auto max-w-md rounded-[20px] px-2.5 py-2.5">
           <div className="flex items-center justify-between gap-1">
             {mobileMenuItems.map((item, idx) => {
               const Icon = item.icon;
