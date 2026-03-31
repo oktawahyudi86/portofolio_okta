@@ -301,6 +301,31 @@ export const whatsappProfileUrl = `https://wa.me/${contactDetails.whatsappPhone}
 const whatsAppMessage = encodeURIComponent('Halo Okta!\nSaya ingin berdiskusi tentang project dan peluang kolaborasi.');
 export const whatsappUrl = `${whatsappProfileUrl}?text=${whatsAppMessage}`;
 
+export const handoverUrl = '#handover';
+
+export const handoverSections = [
+  {
+    icon: '📋',
+    title: 'Project Timeline',
+    description: 'Complete project roadmap, milestone tracking, and delivery schedule with key dates and dependencies.',
+  },
+  {
+    icon: '✅',
+    title: 'QA Testing',
+    description: 'Test cases, coverage reports, known issues, bug tracking, and quality assurance procedures.',
+  },
+  {
+    icon: '📚',
+    title: 'Documentation',
+    description: 'Technical specs, architecture diagrams, API documentation, and process guides for ongoing delivery.',
+  },
+  {
+    icon: '🔐',
+    title: 'Credential',
+    description: 'Access details, credentials, environment setup, and security protocols for system administration.',
+  },
+];
+
 export const contactMethods: ContactMethod[] = [
   {
     value: contactDetails.location,
