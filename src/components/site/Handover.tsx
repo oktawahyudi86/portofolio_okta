@@ -4,22 +4,22 @@ import { ArrowUpRight } from 'lucide-react';
 const handoverCards = [
   {
     title: 'Project Timeline',
-    link: 'https://drive.google.com/drive/folders/your-timeline-folder-id',
+    link: 'https://drive.google.com/drive/folders/1S8htkcLkNChe4Q_6eydZiaqGrdULacGd?usp=drive_link',
     desc: 'Lihat jadwal, milestone, dan progres utama proyek.',
   },
   {
     title: 'QA Testing',
-    link: 'https://drive.google.com/drive/folders/your-qa-folder-id',
+    link: 'https://drive.google.com/drive/folders/1rYY7alybJvRX95yjSvENQH3pAqYzqHqu?usp=drive_link',
     desc: 'Dokumentasi hasil pengujian, bug, dan validasi fitur.',
   },
   {
     title: 'Documentation',
-    link: 'https://drive.google.com/drive/folders/your-docs-folder-id',
+    link: 'https://drive.google.com/drive/folders/11h3A2-CKMbPkdpw-9QNFktuUl3UMxEi-?usp=sharing',
     desc: 'Dokumen teknis, user guide, dan catatan penting proyek.',
   },
   {
     title: 'Credential',
-    link: 'https://drive.google.com/drive/folders/your-credential-folder-id',
+    link: 'https://docs.google.com/spreadsheets/d/1zf5EbRhmBYk6hv4kezCr-_yB7enXzoHwt_N-Ve1rVGY/edit?usp=sharing',
     desc: 'Akses login, environment, dan credential penting.',
   },
 ];
@@ -27,15 +27,15 @@ const handoverCards = [
 const projectSummaries = [
   {
     name: 'KoncoApps',
-    status: 'Aplikasi telah mencapai tahap produksi yang stabil dengan fitur-fitur inti berfungsi optimal. Fokus saat ini beralih ke pemeliharaan sistem dan penanganan change request dari pengguna untuk memastikan pengalaman pengguna yang konsisten dan memuaskan. Tim siap mendukung pengembangan fitur tambahan sesuai kebutuhan bisnis.'
+    status: 'Aplikasi sudah done semua & sudah di production. Fokus saat ini lebih ke arah  change request dari pengguna untuk memastikan konsisten dan memuaskan. mas adi yang akan exted di dazo .'
   },
   {
     name: 'DazoApps',
-    status: 'Modul booking telah diselesaikan secara komprehensif di tingkat backend dan frontend dengan implementasi terbaik dari best practices industri. Fase berikutnya adalah pengujian menyeluruh dan quality assurance intensif untuk memvalidasi seluruh fungsionalitas sebelum go-live ke production environment.'
+    status: 'Modul booking untuk di toko digital sudah selesai, di lanjut testung. untuk Biolink sudah sampai detail event.'
   },
   {
     name: 'Live Chat AI',
-    status: 'Integrasi Live Chat AI untuk modul booking sedang berlangsung dengan progress saat ini mencapai 80% dari total scope. Tim development aktif melakukan optimization dan integration testing untuk memastikan seamless integration dengan sistem utama dan performa maksimal dalam production.'
+    status: 'Integrasi Live Chat AI untuk modul booking sedang berlangsung dengan progress saat ini mencapai 80% dari total scope yang direncanakan.'
   },
 ];
 
@@ -49,7 +49,7 @@ const notImplementedItems = [
     reason: 'Tertunda untuk evaluasi lebih lanjut dan alignment dengan kebutuhan business stakeholders'
   },
   {
-    title: 'Restruktur: Misahin BE & FE di DazoApps',
+    title: 'Restruktur BE & FE di DazoApps',
     reason: 'Dipertimbangkan untuk fase development selanjutnya setelah stabilisasi sistem utama'
   },
 ];
@@ -187,7 +187,7 @@ export const Handover = () => (
               Kirimkan pertanyaan atau topik yang ingin didiskusikan, dan saya akan merespons untuk melanjutkan percakapan lebih detail.
             </p>
             <motion.a
-              href="https://wa.me/62857"
+              href="https://wa.me/6289675080104"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
