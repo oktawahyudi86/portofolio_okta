@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download } from 'lucide-react';
+import { Download, Home as HomeIcon, Compass } from 'lucide-react';
 import { cvUrl, navigationItems, primarySectionIds } from '../../data/site-content';
 
 type MobileMenuItem = {
@@ -24,6 +24,12 @@ export const Navbar = ({
     const currentItem = navigationItems.find((item) => item.path === pathname);
     return currentItem ? currentItem.href.replace('#', '') : 'home';
   });
+
+  // Handover-specific menu items
+  const handoverMenuItems = [
+    { name: 'Home', href: '#handover', path: '/handover', icon: HomeIcon },
+    { name: 'Project Status', href: '#project-status', path: '/handover', icon: Compass },
+  ];
 
   const resolveActiveHomeSection = React.useCallback(() => {
     const offset = 150;
@@ -74,13 +80,21 @@ export const Navbar = ({
   }, [pathname, resolveActiveHomeSection]);
 
   const mobileMenuItems: MobileMenuItem[] = [
-    ...navigationItems,
+    ...(pathname === '/handover' 
+      ? [
+          navigationItems[0], // Home
+          { name: 'Project Status', href: '#handover', path: '/handover', icon: navigationItems[0].icon }
+        ]
+      : navigationItems
+    ),
     {
-      name: 'View CV',
-      mobileLabel: 'CV',
-      href: cvUrl,
-      icon: Download,
-      action: () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
+      name: pathname === '/handover' ? 'Contact' : 'View CV',
+      mobileLabel: pathname === '/handover' ? 'Contact' : 'CV',
+      href: pathname === '/handover' ? 'https://wa.me/62857' : cvUrl,
+      icon: pathname === '/handover' ? Download : Download,
+      action: pathname === '/handover' 
+        ? () => window.open('https://wa.me/62857', '_blank', 'noopener,noreferrer')
+        : () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
     },
   ];
 
@@ -106,7 +120,7 @@ export const Navbar = ({
                 </div>
 
                 <div className="navbar-pill hidden lg:flex items-center gap-1 rounded-[14px] p-1">
-                  {navigationItems.map((item, idx) => {
+                  {(pathname === '/handover' ? handoverMenuItems : navigationItems).map((item, idx) => {
                     const Icon = item.icon;
                     const isActive = isItemActive(item);
 
@@ -116,6 +130,18 @@ export const Navbar = ({
                         href={item.href}
                         onClick={(event) => {
                           event.preventDefault();
+                          if (pathname === '/handover' && item.name === 'Home') {
+                            // On handover page, Home scrolls to handover header section
+                            const element = document.getElementById('handover');
+                            element?.scrollIntoView({ behavior: 'smooth' });
+                            return;
+                          }
+                          if (pathname === '/handover' && item.name === 'Project Status') {
+                            // Project Status scrolls to project-status section
+                            const element = document.getElementById('project-status');
+                            element?.scrollIntoView({ behavior: 'smooth' });
+                            return;
+                          }
                           if (pathname === '/') {
                             setActiveSection(item.href.replace('#', ''));
                             onNavigate(item.href);
@@ -141,17 +167,28 @@ export const Navbar = ({
               </div>
 
               <div className="flex items-center gap-3">
-                <a
-                  href={cvUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
-                >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(15,32,39,0.08),rgba(114,179,154,0.26))]">
-                    <Download size={14} className="text-[#21424d]" />
-                  </span>
-                  <span className="text-[#1a3640]">View CV</span>
-                </a>
+                {pathname === '/handover' ? (
+                  <a
+                    href="https://wa.me/62857"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
+                  >
+                    <span className="text-[#1a3640]">Contact</span>
+                  </a>
+                ) : (
+                  <a
+                    href={cvUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(15,32,39,0.08),rgba(114,179,154,0.26))]">
+                      <Download size={14} className="text-[#21424d]" />
+                    </span>
+                    <span className="text-[#1a3640]">View CV</span>
+                  </a>
+                )}
               </div>
             </div>
           </nav>
@@ -177,6 +214,18 @@ export const Navbar = ({
                     }
 
                     event.preventDefault();
+                    if (pathname === '/handover' && item.name === 'Home') {
+                      // On handover page, Home scrolls to handover header section
+                      const element = document.getElementById('handover');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                      return;
+                    }
+                    if (pathname === '/handover' && item.name === 'Project Status') {
+                      // Project Status scrolls to project-status section
+                      const element = document.getElementById('project-status');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                      return;
+                    }
                     if (pathname === '/') {
                       setActiveSection(item.href.replace('#', ''));
                       onNavigate(item.href);

@@ -66,32 +66,38 @@ export const SectionPageShell = ({
           </div>
         </div>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {sitelinkPages.map((item) => {
-            const isCurrent = item.path === page.path;
-
-            return (
-              <motion.a
-                key={item.path}
-                href={item.path}
-                onClick={(event) => {
-                  event.preventDefault();
-                  onRouteChange(item.path);
-                }}
-                whileHover={{ y: -2 }}
-                className={`surface-card surface-card-tight flex flex-col gap-2 p-4 transition-colors ${
-                  isCurrent ? 'border-[#0fa3b1]/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(220,243,234,0.82))]' : ''
-                }`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-[14px] font-black text-[#102635]">{item.navLabel}</p>
-                  <ArrowUpRight size={16} className={isCurrent ? 'text-[#0fa3b1]' : 'text-[#94a3b8]'} />
-                </div>
-                <p className="copy-pretty text-[12px] leading-relaxed text-[#5f6670]">{item.shortDescription}</p>
-              </motion.a>
-            );
-          })}
-        </div>
+        {/* Card navigasi hanya tampil jika bukan halaman handover */}
+        {page.path === '/handover' ? (
+          <div className="mt-8">
+            {/* Card handover project akan di-render oleh komponen Handover di bawah section hero */}
+          </div>
+        ) : (
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {sitelinkPages.map((item) => {
+              const isCurrent = item.path === page.path;
+              return (
+                <motion.a
+                  key={item.path}
+                  href={item.path}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    onRouteChange(item.path);
+                  }}
+                  whileHover={{ y: -2 }}
+                  className={`surface-card surface-card-tight flex flex-col gap-2 p-4 transition-colors ${
+                    isCurrent ? 'border-[#0fa3b1]/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(220,243,234,0.82))]' : ''
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[14px] font-black text-[#102635]">{item.navLabel}</p>
+                    <ArrowUpRight size={16} className={isCurrent ? 'text-[#0fa3b1]' : 'text-[#94a3b8]'} />
+                  </div>
+                  <p className="copy-pretty text-[12px] leading-relaxed text-[#5f6670]">{item.shortDescription}</p>
+                </motion.a>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
 

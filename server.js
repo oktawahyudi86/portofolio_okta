@@ -16,7 +16,7 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'none'",
+  "frame-ancestors 'self' https://www.google.com",
   "object-src 'none'",
   "script-src 'self' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com",
   "script-src-attr 'none'",

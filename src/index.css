@@ -1,11 +1,8 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", ui-serif, Georgia, serif;
-}
-
-:root {
   --color-primary-deep: #0f2027;
   --color-primary-deep-rgb: 15 32 39;
   --color-primary: #72b39a;

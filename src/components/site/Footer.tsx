@@ -1,9 +1,15 @@
 import { contactDetails, footerSocialLinks, quickLinks } from '../../data/site-content';
 import { sitelinkPages } from '../../data/site-pages';
 
-export const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => void }) => (
-  <footer className="mobile-footer-shell lazy-render-footer section-shell px-4 sm:px-5 md:px-6 pb-10 sm:pb-12 relative overflow-hidden">
-    <div className="section-inner max-w-7xl mx-auto">
+export const Footer = ({ onRouteChange, pathname }: { onRouteChange: (path: string) => void; pathname?: string }) => {
+  // Filter sitelinkPages for handover route - only show Handover in "Explore pages"
+  const displayedPages = pathname === '/handover' 
+    ? sitelinkPages.filter(page => page.path === '/handover')
+    : sitelinkPages;
+
+  return (
+    <footer className="mobile-footer-shell lazy-render-footer section-shell px-4 sm:px-5 md:px-6 pb-10 sm:pb-12 relative overflow-hidden">
+      <div className="section-inner max-w-7xl mx-auto">
       <div className="mobile-footer-surface footer-surface rounded-[24px] text-white shadow-soft">
         <div className="relative z-10 px-5 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 space-y-6 sm:space-y-8">
           <div className="space-y-2">
@@ -19,7 +25,7 @@ export const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => voi
                 <span className="text-[#bfe7da]">Explore pages</span>
               </p>
               <div className="space-y-1 text-white/80">
-                {sitelinkPages.map((page) => (
+                {displayedPages.map((page) => (
                   <a
                     key={page.path}
                     href={page.path}
@@ -115,4 +121,5 @@ export const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => voi
       </div>
     </div>
   </footer>
-);
+  );
+};

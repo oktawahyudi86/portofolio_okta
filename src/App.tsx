@@ -16,6 +16,7 @@ import { sitePageByPath } from './data/site-pages';
 
 const Contact = React.lazy(async () => ({ default: (await import('./components/site/Contact')).Contact }));
 const Footer = React.lazy(async () => ({ default: (await import('./components/site/Footer')).Footer }));
+const Handover = React.lazy(async () => ({ default: (await import('./components/site/Handover')).Handover }));
 const Journey = React.lazy(async () => ({ default: (await import('./components/site/Journey')).Journey }));
 const LegalPage = React.lazy(async () => ({ default: (await import('./components/site/LegalPage')).LegalPage }));
 const Portfolio = React.lazy(async () => ({ default: (await import('./components/site/Portfolio')).Portfolio }));
@@ -233,7 +234,7 @@ export default function App() {
             <Portfolio />
             <Contact />
             <Testimonials />
-            <Footer onRouteChange={handleRouteChange} />
+            <Footer onRouteChange={handleRouteChange} pathname={pathname} />
           </React.Suspense>
         ) : (
           deferredSectionsFallback
@@ -324,6 +325,18 @@ export default function App() {
               <Contact />
             </SectionPageShell>
             <Footer onRouteChange={handleRouteChange} />
+          </React.Suspense>
+        </>
+      );
+    }
+
+    if (pathname === '/handover') {
+      return (
+        <>
+          <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <Handover />
+            <Footer onRouteChange={handleRouteChange} pathname={pathname} />
           </React.Suspense>
         </>
       );
