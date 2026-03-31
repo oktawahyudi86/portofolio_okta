@@ -77,7 +77,7 @@ export const sitePages: SitePageMeta[] = [
     description:
       'Connect with Okta Wahyudi for IT Project Manager roles, software delivery opportunities, and collaboration discussions.',
     shortDescription: 'Direct contact options for project roles, collaboration, and software delivery discussions.',
-    heroEyebrow: 'Let's Connect',
+    heroEyebrow: "Let's Connect",
     heroTitle: 'Direct contact details for project discussions and collaboration.',
     heroDescription:
       'A dedicated contact page for recruiters, hiring teams, and partners who want to discuss delivery support, collaboration, or project opportunities.',
