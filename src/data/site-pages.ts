@@ -57,27 +57,13 @@ export const sitePages: SitePageMeta[] = [
     includeInSitelinks: true,
   },
   {
-    path: '/handover',
-    navLabel: 'Handover',
-    title: 'Project Handover | Okta Wahyudi',
-    description:
-      'Access comprehensive project handover documentation including timeline, QA testing, technical documentation, and credentials for seamless project transition.',
-    shortDescription: 'Complete handover package with project timeline, QA testing, documentation, and credentials.',
-    heroEyebrow: 'Project Transition',
-    heroTitle: 'Structured handover for seamless project continuity.',
-    heroDescription:
-      'A complete handover page covering project timeline, QA testing results, technical documentation, and access credentials for the next delivery team.',
-    schemaType: 'WebPage',
-    includeInSitelinks: true,
-  },
-  {
     path: '/contact',
     navLabel: 'Contact',
     title: 'Contact Okta Wahyudi | IT Project Manager',
     description:
       'Connect with Okta Wahyudi for IT Project Manager roles, software delivery opportunities, and collaboration discussions.',
     shortDescription: 'Direct contact options for project roles, collaboration, and software delivery discussions.',
-    heroEyebrow: "Let's Connect",
+    heroEyebrow: 'Let’s Connect',
     heroTitle: 'Direct contact details for project discussions and collaboration.',
     heroDescription:
       'A dedicated contact page for recruiters, hiring teams, and partners who want to discuss delivery support, collaboration, or project opportunities.',
