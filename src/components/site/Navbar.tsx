@@ -90,10 +90,10 @@ export const Navbar = ({
     {
       name: pathname === '/handover' ? 'Contact' : 'View CV',
       mobileLabel: pathname === '/handover' ? 'Contact' : 'CV',
-      href: pathname === '/handover' ? 'https://wa.me/62857' : cvUrl,
+      href: pathname === '/handover' ? 'https://wa.me/6289675080104' : cvUrl,
       icon: pathname === '/handover' ? Download : Download,
       action: pathname === '/handover' 
-        ? () => window.open('https://wa.me/62857', '_blank', 'noopener,noreferrer')
+        ? () => window.open('https://wa.me/6289675080104', '_blank', 'noopener,noreferrer')
         : () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
     },
   ];
