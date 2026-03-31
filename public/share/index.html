@@ -12,6 +12,9 @@
     <meta name="robots" content="noindex, follow" />
     <meta name="theme-color" content="#12392f" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Sora:wght@300;400;500;600;700;800&display=swap" />
     <link rel="canonical" href="https://oktawahyu.web.id/share/" />
 
     <meta property="og:type" content="website" />
@@ -42,6 +45,17 @@
     <style>
       :root {
         color-scheme: light;
+        --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+        --font-serif: "Newsreader", ui-serif, Georgia, serif;
+        --color-primary-deep: #0f2027;
+        --color-primary-deep-rgb: 15 32 39;
+        --color-primary: #72b39a;
+        --color-primary-rgb: 114 179 154;
+        --color-bg: #e7ede8;
+        --color-surface: rgba(255, 255, 255, 0.92);
+        --color-border: rgba(15, 32, 39, 0.1);
+        --color-text: #0f2027;
+        --color-muted: color-mix(in srgb, var(--color-primary-deep) 58%, white);
       }
 
       * {
@@ -53,12 +67,13 @@
         min-height: 100vh;
         display: grid;
         place-items: center;
-        font-family: Poppins, Arial, sans-serif;
+        font-family: var(--font-serif);
         background:
-          radial-gradient(circle at top right, rgba(74, 124, 140, 0.18), transparent 34%),
-          radial-gradient(circle at bottom left, rgba(15, 163, 177, 0.14), transparent 32%),
-          #f8fafc;
-        color: #16303d;
+          radial-gradient(circle at 14% 10%, rgb(var(--color-primary-rgb) / 0.18), transparent 28%),
+          radial-gradient(circle at 84% 16%, rgb(var(--color-primary-deep-rgb) / 0.08), transparent 24%),
+          radial-gradient(circle at 50% 100%, rgb(var(--color-primary-rgb) / 0.1), transparent 30%),
+          linear-gradient(180deg, #f8fbf8 0%, var(--color-bg) 42%, #dde7e0 100%);
+        color: var(--color-text);
       }
 
       .shell {
@@ -66,9 +81,12 @@
         margin: 24px;
         padding: 28px;
         border-radius: 28px;
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(221, 231, 238, 0.9);
-        box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        box-shadow:
+          0 18px 40px rgb(var(--color-primary-deep-rgb) / 0.06),
+          0 1px 0 rgb(255 255 255 / 0.6) inset;
+        backdrop-filter: blur(18px);
       }
 
       .badge {
@@ -77,12 +95,13 @@
         gap: 8px;
         padding: 10px 16px;
         border-radius: 999px;
-        background: rgba(74, 124, 140, 0.08);
-        color: #3f7385;
+        background: linear-gradient(135deg, rgb(var(--color-primary-deep-rgb) / 0.06) 0%, rgb(var(--color-primary-rgb) / 0.2) 100%);
+        color: var(--color-primary);
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
+        font-family: var(--font-sans);
       }
 
       h1 {
@@ -90,13 +109,14 @@
         font-size: clamp(32px, 6vw, 52px);
         line-height: 1;
         letter-spacing: -0.04em;
+        font-family: var(--font-sans);
       }
 
       p {
         margin: 0;
         font-size: 17px;
         line-height: 1.7;
-        color: rgba(22, 48, 61, 0.78);
+        color: var(--color-muted);
       }
 
       .actions {
@@ -116,6 +136,7 @@
         border-radius: 999px;
         text-decoration: none;
         font-weight: 700;
+        font-family: var(--font-sans);
         transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
       }
 
@@ -124,20 +145,22 @@
       }
 
       .button-primary {
-        background: linear-gradient(135deg, #16303d, #2f5d6f);
+        background: linear-gradient(135deg, var(--color-primary-deep), color-mix(in srgb, var(--color-primary-deep) 58%, var(--color-primary)) 38%, var(--color-primary) 100%);
         color: #fff;
-        box-shadow: 0 18px 40px rgba(22, 48, 61, 0.22);
+        box-shadow: 0 18px 40px rgb(var(--color-primary-deep-rgb) / 0.22);
       }
 
       .button-secondary {
-        background: #eef5f8;
-        color: #24556a;
+        background: rgba(255, 255, 255, 0.74);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
       }
 
       .status {
         margin-top: 22px;
         font-size: 13px;
-        color: rgba(22, 48, 61, 0.55);
+        color: color-mix(in srgb, var(--color-primary-deep) 44%, white);
+        font-family: var(--font-sans);
       }
     </style>
   </head>

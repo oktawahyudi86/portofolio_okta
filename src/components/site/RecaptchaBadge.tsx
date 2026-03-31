@@ -8,9 +8,6 @@ declare global {
       ready: (callback: () => void) => void;
       execute: (siteKey: string, options: { action: string }) => Promise<string>;
     };
-    __recaptchaToken?: string;
-    __recaptchaTokenAction?: string;
-    __recaptchaTokenIssuedAt?: number;
   }
 }
 
@@ -23,12 +20,7 @@ export const executeRecaptchaAction = async (action: string) => (
 
     window.grecaptcha.ready(() => {
       window.grecaptcha?.execute(RECAPTCHA_SITE_KEY, { action })
-        .then((token) => {
-          window.__recaptchaToken = token;
-          window.__recaptchaTokenAction = action;
-          window.__recaptchaTokenIssuedAt = Date.now();
-          resolve(token);
-        })
+        .then(resolve)
         .catch(reject);
     });
   })

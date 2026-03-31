@@ -28,13 +28,38 @@ export default function App() {
   const [pathname, setPathname] = React.useState(() => window.location.pathname);
   const [isInitialLoading, setIsInitialLoading] = React.useState(true);
   const [isSectionLoading, setIsSectionLoading] = React.useState(false);
+  const [pageTransitionStage, setPageTransitionStage] = React.useState<'idle' | 'out' | 'in'>('idle');
   const [showDeferredSections, setShowDeferredSections] = React.useState(() => window.location.pathname !== '/');
   const loadingTimeoutRef = React.useRef<number | null>(null);
+  const pageTransitionTimeoutRef = React.useRef<number | null>(null);
+  const pageTransitionResetRef = React.useRef<number | null>(null);
   const deferredTriggerRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleRouteChange = React.useCallback((path: string) => {
     if (window.location.pathname !== path) {
-      window.location.assign(path);
+      if (pageTransitionTimeoutRef.current) {
+        window.clearTimeout(pageTransitionTimeoutRef.current);
+      }
+
+      if (pageTransitionResetRef.current) {
+        window.clearTimeout(pageTransitionResetRef.current);
+      }
+
+      setPageTransitionStage('out');
+      pageTransitionTimeoutRef.current = window.setTimeout(() => {
+        window.history.pushState({}, '', path);
+        setPathname(path);
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        setPageTransitionStage('in');
+
+        pageTransitionResetRef.current = window.setTimeout(() => {
+          setPageTransitionStage('idle');
+          pageTransitionResetRef.current = null;
+        }, 420);
+
+        pageTransitionTimeoutRef.current = null;
+      }, 210);
+
       return;
     } else {
       window.scrollTo({ top: 0, behavior: path === '/' ? 'smooth' : 'auto' });
@@ -64,7 +89,17 @@ export default function App() {
   React.useEffect(() => {
     const handlePopState = () => {
       setPathname(window.location.pathname);
+      setPageTransitionStage('in');
       window.scrollTo({ top: 0, behavior: 'auto' });
+
+      if (pageTransitionResetRef.current) {
+        window.clearTimeout(pageTransitionResetRef.current);
+      }
+
+      pageTransitionResetRef.current = window.setTimeout(() => {
+        setPageTransitionStage('idle');
+        pageTransitionResetRef.current = null;
+      }, 360);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -143,50 +178,6 @@ export default function App() {
   }, [pathname, showDeferredSections]);
 
   React.useEffect(() => {
-    const fontStylesheetId = 'google-fonts-stylesheet';
-    const browserWindow = window as Window & typeof globalThis & {
-      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
-      cancelIdleCallback?: (handle: number) => void;
-    };
-
-    if (document.getElementById(fontStylesheetId)) {
-      document.body.setAttribute('data-fonts-ready', 'true');
-      return;
-    }
-
-    let timeoutId: ReturnType<typeof globalThis.setTimeout> | null = null;
-    let idleId: number | null = null;
-
-    const loadFonts = () => {
-      if (document.getElementById(fontStylesheetId)) return;
-
-      const link = document.createElement('link');
-      link.id = fontStylesheetId;
-      link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Sora:wght@300;400;500;600;700;800&display=swap';
-      link.onload = () => {
-        document.body.setAttribute('data-fonts-ready', 'true');
-      };
-      document.head.appendChild(link);
-    };
-
-    if (browserWindow.requestIdleCallback) {
-      idleId = browserWindow.requestIdleCallback(loadFonts, { timeout: 1800 });
-    } else {
-      timeoutId = globalThis.setTimeout(loadFonts, 900);
-    }
-
-    return () => {
-      if (idleId && browserWindow.cancelIdleCallback) {
-        browserWindow.cancelIdleCallback(idleId);
-      }
-      if (timeoutId) {
-        globalThis.clearTimeout(timeoutId);
-      }
-    };
-  }, []);
-
-  React.useEffect(() => {
     if (isInitialLoading) {
       document.body.removeAttribute('data-app-ready');
       return;
@@ -208,6 +199,12 @@ export default function App() {
   React.useEffect(() => () => {
     if (loadingTimeoutRef.current) {
       window.clearTimeout(loadingTimeoutRef.current);
+    }
+    if (pageTransitionTimeoutRef.current) {
+      window.clearTimeout(pageTransitionTimeoutRef.current);
+    }
+    if (pageTransitionResetRef.current) {
+      window.clearTimeout(pageTransitionResetRef.current);
     }
   }, []);
 
@@ -339,17 +336,26 @@ export default function App() {
     <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
       <SeoMetadata page={currentPage} />
       <RecaptchaBadge pathname={pathname} />
-      {pathname === '/privacy' ? (
-        <React.Suspense fallback={deferredSectionsFallback}>
-          <LegalPage type="privacy" onRouteChange={handleRouteChange} />
-        </React.Suspense>
-      ) : pathname === '/terms' ? (
-        <React.Suspense fallback={deferredSectionsFallback}>
-          <LegalPage type="terms" onRouteChange={handleRouteChange} />
-        </React.Suspense>
-      ) : (
-        renderSectionPage()
-      )}
+      <div className={`app-page-shell ${
+        pageTransitionStage === 'out'
+          ? 'app-page-shell--out'
+          : pageTransitionStage === 'in'
+            ? 'app-page-shell--in'
+            : ''
+      }`}
+      >
+        {pathname === '/privacy' ? (
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <LegalPage type="privacy" onRouteChange={handleRouteChange} />
+          </React.Suspense>
+        ) : pathname === '/terms' ? (
+          <React.Suspense fallback={deferredSectionsFallback}>
+            <LegalPage type="terms" onRouteChange={handleRouteChange} />
+          </React.Suspense>
+        ) : (
+          renderSectionPage()
+        )}
+      </div>
     </div>
   );
 }
