@@ -80,7 +80,7 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
         whileHover={{ x: 10 }}
         href={project.url}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="flex items-center gap-3 text-[#1a2e35] group/btn"
       >
         <span className="text-[13px] font-semibold tracking-[0.08em]">View project reference</span>
@@ -123,7 +123,7 @@ export const Portfolio = () => {
           <a
             href={githubUrl}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="mobile-cta-button accent-gradient-bg inline-flex items-center gap-3 px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] transition-all shadow-soft hover:opacity-95"
           >
             Explore More on GitHub

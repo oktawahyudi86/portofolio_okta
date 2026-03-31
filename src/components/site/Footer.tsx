@@ -74,7 +74,7 @@ export const Footer = ({ onRouteChange }: { onRouteChange: (path: string) => voi
                     key={label}
                     href={href}
                     target={href.startsWith('http') ? '_blank' : undefined}
-                    rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     aria-label={label}
                     className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition"
                   >

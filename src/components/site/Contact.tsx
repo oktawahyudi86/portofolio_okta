@@ -35,7 +35,7 @@ export const Contact = () => (
                 <a
                   href={method.href}
                   target={method.external ? '_blank' : undefined}
-                  rel={method.external ? 'noreferrer' : undefined}
+                  rel={method.external ? 'noopener noreferrer' : undefined}
                   className={`min-w-0 text-[14px] sm:text-[15px] font-semibold tracking-[0.02em] text-[#0d1f2b] hover:text-[#0fa3b1] transition-colors ${breakClass}`}
                 >
                   {method.value}
@@ -57,7 +57,7 @@ export const Contact = () => (
         <a
           href={whatsappUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="mobile-cta-button accent-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-[13px] sm:text-[14px] font-semibold tracking-[0.08em] shadow-soft transition-transform hover:-translate-y-0.5 hover:opacity-95"
         >
           Message on WhatsApp

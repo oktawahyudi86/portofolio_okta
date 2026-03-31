@@ -23,6 +23,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob:",
+  "media-src 'self'",
   "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://www.google.com https://www.gstatic.com",
   "manifest-src 'self'",
   "worker-src 'self' blob:",
@@ -36,8 +37,10 @@ const securityHeaders = {
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
+  'X-DNS-Prefetch-Control': 'off',
   'Permissions-Policy': 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()',
   'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Resource-Policy': 'same-origin',
   'Origin-Agent-Cluster': '?1',
   'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
   'X-Permitted-Cross-Domain-Policies': 'none',
@@ -64,6 +67,11 @@ app.use(express.static(distDir, {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-cache');
+    }
+
+    if (filePath.endsWith(`${path.sep}.well-known${path.sep}security.txt`)) {
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
     }
   },
 }));

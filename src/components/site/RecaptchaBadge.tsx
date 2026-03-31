@@ -42,9 +42,17 @@ export const RecaptchaBadge = ({ pathname }: { pathname: string }) => {
     let retryTimeout: number | null = null;
     let attempts = 0;
 
+    const normalizedActionSegment = pathname
+      .toLowerCase()
+      .replace(/[^a-z0-9/_-]/g, '_')
+      .replaceAll('/', '_')
+      .replace(/^_+/, '')
+      .replace(/_+/g, '_')
+      .slice(0, 80);
+
     const action = pathname === '/'
       ? 'homepage_view'
-      : `route_${pathname.replaceAll('/', '_').replace(/^_+/, '') || 'home'}`;
+      : `route_${normalizedActionSegment || 'home'}`;
 
     const primeRecaptcha = () => {
       if (isCancelled) return;
