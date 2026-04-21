@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, Star } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Hand } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { testimonials } from '../../data/site-content';
 import type { Testimonial } from '../../types/site';
@@ -22,14 +22,16 @@ const TestimonialItem = React.memo(({ t, idx, reduceMotion }: TestimonialItemPro
   >
     <div>
       <div className="mb-4 flex gap-1">
-        {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#1d4ed8" className="text-[#1d4ed8]" />)}
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="h-[14px] w-[14px] rounded-full bg-[#1d4ed8]" aria-hidden="true" />
+        ))}
       </div>
       <p className="copy-pretty quote-copy italic">
         "{t.text}"
       </p>
     </div>
 
-    <div className="flex items-center gap-3 pt-4 border-t border-[#e3e8ef]">
+    <div className="hero-stats-divider flex items-center gap-3 pt-4 border-t">
       <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
         <SmartImage
           wrapperClassName="h-full w-full"
@@ -58,6 +60,7 @@ TestimonialItem.displayName = 'TestimonialItem';
 
 export const Testimonials = () => {
   const carouselRef = React.useRef<HTMLDivElement>(null);
+  const scrollRafRef = React.useRef<number | null>(null);
   const isDraggingRef = React.useRef(false);
   const dragStartX = React.useRef(0);
   const scrollStart = React.useRef(0);
@@ -75,6 +78,12 @@ export const Testimonials = () => {
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
   }, [activeSlide, prefersReducedMotion]);
+
+  React.useEffect(() => () => {
+    if (scrollRafRef.current) {
+      window.cancelAnimationFrame(scrollRafRef.current);
+    }
+  }, []);
 
   const goToSlide = React.useCallback((index: number) => {
     const total = testimonials.length;
@@ -124,6 +133,31 @@ export const Testimonials = () => {
     setActiveSlide(closest);
   };
 
+  const handleTrackScroll = React.useCallback(() => {
+    if (!carouselRef.current || isDraggingRef.current) return;
+    if (scrollRafRef.current) return;
+
+    scrollRafRef.current = window.requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      if (!carouselRef.current) return;
+
+      const scrollCenter = carouselRef.current.scrollLeft + carouselRef.current.clientWidth / 2;
+      const items = Array.from(carouselRef.current.children) as HTMLElement[];
+      if (items.length === 0) return;
+
+      const closest = items.reduce((closestIndex, item, index) => {
+        const center = item.offsetLeft + item.offsetWidth / 2;
+        const currentDiff = Math.abs(scrollCenter - center);
+        const bestItem = items[closestIndex];
+        const bestCenter = bestItem ? bestItem.offsetLeft + bestItem.offsetWidth / 2 : 0;
+        const bestDiff = Math.abs(scrollCenter - bestCenter);
+        return currentDiff < bestDiff ? index : closestIndex;
+      }, activeSlide);
+
+      setActiveSlide((prev) => (prev === closest ? prev : closest));
+    });
+  }, [activeSlide]);
+
   return (
     <section id="feedback" className="lazy-render-section section-shell section-tone-feedback section-spacing px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl mx-auto">
@@ -139,11 +173,19 @@ export const Testimonials = () => {
           </p>
         </div>
 
+        <div className="mb-4 flex justify-center md:hidden">
+          <p className="swipe-hint ui-pill-label">
+            <Hand size={14} />
+            Swipe cards
+          </p>
+        </div>
+
         <div
           ref={carouselRef}
           aria-label="Client testimonials"
           role="region"
           className={`mobile-testimonials-track flex gap-6 overflow-x-auto pb-6 no-scrollbar ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          onScroll={handleTrackScroll}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
