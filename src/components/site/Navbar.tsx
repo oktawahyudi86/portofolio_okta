@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Home as HomeIcon, Compass } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { cvUrl, navigationItems, primarySectionIds } from '../../data/site-content';
 
 type MobileMenuItem = {
@@ -24,12 +24,6 @@ export const Navbar = ({
     const currentItem = navigationItems.find((item) => item.path === pathname);
     return currentItem ? currentItem.href.replace('#', '') : 'home';
   });
-
-  // Handover-specific menu items
-  const handoverMenuItems = [
-    { name: 'Home', href: '#handover', path: '/handover', icon: HomeIcon },
-    { name: 'Project Status', href: '#project-status', path: '/handover', icon: Compass },
-  ];
 
   const resolveActiveHomeSection = React.useCallback(() => {
     const offset = 150;
@@ -80,21 +74,21 @@ export const Navbar = ({
   }, [pathname, resolveActiveHomeSection]);
 
   const mobileMenuItems: MobileMenuItem[] = [
-    ...(pathname === '/handover' 
-      ? [
-          navigationItems[0], // Home
-          { name: 'Project Status', href: '#handover', path: '/handover', icon: navigationItems[0].icon }
-        ]
-      : navigationItems
-    ),
+    ...navigationItems.map((item) => ({
+      ...item,
+      mobileLabel:
+        item.name === 'Portfolio'
+          ? 'Work'
+          : item.name === 'Journey'
+            ? 'Career'
+            : item.name,
+    })),
     {
-      name: pathname === '/handover' ? 'Contact' : 'View CV',
-      mobileLabel: pathname === '/handover' ? 'Contact' : 'CV',
-      href: pathname === '/handover' ? 'https://wa.me/6289675080104' : cvUrl,
-      icon: pathname === '/handover' ? Download : Download,
-      action: pathname === '/handover' 
-        ? () => window.open('https://wa.me/6289675080104', '_blank', 'noopener,noreferrer')
-        : () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
+      name: 'View CV',
+      mobileLabel: 'CV',
+      href: cvUrl,
+      icon: Download,
+      action: () => window.open(cvUrl, '_blank', 'noopener,noreferrer'),
     },
   ];
 
@@ -120,7 +114,7 @@ export const Navbar = ({
                 </div>
 
                 <div className="navbar-pill hidden lg:flex items-center gap-1 rounded-[14px] p-1">
-                  {(pathname === '/handover' ? handoverMenuItems : navigationItems).map((item, idx) => {
+                  {navigationItems.map((item, idx) => {
                     const Icon = item.icon;
                     const isActive = isItemActive(item);
 
@@ -130,18 +124,6 @@ export const Navbar = ({
                         href={item.href}
                         onClick={(event) => {
                           event.preventDefault();
-                          if (pathname === '/handover' && item.name === 'Home') {
-                            // On handover page, Home scrolls to handover header section
-                            const element = document.getElementById('handover');
-                            element?.scrollIntoView({ behavior: 'smooth' });
-                            return;
-                          }
-                          if (pathname === '/handover' && item.name === 'Project Status') {
-                            // Project Status scrolls to project-status section
-                            const element = document.getElementById('project-status');
-                            element?.scrollIntoView({ behavior: 'smooth' });
-                            return;
-                          }
                           if (pathname === '/') {
                             setActiveSection(item.href.replace('#', ''));
                             onNavigate(item.href);
@@ -150,13 +132,13 @@ export const Navbar = ({
 
                           onRouteChange(item.path);
                         }}
-                        className={`flex items-center gap-2 rounded-[10px] px-3 py-2 text-[12px] font-semibold transition-all ${
+                        className={`ui-pill-label flex items-center gap-2 rounded-[10px] px-3 py-2 transition-all ${
                           isActive
-                            ? 'bg-white/95 text-[#0c1a24] shadow-[0_6px_14px_rgba(15,32,39,0.08)]'
-                            : 'text-[#6b7280] hover:text-[#0c1a24]'
+                            ? 'bg-[rgba(248,251,253,0.95)] text-[#0c1a24] shadow-[0_6px_14px_rgba(15,32,39,0.08)]'
+                            : 'text-[#475569] hover:text-[#0c1a24]'
                         }`}
                       >
-                        <span className={isActive ? 'text-[#0fa3b1]' : 'text-[#b8c1cb]'}>
+                        <span className={isActive ? 'text-[#1d4ed8]' : 'text-[#475569]'}>
                           <Icon size={16} />
                         </span>
                         {item.name}
@@ -167,28 +149,17 @@ export const Navbar = ({
               </div>
 
               <div className="flex items-center gap-3">
-                {pathname === '/handover' ? (
-                  <a
-                    href="https://wa.me/6289675080104"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
-                  >
-                    <span className="text-[#1a3640]">Contact</span>
-                  </a>
-                ) : (
-                  <a
-                    href={cvUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-[12px] border border-[rgba(114,179,154,0.28)] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(114,179,154,0.18))] px-4 py-2 text-[12px] font-semibold text-[#17333b] shadow-[0_12px_28px_rgba(15,32,39,0.09)] backdrop-blur-md transition-all hover:border-[rgba(114,179,154,0.4)] hover:bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(114,179,154,0.24))] hover:shadow-[0_16px_32px_rgba(15,32,39,0.11)]"
-                  >
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(15,32,39,0.08),rgba(114,179,154,0.26))]">
-                      <Download size={14} className="text-[#21424d]" />
-                    </span>
-                    <span className="text-[#1a3640]">View CV</span>
-                  </a>
-                )}
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary ui-pill-label px-4 py-2"
+                >
+                  <span className="button-icon-chip">
+                    <Download size={14} />
+                  </span>
+                  <span>View CV</span>
+                </a>
               </div>
             </div>
           </nav>
@@ -214,18 +185,6 @@ export const Navbar = ({
                     }
 
                     event.preventDefault();
-                    if (pathname === '/handover' && item.name === 'Home') {
-                      // On handover page, Home scrolls to handover header section
-                      const element = document.getElementById('handover');
-                      element?.scrollIntoView({ behavior: 'smooth' });
-                      return;
-                    }
-                    if (pathname === '/handover' && item.name === 'Project Status') {
-                      // Project Status scrolls to project-status section
-                      const element = document.getElementById('project-status');
-                      element?.scrollIntoView({ behavior: 'smooth' });
-                      return;
-                    }
                     if (pathname === '/') {
                       setActiveSection(item.href.replace('#', ''));
                       onNavigate(item.href);
@@ -236,17 +195,18 @@ export const Navbar = ({
                   }}
                   className={`mobile-bottom-nav-link relative flex min-w-0 flex-1 flex-col items-center gap-1 rounded-[12px] px-1.5 py-2.5 transition-colors ${
                     isActive
-                      ? 'bg-white/90 text-[#0f1724]'
-                      : 'text-[#0f1724]/70 hover:text-[#0f1724]'
+                      ? 'bg-[rgba(248,251,253,0.92)] text-[#0f1724]'
+                      : 'text-[#334155] hover:text-[#0f1724]'
                   }`}
+                  aria-current={isActive ? 'page' : undefined}
                 >
                   {isActive && (
                     <div className="accent-gradient-line absolute inset-x-3 bottom-0 h-[3px] rounded-full" />
                   )}
-                  <div className={`${isActive ? 'text-[#6fc7d7]' : 'text-[#94a3b8]'} transition-colors`}>
+                  <div className={`${isActive ? 'text-[#1d4ed8]' : 'text-[#475569]'} transition-colors`}>
                     <Icon size={18} />
                   </div>
-                  <span className={`mobile-bottom-nav-label text-[9px] font-semibold leading-none transition-colors ${isActive ? 'text-[#0f1724]' : 'text-[#64748b]'}`}>
+                  <span className={`mobile-bottom-nav-label text-[12px] font-semibold leading-[1.35] transition-colors ${isActive ? 'text-[#0f1724]' : 'text-[#475569]'}`}>
                     {'mobileLabel' in item ? item.mobileLabel : item.name}
                   </span>
                 </a>

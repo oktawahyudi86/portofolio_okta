@@ -10,7 +10,7 @@ const featureBackgroundMap: Record<FeatureType, string> = {
 };
 
 export const FeatureIcon = ({ type }: { type: FeatureType }) => (
-  <div className={`w-14 h-14 lg:w-16 lg:h-16 rounded-[18px] ${featureBackgroundMap[type]} border border-white/40 flex items-center justify-center`}>
+  <div className={`w-14 h-14 lg:w-16 lg:h-16 rounded-[18px] ${featureBackgroundMap[type]} border border-[#f8fbfd]/50 flex items-center justify-center`}>
     <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {type === 'recruitment' && (
         <>
@@ -48,7 +48,7 @@ const reportingBackgroundMap: Record<ReportingVariant, string> = {
 };
 
 export const ReportingIcon = ({ variant }: { variant: ReportingVariant }) => (
-  <div className={`w-12 h-12 rounded-[14px] ${reportingBackgroundMap[variant]} border border-white/40 flex items-center justify-center`}>
+  <div className={`w-12 h-12 rounded-[14px] ${reportingBackgroundMap[variant]} border border-[#f8fbfd]/50 flex items-center justify-center`}>
     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       {variant === 'user' ? (
         <>

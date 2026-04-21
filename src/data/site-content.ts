@@ -42,9 +42,9 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 export const heroHighlights = [
-  'Sprint planning and release control',
+  'Sprint planning and release rhythm',
   'Stakeholder and team alignment',
-  'SaaS and product delivery',
+  'SaaS, product, and platform coordination',
 ];
 
 export const heroStats: HeroStat[] = [
@@ -118,23 +118,23 @@ export const experiences: Experience[] = [
 
 export const skills: SkillCard[] = [
   {
-    title: 'Planning & Delivery Control',
-    desc: 'Turn business needs into scope, priorities, milestones, and realistic timelines.',
+    title: 'Planning & Scope Control',
+    desc: 'Turn business needs into scope, priorities, milestones, and realistic timing.',
     icon: Layout,
   },
   {
     title: 'Agile & Sprint Leadership',
-    desc: 'Run Agile rituals, protect cadence, and keep sprint commitments visible.',
+    desc: 'Run Agile rituals, keep cadence healthy, and make commitments visible.',
     icon: Settings,
   },
   {
     title: 'System Rollout & Coordination',
-    desc: 'Coordinate testing, deployment, launch readiness, and cross-team follow-up.',
+    desc: 'Coordinate testing, launch prep, go-live, and cross-team follow-up.',
     icon: Layers,
   },
   {
     title: 'Stakeholder & Risk Management',
-    desc: 'Align stakeholders early and surface blockers before they affect delivery.',
+    desc: 'Align stakeholders early and surface risks before they slow things down.',
     icon: Users,
   },
 ];
@@ -187,17 +187,17 @@ export const featureCards: FeatureCard[] = [
   {
     type: 'recruitment',
     title: 'Requirement Discovery',
-    desc: 'Clarify goals, constraints, dependencies, and delivery expectations early.',
+    desc: 'Clarify goals, constraints, dependencies, and success measures early.',
   },
   {
     type: 'analysis',
     title: 'Planning & Prioritization',
-    desc: 'Shape scope, timing, and priorities so teams can move with focus.',
+    desc: 'Shape scope, timing, and priorities so teams know what matters next.',
   },
   {
     type: 'brd',
     title: 'BRD & Delivery Readiness',
-    desc: 'Turn requirements into documents and actionable inputs for build and QA.',
+    desc: 'Turn requirements into clear docs and build-ready inputs for QA and engineering.',
   },
 ];
 
@@ -208,8 +208,8 @@ export const projects: Project[] = [
     title: 'Dazo SaaS, Livechat AI, OMS & Toko Digital',
     type: 'SaaS Platform, Livechat AI, OMS & Digital Commerce',
     role: 'IT Project Manager',
-    impact: 'Delivered SaaS, Livechat AI, OMS, and toko digital initiatives to support launch readiness and product adoption.',
-    desc: 'Led delivery across SaaS, Livechat AI, OMS, and toko digital features by translating business needs into sprint priorities and controlled releases.',
+    impact: 'Shipped core SaaS, AI chat, OMS, and store features with clearer launch readiness.',
+    desc: 'Turned business asks into sprint priorities and controlled releases across the Dazo suite.',
     tags: ['SaaS delivery', 'Livechat AI', 'OMS execution', 'Toko digital'],
     image: '/aset/project-dazo-suite.webp',
     url: 'https://dazo.id/',
@@ -218,8 +218,8 @@ export const projects: Project[] = [
     title: 'Paketur Travel Marketplace',
     type: 'Travel Marketplace, App, Web & OMS',
     role: 'Product Delivery Lead',
-    impact: 'Recovered momentum and moved the platform closer to release.',
-    desc: 'Stabilized a delayed travel project and pushed app, website, and OMS delivery back on track.',
+    impact: 'Brought a delayed marketplace back into a clearer release path.',
+    desc: 'Helped stabilize app, web, and OMS work so the team could move again.',
     tags: ['Delivery revamp', 'App + website', 'OMS management', 'Release recovery'],
     image: '/aset/project-paketur.webp',
     url: 'https://paketur.com/',
@@ -228,8 +228,8 @@ export const projects: Project[] = [
     title: 'Juragan Kucek Laundry POS',
     type: 'Laundry POS & Order Management',
     role: 'Product Delivery Lead',
-    impact: 'Delivered a practical POS for day-to-day outlet operations.',
-    desc: 'Led delivery of an offline-ready laundry POS covering cashier flow, order handling, and outlet control.',
+    impact: 'Shipped a practical POS for daily outlet operations.',
+    desc: 'Led an offline-ready laundry POS covering cashier flow, orders, and outlet control.',
     tags: ['Laundry POS', 'Order management', 'Cashier flow', 'Offline operations'],
     image: '/aset/project-juragankucek.webp',
     url: 'https://play.google.com/store/search?q=Merchant%20Juragan%20Kucek&c=apps&hl=id',
@@ -238,8 +238,8 @@ export const projects: Project[] = [
     title: 'Melodia Musik Marketplace',
     type: 'Music Commerce Platform',
     role: 'Product Delivery Lead',
-    impact: 'Improved the buying journey for instruments and pro-audio products.',
-    desc: "Managed storefront delivery to improve discovery, campaign visibility, and checkout readiness.",
+    impact: 'Improved the shopping flow for instruments and pro-audio products.',
+    desc: 'Managed storefront improvements across discovery, campaigns, and checkout.',
     tags: ['E-commerce delivery', 'Catalog experience', 'Campaign landing', 'Checkout flow'],
     image: '/aset/project-melodiamusik.webp',
     url: 'https://melodia.id/',
@@ -248,7 +248,7 @@ export const projects: Project[] = [
     title: 'Maxtream Platform',
     type: 'Video Streaming & Content Delivery',
     role: 'Project Manager',
-    impact: 'Helped keep enterprise streaming delivery stable and launch-ready.',
+    impact: 'Supported stable rollout work for a large streaming platform.',
     desc: 'Coordinated enhancement and migration work across sprints, requirements, and release readiness.',
     tags: ['Enterprise migration', 'Sprint governance', 'Requirement alignment', 'Release readiness'],
     image: '/aset/project-maxtream-real.webp',
@@ -259,8 +259,8 @@ export const projects: Project[] = [
     title: 'Implementation DevOps Infrastructure',
     type: 'Enterprise DevOps Infrastructure',
     role: 'Project Manager',
-    impact: 'Improved delivery reliability and infrastructure visibility.',
-    desc: 'Coordinated DevOps infrastructure rollout across environment readiness, pipelines, and cross-team execution.',
+    impact: 'Improved infrastructure visibility and rollout reliability.',
+    desc: 'Coordinated environment readiness, pipelines, and follow-up across teams.',
     tags: ['DevOps rollout', 'Infrastructure readiness', 'Cross-team coordination', 'Service reliability'],
     image: '/aset/project-bpjstk-real.webp',
     url: 'https://www.bpjsketenagakerjaan.go.id/',
@@ -269,8 +269,8 @@ export const projects: Project[] = [
     title: 'Yulo Laundry Mobile App',
     type: 'Management System & Mobile App',
     role: 'Product Owner & Manager',
-    impact: 'Shortened processing flow and supported better retention.',
-    desc: 'Managed delivery across order flow, notifications, and reporting from backlog to release planning.',
+    impact: 'Helped streamline processing and support retention.',
+    desc: 'Managed order flow, notifications, and reporting from backlog through release planning.',
     tags: ['Product backlog', 'Workflow improvement', 'Release planning', 'Client communication'],
     image: '/aset/project-yulo-real.webp',
     url: 'https://play.google.com/store/apps/details?id=com.yulo.customer&hl=id',
@@ -280,7 +280,7 @@ export const projects: Project[] = [
     type: 'Enterprise Digital Platform',
     role: 'Lead Project Manager',
     impact: 'Improved communication flow and operational visibility.',
-    desc: 'Led delivery from requirements and scope alignment through testing and deployment.',
+    desc: 'Led the work from requirements and scope through testing and launch.',
     tags: ['Requirement gathering', 'Stakeholder alignment', 'UAT coordination', 'Deployment'],
     image: '/aset/project-mrt-real.webp',
     url: 'https://bisnis.jakartamrt.co.id/',

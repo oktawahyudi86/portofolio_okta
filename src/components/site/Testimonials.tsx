@@ -1,6 +1,6 @@
 import React from 'react';
-import { Star } from 'lucide-react';
-import { motion } from 'motion/react';
+import { ArrowLeft, ArrowRight, Star } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { testimonials } from '../../data/site-content';
 import type { Testimonial } from '../../types/site';
 import { SmartImage } from './SmartImage';
@@ -8,22 +8,23 @@ import { SmartImage } from './SmartImage';
 interface TestimonialItemProps {
   t: Testimonial;
   idx: number;
+  reduceMotion: boolean;
 }
 
-const TestimonialItem = React.memo(({ t, idx }: TestimonialItemProps) => (
+const TestimonialItem = React.memo(({ t, idx, reduceMotion }: TestimonialItemProps) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: idx * 0.1 }}
-    whileHover={{ y: -6 }}
+    initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+    whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+    viewport={reduceMotion ? undefined : { once: true }}
+    transition={reduceMotion ? undefined : { delay: idx * 0.1 }}
+    whileHover={reduceMotion ? undefined : { y: -6 }}
     className="lazy-render-item mobile-feedback-card surface-card surface-card-tight min-h-[300px] min-w-[260px] sm:min-w-[290px] lg:min-w-[320px] xl:min-w-[340px] max-w-[370px] p-6 sm:p-8 flex flex-col justify-between gap-6"
   >
     <div>
-      <div className="flex gap-1 mb-4">
-        {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#72b39a" className="text-[#0fa3b1]" />)}
+      <div className="mb-4 flex gap-1">
+        {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#1d4ed8" className="text-[#1d4ed8]" />)}
       </div>
-      <p className="copy-pretty text-[14px] sm:text-[15px] text-[#0d1f2b]/70 italic leading-[1.82] font-medium">
+      <p className="copy-pretty quote-copy italic">
         "{t.text}"
       </p>
     </div>
@@ -46,8 +47,8 @@ const TestimonialItem = React.memo(({ t, idx }: TestimonialItemProps) => (
         />
       </div>
       <div className="min-w-0">
-        <p className="font-black text-[14px] text-[#0d1f2b] tracking-tight truncate">{t.name}</p>
-        <p className="text-[12px] text-[#5f6670] font-semibold tracking-[0.03em] truncate">{t.company}</p>
+        <p className="card-title font-black text-[#0d1f2b] truncate">{t.name}</p>
+        <p className="ui-pill-label text-[#5f6670] truncate">{t.company}</p>
       </div>
     </div>
   </motion.div>
@@ -62,14 +63,7 @@ export const Testimonials = () => {
   const scrollStart = React.useRef(0);
   const [activeSlide, setActiveSlide] = React.useState(0);
   const [isDragging, setIsDragging] = React.useState(false);
-
-  React.useEffect(() => {
-    if (isDragging) return;
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % testimonials.length);
-    }, 3600);
-    return () => clearInterval(interval);
-  }, [testimonials.length, isDragging]);
+  const prefersReducedMotion = useReducedMotion();
 
   React.useEffect(() => {
     if (!carouselRef.current) return;
@@ -78,11 +72,17 @@ export const Testimonials = () => {
     const offset = target.offsetLeft - (carouselRef.current.clientWidth - target.offsetWidth) / 2;
     carouselRef.current.scrollTo({
       left: Math.max(0, offset),
-      behavior: 'smooth',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
-  }, [activeSlide]);
+  }, [activeSlide, prefersReducedMotion]);
+
+  const goToSlide = React.useCallback((index: number) => {
+    const total = testimonials.length;
+    setActiveSlide((index + total) % total);
+  }, []);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse') return;
     if (!carouselRef.current) return;
     isDraggingRef.current = true;
     setIsDragging(true);
@@ -92,12 +92,14 @@ export const Testimonials = () => {
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse') return;
     if (!isDraggingRef.current || !carouselRef.current) return;
     const delta = event.clientX - dragStartX.current;
     carouselRef.current.scrollLeft = scrollStart.current - delta;
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse' && !isDraggingRef.current) return;
     if (!carouselRef.current) return;
     isDraggingRef.current = false;
     setIsDragging(false);
@@ -133,13 +135,15 @@ export const Testimonials = () => {
             What teams say <span className="accent-gradient-text">about working with me</span>
           </h2>
           <p className="section-intro copy-pretty max-w-xl">
-            <span className="accent-gradient-text">Short feedback that reflects delivery ownership, communication style, and day-to-day execution.</span>
+            Short notes from people I have worked with across teams and projects.
           </p>
         </div>
 
         <div
           ref={carouselRef}
-          className={`flex gap-6 overflow-x-auto pb-6 no-scrollbar ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          aria-label="Client testimonials"
+          role="region"
+          className={`mobile-testimonials-track flex gap-6 overflow-x-auto pb-6 no-scrollbar ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -150,19 +154,41 @@ export const Testimonials = () => {
           }}
         >
           {testimonials.map((testimonial, idx) => (
-            <TestimonialItem key={idx} t={testimonial} idx={idx} />
+            <TestimonialItem key={idx} t={testimonial} idx={idx} reduceMotion={prefersReducedMotion} />
           ))}
         </div>
 
-        <div className="flex justify-center gap-3 mt-6">
-          {testimonials.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveSlide(idx)}
-              className={`w-3 h-3 rounded-full transition-all ${activeSlide === idx ? 'bg-[#0f172a]' : 'bg-[#d1d5db]'}`}
-              aria-label={`Go to testimonial ${idx + 1}`}
-            />
-          ))}
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => goToSlide(activeSlide - 1)}
+            className="icon-button-soft h-11 w-11 text-[#334155] hover:text-[#1d4ed8]"
+            aria-label="Previous testimonial"
+          >
+            <ArrowLeft size={16} />
+          </button>
+
+          <div className="flex justify-center gap-3">
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => goToSlide(idx)}
+                className={`h-3 w-3 rounded-full transition-all ${activeSlide === idx ? 'bg-[#1d4ed8] scale-110' : 'bg-[#cbd5e1] hover:bg-[#94a3b8]'}`}
+                aria-label={`Go to testimonial ${idx + 1}`}
+                aria-pressed={activeSlide === idx}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goToSlide(activeSlide + 1)}
+            className="icon-button-soft h-11 w-11 text-[#334155] hover:text-[#1d4ed8]"
+            aria-label="Next testimonial"
+          >
+            <ArrowRight size={16} />
+          </button>
         </div>
       </div>
     </section>

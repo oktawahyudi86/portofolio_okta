@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { MotionConfig } from 'motion/react';
 import { Hero } from './components/site/Hero';
 import {
   SectionTransitionSkeleton,
@@ -16,7 +17,6 @@ import { sitePageByPath } from './data/site-pages';
 
 const Contact = React.lazy(async () => ({ default: (await import('./components/site/Contact')).Contact }));
 const Footer = React.lazy(async () => ({ default: (await import('./components/site/Footer')).Footer }));
-const Handover = React.lazy(async () => ({ default: (await import('./components/site/Handover')).Handover }));
 const Journey = React.lazy(async () => ({ default: (await import('./components/site/Journey')).Journey }));
 const LegalPage = React.lazy(async () => ({ default: (await import('./components/site/LegalPage')).LegalPage }));
 const Portfolio = React.lazy(async () => ({ default: (await import('./components/site/Portfolio')).Portfolio }));
@@ -209,6 +209,12 @@ export default function App() {
     }
   }, []);
 
+  React.useEffect(() => {
+    if (sitePageByPath[pathname]) return;
+    window.history.replaceState({}, '', '/');
+    setPathname('/');
+  }, [pathname]);
+
   const currentPage = sitePageByPath[pathname] ?? sitePageByPath['/'];
   const deferredSectionsFallback = (
     <div className="px-4 sm:px-5 md:px-6 xl:px-8 2xl:px-12 py-8 lg:py-10">
@@ -330,45 +336,35 @@ export default function App() {
       );
     }
 
-    if (pathname === '/handover') {
-      return (
-        <>
-          <Navbar onNavigate={handleNavigate} onRouteChange={handleRouteChange} pathname={pathname} />
-          <React.Suspense fallback={deferredSectionsFallback}>
-            <Handover />
-            <Footer onRouteChange={handleRouteChange} pathname={pathname} />
-          </React.Suspense>
-        </>
-      );
-    }
-
     return renderHomePage();
   };
 
   return (
-    <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0fa3b1] selection:text-white antialiased relative overflow-hidden">
-      <SeoMetadata page={currentPage} />
-      <RecaptchaBadge pathname={pathname} />
-      <div className={`app-page-shell ${
-        pageTransitionStage === 'out'
-          ? 'app-page-shell--out'
-          : pageTransitionStage === 'in'
-            ? 'app-page-shell--in'
-            : ''
-      }`}
-      >
-        {pathname === '/privacy' ? (
-          <React.Suspense fallback={deferredSectionsFallback}>
-            <LegalPage type="privacy" onRouteChange={handleRouteChange} />
-          </React.Suspense>
-        ) : pathname === '/terms' ? (
-          <React.Suspense fallback={deferredSectionsFallback}>
-            <LegalPage type="terms" onRouteChange={handleRouteChange} />
-          </React.Suspense>
-        ) : (
-          renderSectionPage()
-        )}
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen pb-24 lg:pb-0 bg-[#f4f6fb] font-sans selection:bg-[#0f172a] selection:text-white antialiased relative overflow-hidden">
+        <SeoMetadata page={currentPage} />
+        <RecaptchaBadge pathname={pathname} />
+        <div className={`app-page-shell ${
+          pageTransitionStage === 'out'
+            ? 'app-page-shell--out'
+            : pageTransitionStage === 'in'
+              ? 'app-page-shell--in'
+              : ''
+        }`}
+        >
+          {pathname === '/privacy' ? (
+            <React.Suspense fallback={deferredSectionsFallback}>
+              <LegalPage type="privacy" onRouteChange={handleRouteChange} />
+            </React.Suspense>
+          ) : pathname === '/terms' ? (
+            <React.Suspense fallback={deferredSectionsFallback}>
+              <LegalPage type="terms" onRouteChange={handleRouteChange} />
+            </React.Suspense>
+          ) : (
+            renderSectionPage()
+          )}
+        </div>
       </div>
-    </div>
+    </MotionConfig>
   );
 }

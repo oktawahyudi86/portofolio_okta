@@ -5,7 +5,6 @@ import type { SitePageMeta } from '../../types/site';
 
 const siteUrl = (import.meta.env.VITE_SITE_URL || 'https://oktawahyu.web.id').replace(/\/$/, '');
 const ogImageUrl = `${siteUrl}/aset/og-preview.webp?v=20260330-1`;
-const ogHandoverImageUrl = `${siteUrl}/aset/og-handover.webp?v=20260330-1`;
 const previewContactSuffix = ` WhatsApp: ${contactDetails.phoneNumber} untuk diskusi project, kolaborasi, dan peluang kerja.`;
 const withPreviewContact = (description: string) => `${description}${previewContactSuffix}`;
 
@@ -36,24 +35,19 @@ const upsertLink = (rel: string, href: string) => {
 export const SeoMetadata = ({ page }: { page: SitePageMeta }) => {
   React.useEffect(() => {
     const pageUrl = page.path === '/' ? `${siteUrl}/` : `${siteUrl}${page.path}`;
-    const previewDescription = page.path === '/handover' 
-      ? page.description 
-      : withPreviewContact(page.description);
-    
-    // Gunakan OG image yang berbeda untuk halaman handover
-    const currentOgImageUrl = page.path === '/handover' ? ogHandoverImageUrl : ogImageUrl;
+    const previewDescription = withPreviewContact(page.description);
 
     document.title = page.title;
     upsertMeta('name', 'description', previewDescription);
     upsertMeta('property', 'og:title', page.title);
     upsertMeta('property', 'og:description', previewDescription);
     upsertMeta('property', 'og:url', pageUrl);
-    upsertMeta('property', 'og:image', currentOgImageUrl);
-    upsertMeta('property', 'og:image:url', currentOgImageUrl);
-    upsertMeta('property', 'og:image:secure_url', currentOgImageUrl);
+    upsertMeta('property', 'og:image', ogImageUrl);
+    upsertMeta('property', 'og:image:url', ogImageUrl);
+    upsertMeta('property', 'og:image:secure_url', ogImageUrl);
     upsertMeta('name', 'twitter:title', page.title);
     upsertMeta('name', 'twitter:description', previewDescription);
-    upsertMeta('name', 'twitter:image', currentOgImageUrl);
+    upsertMeta('name', 'twitter:image', ogImageUrl);
     upsertLink('canonical', pageUrl);
 
     const pageSchema = {

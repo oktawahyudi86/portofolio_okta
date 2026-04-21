@@ -15,7 +15,7 @@ export const SectionPageShell = ({
   children: ReactNode;
 }) => (
   <main>
-    <section className="section-shell section-tone-hero px-4 pt-24 pb-8 sm:px-5 md:px-6 lg:pt-32 xl:px-8 2xl:px-12">
+    <section className="section-shell section-tone-hero px-4 pt-16 pb-8 sm:px-5 sm:pt-20 md:px-6 md:pt-24 lg:pt-44 xl:px-8 2xl:px-12">
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <a
           href="/"
@@ -23,7 +23,7 @@ export const SectionPageShell = ({
             event.preventDefault();
             onRouteChange('/');
           }}
-          className="site-enter site-enter--section-chip inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-white px-4 py-2 text-[12px] font-semibold tracking-[0.06em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
+          className="site-enter site-enter--section-chip button-secondary ui-pill-label px-4 py-2"
         >
           <ArrowLeft size={15} />
           Back to home
@@ -48,9 +48,9 @@ export const SectionPageShell = ({
                   event.preventDefault();
                   onRouteChange('/contact');
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-[#0fa3b1]/20 bg-white px-4 py-2.5 text-[12px] font-semibold tracking-[0.06em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
+                className="button-secondary ui-pill-label px-4 py-2.5"
               >
-                Contact Page
+                Contact
                 <ArrowUpRight size={15} />
               </a>
             )}
@@ -58,7 +58,7 @@ export const SectionPageShell = ({
               href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#d8e4eb] bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[12px] font-semibold tracking-[0.06em] text-[#173041] shadow-sm transition hover:border-[#0fa3b1]/40 hover:text-[#0fa3b1]"
+              className="button-secondary ui-pill-label px-4 py-2.5"
             >
               View CV
               <ArrowUpRight size={15} />
@@ -66,38 +66,31 @@ export const SectionPageShell = ({
           </div>
         </div>
 
-        {/* Card navigasi hanya tampil jika bukan halaman handover */}
-        {page.path === '/handover' ? (
-          <div className="mt-8">
-            {/* Card handover project akan di-render oleh komponen Handover di bawah section hero */}
-          </div>
-        ) : (
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {sitelinkPages.map((item) => {
-              const isCurrent = item.path === page.path;
-              return (
-                <motion.a
-                  key={item.path}
-                  href={item.path}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    onRouteChange(item.path);
-                  }}
-                  whileHover={{ y: -2 }}
-                  className={`surface-card surface-card-tight flex flex-col gap-2 p-4 transition-colors ${
-                    isCurrent ? 'border-[#0fa3b1]/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(220,243,234,0.82))]' : ''
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-[14px] font-black text-[#102635]">{item.navLabel}</p>
-                    <ArrowUpRight size={16} className={isCurrent ? 'text-[#0fa3b1]' : 'text-[#94a3b8]'} />
-                  </div>
-                  <p className="copy-pretty text-[12px] leading-relaxed text-[#5f6670]">{item.shortDescription}</p>
-                </motion.a>
-              );
-            })}
-          </div>
-        )}
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {sitelinkPages.map((item) => {
+            const isCurrent = item.path === page.path;
+            return (
+              <motion.a
+                key={item.path}
+                href={item.path}
+                onClick={(event) => {
+                  event.preventDefault();
+                  onRouteChange(item.path);
+                }}
+                whileHover={{ y: -2 }}
+                className={`surface-card surface-card-tight flex flex-col gap-2 p-4 transition-colors ${
+                  isCurrent ? 'border-[#2f6f8f]/20 bg-[linear-gradient(135deg,rgba(248,251,253,0.98),rgba(233,244,255,0.86))]' : ''
+                }`}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className="card-title font-black text-[#102635]">{item.navLabel}</p>
+                  <ArrowUpRight size={16} className={isCurrent ? 'text-[#2f6f8f]' : 'text-[#94a3b8]'} />
+                </div>
+                <p className="copy-pretty supporting-copy">{item.shortDescription}</p>
+              </motion.a>
+            );
+          })}
+        </div>
       </div>
     </section>
 

@@ -41,24 +41,24 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
     </div>
 
     <div className={`order-2 space-y-4.5 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-      <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#5f6670] lg:text-[13px]">
-        <span className="font-semibold tracking-[0.08em]">
+      <div className="mobile-portfolio-meta flex flex-wrap items-center gap-2 ui-pill-label text-[#5f6670]">
+        <span className="ui-pill-label">
           <span className="accent-gradient-text">{project.type}</span>
         </span>
         <span className="text-[#c0c7cf]">/</span>
         <span className="text-[#0c1a24]">{project.role}</span>
       </div>
 
-      <h3 className="copy-balance max-w-[16ch] text-[28px] font-black leading-[0.96] tracking-tighter text-[#0d1f2b] lg:text-[38px] xl:text-[42px]">
+      <h3 className="mobile-portfolio-title copy-balance max-w-[16ch] text-[clamp(1.9rem,3.1vw,2.6rem)] font-black leading-[1.02] tracking-[-0.04em] text-[#0d1f2b]">
         {project.title}
       </h3>
 
       <div className="space-y-3.5">
-        <p className="copy-pretty max-w-xl text-[15px] leading-[1.78] text-[#1a2e35]/80 lg:text-[16px]">
+      <p className="copy-pretty supporting-copy max-w-xl">
           {project.desc}
         </p>
-        <div className="border-l-2 border-[#0fa3b1]/35 pl-4">
-          <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.08em]">
+        <div className="border-l-2 border-[#2f6f8f]/35 pl-4">
+        <p className="section-kicker-label mb-2">
             <span className="accent-gradient-text">Key impact</span>
           </p>
           <p className="copy-pretty max-w-xl text-[14px] italic leading-[1.76] text-[#0c1a24] lg:text-[15px]">{project.impact}</p>
@@ -66,10 +66,10 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
       </div>
 
       <div>
-        <p className="mb-3 text-[12px] font-semibold tracking-[0.08em] text-[#5f6670]">Common interview topics</p>
+      <p className="section-kicker-label mb-3 text-[#5f6670]">Focus areas</p>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <span key={tag} className="rounded-xl border border-[#e3e8ef] bg-[#f8fafc] px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.03em] text-[#1a2e35] lg:text-[12px]">
+          <span key={tag} className="tag-pill-soft ui-pill-label rounded-xl px-3.5 py-1.5">
               {tag}
             </span>
           ))}
@@ -81,10 +81,10 @@ const PortfolioItem = React.memo(({ project, idx }: PortfolioItemProps) => (
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-3 text-[#1a2e35] group/btn"
+        className="mobile-portfolio-link group/btn inline-flex items-center gap-3 text-[#1a2e35] transition-colors hover:text-[#1d4ed8]"
       >
-        <span className="text-[13px] font-semibold tracking-[0.08em]">View project reference</span>
-        <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#d7e2e8] flex items-center justify-center group-hover/btn:bg-[#0c1a24] group-hover/btn:text-white transition-all duration-300">
+        <span className="ui-pill-label">Open project</span>
+        <div className="icon-button-soft h-10 w-10 lg:h-12 lg:w-12">
           <ArrowUpRight size={18} />
         </div>
       </motion.a>
@@ -102,14 +102,14 @@ export const Portfolio = () => {
       <div className="section-inner max-w-7xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative z-10">
         <div className="section-header-stack">
           <p className="section-kicker section-kicker-label">
-            <span className="accent-gradient-text">Selected Project Experience</span>
+            <span className="accent-gradient-text">Selected Work</span>
           </p>
           <h2 className="section-heading-display copy-balance max-w-[14ch] font-black text-[#1a2e35]">
-            <span className="accent-gradient-text">Case Studies</span>{' '}
-            <span className="accent-gradient-text italic font-serif">That Show How I Work</span>
+            <span className="accent-gradient-text">Case studies</span>{' '}
+            <span>that show how I work</span>
           </h2>
           <p className="section-intro copy-pretty copy-measure-wide max-w-2xl">
-            A selection of projects that show how I manage scope, coordination, and release execution.
+            A few projects that show how I organize scope, teams, and release work.
           </p>
         </div>
 
@@ -124,9 +124,9 @@ export const Portfolio = () => {
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mobile-cta-button accent-gradient-bg inline-flex items-center gap-3 px-12 py-5 rounded-full text-[13px] font-semibold tracking-[0.08em] transition-all shadow-soft hover:opacity-95"
+        className="mobile-cta-button button-primary ui-pill-label px-12 py-5"
           >
-            Explore More on GitHub
+            Explore more on GitHub
             <Github size={16} />
           </a>
         </div>

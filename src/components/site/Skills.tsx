@@ -7,11 +7,11 @@ export const Skills = () => (
       <div className="section-header-inline">
         <div className="max-w-xl 2xl:max-w-2xl">
           <h2 className="section-heading-display copy-balance max-w-[11ch] font-black text-[#1a2e35]">
-            Core <span className="accent-gradient-text">Capabilities</span>
+            Core <span className="accent-gradient-text">Strengths</span>
           </h2>
         </div>
         <p className="section-intro copy-pretty max-w-md">
-          The strengths I rely on to keep delivery structured, teams aligned, and releases moving.
+          The strengths I rely on to keep work clear, teams aligned, and releases steady.
         </p>
       </div>
 
@@ -25,11 +25,11 @@ export const Skills = () => (
               whileHover={{ y: -2 }}
               className="border-t border-[#dbe3ea] pt-6 lg:pt-7"
             >
-              <div className="w-11 h-11 rounded-[14px] bg-[#0fa3b1]/10 text-[#0fa3b1] flex items-center justify-center mb-5">
+              <div className="icon-accent-chip mb-5 flex h-11 w-11 items-center justify-center rounded-[14px]">
                 <Icon size={20} />
               </div>
-              <h3 className="copy-balance text-[1.22rem] 2xl:text-[1.42rem] font-black text-[#0c1a24] mb-3 tracking-tight">{skill.title}</h3>
-              <p className="copy-pretty text-[15px] 2xl:text-[16px] text-[#5f6670] leading-[1.76]">{skill.desc}</p>
+            <h3 className="copy-balance card-title font-black text-[#0c1a24] mb-3">{skill.title}</h3>
+            <p className="copy-pretty supporting-copy">{skill.desc}</p>
             </motion.div>
           );
         })}

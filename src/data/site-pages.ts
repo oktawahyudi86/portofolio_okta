@@ -6,12 +6,12 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Home',
     title: 'Okta Wahyudi | IT Project Manager Portfolio',
     description:
-      'Explore the portfolio of Okta Wahyudi, an IT Project Manager trusted to align teams, drive delivery, and keep SaaS, product, and enterprise projects moving with clarity.',
-    shortDescription: 'A complete portfolio covering profile, experience, delivery strengths, case studies, and contact details.',
-    heroEyebrow: 'Portfolio Overview',
-    heroTitle: 'Project management portfolio built for stronger search visibility.',
+      'Explore the portfolio of Okta Wahyudi, an IT Project Manager who keeps teams aligned, priorities clear, and releases moving.',
+    shortDescription: 'Profile, experience, selected work, and contact details in one place.',
+    heroEyebrow: 'Overview',
+    heroTitle: 'A project manager focused on clarity, pace, and follow-through.',
     heroDescription:
-      'A polished overview of Okta Wahyudi, highlighting delivery leadership, selected projects, and collaboration details across software, SaaS, and enterprise work.',
+      'A quick overview of Okta Wahyudi, including experience, selected work, and ways to connect.',
     schemaType: 'ProfilePage',
   },
   {
@@ -19,12 +19,11 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Journey',
     title: 'Professional Journey | Okta Wahyudi',
     description:
-      'Follow Okta Wahyudi’s journey from implementation and infrastructure coordination to leading software delivery across startup and enterprise projects.',
-    shortDescription: 'Career milestones, roles, and leadership progression across software and enterprise delivery.',
+      "Follow Okta Wahyudi's path from implementation support to leading software teams across startup and enterprise work.",
+    shortDescription: 'Roles, companies, and the path into project leadership.',
     heroEyebrow: 'Career Milestones',
-    heroTitle: 'Professional journey across software, infrastructure, and product delivery.',
-    heroDescription:
-      'A focused timeline of experience, growth, and delivery ownership that shaped Okta Wahyudi as an IT Project Manager.',
+    heroTitle: 'The roles that shaped how I lead teams and projects.',
+    heroDescription: 'A focused timeline of companies, positions, and growth over time.',
     schemaType: 'AboutPage',
     includeInSitelinks: true,
   },
@@ -33,12 +32,11 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Skills',
     title: 'Project Management Skills | Okta Wahyudi',
     description:
-      'Discover Okta Wahyudi’s core strengths in sprint leadership, stakeholder alignment, release coordination, and structured software delivery.',
-    shortDescription: 'Core delivery capabilities, SDLC flow, and tools used to keep software projects on track.',
-    heroEyebrow: 'Delivery Strengths',
-    heroTitle: 'Core capabilities for planning, delivery control, and team alignment.',
-    heroDescription:
-      'A dedicated page covering the working style, delivery discipline, and Scrum-based execution approach used to keep software projects structured and moving forward.',
+      "Discover Okta Wahyudi's core strengths in planning, sprint leadership, stakeholder alignment, and release coordination.",
+    shortDescription: 'Core strengths, working style, and tools.',
+    heroEyebrow: 'Core Strengths',
+    heroTitle: 'How I plan, align, and keep work moving.',
+    heroDescription: 'A closer look at the habits, tools, and Scrum routines I use day to day.',
     schemaType: 'CollectionPage',
     includeInSitelinks: true,
   },
@@ -48,11 +46,10 @@ export const sitePages: SitePageMeta[] = [
     title: 'Portfolio & Case Studies | Okta Wahyudi',
     description:
       'Browse selected case studies led by Okta Wahyudi across SaaS, marketplaces, POS products, and enterprise digital platforms.',
-    shortDescription: 'Selected case studies that show delivery leadership across SaaS, marketplaces, and enterprise platforms.',
+    shortDescription: 'Selected work across SaaS, marketplaces, and enterprise platforms.',
     heroEyebrow: 'Selected Work',
-    heroTitle: 'Case studies that show how delivery moves from planning to release.',
-    heroDescription:
-      'A curated portfolio focused on project context, delivery role, and measurable impact across software products, enterprise platforms, and operational systems.',
+    heroTitle: 'Selected work that shows how I organize teams and ship.',
+    heroDescription: 'A curated set of projects with role, context, and outcomes.',
     schemaType: 'CollectionPage',
     includeInSitelinks: true,
   },
@@ -61,12 +58,11 @@ export const sitePages: SitePageMeta[] = [
     navLabel: 'Contact',
     title: 'Contact Okta Wahyudi | IT Project Manager',
     description:
-      'Connect with Okta Wahyudi for IT Project Manager roles, software delivery opportunities, and collaboration discussions.',
-    shortDescription: 'Direct contact options for project roles, collaboration, and software delivery discussions.',
-    heroEyebrow: 'Let’s Connect',
-    heroTitle: 'Direct contact details for project discussions and collaboration.',
-    heroDescription:
-      'A dedicated contact page for recruiters, hiring teams, and partners who want to discuss delivery support, collaboration, or project opportunities.',
+      'Connect with Okta Wahyudi for project roles, hiring conversations, and collaboration.',
+    shortDescription: 'Direct contact options for hiring and collaboration.',
+    heroEyebrow: "Let's Connect",
+    heroTitle: 'Open for the right role, team, or project.',
+    heroDescription: 'A direct way for recruiters, teams, and partners to get in touch.',
     schemaType: 'ContactPage',
     includeInSitelinks: true,
   },
@@ -94,19 +90,6 @@ export const sitePages: SitePageMeta[] = [
     heroTitle: 'Terms and conditions for the portfolio website.',
     heroDescription:
       'A legal page that explains how this portfolio website may be used for recruitment, networking, and professional communication purposes.',
-    schemaType: 'WebPage',
-  },
-  {
-    path: '/handover',
-    navLabel: 'Handover',
-    title: 'Project Handover Documentation | Okta Wahyudi',
-    description:
-      'Dokumentasi lengkap dan progress handover project mencakup project timeline, QA testing results, technical documentation, dan akses credential untuk kelanjutan proyek yang seamless.',
-    shortDescription: 'Project handover documentation dengan timeline, QA results, technical docs, dan credentials untuk directors dan successors.',
-    heroEyebrow: 'Project Handover',
-    heroTitle: 'Dokumentasi dan progres handover untuk kelanjutan proyek.',
-    heroDescription:
-      'Halaman khusus untuk direktur dan penerus, berisi akses dokumen penting, status progres, dan catatan handover project dengan informasi lengkap untuk transisi yang smooth.',
     schemaType: 'WebPage',
   },
 ];
